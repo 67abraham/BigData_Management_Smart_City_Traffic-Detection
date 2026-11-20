@@ -25,8 +25,10 @@ The first image build downloads ~3 GB.
 
 ## Run (M0)
 
+Run from the project root: `04-projects/241091038/` in the course fork, or the repository root of the
+GitHub mirror used for Codespaces (which contains only this folder).
+
 ```bash
-cd 04-projects/241091038
 cp .env.example .env            # optional; defaults are built into compose.yaml
 docker compose up -d --build    # first build takes several minutes (PyFlink image)
 docker compose ps               # namenode and kafka should become "healthy"
