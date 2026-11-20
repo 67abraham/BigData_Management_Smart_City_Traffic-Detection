@@ -13,23 +13,39 @@ four versioned data products with contracts → light dashboard.
 | Component | Version | Containers | UI / port |
 |---|---|---|---|
 | HDFS | 3.3.6 (`apache/hadoop`) | namenode, datanode1–3, replication = 2 | NameNode `:9870` |
-| Spark (standalone) | 3.5.3, Java 17, Python 3.10 | spark-master, spark-worker-1/2, spark-history | `:8080`, workers `:8081`/`:8083`, history `:18080` |
+| Spark (standalone) | 3.5.3, Java 17, Python 3.10 | spark-master, spark-worker-1/2, spark-history | master `:8080`, workers `:8081`/`:8083`, running job `:4040`, history `:18080` |
 | Kafka (KRaft) | 3.7.1 (`apache/kafka`) | kafka | `kafka:9092` in-network, `localhost:29092` from host |
 | Flink + PyFlink | 1.18.1, Java 11, Kafka connector 3.1.0-1.18 | flink-jobmanager, flink-taskmanager | `:8082` |
 
 Container memory limits are caps, not reservations; they sum to about 13 GB.
 
 ## Hardware requirements
-A **4-core / 16 GB** GitHub Codespace (or any Linux host with Docker Compose v2 and ≥16 GB RAM, ≥20 GB free disk).
-The first image build downloads ~3 GB.
+A **4-core / 16 GB / 32 GB disk** GitHub Codespace (the minimum declared in `.devcontainer/devcontainer.json`),
+or any Linux host with Docker Engine + Compose v2 and the same resources. The first build downloads several
+GB of images (exact size to be recorded in `evidence/AC02/`).
+
+## Codespace setup
+`.devcontainer/devcontainer.json` gives the Codespace Python 3.11 and Docker (`docker-in-docker` feature)
+and installs `requirements-dev.txt`. Check Docker before anything else:
+
+```bash
+docker version && docker compose version
+```
+
+If you see `docker: command not found`, the Codespace did not build from the devcontainer (it is in
+recovery mode or predates it): run **Codespaces: View Creation Log** to find the error, then
+**Codespaces: Full Rebuild Container**.
 
 ## Run (M0)
 
+Run from the project root: `04-projects/241091038/` in the course fork, or the repository root of the
+GitHub mirror used for Codespaces (which contains only this folder).
+
 ```bash
-cd 04-projects/241091038
 cp .env.example .env            # optional; defaults are built into compose.yaml
 docker compose up -d --build    # first build takes several minutes (PyFlink image)
-docker compose ps               # namenode and kafka should become "healthy"
+docker compose ps               # namenode and kafka should become "healthy"; spark-history
+                                #   restarts until the smoke test creates hdfs:///spark-events
 bash scripts/smoke_m0.sh        # writes evidence/AC02/m0_<timestamp>/
 ```
 
