@@ -12,5 +12,5 @@
     "8082": { "label": "Flink UI" },
     "18080": { "label": "Spark History" }
   },
-  "postCreateCommand": "pip install -r 04-projects/241091038/requirements-dev.txt"
+  "postCreateCommand": "pip install -r requirements-dev.txt"
 }
