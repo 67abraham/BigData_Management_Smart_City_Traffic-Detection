@@ -1,0 +1,16 @@
+{
+  "name": "bdfp-241091038",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": { "cpus": 4, "memory": "16gb", "storage": "32gb" },
+  "forwardPorts": [9870, 8080, 8081, 8082, 8083, 18080, 29092],
+  "portsAttributes": {
+    "9870": { "label": "HDFS NameNode UI" },
+    "8080": { "label": "Spark master UI" },
+    "8082": { "label": "Flink UI" },
+    "18080": { "label": "Spark History" }
+  },
+  "postCreateCommand": "pip install -r 04-projects/241091038/requirements-dev.txt"
+}

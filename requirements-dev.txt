@@ -1,0 +1,4 @@
+# Host-side (Codespace / local) tools. Cluster jobs use the images in docker/.
+pyyaml==6.0.2
+pytest==8.3.4
+requests==2.32.3

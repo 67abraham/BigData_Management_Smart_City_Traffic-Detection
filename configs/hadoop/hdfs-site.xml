@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HDFS cluster: 1 NameNode + 3 DataNodes. Spec §3.3 (verifiable distributed storage), T02/AC02. -->
+<configuration>
+  <!-- Every block is stored on 2 of the 3 DataNodes, so the cluster survives the loss of any one DataNode. -->
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>dfs.blocksize</name>
+    <value>134217728</value> <!-- 128 MiB, Hadoop default -->
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///hadoop/dfs/name</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///hadoop/dfs/data</value>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <property>
+    <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+    <value>false</value>
+  </property>
+  <!-- Permissions stay ON so the storage catalogue's access rules (T02) are real. -->
+  <property>
+    <name>dfs.permissions.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>dfs.webhdfs.enabled</name>
+    <value>true</value>
+  </property>
+  <!-- Faster dead-node detection for the DataNode-failure demo (AC08): ~2.5 min instead of ~10.5 min. -->
+  <property>
+    <name>dfs.namenode.heartbeat.recheck-interval</name>
+    <value>60000</value>
+  </property>
+</configuration>

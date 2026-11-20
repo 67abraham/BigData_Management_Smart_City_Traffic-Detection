@@ -1,0 +1,221 @@
+# Smart City Traffic Data Platform — runtime stack (M0).
+# Target host: GitHub Codespace, 4-core / 16 GB. Memory limits are caps (not reservations) and sum to ~13 GB.
+# Start:  docker compose up -d --build     Smoke test: bash scripts/smoke_m0.sh
+#
+# Spec refs: §3.3 (real HDFS cluster, Spark batch, Kafka/Flink streaming), T02/AC02, T08/AC08.
+
+name: ${COMPOSE_PROJECT_NAME:-bdfp}
+
+x-hadoop: &hadoop
+  image: apache/hadoop:${HADOOP_VERSION:-3.3.6}
+  user: root
+  volumes:
+    - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+    - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+    - ./docker/hadoop:/opt/bdfp:ro
+  restart: unless-stopped
+
+x-datanode: &datanode
+  <<: *hadoop
+  entrypoint: ["/bin/bash", "/opt/bdfp/start-datanode.sh"]
+  depends_on: [namenode]
+  mem_limit: 768m
+
+x-spark: &spark
+  build:
+    context: ./docker/spark
+    args:
+      SPARK_IMAGE: spark:${SPARK_VERSION:-3.5.3}-scala2.12-java17-python3-ubuntu
+  image: bdfp/spark:${SPARK_VERSION:-3.5.3}
+  user: root
+  environment:
+    HADOOP_CONF_DIR: /opt/hadoop-conf
+    HADOOP_USER_NAME: ${HADOOP_USER_NAME:-root}
+    SPARK_CONF_DIR: /opt/spark-conf
+    PYTHONPATH: /workspace
+  volumes:
+    - ./configs/hadoop:/opt/hadoop-conf:ro
+    - ./configs/spark:/opt/spark-conf:ro
+    - ./:/workspace
+  working_dir: /workspace
+  restart: unless-stopped
+
+x-flink: &flink
+  build:
+    context: ./docker/flink
+    args:
+      FLINK_IMAGE: flink:${FLINK_VERSION:-1.18.1}-scala_2.12-java11
+      FLINK_VERSION: ${FLINK_VERSION:-1.18.1}
+      KAFKA_CONNECTOR_VERSION: ${FLINK_KAFKA_CONNECTOR_VERSION:-3.1.0-1.18}
+  image: bdfp/flink:${FLINK_VERSION:-1.18.1}
+  environment:
+    FLINK_PROPERTIES: |
+      jobmanager.rpc.address: flink-jobmanager
+      jobmanager.memory.process.size: 900m
+      taskmanager.memory.process.size: 1800m
+      taskmanager.numberOfTaskSlots: 4
+      parallelism.default: 2
+      state.backend.type: hashmap
+      state.checkpoints.dir: file:///opt/flink/checkpoints
+      state.savepoints.dir: file:///opt/flink/savepoints
+      execution.checkpointing.interval: 10s
+      restart-strategy.type: fixed-delay
+      restart-strategy.fixed-delay.attempts: 3
+      restart-strategy.fixed-delay.delay: 10s
+    PYTHONPATH: /workspace
+  volumes:
+    - ./:/workspace
+    - flink-checkpoints:/opt/flink/checkpoints
+    - flink-savepoints:/opt/flink/savepoints
+  restart: unless-stopped
+
+services:
+  # ---------------- HDFS: 1 NameNode + 3 DataNodes, replication = 2 ----------------
+  namenode:
+    <<: *hadoop
+    hostname: namenode
+    entrypoint: ["/bin/bash", "/opt/bdfp/start-namenode.sh"]
+    ports: ["9870:9870"]          # NameNode web UI
+    volumes:
+      - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./docker/hadoop:/opt/bdfp:ro
+      - ./:/workspace
+      - hdfs-name:/hadoop/dfs/name
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "hdfs dfsadmin -safemode get | grep -q OFF"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 20s
+
+  datanode1:
+    <<: *datanode
+    hostname: datanode1
+    volumes:
+      - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./docker/hadoop:/opt/bdfp:ro
+      - hdfs-data1:/hadoop/dfs/data
+
+  datanode2:
+    <<: *datanode
+    hostname: datanode2
+    volumes:
+      - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./docker/hadoop:/opt/bdfp:ro
+      - hdfs-data2:/hadoop/dfs/data
+
+  datanode3:
+    <<: *datanode
+    hostname: datanode3
+    volumes:
+      - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./docker/hadoop:/opt/bdfp:ro
+      - hdfs-data3:/hadoop/dfs/data
+
+  # ---------------- Spark standalone: 1 master + 2 workers ----------------
+  spark-master:
+    <<: *spark
+    hostname: spark-master
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master",
+              "--host", "spark-master", "--port", "7077", "--webui-port", "8080"]
+    ports:
+      - "8080:8080"   # Spark master UI
+      - "4040:4040"   # driver UI (spark-submit runs in this container, client mode)
+    mem_limit: 1536m  # master daemon + client-mode driver (1g)
+    depends_on:
+      namenode: {condition: service_healthy}
+
+  spark-worker-1:
+    <<: *spark
+    hostname: spark-worker-1
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker",
+              "spark://spark-master:7077", "--cores", "${SPARK_WORKER_CORES:-2}",
+              "--memory", "${SPARK_WORKER_MEMORY:-1536m}", "--webui-port", "8081"]
+    ports: ["8081:8081"]
+    mem_limit: 2g
+    depends_on: [spark-master]
+
+  spark-worker-2:
+    <<: *spark
+    hostname: spark-worker-2
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker",
+              "spark://spark-master:7077", "--cores", "${SPARK_WORKER_CORES:-2}",
+              "--memory", "${SPARK_WORKER_MEMORY:-1536m}", "--webui-port", "8081"]
+    ports: ["8083:8081"]
+    mem_limit: 2g
+    depends_on: [spark-master]
+
+  spark-history:
+    <<: *spark
+    hostname: spark-history
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.history.HistoryServer"]
+    ports: ["18080:18080"]
+    mem_limit: 512m
+    restart: on-failure   # exits until hdfs:///spark-events exists (created by scripts/hdfs_init.sh)
+    depends_on:
+      namenode: {condition: service_healthy}
+
+  # ---------------- Kafka (KRaft, single broker) ----------------
+  kafka:
+    image: apache/kafka:${KAFKA_VERSION:-3.7.1}
+    hostname: kafka
+    ports: ["29092:29092"]   # host access: localhost:29092; in-network: kafka:9092
+    environment:
+      CLUSTER_ID: ${KAFKA_CLUSTER_ID:-bdfp-kraft-cluster-0001}
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,PLAINTEXT_HOST://:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_HEAP_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    mem_limit: 1g
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 20s
+
+  # ---------------- Flink session cluster (PyFlink) ----------------
+  flink-jobmanager:
+    <<: *flink
+    hostname: flink-jobmanager
+    command: jobmanager
+    ports: ["8082:8081"]   # Flink web UI (8081 is taken by spark-worker-1)
+    mem_limit: 1g
+    depends_on:
+      kafka: {condition: service_healthy}
+
+  flink-taskmanager:
+    <<: *flink
+    hostname: flink-taskmanager
+    command: taskmanager
+    mem_limit: 2g
+    depends_on: [flink-jobmanager]
+
+volumes:
+  hdfs-name:
+  hdfs-data1:
+  hdfs-data2:
+  hdfs-data3:
+  kafka-data:
+  flink-checkpoints:
+  flink-savepoints:

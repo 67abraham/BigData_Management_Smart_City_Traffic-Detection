@@ -1,0 +1,16 @@
+# Platform configuration. Any value can be overridden by an environment variable named
+# BDFP_<SECTION>_<KEY> (upper-case), e.g. BDFP_HDFS_URI=hdfs://other:8020.
+hdfs:
+  uri: hdfs://namenode:8020
+  datalake_root: /datalake
+  layers: [bronze, silver, gold]
+  spark_event_log: /spark-events
+kafka:
+  bootstrap_servers: kafka:9092
+flink:
+  rest_url: http://flink-jobmanager:8081
+spark:
+  master: spark://spark-master:7077
+local:
+  data_dir: data/local
+  evidence_dir: evidence
