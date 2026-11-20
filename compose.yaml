@@ -166,7 +166,7 @@ services:
     hostname: kafka
     ports: ["29092:29092"]   # host access: localhost:29092; in-network: kafka:9092
     environment:
-      CLUSTER_ID: ${KAFKA_CLUSTER_ID:-bdfp-kraft-cluster-0001}
+      CLUSTER_ID: ${KAFKA_CLUSTER_ID:-5L6g3nShT-eMCtK--X86sw}
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
