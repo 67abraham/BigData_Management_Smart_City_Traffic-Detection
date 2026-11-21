@@ -1,0 +1,8 @@
+2.5 M    4.9 M    /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21
+438.5 K  877.1 K  /datalake/bronze/open_meteo/records/ingest_date=2026-11-21
+793.6 K  1.6 M    /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21
+551.9 K  1.1 M    /datalake/bronze/uci_metro/records/ingest_date=2026-11-21
+           2            8              2.5 M /datalake/bronze/open_meteo/raw
+           2            3            438.5 K /datalake/bronze/open_meteo/records
+           2            3            793.6 K /datalake/bronze/uci_metro/raw
+           2            2            551.9 K /datalake/bronze/uci_metro/records
