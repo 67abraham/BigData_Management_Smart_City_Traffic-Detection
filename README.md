@@ -25,8 +25,8 @@ or any Linux host with Docker Engine + Compose v2 and the same resources. The fi
 GB of images (exact size to be recorded in `evidence/AC02/`).
 
 ## Codespace setup
-`.devcontainer/devcontainer.json` gives the Codespace Python 3.11 and Docker (`docker-in-docker` feature)
-and installs `requirements-dev.txt`. Check Docker before anything else:
+`.devcontainer/devcontainer.json` uses GitHub's default Codespaces image (`devcontainers/universal:2`),
+which already includes Docker, Python and Java, and installs `requirements-dev.txt`. Check Docker before anything else:
 
 ```bash
 docker version && docker compose version
