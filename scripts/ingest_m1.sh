@@ -29,7 +29,15 @@ land() {  # copy the landing partition into HDFS Bronze raw (replace = idempoten
   nn hdfs dfs -mkdir -p "$dst" &&
   nn hdfs dfs -rm -r -f -skipTrash "$dst/ingest_date=$D" &&
   nn hdfs dfs -put "/workspace/data/local/landing/$s/ingest_date=$D" "$dst/" &&
-  nn hdfs dfs -count -h "$dst/ingest_date=$D" && nn hdfs dfs -ls -R "$dst/ingest_date=$D" | head -40
+  nn hdfs dfs -count -h "$dst/ingest_date=$D" || return 1
+  # listing is informational only: head closes the pipe early (SIGPIPE), which must not fail the step
+  nn hdfs dfs -ls -R "$dst/ingest_date=$D" | head -40 || true
+  # PASS only if every landed file reached HDFS
+  local want got
+  want=$(find "data/local/landing/$s/ingest_date=$D" -type f | wc -l)
+  got=$(nn hdfs dfs -count "$dst/ingest_date=$D" | awk '{print $2}')
+  echo "file count: local=$want hdfs=$got"
+  [ -n "$got" ] && [ "$want" -eq "$got" ]
 }
 
 bronze() {  # Spark job; its PROFILE_JSON line becomes profile_<source>.json

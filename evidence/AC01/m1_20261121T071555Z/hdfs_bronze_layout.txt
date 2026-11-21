@@ -1,0 +1,20 @@
+138.3 K  276.6 K  /datalake/bronze/kitti/image_inventory/ingest_date=2026-11-21
+399.3 M  798.7 M  /datalake/bronze/kitti/raw/ingest_date=2026-11-21
+3.9 M    7.7 M    /datalake/bronze/kitti/records/ingest_date=2026-11-21
+144.5 M  289.1 M  /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21
+185.1 M  370.2 M  /datalake/bronze/nyc_tlc/records/ingest_date=2026-11-21
+8.1 K    16.2 K   /datalake/bronze/nyc_tlc/zone_lookup/ingest_date=2026-11-21
+2.5 M    4.9 M    /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21
+438.5 K  877.1 K  /datalake/bronze/open_meteo/records/ingest_date=2026-11-21
+793.6 K  1.6 M    /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21
+551.9 K  1.1 M    /datalake/bronze/uci_metro/records/ingest_date=2026-11-21
+           2            2            138.3 K /datalake/bronze/kitti/image_inventory
+           4          503            399.3 M /datalake/bronze/kitti/raw
+           2            2              3.9 M /datalake/bronze/kitti/records
+           2            5            144.5 M /datalake/bronze/nyc_tlc/raw
+           5            6            185.1 M /datalake/bronze/nyc_tlc/records
+           2            2              8.1 K /datalake/bronze/nyc_tlc/zone_lookup
+           2            8              2.5 M /datalake/bronze/open_meteo/raw
+           2            3            438.5 K /datalake/bronze/open_meteo/records
+           2            3            793.6 K /datalake/bronze/uci_metro/raw
+           2            2            551.9 K /datalake/bronze/uci_metro/records

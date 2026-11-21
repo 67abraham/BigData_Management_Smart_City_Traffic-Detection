@@ -1,0 +1,1 @@
+fetch_kitti.log was edited after the run: the KITTI download URL was replaced by `kitti://<file name>` (KITTI links must not be in git). Nothing else was changed. Later runs log the redacted name directly (src/ingestion/common.py `fetch_file(log_name=...)`).

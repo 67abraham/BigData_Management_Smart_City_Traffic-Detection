@@ -61,7 +61,8 @@ def main() -> int:
         "subset_size": src["subset_size"], "subset_seed": src["subset_seed"]})
 
     # 1) labels, full archive
-    lab = fetch_file(s, label_url, out / "data_object_label_2.zip", state, args.force)
+    lab = fetch_file(s, label_url, out / "data_object_label_2.zip", state, args.force,
+                     log_name=redact(label_url))
     lab.url = redact(label_url)
     lab.source_version = f"kitti object label_2 last-modified:{lab.http_last_modified}"
     man.files.append(lab)

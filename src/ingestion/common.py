@@ -145,9 +145,14 @@ def fetch_file(
     state: State,
     force: bool = False,
     version_from_headers: Callable[[dict[str, str]], str] | None = None,
+    log_name: str | None = None,
 ) -> FileRecord:
-    """Download url -> dest unless the upstream ETag/size and the local checksum are unchanged."""
+    """Download url -> dest unless the upstream ETag/size and the local checksum are unchanged.
+
+    log_name replaces url in log lines (use it for private download links, e.g. KITTI).
+    """
     name = dest.name
+    shown = log_name or url
     try:
         head = session.head(url, allow_redirects=True, timeout=60)
         head.raise_for_status()
@@ -163,7 +168,7 @@ def fetch_file(
             if same_upstream and prev_path.exists() and sha256_file(prev_path) == prev["sha256"]:
                 if prev_path != dest:
                     dest.write_bytes(prev_path.read_bytes())
-                log.info("unchanged, not re-downloaded: %s", url)
+                log.info("unchanged, not re-downloaded: %s", shown)
                 return FileRecord(name, url, "unchanged", prev["sha256"], prev["bytes"], version,
                                   etag, last_mod, prev.get("downloaded_at"))
 
@@ -185,11 +190,12 @@ def fetch_file(
         rec = FileRecord(name, url, status, digest, nbytes, version, etag, last_mod, utc_now(),
                          extra={"download_seconds": round(time.perf_counter() - t0, 2)})
         state.put(rec, dest)
-        log.info("%s: %s (%d bytes, sha256 %s…)", status, url, nbytes, digest[:12])
+        log.info("%s: %s (%d bytes, sha256 %s…)", status, shown, nbytes, digest[:12])
         return rec
     except Exception as exc:  # recorded, not hidden (CLAUDE.md: don't hide failures)
-        log.error("failed: %s: %s", url, exc)
-        return FileRecord(name, url, "failed", error=f"{type(exc).__name__}: {exc}")
+        err = str(exc).replace(url, shown)
+        log.error("failed: %s: %s", shown, err)
+        return FileRecord(name, url, "failed", error=f"{type(exc).__name__}: {err}")
 
 
 def base_argparser(description: str) -> argparse.ArgumentParser:

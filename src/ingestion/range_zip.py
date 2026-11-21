@@ -54,7 +54,7 @@ def http_range_file(session, url: str, buffer_size: int = 1 << 20) -> tuple[io.B
     head = session.head(url, allow_redirects=True, timeout=60)
     head.raise_for_status()
     if head.headers.get("Accept-Ranges", "").lower() != "bytes":
-        raise IOError(f"server does not support byte ranges for {url}")
+        raise IOError("server does not support byte ranges for the image archive")  # url kept out of logs
     size = int(head.headers["Content-Length"])
 
     def fetch(start: int, end: int) -> bytes:

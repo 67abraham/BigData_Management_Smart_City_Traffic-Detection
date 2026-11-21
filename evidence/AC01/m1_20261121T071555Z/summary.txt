@@ -1,0 +1,9 @@
+run_id=m1_20261121T071555Z ingest_date=2026-11-21 sources=kitti force=0
+Safe mode is OFF
+=== kitti
+PASS  kitti fetch -> fetch_kitti.log
+PASS  kitti land in HDFS -> land_kitti.log
+PASS  kitti bronze (Spark) -> bronze_kitti.log.status
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+PASS  ingestion report -> report.log
+--- failures: 0   evidence: evidence/AC01/m1_20261121T071555Z
