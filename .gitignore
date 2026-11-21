@@ -22,5 +22,4 @@ metastore_db/
 derby.log
 
 # Claude Code working notes (kept local)
-CLAUDE.md
-.claude/
+
