@@ -1,0 +1,5 @@
+# Dashboard (spec T09). Separate from requirements-dev.txt so the laptop setup stays small.
+streamlit==1.39.0
+pandas==2.2.3
+altair==5.4.1
+pyyaml==6.0.2

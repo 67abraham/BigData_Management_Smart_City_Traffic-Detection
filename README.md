@@ -21,7 +21,9 @@ four versioned data products with contracts → light dashboard.
   (`m4_20261121T102858Z`, `docs/data_products.md`, `contracts/`); 5 SQL analyses (`m4_20261121T103306Z`,
   `docs/analytics.md`); benchmark of 3 strategy pairs × 3 timed runs (`m4_20261121T104058Z`,
   `docs/performance.md`). `evidence/AC06/`, `evidence/AC07/`.
-- Next: M5 dashboard (T09) and remaining docs (D01–D10).
+- M5 dashboard: Streamlit app reading only recorded outputs, every panel names its source
+  (`m5_20261121T105711Z`, `evidence/AC09/`); architecture, project report and demo script in `docs/`.
+- Open: AC08 run from a fresh Codespace using only this README (`scripts/run_all.sh`).
 
 ## Stack (D04)
 
@@ -142,10 +144,47 @@ generated `release` block (run, row count, size, quality summary, read-back resu
 writes its four data layouts once to `/datalake/bench/nyc_trips/` (about 1.7 GB, untimed), then runs
 1 warm-up + 3 timed runs per configuration and fails if any query result differs between layouts.
 
+## Run (M5 — dashboard, spec T09/AC09)
+
+```bash
+bash scripts/run_m5.sh                          # export small tables from the products + dashboard tests
+pip install -r requirements-dashboard.txt       # Streamlit, pandas, Altair (host side)
+streamlit run src/visualisation/app.py          # port 8501
+```
+
+Tabs: Pipeline (processing volume, the runs shown), Sources, Quality, Batch results, Streaming,
+Performance, Abnormal cases (late/duplicate/malformed test, TaskManager failure and recovery, every
+failed run kept as evidence). The runs shown are pinned in `configs/dashboard.yaml`.
+
+## Full pipeline in one go (spec T08)
+
+```bash
+cp .env.example .env    # add your KITTI download links
+bash scripts/run_all.sh # ~1 h: stack -> M0 smoke -> M1 -> M2 -> M3 -> M4 -> M5; stages in evidence/AC08/full_<run>/
+```
+
+Stops at the first failing stage; every stage is idempotent, so re-running is the recovery path.
+
+## Deliverables (spec §9)
+
+| | Where |
+|---|---|
+| D01 instructions | this README |
+| D02 architecture and design | `docs/architecture.md` |
+| D03 source code | `src/` (ingestion, batch, quality, streaming, products, analytics, visualisation), `scripts/` |
+| D04 environment | `compose.yaml`, `.devcontainer/`, `docker/`, `.env.example`, `requirements-*.txt` |
+| D05 data catalogue | `docs/source_inventory.md`, `docs/storage_layout.md`, `docs/data_products.md` |
+| D06 data products | `contracts/` (4 contracts + `CHANGELOG.md`), `data/manifests/road_image_manifest_v1.csv` |
+| D07 test evidence | `evidence/AC01..AC09/`, `tests/` |
+| D08 performance report | `docs/performance.md` (+ `outputs/benchmarks/`) |
+| D09 project report | `docs/project_report.md` |
+| D10 demonstration | `docs/demo.md`, the dashboard |
+
 ## Tests
 ```bash
 pip install -r requirements-dev.txt
 pytest tests/unit                       # pure Python, no Docker (also on a laptop)
+pytest tests/integration                # dashboard renders (needs requirements-dashboard.txt)
 bash scripts/test_spark.sh              # tests/data_quality with a local SparkSession in the spark-master container
 ```
 
