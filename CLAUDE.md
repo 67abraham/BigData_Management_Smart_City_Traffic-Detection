@@ -103,13 +103,24 @@ Rubric: ingestion 8 · storage 12 · Spark + performance 18 · streaming 15 · q
 
 **Syncing:** the GitHub repo (`67abraham/BigData_Management_Smart_City_Traffic-Detection`, project folder at the root) is the working copy. The graded submission is the Gitee fork of the course repo at `04-projects/241091038/`, which the user syncs from GitHub before submitting. This `CLAUDE.md` is git-ignored, so the user copies it between the Mac and the Codespace by hand. When you change it, tell the user.
 
+## Lessons from earlier sessions (don't repeat these)
+- **Explain plainly.** The user asked "what are you actually trying to do". Before a multi-step change, say in 1–2 plain sentences what you're doing and why. Keep answers short.
+- **Devcontainer:** `python` image + `docker-in-docker` feature put the Codespace into recovery mode ("docker: command not found"). Fixed by using `mcr.microsoft.com/devcontainers/universal:2`, which already has Docker. Don't switch back.
+- **Kafka KRaft `CLUSTER_ID`** must be a 22-character base64 UUID (current one: `5L6g3nShT-eMCtK--X86sw`). A readable string makes the broker exit.
+- **Flink memory:** `jobmanager.memory.process.size` / `taskmanager.memory.process.size` must fit under the containers' `mem_limit`, or the containers get OOM-killed.
+- **Spark `input_file_name()`** returns `''` on cached or RDD-built DataFrames. Attach provenance from the manifest instead (see `bronze_load.py`).
+- **smoke_m0.sh:** PASS must mean the *result* is right (3 live DataNodes, repl=2, read-back count), not just exit code 0. Apply the same rule to every new check script.
+- **MnDOT GIS** (`webgis.dot.state.mn.us`) timed out from outside the US. It should answer from the Codespace. Never hard-code ATR 301 coordinates without that official answer.
+- **KITTI image zip** (12.6 GB) supports HTTP range requests. `range_zip.py` reads only the 500 sampled images. Tested against the real archive listing: training/image_2 has 7,481 PNGs and training/label_2 has 7,481 TXT files.
+- **NYC TLC monthly files may differ in schema** (column names/types; not yet checked for 2023-01..03, the M1 profile reports it). Bronze keeps one `source_month=` sub-partition per file and records each schema; unify in Silver.
+
 ## Milestones
 M0 environment (AC02) → M1 ingestion (AC01) → M2 Spark and quality (AC03, AC05) → M3 Kafka/Flink and recovery (AC04, AC08) → M4 products and benchmarks (AC06, AC07) → M5 dashboard and docs (AC09, D01–D10).
 
 **Progress:** M0 done 2026-11-21 (smoke_m0.sh 8/8 PASS, run m0_20261121T014208Z). M1 code written 2026-11-21 (`src/ingestion/`, `scripts/ingest_m1.sh`, unit tests pass locally) but **not yet run on the stack**. Next: run `bash scripts/ingest_m1.sh uci_metro`, then all sources, then a second run (expect `unchanged`), check `data/manifests/atr301_location.json`, and commit `evidence/AC01/`.
 
 ## Open decisions / TODO
-- [ ] UCI station coordinates: DECIDED 2026-11-21 — research MnDOT ATR station 301 location from an official source, cite it in `docs/`, note the reanalysis grid resolution, list as a known limitation. Open-Meteo hourly variables still to choose (match UCI's temp/rain/snow/clouds fields).
+- [ ] UCI station coordinates: DECIDED 2026-11-21 — research MnDOT ATR station 301 location from an official source, cite it in `docs/`, note the reanalysis grid resolution, list as a known limitation. Implemented as `src/ingestion/locate_atr301.py` (queries MnDOT's official GIS layer from the Codespace). Open-Meteo variables chosen in `configs/sources.yaml` (temperature_2m, precipitation, rain, snowfall, cloud_cover, weather_code, wind_speed_10m; ERA5; UTC). Still open: confirm the located station once the run produces `data/manifests/atr301_location.json`.
 - [x] NYC TLC: DECIDED 2026-11-21 — Yellow taxi, 3 consecutive months (e.g. 2023-01..03); monthly partitions feed the T06 partitioned-vs-unpartitioned benchmark. Row counts come from the actual ingest, not estimates.
 - [x] KITTI: DECIDED 2026-11-21 — user's KITTI account is approved (2026-11-21). Download in the Codespace only: full 2D labels (small) + a subset of training images; the manifest lists every image ID with a file-availability flag; commit only the manifest. Never put KITTI download links or credentials in git.
 - [ ] Ask the instructor whether single-host multi-container HDFS is acceptable as "distributed"
