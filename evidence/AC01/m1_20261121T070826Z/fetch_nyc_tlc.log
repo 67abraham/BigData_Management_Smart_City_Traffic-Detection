@@ -1,0 +1,5 @@
+2026-11-21 07:08:30,359 INFO ingestion downloaded: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet (47673370 bytes, sha256 32df6f67578f…)
+2026-11-21 07:08:32,514 INFO ingestion downloaded: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-02.parquet (47748012 bytes, sha256 4809e6aaac64…)
+2026-11-21 07:08:32,740 INFO ingestion downloaded: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-03.parquet (56127762 bytes, sha256 e7d44943111b…)
+2026-11-21 07:08:33,031 INFO ingestion downloaded: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv (12331 bytes, sha256 1a99e1050922…)
+/workspaces/BigData_Management_Smart_City_Traffic-Detection/data/local/landing/nyc_tlc/ingest_date=2026-11-21/_manifest.json

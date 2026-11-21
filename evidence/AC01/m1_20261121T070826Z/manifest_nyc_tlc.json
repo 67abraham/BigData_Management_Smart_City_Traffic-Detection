@@ -1,0 +1,80 @@
+{
+  "source": "nyc_tlc",
+  "ingest_date": "2026-11-21",
+  "started_at": "2026-11-21T07:08:28+00:00",
+  "fetcher_version": "m1.0",
+  "finished_at": "2026-11-21T07:08:33+00:00",
+  "params": {
+    "dataset": "yellow",
+    "months": [
+      "2023-01",
+      "2023-02",
+      "2023-03"
+    ]
+  },
+  "files": [
+    {
+      "name": "yellow_tripdata_2023-01.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet",
+      "status": "downloaded",
+      "sha256": "32df6f67578fa86c484a6b5ef23a5281992ff085521082340b0f9e5889e9a572",
+      "bytes": 47673370,
+      "source_version": "tlc yellow 2023-01 last-modified:Mon, 20 Mar 2023 20:46:51 GMT etag:\"c1744317232f0b94f424e50e381189b5-3\"",
+      "http_etag": "\"c1744317232f0b94f424e50e381189b5-3\"",
+      "http_last_modified": "Mon, 20 Mar 2023 20:46:51 GMT",
+      "downloaded_at": "2026-11-21T07:08:30+00:00",
+      "error": null,
+      "extra": {
+        "download_seconds": 1.77,
+        "month": "2023-01"
+      }
+    },
+    {
+      "name": "yellow_tripdata_2023-02.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-02.parquet",
+      "status": "downloaded",
+      "sha256": "4809e6aaac64f05a62d16a25d55713be1537ad64fc261e895eaf2d2120fe750a",
+      "bytes": 47748012,
+      "source_version": "tlc yellow 2023-02 last-modified:Mon, 01 May 2023 15:32:56 GMT etag:\"cc5e7e18ef48fa1a92214995762c11cb-3\"",
+      "http_etag": "\"cc5e7e18ef48fa1a92214995762c11cb-3\"",
+      "http_last_modified": "Mon, 01 May 2023 15:32:56 GMT",
+      "downloaded_at": "2026-11-21T07:08:32+00:00",
+      "error": null,
+      "extra": {
+        "download_seconds": 1.88,
+        "month": "2023-02"
+      }
+    },
+    {
+      "name": "yellow_tripdata_2023-03.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-03.parquet",
+      "status": "downloaded",
+      "sha256": "e7d44943111b007bf0e7084863511886e0db29f862f9a96239383a1f86c6c26e",
+      "bytes": 56127762,
+      "source_version": "tlc yellow 2023-03 last-modified:Fri, 19 May 2023 14:14:53 GMT etag:\"65e0f2cce54e069c191a8b273d98aa7d-4\"",
+      "http_etag": "\"65e0f2cce54e069c191a8b273d98aa7d-4\"",
+      "http_last_modified": "Fri, 19 May 2023 14:14:53 GMT",
+      "downloaded_at": "2026-11-21T07:08:32+00:00",
+      "error": null,
+      "extra": {
+        "download_seconds": 0.22,
+        "month": "2023-03"
+      }
+    },
+    {
+      "name": "taxi_zone_lookup.csv",
+      "url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv",
+      "status": "downloaded",
+      "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+      "bytes": 12331,
+      "source_version": "tlc zone lookup last-modified:Thu, 22 Feb 2024 21:33:00 GMT",
+      "http_etag": "W/\"c6064b7c144c716450641f769659d178\"",
+      "http_last_modified": "Thu, 22 Feb 2024 21:33:00 GMT",
+      "downloaded_at": "2026-11-21T07:08:33+00:00",
+      "error": null,
+      "extra": {
+        "download_seconds": 0.01
+      }
+    }
+  ]
+}

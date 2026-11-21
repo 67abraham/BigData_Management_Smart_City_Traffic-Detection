@@ -1,0 +1,6 @@
+           1            5            144.5 M /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21
+-rw-r--r--   2 root supergroup       3053 2026-11-21 07:08 /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21/_manifest.json
+-rw-r--r--   2 root supergroup      12331 2026-11-21 07:08 /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21/taxi_zone_lookup.csv
+-rw-r--r--   2 root supergroup   47673370 2026-11-21 07:08 /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21/yellow_tripdata_2023-01.parquet
+-rw-r--r--   2 root supergroup   47748012 2026-11-21 07:08 /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21/yellow_tripdata_2023-02.parquet
+-rw-r--r--   2 root supergroup   56127762 2026-11-21 07:08 /datalake/bronze/nyc_tlc/raw/ingest_date=2026-11-21/yellow_tripdata_2023-03.parquet

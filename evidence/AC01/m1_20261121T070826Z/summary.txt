@@ -1,0 +1,9 @@
+run_id=m1_20261121T070826Z ingest_date=2026-11-21 sources=nyc_tlc force=0
+Safe mode is OFF
+=== nyc_tlc
+PASS  nyc_tlc fetch -> fetch_nyc_tlc.log
+PASS  nyc_tlc land in HDFS -> land_nyc_tlc.log
+PASS  nyc_tlc bronze (Spark) -> bronze_nyc_tlc.log.status
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+PASS  ingestion report -> report.log
+--- failures: 0   evidence: evidence/AC01/m1_20261121T070826Z
