@@ -1,0 +1,111 @@
+{
+  "dataset": "nyc_zone_hourly_demand",
+  "version": "v1",
+  "input": "hdfs://namenode:8020/datalake/silver/nyc_yellow_trips/v1/outcome=accepted",
+  "output": "hdfs://namenode:8020/datalake/gold/nyc_zone_hourly_demand/v1",
+  "run_id": "m2_20261121T083320Z",
+  "spark_app_id": "app-20261121084012-0014",
+  "reconciliation": {
+    "silver_accepted_rows": 9300058,
+    "sum_of_trips": 9300058,
+    "gold_rows": 212041,
+    "keys_unique": true,
+    "reconciled": true
+  },
+  "coverage": {
+    "pickup_zones": 262,
+    "pickup_days": 90
+  },
+  "top_pickup_zones": [
+    {
+      "pu_location_id": 132,
+      "pu_borough": "Queens",
+      "pu_zone": "JFK Airport",
+      "trips": 454035
+    },
+    {
+      "pu_location_id": 237,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Upper East Side South",
+      "trips": 433962
+    },
+    {
+      "pu_location_id": 161,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Midtown Center",
+      "trips": 428424
+    },
+    {
+      "pu_location_id": 236,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Upper East Side North",
+      "trips": 401705
+    },
+    {
+      "pu_location_id": 162,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Midtown East",
+      "trips": 330008
+    }
+  ],
+  "schema": "struct<pickup_hour_local:int,pu_location_id:int,pu_borough:string,pu_zone:string,trips:bigint,passengers_reported:bigint,trips_without_passenger_count:bigint,trip_distance_mi_sum:double,trip_distance_mi_avg:double,trip_minutes_avg:double,fare_amount_usd_sum:double,total_amount_usd_sum:double,credit_card_trips:bigint,flex_fare_trips:bigint,_gold_run_id:string,_gold_version:string,pickup_date:date>",
+  "samples": [
+    {
+      "pickup_hour_local": 1,
+      "pu_location_id": 79,
+      "pu_borough": "Manhattan",
+      "pu_zone": "East Village",
+      "trips": 692,
+      "passengers_reported": 997,
+      "trips_without_passenger_count": 24,
+      "trip_distance_mi_sum": 1932.12,
+      "trip_distance_mi_avg": 2.792,
+      "trip_minutes_avg": 12.33,
+      "fare_amount_usd_sum": 10893.04,
+      "total_amount_usd_sum": 16627.52,
+      "credit_card_trips": 611,
+      "flex_fare_trips": 24,
+      "_gold_run_id": "m2_20261121T083320Z",
+      "_gold_version": "v1",
+      "pickup_date": "2023-01-22"
+    },
+    {
+      "pickup_hour_local": 1,
+      "pu_location_id": 79,
+      "pu_borough": "Manhattan",
+      "pu_zone": "East Village",
+      "trips": 681,
+      "passengers_reported": 959,
+      "trips_without_passenger_count": 30,
+      "trip_distance_mi_sum": 1873.58,
+      "trip_distance_mi_avg": 2.751,
+      "trip_minutes_avg": 14.78,
+      "fare_amount_usd_sum": 10865.93,
+      "total_amount_usd_sum": 16441.76,
+      "credit_card_trips": 596,
+      "flex_fare_trips": 30,
+      "_gold_run_id": "m2_20261121T083320Z",
+      "_gold_version": "v1",
+      "pickup_date": "2023-03-05"
+    },
+    {
+      "pickup_hour_local": 1,
+      "pu_location_id": 79,
+      "pu_borough": "Manhattan",
+      "pu_zone": "East Village",
+      "trips": 673,
+      "passengers_reported": 943,
+      "trips_without_passenger_count": 28,
+      "trip_distance_mi_sum": 1673.2,
+      "trip_distance_mi_avg": 2.486,
+      "trip_minutes_avg": 18.68,
+      "fare_amount_usd_sum": 9969.51,
+      "total_amount_usd_sum": 15351.81,
+      "credit_card_trips": 601,
+      "flex_fare_trips": 28,
+      "_gold_run_id": "m2_20261121T083320Z",
+      "_gold_version": "v1",
+      "pickup_date": "2023-03-18"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+run_id=m2_20261121T083320Z sources=nyc_tlc nyc_zone_hourly
+62ce557
+ M configs/quality.yaml
+ M scripts/run_m2.sh
+?? src/batch/gold_nyc_zone_hourly.py
+?? src/batch/silver_nyc_tlc.py
+?? src/quality/nyc_tlc_rules.py
+?? tests/data_quality/test_nyc_tlc_silver.py
+?? tests/unit/test_nyc_tlc_rules.py
+PASS  unit tests -> evidence/AC05/m2_20261121T083320Z/unit_tests.log
+PASS  data-quality tests -> evidence/AC05/m2_20261121T083320Z/data_quality_tests.log
+=== nyc_tlc
+PASS  nyc_tlc rule catalogue -> evidence/AC05/m2_20261121T083320Z/rules_nyc_tlc.json
+PASS  nyc_tlc silver (Spark) -> evidence/AC03/m2_20261121T083320Z/silver_nyc_tlc.status
+PASS  nyc_tlc quality report -> evidence/AC05/m2_20261121T083320Z/quality_report_nyc_tlc.md
+=== nyc_zone_hourly
+PASS  nyc_zone_hourly gold join (Spark) -> evidence/AC03/m2_20261121T083320Z/gold_nyc_zone_hourly.status
+PASS  hdfs silver/gold layout -> evidence/AC03/m2_20261121T083320Z/hdfs_silver_gold_layout.txt
+--- failures: 0   evidence: evidence/AC03/m2_20261121T083320Z evidence/AC05/m2_20261121T083320Z

@@ -89,3 +89,54 @@ traffic_weather:
   # at U+1h (which cover [U, U+1h)). The job reports temperature correlations for other alignments.
   uci_hour_label: start
   alignment_check_offsets_hours: [-1, 0, 1]
+
+nyc_tlc:
+  silver_dataset: nyc_yellow_trips
+  version: v1
+  # Months come from configs/sources.yaml (nyc_tlc.months). Spec §4: a separate urban travel
+  # dataset; taxi demand is not road-counter volume and is never joined to UCI.
+  dictionary: "TLC Data Dictionary – Yellow Taxi Trip Records, March 18, 2025"
+  # The dictionary does not state a time zone; the Parquet files carry timestamp_ntz (no zone).
+  # Read as New York local wall-clock time and NOT converted (no cross-source time join).
+  time_semantics: local wall-clock, America/New_York assumed (not stated by TLC)
+  # Schema unification (M1 found per-month differences). Bronze name -> Silver name, Silver type.
+  columns:
+    VendorID:              [vendor_id, int]
+    tpep_pickup_datetime:  [pickup_datetime_local, timestamp_ntz]
+    tpep_dropoff_datetime: [dropoff_datetime_local, timestamp_ntz]
+    passenger_count:       [passenger_count, int]
+    trip_distance:         [trip_distance_mi, double]
+    RatecodeID:            [ratecode_id, int]
+    store_and_fwd_flag:    [store_and_fwd_flag, string]
+    PULocationID:          [pu_location_id, int]
+    DOLocationID:          [do_location_id, int]
+    payment_type:          [payment_type, int]
+    fare_amount:           [fare_amount_usd, double]
+    extra:                 [extra_usd, double]
+    mta_tax:               [mta_tax_usd, double]
+    tip_amount:            [tip_amount_usd, double]
+    tolls_amount:          [tolls_amount_usd, double]
+    improvement_surcharge: [improvement_surcharge_usd, double]
+    total_amount:          [total_amount_usd, double]
+    congestion_surcharge:  [congestion_surcharge_usd, double]
+    airport_fee:           [airport_fee_usd, double]
+  renames: {Airport_fee: airport_fee}        # 2023-02/03 spelling -> 2023-01 spelling
+  # Code lists from the dictionary.
+  vendor_ids: [1, 2, 6, 7]
+  ratecode_ids: [1, 2, 3, 4, 5, 6, 99]
+  payment_types: [0, 1, 2, 3, 4, 5, 6]       # 0 = Flex Fare trip
+  store_and_fwd_flags: ["Y", "N"]
+  flex_fare_payment_type: 0
+  # M2 profile: per month, the NULL counts of these fields equal the payment_type 0 count
+  # (71,743 / 76,817 / 87,619). Rule missing_fields_non_flex checks it row by row.
+  flex_fare_null_fields: [passenger_count, ratecode_id, store_and_fwd_flag, congestion_surcharge_usd, airport_fee_usd]
+  # Taxi zone lookup: 264 = Unknown / N/A, 265 = N/A / Outside of NYC.
+  zone_unknown_ids: [264, 265]
+  expected_zone_count: 265
+  # Natural key for duplicate detection (TLC records carry no trip id).
+  duplicate_key: [vendor_id, pickup_datetime_local, dropoff_datetime_local, pu_location_id, do_location_id,
+                  trip_distance_mi, total_amount_usd, fare_amount_usd, payment_type, passenger_count]
+  ranges:                                   # sanity bounds; outside -> quarantine
+    trip_distance_mi_max: 100.0             # profile: ~90 trips/month above, max 335,004 mi
+    trip_minutes_max: 1440                  # 24 h
+    total_amount_usd_max: 1000.0            # profile: 1 trip/month above

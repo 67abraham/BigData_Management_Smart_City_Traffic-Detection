@@ -1,0 +1,91 @@
+           0            1                  0 /datalake/silver/nyc_yellow_trips/v1/_SUCCESS
+          91           90            243.8 M /datalake/silver/nyc_yellow_trips/v1/outcome=accepted
+         104          103              4.6 M /datalake/silver/nyc_yellow_trips/v1/outcome=quarantine
+          62           61            850.2 K /datalake/silver/nyc_yellow_trips/v1/outcome=rejected
+           0            1                  0 /datalake/silver/open_meteo_hourly/v1/_SUCCESS
+           8            7              1.4 M /datalake/silver/open_meteo_hourly/v1/outcome=accepted
+           0            1                  0 /datalake/silver/uci_traffic_hourly/v1/_SUCCESS
+           8            7              1.8 M /datalake/silver/uci_traffic_hourly/v1/outcome=accepted
+           6            5             72.6 K /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine
+          91           91              7.5 M /datalake/gold/nyc_zone_hourly_demand/v1
+           8            8              1.8 M /datalake/gold/uci_traffic_weather_hourly/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-01
+-rw-r--r--   2 root supergroup    2204113 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-01/part-00000-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-02
+-rw-r--r--   2 root supergroup    1861527 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-02/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-03
+-rw-r--r--   2 root supergroup    2408937 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-03/part-00007-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-04
+-rw-r--r--   2 root supergroup    2592629 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-04/part-00004-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-05
+-rw-r--r--   2 root supergroup    2752542 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-05/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-06
+-rw-r--r--   2 root supergroup    2815808 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-06/part-00002-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-07
+-rw-r--r--   2 root supergroup    2796433 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-07/part-00003-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-08
+-rw-r--r--   2 root supergroup    2334851 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-08/part-00003-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-09
+-rw-r--r--   2 root supergroup    2337582 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-09/part-00005-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-10
+-rw-r--r--   2 root supergroup    2673254 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-10/part-00003-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-11
+-rw-r--r--   2 root supergroup    2822330 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-11/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-12
+-rw-r--r--   2 root supergroup    3028537 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-12/part-00005-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-13
+-rw-r--r--   2 root supergroup    3007678 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-13/part-00004-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-14
+-rw-r--r--   2 root supergroup    3054302 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-14/part-00002-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-15
+-rw-r--r--   2 root supergroup    2623952 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-15/part-00003-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-16
+-rw-r--r--   2 root supergroup    2215744 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-16/part-00006-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-17
+-rw-r--r--   2 root supergroup    2756133 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-17/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-18
+-rw-r--r--   2 root supergroup    2895227 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-18/part-00002-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-19
+-rw-r--r--   2 root supergroup    3132235 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-19/part-00007-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-20
+-rw-r--r--   2 root supergroup    2995068 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-20/part-00007-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-21
+-rw-r--r--   2 root supergroup    2951820 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-21/part-00005-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-22
+-rw-r--r--   2 root supergroup    2491358 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-22/part-00007-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-23
+-rw-r--r--   2 root supergroup    2479571 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-23/part-00000-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-24
+-rw-r--r--   2 root supergroup    2816262 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-24/part-00002-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-25
+-rw-r--r--   2 root supergroup    2954536 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-25/part-00005-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-26
+-rw-r--r--   2 root supergroup    3064657 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-26/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-27
+-rw-r--r--   2 root supergroup    3015105 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-27/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-28
+-rw-r--r--   2 root supergroup    2966269 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-28/part-00004-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-29
+-rw-r--r--   2 root supergroup    2449120 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-29/part-00002-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-30
+-rw-r--r--   2 root supergroup    2288262 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-30/part-00003-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-31
+-rw-r--r--   2 root supergroup    2744107 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-01-31/part-00007-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-01
+-rw-r--r--   2 root supergroup    2932277 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-01/part-00005-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-02
+-rw-r--r--   2 root supergroup    3077460 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-02/part-00005-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-03
+-rw-r--r--   2 root supergroup    3124914 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-03/part-00003-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-04
+-rw-r--r--   2 root supergroup    2656710 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-04/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-05
+-rw-r--r--   2 root supergroup    2320196 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-05/part-00006-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-06
+-rw-r--r--   2 root supergroup    2465586 2026-11-21 08:39 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-06/part-00007-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-07
+-rw-r--r--   2 root supergroup    2853369 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-07/part-00001-48cd92c4-a549-46f7-8e32-fc7d01e641cd.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:38 /datalake/silver/nyc_yellow_trips/v1/outcome=accepted/pickup_date=2023-02-08

@@ -1,0 +1,36 @@
+== Physical Plan ==
+AdaptiveSparkPlan (5)
++- HashAggregate (4)
+   +- Exchange (3)
+      +- HashAggregate (2)
+         +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [12]: [pu_location_id#1, passenger_count#5, trip_distance_mi#6, payment_type#9, fare_amount_usd#10, total_amount_usd#16, trip_minutes#25, pickup_hour_local#26, pu_borough#27, pu_zone#28, is_flex_fare#34, pickup_date#38]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/silver/nyc_yellow_trips/v1/outcome=accepted]
+ReadSchema: struct<pu_location_id:int,passenger_count:int,trip_distance_mi:double,payment_type:int,fare_amount_usd:double,total_amount_usd:double,trip_minutes:double,pickup_hour_local:int,pu_borough:string,pu_zone:string,is_flex_fare:boolean>
+
+(2) HashAggregate
+Input [12]: [pu_location_id#1, passenger_count#5, trip_distance_mi#6, payment_type#9, fare_amount_usd#10, total_amount_usd#16, trip_minutes#25, pickup_hour_local#26, pu_borough#27, pu_zone#28, is_flex_fare#34, pickup_date#38]
+Keys [5]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28]
+Functions [10]: [partial_count(1), partial_sum(passenger_count#5), partial_sum(cast(isnull(passenger_count#5) as int)), partial_sum(trip_distance_mi#6), partial_avg(trip_distance_mi#6), partial_avg(trip_minutes#25), partial_sum(fare_amount_usd#10), partial_sum(total_amount_usd#16), partial_sum(cast((payment_type#9 = 1) as int)), partial_sum(cast(is_flex_fare#34 as int))]
+Aggregate Attributes [12]: [count#188L, sum#189L, sum#190L, sum#191, sum#192, count#193L, sum#194, count#195L, sum#196, sum#197, sum#198L, sum#199L]
+Results [17]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28, count#200L, sum#201L, sum#202L, sum#203, sum#204, count#205L, sum#206, count#207L, sum#208, sum#209, sum#210L, sum#211L]
+
+(3) Exchange
+Input [17]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28, count#200L, sum#201L, sum#202L, sum#203, sum#204, count#205L, sum#206, count#207L, sum#208, sum#209, sum#210L, sum#211L]
+Arguments: hashpartitioning(pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28, 8), ENSURE_REQUIREMENTS, [plan_id=11]
+
+(4) HashAggregate
+Input [17]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28, count#200L, sum#201L, sum#202L, sum#203, sum#204, count#205L, sum#206, count#207L, sum#208, sum#209, sum#210L, sum#211L]
+Keys [5]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28]
+Functions [10]: [count(1), sum(passenger_count#5), sum(cast(isnull(passenger_count#5) as int)), sum(trip_distance_mi#6), avg(trip_distance_mi#6), avg(trip_minutes#25), sum(fare_amount_usd#10), sum(total_amount_usd#16), sum(cast((payment_type#9 = 1) as int)), sum(cast(is_flex_fare#34 as int))]
+Aggregate Attributes [10]: [count(1)#117L, sum(passenger_count#5)#119L, sum(cast(isnull(passenger_count#5) as int))#121L, sum(trip_distance_mi#6)#123, avg(trip_distance_mi#6)#125, avg(trip_minutes#25)#127, sum(fare_amount_usd#10)#129, sum(total_amount_usd#16)#131, sum(cast((payment_type#9 = 1) as int))#133L, sum(cast(is_flex_fare#34 as int))#135L]
+Results [17]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28, count(1)#117L AS trips#118L, sum(passenger_count#5)#119L AS passengers_reported#120L, sum(cast(isnull(passenger_count#5) as int))#121L AS trips_without_passenger_count#122L, round(sum(trip_distance_mi#6)#123, 2) AS trip_distance_mi_sum#124, round(avg(trip_distance_mi#6)#125, 3) AS trip_distance_mi_avg#126, round(avg(trip_minutes#25)#127, 2) AS trip_minutes_avg#128, round(sum(fare_amount_usd#10)#129, 2) AS fare_amount_usd_sum#130, round(sum(total_amount_usd#16)#131, 2) AS total_amount_usd_sum#132, sum(cast((payment_type#9 = 1) as int))#133L AS credit_card_trips#134L, sum(cast(is_flex_fare#34 as int))#135L AS flex_fare_trips#136L, m2_20261121T084148Z AS _gold_run_id#153, v1 AS _gold_version#170]
+
+(5) AdaptiveSparkPlan
+Output [17]: [pickup_date#38, pickup_hour_local#26, pu_location_id#1, pu_borough#27, pu_zone#28, trips#118L, passengers_reported#120L, trips_without_passenger_count#122L, trip_distance_mi_sum#124, trip_distance_mi_avg#126, trip_minutes_avg#128, fare_amount_usd_sum#130, total_amount_usd_sum#132, credit_card_trips#134L, flex_fare_trips#136L, _gold_run_id#153, _gold_version#170]
+Arguments: isFinalPlan=false
+

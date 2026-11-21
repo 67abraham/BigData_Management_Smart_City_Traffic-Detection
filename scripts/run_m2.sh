@@ -4,13 +4,14 @@
 #   bash scripts/run_m2.sh               # all M2 datasets implemented so far
 #   bash scripts/run_m2.sh uci_metro open_meteo   # Silver only
 #   traffic_weather = Gold join of the two Silver datasets (run after both)
+#   nyc_zone_hourly = Gold NYC aggregation (run after nyc_tlc)
 # Evidence (same run id in both):
 #   evidence/AC03/m2_<UTC>/  Spark logs, explain plan, before/after samples, reconciliation, HDFS layout
 #   evidence/AC05/m2_<UTC>/  test logs, rule catalogue, quality JSON + Markdown report
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
-SOURCES=("$@"); [ ${#SOURCES[@]} -eq 0 ] && SOURCES=(uci_metro open_meteo traffic_weather)
+SOURCES=("$@"); [ ${#SOURCES[@]} -eq 0 ] && SOURCES=(uci_metro open_meteo traffic_weather nyc_tlc nyc_zone_hourly)
 RUN_ID="m2_$(date -u +%Y%m%dT%H%M%SZ)"
 A3="evidence/AC03/$RUN_ID"; A5="evidence/AC05/$RUN_ID"; mkdir -p "$A3" "$A5"
 SUMMARY="$A5/summary.txt"; FAILS=0
@@ -60,13 +61,13 @@ gold() {  # gold <dataset>: Gold job; PASS needs the job's own reconciliation (e
     >"$A3/gold_$d.log" 2>&1
   local rc=$?
   [ -s "$A3/gold_$d.json" ] || { echo "job wrote no report" >&2; return 1; }
-  $PY -c "import json,sys; r=json.load(open(sys.argv[1])); print(r['reconciliation'], r['matches']); print(*r['alignment_check'], sep='\n')" "$A3/gold_$d.json"
+  $PY -c "import json,sys; r=json.load(open(sys.argv[1])); print(r['reconciliation']); [print(k, r[k]) for k in ('matches', 'alignment_check', 'coverage') if k in r]" "$A3/gold_$d.json"
   return $rc
 }
 
 for s in "${SOURCES[@]}"; do
   echo "=== $s" | tee -a "$SUMMARY"
-  if [ "$s" = traffic_weather ]; then
+  if [ "$s" = traffic_weather ] || [ "$s" = nyc_zone_hourly ]; then
     step "$s gold join (Spark)" "$A3/gold_$s.status" gold "$s"
     continue
   fi
