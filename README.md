@@ -6,8 +6,14 @@ A big-data engineering platform: real traffic/weather/trip/image sources → HDF
 Spark batch → Kafka + Flink event-time processing (historical event replay) → quality and governance →
 four versioned data products with contracts → light dashboard.
 
-**Status:** M0 (environment) verified in a GitHub Codespace: `scripts/smoke_m0.sh` 8/8 PASS, run
-`m0_20261121T014208Z` (evidence in `evidence/AC02/`). Next: M1 ingestion.
+**Status** (all from recorded runs in a GitHub Codespace):
+- M0 environment: `scripts/smoke_m0.sh` 8/8 PASS, run `m0_20261121T014208Z` (`evidence/AC02/`).
+- M1 ingestion: all 4 sources in Bronze; re-run `m1_20261121T072608Z` 0 failures, every file
+  `unchanged`, same record counts (`evidence/AC01/`, `docs/source_inventory.md`).
+- M2 Spark + quality: Silver UCI / Open-Meteo / NYC TLC and Gold UCI×ERA5 join and NYC zone-hourly
+  aggregation, all reconciled (runs `m2_20261121T081847Z`, `m2_20261121T083320Z`,
+  `m2_20261121T084148Z`; `evidence/AC03/`, `evidence/AC05/`, `docs/quality.md`, `docs/spark_processing.md`).
+- Next: M3 Kafka/Flink historical event replay.
 
 ## Stack (D04)
 
@@ -77,10 +83,29 @@ with a generated `ingestion_report.md`. Open-Meteo first looks up MnDOT ATR stat
 GIS layer (`data/manifests/atr301_location.json`). Sources and layout: `docs/source_inventory.md`,
 `docs/storage_layout.md`.
 
+## Run (M2 — Spark Silver/Gold and quality, spec T03/AC03, T05/AC05)
+
+Needs the stack running and M1 Bronze in HDFS.
+
+```bash
+bash scripts/run_m2.sh                                   # everything below, in order
+bash scripts/run_m2.sh uci_metro open_meteo traffic_weather   # UCI/weather part only
+bash scripts/run_m2.sh nyc_tlc nyc_zone_hourly                # NYC part only
+```
+
+Steps: unit tests → Spark data-quality tests → per dataset the rule catalogue, the Silver Spark job
+and a Markdown quality report → Gold jobs → HDFS listing. A step only PASSes if its result checks
+pass (Silver: Bronze rows = Silver source rows and all dataset checks; Gold: no fan-out / trip sums
+equal accepted rows). Evidence: `evidence/AC03/m2_<timestamp>/` (Spark logs, `explain_*.txt` plans,
+before/after samples, reconciliation, HDFS layout) and `evidence/AC05/m2_<timestamp>/` (test logs,
+rules, `quality_report_*.md`). The NYC Silver job takes about 5 minutes in a 4-core Codespace
+(278 s recorded in `m2_20261121T083320Z`). Outputs and access rules: `docs/storage_layout.md`.
+
 ## Tests
 ```bash
 pip install -r requirements-dev.txt
-pytest tests/unit
+pytest tests/unit                       # pure Python, no Docker (also on a laptop)
+bash scripts/test_spark.sh              # tests/data_quality with a local SparkSession in the spark-master container
 ```
 
 ## Layout
