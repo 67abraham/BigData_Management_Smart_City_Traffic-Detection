@@ -1,0 +1,64 @@
+# M3 streaming configuration (spec T04/AC04, T08/AC08). Read by src/streaming/*.
+#
+# Events are HISTORICAL EVENT REPLAY of UCI hourly volumes (spec §4: never presented as live data).
+# event_time = the UCI hour start in UTC (Silver uci_traffic_hourly.hour_start_utc).
+
+replay:
+  source: silver uci_traffic_hourly v1, outcome=accepted   # 40,558 hours in run m2_20261121T081847Z
+  record_kind: historical_event_replay
+  schema_version: 1
+
+topics:
+  # One partition: a single station, so Kafka keeps the replay in event-time order.
+  # Created by scripts/run_m3.sh with retention.ms=-1 and message.timestamp.type=LogAppendTime: Flink
+  # writes results with their event time (2012-2018), which the default 7-day retention deletes at once.
+  replay: {name: uci-traffic-replay-v1, partitions: 1}
+  metrics: {name: uci-traffic-window-metrics-v1, partitions: 1}
+  dlq: {name: uci-traffic-replay-dlq-v1, partitions: 1}            # malformed + too-late events
+  # Edge-case tests use their own topics and a synthetic station id, so injected anomalies never mix
+  # with the real replay (spec §8 integrity rule).
+  test_replay: {name: test-uci-traffic-replay-v1, partitions: 1}
+  test_metrics: {name: test-uci-traffic-window-metrics-v1, partitions: 1}
+  test_dlq: {name: test-uci-traffic-replay-dlq-v1, partitions: 1}
+
+window:
+  type: tumbling             # event-time, aligned to the epoch (00:00, 06:00, 12:00, 18:00 UTC)
+  size_hours: 6
+  expected_events_per_window: 6   # one hourly UCI record per hour -> completeness = count / 6
+
+watermark:
+  # watermark = max event time seen - out_of_orderness (Flink BoundedOutOfOrderness, minus 1 ms)
+  max_out_of_orderness_minutes: 60
+  # A window fires once when the watermark passes its end ("on_time"), then again for every event that
+  # arrives within allowed_lateness after that ("late_update", update_seq 1, 2, ...). Events later
+  # than that go to the DLQ with reason too_late.
+  allowed_lateness_hours: 6
+
+dedup:
+  key: event_id              # station_id|hour_start_utc
+  # Seen-ids are kept until the watermark passes event_time + this horizon, so any duplicate that
+  # could still change a window is caught. Horizon = window size + out-of-orderness + lateness.
+  horizon_hours: 13
+
+delivery:
+  sink_guarantee: AT_LEAST_ONCE   # Kafka sink flushes on checkpoint; see docs for the verified scope
+  checkpoint_interval_s: 10       # also set cluster-wide in compose.yaml
+
+test_station_id: TEST-301        # synthetic station for the edge-case tests
+
+python_runtime:
+  # PyFlink runs Python operators in "bundles" and hands results back to Java when a bundle ends. In
+  # run m3_20261121T090823Z a bundle only ended when the NEXT elements arrived, so watermarks lagged by
+  # a whole burst of input and the last windows never fired. Bundle size 1 returns every element at
+  # once, so watermarks follow the data (costs throughput; measured in the replay run).
+  bundle_size: 1
+  bundle_time_ms: 100
+  auto_watermark_interval_ms: 200
+
+parallelism:
+  # Default for every operator, including PyFlink's internal Extract-Timestamp operator, which ignores
+  # set_parallelism() on assign_timestamps_and_watermarks: one watermark generator per ordered source
+  # partition (run m3_20261121T091035Z: with 2 generators the watermark lagged and the last window
+  # never fired). The keyed stages (dedup, windows, sinks) then run with `keyed`.
+  default: 1
+  keyed: 2

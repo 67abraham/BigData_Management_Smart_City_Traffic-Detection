@@ -1,0 +1,11 @@
+run_id=m3_20261121T091418Z parts=replay commit=60e8aad
+PASS  unit tests -> evidence/AC04/m3_20261121T091418Z/unit_tests.log
+=== replay
+PASS  replay: topics -> evidence/AC04/m3_20261121T091418Z/replay_topics.log
+PASS  replay: produce Silver UCI events -> evidence/AC04/m3_20261121T091418Z/replay_producer.log
+PASS  replay: Flink bounded job -> evidence/AC04/m3_20261121T091418Z/replay_flink.log
+PASS  replay: Flink job record -> evidence/AC04/m3_20261121T091418Z/replay_flink_job.txt
+PASS  replay: consume metrics -> evidence/AC04/m3_20261121T091418Z/replay_collect_metrics.log
+PASS  replay: consume DLQ -> evidence/AC04/m3_20261121T091418Z/replay_collect_dlq.log
+FAIL  replay: results = oracle -> evidence/AC04/m3_20261121T091418Z/replay_verify.log (exit 1)
+--- failures: 1   evidence: evidence/AC04/m3_20261121T091418Z evidence/AC08/m3_20261121T091418Z

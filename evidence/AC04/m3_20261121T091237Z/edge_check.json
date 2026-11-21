@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "failures": [],
+  "dlq_reasons": {
+    "missing_traffic_volume": 1,
+    "traffic_volume_negative": 1,
+    "not_json": 1,
+    "bad_event_time": 1,
+    "unknown_record_kind": 1,
+    "duplicate": 2,
+    "too_late": 1
+  },
+  "windows": {
+    "2016-07-01T00:00:00Z": [
+      {
+        "firing": "on_time",
+        "update_seq": 0,
+        "event_count": 5,
+        "volume_sum": 510,
+        "watermark_at_emit": "2016-07-01T07:59:59Z"
+      }
+    ],
+    "2016-07-01T06:00:00Z": [
+      {
+        "firing": "on_time",
+        "update_seq": 0,
+        "event_count": 5,
+        "volume_sum": 541,
+        "watermark_at_emit": "2016-07-01T13:59:59Z"
+      },
+      {
+        "firing": "late_update",
+        "update_seq": 1,
+        "event_count": 6,
+        "volume_sum": 651,
+        "watermark_at_emit": "2016-07-01T13:59:59Z"
+      }
+    ],
+    "2016-07-01T12:00:00Z": [
+      {
+        "firing": "on_time",
+        "update_seq": 0,
+        "event_count": 6,
+        "volume_sum": 687,
+        "watermark_at_emit": "2016-07-01T21:59:59Z"
+      }
+    ],
+    "2016-07-01T18:00:00Z": [
+      {
+        "firing": "on_time",
+        "update_seq": 0,
+        "event_count": 6,
+        "volume_sum": 723,
+        "watermark_at_emit": "2016-07-10T22:59:59Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+ Container bdfp-kafka-1  Waiting
+ Container bdfp-kafka-1  Healthy
+ Container bdfp-flink-taskmanager-1  Starting
+ Container bdfp-flink-taskmanager-1  Started

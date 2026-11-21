@@ -13,7 +13,11 @@ four versioned data products with contracts → light dashboard.
 - M2 Spark + quality: Silver UCI / Open-Meteo / NYC TLC and Gold UCI×ERA5 join and NYC zone-hourly
   aggregation, all reconciled (runs `m2_20261121T081847Z`, `m2_20261121T083320Z`,
   `m2_20261121T084148Z`; `evidence/AC03/`, `evidence/AC05/`, `docs/quality.md`, `docs/spark_processing.md`).
-- Next: M3 Kafka/Flink historical event replay.
+- M3 Kafka/Flink: historical event replay of 40,558 UCI hours → 7,334 six-hour windows equal to an
+  independent oracle (`m3_20261121T092806Z`); late / duplicate / malformed / out-of-order tests
+  (`m3_20261121T091237Z`); TaskManager kill → restore from checkpoint → results still equal the oracle
+  (`m3_20261121T094727Z`). `evidence/AC04/`, `evidence/AC08/`, `docs/streaming.md`.
+- Next: M4 data products (contracts, read-back tests) and T06 benchmarks.
 
 ## Stack (D04)
 
@@ -100,6 +104,24 @@ equal accepted rows). Evidence: `evidence/AC03/m2_<timestamp>/` (Spark logs, `ex
 before/after samples, reconciliation, HDFS layout) and `evidence/AC05/m2_<timestamp>/` (test logs,
 rules, `quality_report_*.md`). The NYC Silver job takes about 5 minutes in a 4-core Codespace
 (278 s recorded in `m2_20261121T083320Z`). Outputs and access rules: `docs/storage_layout.md`.
+
+## Run (M3 — Kafka/Flink historical event replay, spec T04/AC04, T08/AC08)
+
+Needs the stack running and M2 Silver UCI in HDFS. These are **replayed historical events**
+(2012–2018), never live data.
+
+```bash
+bash scripts/run_m3.sh              # replay + edge + recovery (~25 min)
+bash scripts/run_m3.sh replay       # 40,558 events -> bounded Flink job -> results checked against an oracle (~12 min)
+bash scripts/run_m3.sh edge         # late, duplicate, malformed, out-of-order events on separate test topics (~2 min)
+bash scripts/run_m3.sh recovery     # kill the Flink TaskManager mid-replay, restart, check results (~6 min)
+```
+
+Each part deletes and re-creates its Kafka topics first. Flink UI: port 8082. A step only PASSes if
+its result is right (window results equal the oracle; the edge-case expectations hold; after the
+kill the job restored from a checkpoint). Evidence in `evidence/AC04/m3_<timestamp>/` and
+`evidence/AC08/m3_<timestamp>/`; large JSONL files stay in `data/local/m3/`. Design, watermark and
+update semantics, and the verified delivery guarantee: `docs/streaming.md`.
 
 ## Tests
 ```bash

@@ -1,0 +1,9 @@
+job 2efd50b527d044e6984c1bb61a7dc8c0 bdfp-m3-replay-m3_20261121T091418Z_replay FINISHED duration_ms 683728
+  Source: source -> parse -> (Extract-Timestamp -> Timestamps/ par=1 in=0 out=40558
+  dedup -> _stream_key_by_map_operator                         par=2 in=40558 out=40558
+  tumbling-window -> sink:metrics: Writer -> sink:metrics: Com par=2 in=40558 out=0
+  Map                                                          par=1 in=0 out=0
+  too-late                                                     par=2 in=0 out=0
+  Map                                                          par=1 in=0 out=0
+  sink:dlq: Writer -> sink:dlq: Committer                      par=2 in=0 out=0
+checkpoints {'restored': 0, 'total': 52, 'in_progress': 0, 'completed': 43, 'failed': 9}

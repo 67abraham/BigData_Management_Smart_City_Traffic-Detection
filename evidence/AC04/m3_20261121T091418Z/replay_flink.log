@@ -1,0 +1,10 @@
+WARNING: Unknown module: jdk.compiler specified to --add-exports
+WARNING: Unknown module: jdk.compiler specified to --add-exports
+WARNING: Unknown module: jdk.compiler specified to --add-exports
+WARNING: Unknown module: jdk.compiler specified to --add-exports
+WARNING: Unknown module: jdk.compiler specified to --add-exports
+Job has been submitted with JobID 2efd50b527d044e6984c1bb61a7dc8c0
+Program execution finished
+Job with JobID 2efd50b527d044e6984c1bb61a7dc8c0 has finished.
+Job Runtime: 683728 ms
+

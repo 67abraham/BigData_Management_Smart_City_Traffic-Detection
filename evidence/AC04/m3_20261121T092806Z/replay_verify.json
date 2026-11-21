@@ -1,0 +1,45 @@
+{
+  "events_produced": 40558,
+  "replay_events": 40558,
+  "distinct_event_ids": 40558,
+  "window_results": {
+    "emitted": 7334,
+    "on_time": 7334,
+    "late_update": 0,
+    "re_emitted": 0
+  },
+  "final_windows": 7334,
+  "events_in_final_windows": 40558,
+  "dlq_reasons": {},
+  "comparison": {
+    "windows_expected": 7334,
+    "windows_got": 7334,
+    "missing": [],
+    "extra": [],
+    "wrong": [],
+    "n_missing": 0,
+    "n_extra": 0,
+    "n_wrong": 0,
+    "match": true
+  },
+  "watermark_examples": [
+    {
+      "window_start_utc": "2012-10-02T12:00:00Z",
+      "firing": "on_time",
+      "update_seq": 0,
+      "watermark_at_emit": "2012-10-02T19:59:59Z"
+    },
+    {
+      "window_start_utc": "2012-10-02T18:00:00Z",
+      "firing": "on_time",
+      "update_seq": 0,
+      "watermark_at_emit": "2012-10-03T04:59:59Z"
+    },
+    {
+      "window_start_utc": "2012-10-03T00:00:00Z",
+      "firing": "on_time",
+      "update_seq": 0,
+      "watermark_at_emit": "2012-10-03T18:59:59Z"
+    }
+  ]
+}

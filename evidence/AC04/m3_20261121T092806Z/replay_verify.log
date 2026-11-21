@@ -1,0 +1,2 @@
+{"replay_events": 40558, "final_windows": 7334, "events_in_final_windows": 40558, "window_results": {"emitted": 7334, "on_time": 7334, "late_update": 0, "re_emitted": 0}, "dlq_reasons": {}}
+comparison: {"match": true, "windows_expected": 7334, "windows_got": 7334, "n_missing": 0, "n_extra": 0, "n_wrong": 0}

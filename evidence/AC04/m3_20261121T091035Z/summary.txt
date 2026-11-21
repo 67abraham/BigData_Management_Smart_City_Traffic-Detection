@@ -1,0 +1,10 @@
+run_id=m3_20261121T091035Z parts=edge commit=60e8aad
+PASS  unit tests -> evidence/AC04/m3_20261121T091035Z/unit_tests.log
+=== edge
+PASS  edge: test topics -> evidence/AC04/m3_20261121T091035Z/edge_topics.log
+PASS  edge: job running -> evidence/AC04/m3_20261121T091035Z/edge_wait.log
+PASS  edge: produce scenario (paused phases) -> evidence/AC04/m3_20261121T091035Z/edge_producer.log
+PASS  edge: consume metrics -> evidence/AC04/m3_20261121T091035Z/edge_collect_metrics.log
+PASS  edge: consume DLQ -> evidence/AC04/m3_20261121T091035Z/edge_collect_dlq.log
+FAIL  edge: expected results -> evidence/AC04/m3_20261121T091035Z/edge_check.log (exit 1)
+--- failures: 1   evidence: evidence/AC04/m3_20261121T091035Z evidence/AC08/m3_20261121T091035Z

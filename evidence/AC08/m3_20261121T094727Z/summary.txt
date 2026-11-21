@@ -1,0 +1,14 @@
+run_id=m3_20261121T094727Z parts=recovery commit=60e8aad
+PASS  unit tests -> evidence/AC04/m3_20261121T094727Z/unit_tests.log
+=== recovery
+PASS  recovery: topics -> evidence/AC08/m3_20261121T094727Z/topics.log
+PASS  recovery: job running -> evidence/AC08/m3_20261121T094727Z/wait1.log
+producing at 50 events/s in the background
+PASS  recovery: kill TaskManager -> evidence/AC08/m3_20261121T094727Z/kill.log
+PASS  recovery: start TaskManager -> evidence/AC08/m3_20261121T094727Z/start.log
+PASS  recovery: restored from checkpoint, running -> evidence/AC08/m3_20261121T094727Z/wait2.log
+PASS  recovery: Flink caught up -> evidence/AC08/m3_20261121T094727Z/catch_up.log
+PASS  recovery: consume metrics -> evidence/AC08/m3_20261121T094727Z/collect_metrics.log
+PASS  recovery: consume DLQ -> evidence/AC08/m3_20261121T094727Z/collect_dlq.log
+PASS  recovery: results = oracle after restart -> evidence/AC08/m3_20261121T094727Z/verify.log
+--- failures: 0   evidence: evidence/AC04/m3_20261121T094727Z evidence/AC08/m3_20261121T094727Z

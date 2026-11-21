@@ -1,0 +1,9 @@
+job cf68a7d0c64f0e76d83eccaaa78b2179 bdfp-m3-replay-m3_20261121T094727Z_recovery RUNNING duration_ms 339988
+  Source: source -> parse -> (Extract-Timestamp -> Timestamps/ par=1 in=0 out=0
+  dedup -> _stream_key_by_map_operator                         par=2 in=0 out=0
+  tumbling-window -> sink:metrics: Writer -> sink:metrics: Com par=2 in=0 out=0
+  Map                                                          par=1 in=0 out=0
+  too-late                                                     par=2 in=0 out=0
+  Map                                                          par=1 in=0 out=0
+  sink:dlq: Writer -> sink:dlq: Committer                      par=2 in=0 out=0
+checkpoints {'restored': 1, 'total': 33, 'in_progress': 0, 'completed': 30, 'failed': 3}
