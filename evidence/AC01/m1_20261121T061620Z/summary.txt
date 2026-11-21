@@ -1,0 +1,6 @@
+run_id=m1_20261121T061620Z ingest_date=2026-11-21 sources=open_meteo force=0
+Safe mode is OFF
+=== open_meteo
+PASS  locate ATR 301 (MnDOT GIS) -> locate_atr301.log
+PASS  open_meteo fetch -> fetch_open_meteo.log
+PASS  open_meteo land in HDFS -> land_open_meteo.log

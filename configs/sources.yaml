@@ -16,6 +16,11 @@ atr301_location:
   feature_service: https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_infra/CONTINUOUS_COLLECTION_SITES/FeatureServer
   arcgis_item_id: 4e85cd73d09949f5ac2a9d08b266d74e
   station_id: "301"
+  id_field: DOT_ID       # ATR station number; match only this field (OBJECTID 301 is another site)
+  # Fallback when the FeatureServer times out (it did from the Codespace, run m1_20261121T060408Z):
+  # ArcGIS Hub's CSV export of the same item/layer 0 (linked from gis.data.mn.gov).
+  hub_layer_id: 0
+  hub_csv_url: https://hub.arcgis.com/api/v3/datasets/4e85cd73d09949f5ac2a9d08b266d74e_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1
   output: data/manifests/atr301_location.json
 
 open_meteo:

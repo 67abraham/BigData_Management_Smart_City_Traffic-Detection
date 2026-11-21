@@ -1,0 +1,81 @@
+Connecting to namenode via http://namenode:9870/fsck?ugi=root&files=1&blocks=1&locations=1&path=%2Fdatalake
+FSCK started by root (auth:SIMPLE) from /172.18.0.3 for path /datalake at Sat Nov 21 01:42:55 UTC 2026
+
+/datalake <dir>
+/datalake/_smoke <dir>
+/datalake/_smoke/hdfs-site.xml 1509 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741835_1011 len=1509 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK], DatanodeInfoWithStorage[172.18.0.4:9866,DS-2cf1499e-2cd8-4b21-af8c-fff1d2cc3dd0,DISK]]
+
+/datalake/_smoke/m0_parquet <dir>
+/datalake/_smoke/m0_parquet/_SUCCESS 0 bytes, replicated: replication=2, 0 block(s):  OK
+
+/datalake/_smoke/m0_parquet/bucket=0 <dir>
+/datalake/_smoke/m0_parquet/bucket=0/part-00000-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150638 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741838_1014 len=150638 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK], DatanodeInfoWithStorage[172.18.0.6:9866,DS-07209a32-e9dc-4b4b-b940-525ed60b1a1e,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=0/part-00001-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150607 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741837_1013 len=150607 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK], DatanodeInfoWithStorage[172.18.0.6:9866,DS-07209a32-e9dc-4b4b-b940-525ed60b1a1e,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=1 <dir>
+/datalake/_smoke/m0_parquet/bucket=1/part-00000-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150620 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741840_1016 len=150620 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.4:9866,DS-2cf1499e-2cd8-4b21-af8c-fff1d2cc3dd0,DISK], DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=1/part-00001-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150604 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741839_1015 len=150604 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK], DatanodeInfoWithStorage[172.18.0.4:9866,DS-2cf1499e-2cd8-4b21-af8c-fff1d2cc3dd0,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=2 <dir>
+/datalake/_smoke/m0_parquet/bucket=2/part-00000-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150630 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741842_1018 len=150630 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.4:9866,DS-2cf1499e-2cd8-4b21-af8c-fff1d2cc3dd0,DISK], DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=2/part-00001-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150620 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741841_1017 len=150620 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.4:9866,DS-2cf1499e-2cd8-4b21-af8c-fff1d2cc3dd0,DISK], DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=3 <dir>
+/datalake/_smoke/m0_parquet/bucket=3/part-00000-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150651 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741844_1020 len=150651 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK], DatanodeInfoWithStorage[172.18.0.6:9866,DS-07209a32-e9dc-4b4b-b940-525ed60b1a1e,DISK]]
+
+/datalake/_smoke/m0_parquet/bucket=3/part-00001-caae7fe9-51df-4fa4-b817-ea367e393b06.c000.snappy.parquet 150610 bytes, replicated: replication=2, 1 block(s):  OK
+0. BP-1816727857-172.18.0.3-1795224629596:blk_1073741843_1019 len=150610 Live_repl=2  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-ae0b3530-cf4e-41b4-b6c0-15809bcd0c0d,DISK], DatanodeInfoWithStorage[172.18.0.4:9866,DS-2cf1499e-2cd8-4b21-af8c-fff1d2cc3dd0,DISK]]
+
+/datalake/bronze <dir>
+/datalake/gold <dir>
+/datalake/silver <dir>
+
+Status: HEALTHY
+ Number of data-nodes:	3
+ Number of racks:		1
+ Total dirs:			10
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	1206489 B
+ Total files:	10
+ Total blocks (validated):	9 (avg. block size 134054 B)
+ Minimally replicated blocks:	9 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	2
+ Average block replication:	2.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+ Blocks queued for replication:	0
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+ Blocks queued for replication:	0
+FSCK ended at Sat Nov 21 01:42:55 UTC 2026 in 4 milliseconds
+
+
+The filesystem under path '/datalake' is HEALTHY

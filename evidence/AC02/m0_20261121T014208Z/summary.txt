@@ -1,0 +1,18 @@
+=== environment & versions ===
+PASS  environment & versions  -> env.txt
+=== hdfs init (layers) ===
+PASS  hdfs init (layers)  -> hdfs_init.txt
+=== hdfs dfsadmin -report (3 DN) ===
+PASS  hdfs dfsadmin -report (3 DN)  -> dfsadmin_report.txt
+=== hdfs write/read ===
+PASS  hdfs write/read  -> hdfs_rw.txt
+=== spark on hdfs (parquet) ===
+PASS  spark on hdfs (parquet)  -> spark_smoke.txt
+=== hdfs fsck (repl=2, healthy) ===
+PASS  hdfs fsck (repl=2, healthy)  -> fsck.txt
+=== kafka produce/consume ===
+PASS  kafka produce/consume  -> kafka.txt
+=== flink cluster + pyflink ===
+PASS  flink cluster + pyflink  -> flink.txt
+---
+failures: 0   evidence: evidence/AC02/m0_20261121T014208Z

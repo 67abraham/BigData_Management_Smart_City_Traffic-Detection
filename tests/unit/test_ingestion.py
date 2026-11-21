@@ -8,7 +8,7 @@ import pytest
 import src.ingestion.common as common
 from src.ingestion.fetch_kitti import redact, sample_ids
 from src.ingestion.fetch_open_meteo import year_chunks
-from src.ingestion.locate_atr301 import _matches, _mentions_i94
+from src.ingestion.locate_atr301 import _features_from_hub_csv, _matches, _mentions_i94
 from src.ingestion.range_zip import RangeFile
 
 
@@ -134,3 +134,14 @@ def test_atr_matching() -> None:
     assert _matches({"SEQ": "301", "x": 1}, "301") and _matches({"id": 301}, "301") and _matches({"id": "0301"}, "301")
     assert not _matches({"id": "3011"}, "301") and not _matches({"id": "1301"}, "301")
     assert _mentions_i94({"loc": "I-94 E of Snelling Ave"}) and not _mentions_i94({"loc": "I-394"})
+    # field-restricted match: the station id must be in DOT_ID, not e.g. OBJECTID
+    assert _matches({"OBJECTID": "235", "DOT_ID": "301"}, "301", "DOT_ID")
+    assert not _matches({"OBJECTID": "301", "DOT_ID": "463"}, "301", "DOT_ID")
+    assert not _matches({"OBJECTID": "301"}, "301", "DOT_ID")
+
+
+def test_hub_csv_parse() -> None:
+    text = "﻿X,Y,OBJECTID,DOT_ID,SITE_STATUS\n-93.13,44.95,235,301,Retired\n,,9,9,Active\n"
+    feats = _features_from_hub_csv(text, 0)
+    assert feats[0]["geometry"] == {"x": -93.13, "y": 44.95} and feats[0]["attributes"]["DOT_ID"] == "301"
+    assert "X" not in feats[0]["attributes"] and feats[1]["geometry"] is None

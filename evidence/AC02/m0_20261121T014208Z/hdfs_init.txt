@@ -1,0 +1,21 @@
+Safe mode is OFF
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:37 /datalake/_smoke
+-rw-r--r--   2 root supergroup       1509 2026-11-21 01:37 /datalake/_smoke/hdfs-site.xml
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:37 /datalake/_smoke/m0_parquet
+-rw-r--r--   2 root supergroup          0 2026-11-21 01:37 /datalake/_smoke/m0_parquet/_SUCCESS
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=0
+-rw-r--r--   2 root supergroup     150638 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=0/part-00000-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+-rw-r--r--   2 root supergroup     150607 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=0/part-00001-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=1
+-rw-r--r--   2 root supergroup     150620 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=1/part-00000-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+-rw-r--r--   2 root supergroup     150604 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=1/part-00001-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=2
+-rw-r--r--   2 root supergroup     150630 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=2/part-00000-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+-rw-r--r--   2 root supergroup     150620 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=2/part-00001-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=3
+-rw-r--r--   2 root supergroup     150651 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=3/part-00000-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+-rw-r--r--   2 root supergroup     150610 2026-11-21 01:37 /datalake/_smoke/m0_parquet/bucket=3/part-00001-4865e779-3f14-4af1-ba7a-8842b89d3c2f.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/bronze
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/gold
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/silver
+[hdfs_init] /spark-events ready

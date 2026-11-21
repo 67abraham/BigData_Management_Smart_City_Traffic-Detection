@@ -1,0 +1,4 @@
+793.6 K  1.6 M  /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21
+551.9 K  1.1 M  /datalake/bronze/uci_metro/records/ingest_date=2026-11-21
+           2            3            793.6 K /datalake/bronze/uci_metro/raw
+           2            2            551.9 K /datalake/bronze/uci_metro/records

@@ -1,0 +1,9 @@
+run_id=m1_20261121T060214Z ingest_date=2026-11-21 sources=uci_metro force=0
+Safe mode is OFF
+=== uci_metro
+PASS  uci_metro fetch -> fetch_uci_metro.log
+PASS  uci_metro land in HDFS -> land_uci_metro.log
+PASS  uci_metro bronze (Spark) -> bronze_uci_metro.log.status
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+PASS  ingestion report -> report.log
+--- failures: 0   evidence: evidence/AC01/m1_20261121T060214Z

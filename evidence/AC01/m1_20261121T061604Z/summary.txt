@@ -1,0 +1,7 @@
+run_id=m1_20261121T061604Z ingest_date=2026-11-21 sources=open_meteo force=0
+Safe mode is OFF
+=== open_meteo
+FAIL  open_meteo fetch -> fetch_open_meteo.log (exit 1)
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+PASS  ingestion report -> report.log
+--- failures: 1   evidence: evidence/AC01/m1_20261121T061604Z

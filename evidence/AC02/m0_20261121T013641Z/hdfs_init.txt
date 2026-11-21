@@ -1,0 +1,6 @@
+Safe mode is OFF
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/_smoke
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/bronze
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/gold
+drwxr-xr-x   - root supergroup          0 2026-11-21 01:36 /datalake/silver
+[hdfs_init] /spark-events ready

@@ -47,7 +47,8 @@ docker compose exec -T namenode hdfs dfsadmin -safemode get >>"$SUMMARY" 2>&1
 
 for s in "${SOURCES[@]}"; do
   echo "=== $s" | tee -a "$SUMMARY"
-  if [ "$s" = open_meteo ] && [ ! -f data/manifests/atr301_location.json ]; then
+  # (re-)locate unless a previous lookup already chose a unique station
+  if [ "$s" = open_meteo ] && ! $PY -c 'import json,sys; sys.exit(0 if json.load(open("data/manifests/atr301_location.json")).get("chosen") else 1)' 2>/dev/null; then
     step "locate ATR 301 (MnDOT GIS)" locate_atr301.log $PY -m src.ingestion.locate_atr301 || continue
   fi
   case $s in

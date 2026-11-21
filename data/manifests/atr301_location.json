@@ -1,0 +1,50 @@
+{
+  "station_id": "301",
+  "id_field": "DOT_ID",
+  "retrieved_at": "2026-11-21T06:18:53+00:00",
+  "source": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_infra/CONTINUOUS_COLLECTION_SITES/FeatureServer",
+  "arcgis_item": "https://www.arcgis.com/home/item.html?id=4e85cd73d09949f5ac2a9d08b266d74e",
+  "route": {
+    "method": "arcgis_hub_csv_export",
+    "url": "https://hub.arcgis.com/api/v3/datasets/4e85cd73d09949f5ac2a9d08b266d74e_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+    "featureserver_error": "ConnectTimeout: HTTPSConnectionPool(host='webgis.dot.state.mn.us', port=443): Max retries exceeded with url: /65agsf1/rest/services/sdw_infra/CONTINUOUS_COLLECTION_SITES/FeatureServer?f=json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x733e86c99820>, 'Connection to webgis.dot.state",
+    "bytes": 26975,
+    "sha256": "17fb3fd1543b196ece0cd3a93fe1759ffec12daec70d4a994adead879d9ec571"
+  },
+  "features_scanned": 377,
+  "queries": [
+    "https://hub.arcgis.com/api/v3/datasets/4e85cd73d09949f5ac2a9d08b266d74e_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1 (377 features)"
+  ],
+  "candidates": [
+    {
+      "layer_id": 0,
+      "layer_name": "hub_csv_export",
+      "attributes": {
+        "OBJECTID": "235",
+        "LOCATION_ID": "9834",
+        "DOT_ID": "301",
+        "SITE_STATUS": "Retired",
+        "COLLECTION_TYPE": "Volume/Speed/Class",
+        "SE_ANNO_CAD_DATA": ""
+      },
+      "geometry": {
+        "x": -93.1368848235347,
+        "y": 44.9516213956903
+      },
+      "mentions_i94": false
+    }
+  ],
+  "chosen": {
+    "longitude": -93.1368848235347,
+    "latitude": 44.9516213956903,
+    "layer_id": 0,
+    "attributes": {
+      "OBJECTID": "235",
+      "LOCATION_ID": "9834",
+      "DOT_ID": "301",
+      "SITE_STATUS": "Retired",
+      "COLLECTION_TYPE": "Volume/Speed/Class",
+      "SE_ANNO_CAD_DATA": ""
+    }
+  }
+}

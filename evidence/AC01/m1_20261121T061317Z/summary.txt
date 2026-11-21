@@ -1,0 +1,7 @@
+run_id=m1_20261121T061317Z ingest_date=2026-11-21 sources=open_meteo force=0
+Safe mode is OFF
+=== open_meteo
+FAIL  locate ATR 301 (MnDOT GIS) -> locate_atr301.log (exit 2)
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+PASS  ingestion report -> report.log
+--- failures: 1   evidence: evidence/AC01/m1_20261121T061317Z
