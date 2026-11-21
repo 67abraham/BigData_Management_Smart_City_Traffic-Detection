@@ -1,0 +1,88 @@
+[
+  {
+    "case": "outcome = 'accepted' AND precipitation_mm > 0",
+    "bronze_rows": [
+      {
+        "time": "2012-10-06T16:00",
+        "temperature_2m": 5.1,
+        "precipitation": 0.1,
+        "rain": 0.1,
+        "snowfall": 0.0,
+        "cloud_cover": 89,
+        "weather_code": 51,
+        "wind_speed_10m": 19.2
+      }
+    ],
+    "silver": {
+      "grid_latitude": 45.0,
+      "grid_longitude": -93.25,
+      "elevation_m": 267.0,
+      "model": "era5",
+      "data_kind": "reanalysis",
+      "time_utc": "2012-10-06T16:00:00",
+      "sum_interval_start_utc": "2012-10-06T15:00:00",
+      "temperature_2m_c": 5.1,
+      "precipitation_mm": 0.1,
+      "rain_mm": 0.1,
+      "snowfall_cm": 0.0,
+      "cloud_cover_pct": 89,
+      "weather_code": 51,
+      "wind_speed_10m_kmh": 19.2,
+      "source_rows": 1,
+      "_violations": [],
+      "_source": "open_meteo",
+      "_source_file": "open_meteo_2012-10-01_2012-12-31.json",
+      "_source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "_sha256": "a504a008caed8133ceaea0885c19e4de780b05d4a273b3fb9dbee72ff78e702f",
+      "_ingested_at": "2026-11-21T11:14:05",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T112700Z",
+      "_silver_version": "v1",
+      "outcome": "accepted",
+      "year": 2012
+    }
+  },
+  {
+    "case": "outcome = 'accepted' AND snowfall_cm > 0",
+    "bronze_rows": [
+      {
+        "time": "2012-10-25T18:00",
+        "temperature_2m": 2.0,
+        "precipitation": 0.7,
+        "rain": 0.6,
+        "snowfall": 0.07,
+        "cloud_cover": 100,
+        "weather_code": 71,
+        "wind_speed_10m": 30.0
+      }
+    ],
+    "silver": {
+      "grid_latitude": 45.0,
+      "grid_longitude": -93.25,
+      "elevation_m": 267.0,
+      "model": "era5",
+      "data_kind": "reanalysis",
+      "time_utc": "2012-10-25T18:00:00",
+      "sum_interval_start_utc": "2012-10-25T17:00:00",
+      "temperature_2m_c": 2.0,
+      "precipitation_mm": 0.7,
+      "rain_mm": 0.6,
+      "snowfall_cm": 0.07,
+      "cloud_cover_pct": 100,
+      "weather_code": 71,
+      "wind_speed_10m_kmh": 30.0,
+      "source_rows": 1,
+      "_violations": [],
+      "_source": "open_meteo",
+      "_source_file": "open_meteo_2012-10-01_2012-12-31.json",
+      "_source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "_sha256": "a504a008caed8133ceaea0885c19e4de780b05d4a273b3fb9dbee72ff78e702f",
+      "_ingested_at": "2026-11-21T11:14:05",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T112700Z",
+      "_silver_version": "v1",
+      "outcome": "accepted",
+      "year": 2012
+    }
+  }
+]

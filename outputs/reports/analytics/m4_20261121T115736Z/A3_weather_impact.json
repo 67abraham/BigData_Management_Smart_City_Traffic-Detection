@@ -1,0 +1,30 @@
+{
+  "question": "Does ERA5 rain or snow go with lower volume, compared with dry hours at the same local hour?",
+  "sql": "WITH h AS (SELECT hour(hour_start_local) AS local_hour, traffic_volume,\n                              CASE WHEN era5_snowfall_cm > 0 THEN 'snow'\n                                   WHEN era5_precipitation_mm = 0 THEN 'dry'\n                                   WHEN era5_precipitation_mm < 1 THEN 'rain_lt_1mm'\n                                   ELSE 'rain_ge_1mm' END AS weather_class\n                       FROM traffic_hourly\n                       WHERE NOT is_holiday_date AND dayofweek(local_date) BETWEEN 2 AND 6\n                             AND hour(hour_start_local) BETWEEN 7 AND 18),\n                 base AS (SELECT local_hour, avg(traffic_volume) AS dry_avg FROM h\n                          WHERE weather_class = 'dry' GROUP BY local_hour)\n            SELECT weather_class, count(*) AS hours, round(avg(traffic_volume), 1) AS avg_volume,\n                   round(avg(traffic_volume / dry_avg), 4) AS volume_vs_dry_same_hour\n            FROM h JOIN base USING (local_hour) GROUP BY weather_class ORDER BY volume_vs_dry_same_hour DESC",
+  "rows": [
+    {
+      "weather_class": "rain_lt_1mm",
+      "hours": 1025,
+      "avg_volume": 5306.0,
+      "volume_vs_dry_same_hour": 1.0009
+    },
+    {
+      "weather_class": "dry",
+      "hours": 11747,
+      "avg_volume": 5320.6,
+      "volume_vs_dry_same_hour": 1.0
+    },
+    {
+      "weather_class": "rain_ge_1mm",
+      "hours": 366,
+      "avg_volume": 5229.3,
+      "volume_vs_dry_same_hour": 0.9795
+    },
+    {
+      "weather_class": "snow",
+      "hours": 636,
+      "avg_volume": 4689.9,
+      "volume_vs_dry_same_hour": 0.8813
+    }
+  ]
+}

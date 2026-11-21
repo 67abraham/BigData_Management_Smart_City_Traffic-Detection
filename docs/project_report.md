@@ -18,8 +18,8 @@ four versioned data products for ML and CV (spec §1–3). Architecture and desi
 | T04 Streaming | Kafka replay labelled historical; PyFlink watermarks, dedup, 6 h windows with lateness, DLQ; `docs/streaming.md` | 40,558 events → 7,334 windows = oracle (`m3_20261121T092806Z`); late / too-late / duplicate / malformed / out-of-order as designed (`m3_20261121T091237Z`) |
 | T05 Quality | 55 rules over 3 datasets (type, timestamp, key, missing, range, uniqueness + completeness checks); accepted / quarantine / rejected; lineage; `docs/quality.md` | NYC 9,300,058 / 83,793 / 636; UCI 40,558 / 17 / 0; 52 unit + 73 Spark quality test cases in M2 |
 | T06 Analytics | 5 SQL analyses; 3 strategy pairs × (1 warm-up + 3 runs); `docs/analytics.md`, `docs/performance.md` | CSV→Parquet 4.6–6.5×; partition pruning 3.9×; pushdown 1.8× only on sorted data (`m4_20261121T104058Z`) |
-| T07 Products | 4 contracts, build from contract, independent read-back, generated release blocks; `docs/data_products.md` | all read-back checks passed incl. lag-leakage recomputation (`m4_20261121T102858Z`) |
-| T08 Deployment | `compose.yaml`, devcontainer, `.env.example`, one script per milestone + `scripts/run_all.sh`; failure/restart | TaskManager kill → restored from checkpoint → results = oracle (`m3_20261121T094727Z`); see §5 for the fresh-environment run |
+| T07 Products | 4 contracts, build from contract, independent read-back, generated release blocks; `docs/data_products.md` | all read-back checks passed incl. lag-leakage recomputation (`m4_20261121T102858Z`; re-released identically by the fresh run, `m4_20261121T115736Z`) |
+| T08 Deployment | `compose.yaml`, devcontainer, `.env.example`, one script per milestone + `scripts/run_all.sh`; failure/restart | TaskManager kill → restored from checkpoint → results = oracle (`m3_20261121T094727Z`); fresh environment: all stages passed in 47 min (`full_20261121T112047Z`, §5) |
 | T09 Visualisation | Streamlit app from recorded outputs, every panel names its source; `src/visualisation/` | renders all 7 tabs without errors (AppTest, `m5_20261121T105711Z`) |
 
 ## 3. What went wrong and how it was found
@@ -57,7 +57,17 @@ Failed runs are kept in `evidence/` with their cause (dashboard tab *Abnormal ca
 exit code and duration in `evidence/AC08/full_<run>/stages.tsv`. All jobs are idempotent (versioned
 output paths overwritten per version, Bronze per `ingest_date`), so re-running a failed stage is the
 recovery path; the Codespace stopping mid-job was recovered this way (`m1_20261121T061620Z` →
-`m1_20261121T070714Z`). Status of the fresh-environment run from the README: see `README.md` → Status.
+`m1_20261121T070714Z`).
+
+**Fresh-environment run.** After `docker compose down -v` (all HDFS, Kafka and Flink data removed) and
+with `data/local/` moved away, `scripts/run_all.sh` was started from the README. The first attempt
+(`full_20261121T111135Z`) re-downloaded and loaded every source but stopped at the M1 report step: a
+Spark log line had corrupted the KITTI profile on stdout (the stdout-report bug fixed in M2 had not been
+carried back to the M1 job). After the fix, the re-run `full_20261121T112047Z` passed all seven stages
+with 0 failures in 47 minutes and reproduced every count: Bronze 48,204 / 52,608 / 9,384,487 / 51,865;
+Silver reconciled for all three datasets; Gold 40,558 and 212,041 rows; 7,334 windows equal to the
+oracle; recovery restored from a checkpoint with results equal to the oracle; four products passed
+read-back with the same row counts. Docker images were cached; a new Codespace also builds them.
 
 ## 6. Conclusions
 The platform runs every mandatory path on real data with result checks rather than exit codes: every

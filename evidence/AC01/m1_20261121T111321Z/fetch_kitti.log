@@ -1,0 +1,3 @@
+2026-11-21 11:16:46,879 INFO ingestion downloaded: kitti://data_object_label_2.zip (5601213 bytes, sha256 4efc76220d86…)
+2026-11-21 11:17:50,184 INFO ingestion image subset: 500 files, 505 range requests, 525853838 bytes fetched
+/workspaces/BigData_Management_Smart_City_Traffic-Detection/data/local/landing/kitti/ingest_date=2026-11-21/_manifest.json

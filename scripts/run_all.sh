@@ -22,7 +22,19 @@ stage() {  # stage <name> <command...>
   if [ $rc -ne 0 ]; then echo "STOP: $name failed (exit $rc), see $E/$name.log"; exit $rc; fi
 }
 
-stage 00_stack        docker compose up -d --build --wait
+wait_stack() {  # namenode and kafka healthy (spark-history restarts until the smoke test creates /spark-events,
+               # so `docker compose up --wait` would report a failure on a fresh stack)
+  docker compose up -d --build || return 1
+  for i in $(seq 1 60); do
+    h=$(docker compose ps --format '{{.Service}} {{.Health}}' | awk '$1=="namenode"||$1=="kafka"{print $2}' | sort -u | tr '\n' ' ')
+    echo "t=$((i * 5))s health: $h"
+    [ "$h" = "healthy " ] && { docker compose ps; return 0; }
+    sleep 5
+  done
+  return 1
+}
+
+stage 00_stack        wait_stack
 stage 01_smoke_m0     bash scripts/smoke_m0.sh
 stage 02_ingest_m1    bash scripts/ingest_m1.sh
 stage 03_spark_m2     bash scripts/run_m2.sh

@@ -1,0 +1,8 @@
+run_id=m4_20261121T115736Z part=products window_run=m3_20261121T113724Z commit=42b356d
+PASS  unit tests -> evidence/AC07/m4_20261121T115736Z/unit_tests.log
+PASS  product Spark tests -> evidence/AC07/m4_20261121T115736Z/product_tests.log
+PASS  build products (Spark) -> evidence/AC07/m4_20261121T115736Z/build.log
+PASS  read-back test (Spark) -> evidence/AC07/m4_20261121T115736Z/readback.log
+PASS  contract release blocks -> evidence/AC07/m4_20261121T115736Z/release.log
+PASS  hdfs product layout -> evidence/AC07/m4_20261121T115736Z/hdfs_products.txt
+--- failures: 0   evidence: evidence/AC07/m4_20261121T115736Z

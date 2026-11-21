@@ -1,0 +1,342 @@
+{
+  "question": "How does hourly volume at ATR 301 change over the day, on weekdays vs weekends?",
+  "sql": "SELECT CASE WHEN dayofweek(local_date) IN (1, 7) THEN 'weekend' ELSE 'weekday' END AS day_type,\n                   hour(hour_start_local) AS local_hour, count(*) AS hours,\n                   round(avg(traffic_volume), 1) AS avg_volume,\n                   percentile_approx(traffic_volume, 0.5) AS median_volume\n            FROM traffic_hourly GROUP BY 1, 2 ORDER BY 1, 2",
+  "rows": [
+    {
+      "day_type": "weekday",
+      "local_hour": 0,
+      "hours": 1234,
+      "avg_volume": 655.2,
+      "median_volume": 624
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 1,
+      "hours": 1214,
+      "avg_volume": 400.2,
+      "median_volume": 381
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 2,
+      "hours": 1218,
+      "avg_volume": 303.1,
+      "median_volume": 288
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 3,
+      "hours": 1196,
+      "avg_volume": 362.9,
+      "median_volume": 356
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 4,
+      "hours": 1213,
+      "avg_volume": 830.2,
+      "median_volume": 846
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 5,
+      "hours": 1196,
+      "avg_volume": 2699.4,
+      "median_volume": 2774
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 6,
+      "hours": 1208,
+      "avg_volume": 5375.5,
+      "median_volume": 5588
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 7,
+      "hours": 1188,
+      "avg_volume": 6061.2,
+      "median_volume": 6319
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 8,
+      "hours": 1199,
+      "avg_volume": 5508.9,
+      "median_volume": 5751
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 9,
+      "hours": 1170,
+      "avg_volume": 4900.6,
+      "median_volume": 5053
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 10,
+      "hours": 1216,
+      "avg_volume": 4400.5,
+      "median_volume": 4484
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 11,
+      "hours": 1194,
+      "avg_volume": 4663.4,
+      "median_volume": 4714
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 12,
+      "hours": 1208,
+      "avg_volume": 4873.9,
+      "median_volume": 4921
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 13,
+      "hours": 1184,
+      "avg_volume": 4879.5,
+      "median_volume": 4919
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 14,
+      "hours": 1213,
+      "avg_volume": 5182.1,
+      "median_volume": 5232
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 15,
+      "hours": 1190,
+      "avg_volume": 5629.2,
+      "median_volume": 5740
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 16,
+      "hours": 1220,
+      "avg_volume": 6240.9,
+      "median_volume": 6403
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 17,
+      "hours": 1183,
+      "avg_volume": 5823.1,
+      "median_volume": 5987
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 18,
+      "hours": 1207,
+      "avg_volume": 4485.0,
+      "median_volume": 4554
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 19,
+      "hours": 1207,
+      "avg_volume": 3332.1,
+      "median_volume": 3360
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 20,
+      "hours": 1223,
+      "avg_volume": 2877.2,
+      "median_volume": 2900
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 21,
+      "hours": 1222,
+      "avg_volume": 2701.8,
+      "median_volume": 2669
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 22,
+      "hours": 1226,
+      "avg_volume": 2149.3,
+      "median_volume": 2020
+    },
+    {
+      "day_type": "weekday",
+      "local_hour": 23,
+      "hours": 1245,
+      "avg_volume": 1404.4,
+      "median_volume": 1223
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 0,
+      "hours": 489,
+      "avg_volume": 1323.4,
+      "median_volume": 1303
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 1,
+      "hours": 492,
+      "avg_volume": 819.0,
+      "median_volume": 796
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 2,
+      "hours": 479,
+      "avg_volume": 620.3,
+      "median_volume": 609
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 3,
+      "hours": 471,
+      "avg_volume": 399.7,
+      "median_volume": 391
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 4,
+      "hours": 488,
+      "avg_volume": 381.8,
+      "median_volume": 379
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 5,
+      "hours": 487,
+      "avg_volume": 643.2,
+      "median_volume": 640
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 6,
+      "hours": 473,
+      "avg_volume": 1103.9,
+      "median_volume": 1092
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 7,
+      "hours": 483,
+      "avg_volume": 1601.5,
+      "median_volume": 1547
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 8,
+      "hours": 489,
+      "avg_volume": 2355.3,
+      "median_volume": 2268
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 9,
+      "hours": 469,
+      "avg_volume": 3132.9,
+      "median_volume": 3147
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 10,
+      "hours": 489,
+      "avg_volume": 3718.4,
+      "median_volume": 3722
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 11,
+      "hours": 473,
+      "avg_volume": 4082.0,
+      "median_volume": 4114
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 12,
+      "hours": 484,
+      "avg_volume": 4402.6,
+      "median_volume": 4442
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 13,
+      "hours": 489,
+      "avg_volume": 4407.6,
+      "median_volume": 4457
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 14,
+      "hours": 484,
+      "avg_volume": 4392.8,
+      "median_volume": 4457
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 15,
+      "hours": 473,
+      "avg_volume": 4372.4,
+      "median_volume": 4421
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 16,
+      "hours": 487,
+      "avg_volume": 4375.2,
+      "median_volume": 4438
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 17,
+      "hours": 480,
+      "avg_volume": 4186.4,
+      "median_volume": 4261
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 18,
+      "hours": 474,
+      "avg_volume": 3860.9,
+      "median_volume": 3920
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 19,
+      "hours": 476,
+      "avg_volume": 3257.6,
+      "median_volume": 3340
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 20,
+      "hours": 486,
+      "avg_volume": 2850.8,
+      "median_volume": 2890
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 21,
+      "hours": 482,
+      "avg_volume": 2693.3,
+      "median_volume": 2707
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 22,
+      "hours": 493,
+      "avg_volume": 2411.3,
+      "median_volume": 2374
+    },
+    {
+      "day_type": "weekend",
+      "local_hour": 23,
+      "hours": 494,
+      "avg_volume": 1711.3,
+      "median_volume": 1716
+    }
+  ]
+}

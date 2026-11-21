@@ -1,0 +1,133 @@
+{
+  "traffic_hourly": {
+    "product": "traffic_hourly_v1",
+    "run_id": "m4_20261121T115736Z",
+    "location": "hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1",
+    "inputs": [
+      "hdfs://namenode:8020/datalake/gold/uci_traffic_weather_hourly/v1"
+    ],
+    "row_count": 40558,
+    "size_bytes": 1143487,
+    "files": 8,
+    "built_at": "2026-11-21T11:58:21.415174+00:00",
+    "quality_summary": {
+      "null_counts": {
+        "holiday_name": 39355,
+        "uci_temp_c": 76,
+        "uci_rain_1h_mm": 9,
+        "uci_snow_1h_mm": 0,
+        "uci_clouds_all_pct": 32,
+        "era5_temperature_2m_c": 0,
+        "era5_precipitation_mm": 0,
+        "era5_snowfall_cm": 0,
+        "era5_cloud_cover_pct": 0,
+        "era5_weather_code": 0,
+        "era5_wind_speed_10m_kmh": 0
+      },
+      "temporal_coverage": {
+        "first_hour_local": "2012-10-02 09:00:00",
+        "last_hour_local": "2018-09-30 23:00:00",
+        "local_dates": 1860
+      },
+      "traffic_volume_range": [
+        1,
+        7280
+      ],
+      "hours_with_uci_weather_conflict": 77
+    },
+    "spark_app_id": "app-20261121115802-0017"
+  },
+  "traffic_features": {
+    "product": "traffic_features_v1",
+    "run_id": "m4_20261121T115736Z",
+    "location": "hdfs://namenode:8020/datalake/gold/products/traffic_features/v1",
+    "inputs": [
+      "hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1"
+    ],
+    "row_count": 40558,
+    "size_bytes": 1366556,
+    "files": 4,
+    "built_at": "2026-11-21T11:58:35.195679+00:00",
+    "quality_summary": {
+      "null_counts": {
+        "lag_1h": 2594,
+        "lag_2h": 1714,
+        "lag_24h": 2194,
+        "lag_168h": 3035,
+        "rolling_mean_prev_24h": 13
+      },
+      "rows_per_split": {
+        "validation": 8712,
+        "train": 25313,
+        "test": 6533
+      },
+      "rows_with_complete_lags": 34679,
+      "rows_without_lag_1h": 2594,
+      "temporal_coverage": {
+        "first_local_date": "2012-10-02",
+        "last_local_date": "2018-09-30"
+      }
+    },
+    "spark_app_id": "app-20261121115802-0017"
+  },
+  "road_image_manifest": {
+    "product": "road_image_manifest_v1",
+    "run_id": "m4_20261121T115736Z",
+    "location": "hdfs://namenode:8020/datalake/gold/products/road_image_manifest/v1",
+    "inputs": [
+      "hdfs://namenode:8020/datalake/bronze/kitti/image_inventory/ingest_date=2026-11-21",
+      "hdfs://namenode:8020/datalake/bronze/kitti/records/ingest_date=2026-11-21"
+    ],
+    "row_count": 7481,
+    "size_bytes": 190544,
+    "files": 2,
+    "built_at": "2026-11-21T11:58:41.428244+00:00",
+    "quality_summary": {
+      "null_counts": {
+        "image_path": 6981,
+        "image_bytes": 6981,
+        "width_px": 6981,
+        "height_px": 6981,
+        "image_sha256": 6981
+      },
+      "image_ids": 7481,
+      "files_available": 500,
+      "objects": 40570,
+      "dontcare_regions": 11295
+    },
+    "csv_copy": {
+      "path": "data/manifests/road_image_manifest_v1.csv",
+      "rows": 7481,
+      "sha256": "713ca18970c0d4b2bc28a65d90931ddca276e1ed43053637e1c6c6002e7a8211"
+    },
+    "spark_app_id": "app-20261121115802-0017"
+  },
+  "traffic_window_metrics": {
+    "product": "traffic_window_metrics_v1",
+    "run_id": "m4_20261121T115736Z",
+    "location": "hdfs://namenode:8020/datalake/gold/products/traffic_window_metrics/v1",
+    "inputs": [
+      "data/local/m3/m3_20261121T113724Z/replay_metrics.jsonl"
+    ],
+    "row_count": 7334,
+    "size_bytes": 274981,
+    "files": 8,
+    "built_at": "2026-11-21T11:58:45.785744+00:00",
+    "input_sha256": "b876ac2c8d3c32bf61186f42c2665fffefaea91bb3f77e3d0428ebea5d4f7f2b",
+    "result_rows_read": 7334,
+    "flink_job_run_id": "m3_20261121T113724Z_replay",
+    "quality_summary": {
+      "null_counts": {},
+      "windows": 7334,
+      "complete_windows": 5760,
+      "events_in_windows": 40558,
+      "windows_with_late_update": 0,
+      "flink_job_runs": 1,
+      "temporal_coverage": {
+        "first_window_start_utc": "2012-10-02 12:00:00",
+        "last_window_start_utc": "2018-10-01 00:00:00"
+      }
+    },
+    "spark_app_id": "app-20261121115802-0017"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "source": "open_meteo",
+  "ingest_date": "2026-11-21",
+  "started_at": "2026-11-21T11:22:34+00:00",
+  "fetcher_version": "m1.0",
+  "finished_at": "2026-11-21T11:22:34+00:00",
+  "params": {
+    "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+    "latitude": 44.9516213956903,
+    "longitude": -93.1368848235347,
+    "location_from": "data/manifests/atr301_location.json",
+    "model": "era5",
+    "timezone": "GMT",
+    "hourly": [
+      "temperature_2m",
+      "precipitation",
+      "rain",
+      "snowfall",
+      "cloud_cover",
+      "weather_code",
+      "wind_speed_10m"
+    ],
+    "start_date": "2012-10-01",
+    "end_date": "2018-10-01"
+  },
+  "files": [
+    {
+      "name": "open_meteo_2012-10-01_2012-12-31.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2012-10-01&end_date=2012-12-31&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "a504a008caed8133ceaea0885c19e4de780b05d4a273b3fb9dbee72ff78e702f",
+      "bytes": 107398,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:05+00:00",
+      "error": null,
+      "extra": {}
+    },
+    {
+      "name": "open_meteo_2013-01-01_2013-12-31.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2013-01-01&end_date=2013-12-31&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "b662edb6226f36b4f604a9d15f23703714a7679375339af5e26b38b27610d532",
+      "bytes": 427721,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:07+00:00",
+      "error": null,
+      "extra": {}
+    },
+    {
+      "name": "open_meteo_2014-01-01_2014-12-31.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2014-01-01&end_date=2014-12-31&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "4829d199ef7390effeff3a6d5380e62e2ed598e0d1b527b332f181f03d509353",
+      "bytes": 428001,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:09+00:00",
+      "error": null,
+      "extra": {}
+    },
+    {
+      "name": "open_meteo_2015-01-01_2015-12-31.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2015-01-01&end_date=2015-12-31&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "975d18c040dabc07ede87218cd0985478d0d24518b1c8ef0fd9ebdcca4c723ac",
+      "bytes": 426364,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:11+00:00",
+      "error": null,
+      "extra": {}
+    },
+    {
+      "name": "open_meteo_2016-01-01_2016-12-31.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2016-01-01&end_date=2016-12-31&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "a3331e36476c56bc8fb9ff1955e67aad8480d8aa2f9982224c11a2458b050900",
+      "bytes": 427555,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:13+00:00",
+      "error": null,
+      "extra": {}
+    },
+    {
+      "name": "open_meteo_2017-01-01_2017-12-31.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2017-01-01&end_date=2017-12-31&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "b603f35b6592c1a1922b0b181b2b7c0c229e7f4bb82c46a3d9bf055bc80118b6",
+      "bytes": 426515,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:15+00:00",
+      "error": null,
+      "extra": {}
+    },
+    {
+      "name": "open_meteo_2018-01-01_2018-10-01.json",
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.9516213956903&longitude=-93.1368848235347&start_date=2018-01-01&end_date=2018-10-01&hourly=temperature_2m%2Cprecipitation%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code%2Cwind_speed_10m&models=era5&timezone=GMT",
+      "status": "unchanged",
+      "sha256": "1beec08178536be9ae99d07a301b2aeb76ecc90eaca4e919c76fb5506ef7338e",
+      "bytes": 320415,
+      "source_version": "open-meteo archive era5 retrieved:2026-11-21",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-21T11:14:17+00:00",
+      "error": null,
+      "extra": {}
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+pu_location_id,pu_borough,pu_zone,trips,peak_local_hour
+132,Queens,JFK Airport,454035,22
+237,Manhattan,Upper East Side South,433962,14
+161,Manhattan,Midtown Center,428424,18
+236,Manhattan,Upper East Side North,401705,15
+162,Manhattan,Midtown East,330008,18
+186,Manhattan,Penn Station/Madison Sq West,326799,18
+230,Manhattan,Times Sq/Theatre District,310666,22
+142,Manhattan,Lincoln Square East,301212,21
+138,Queens,LaGuardia Airport,286286,14
+170,Manhattan,Murray Hill,273218,18

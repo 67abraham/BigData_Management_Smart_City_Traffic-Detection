@@ -1,0 +1,161 @@
+== Physical Plan ==
+AdaptiveSparkPlan (29)
++- Project (28)
+   +- Project (27)
+      +- Window (26)
+         +- Sort (25)
+            +- Exchange (24)
+               +- Project (23)
+                  +- BroadcastHashJoin LeftOuter BuildRight (22)
+                     :- Project (16)
+                     :  +- BroadcastHashJoin LeftOuter BuildRight (15)
+                     :     :- Union (7)
+                     :     :  :- Project (2)
+                     :     :  :  +- Scan parquet  (1)
+                     :     :  :- Project (4)
+                     :     :  :  +- Scan parquet  (3)
+                     :     :  +- Project (6)
+                     :     :     +- Scan parquet  (5)
+                     :     +- BroadcastExchange (14)
+                     :        +- Project (13)
+                     :           +- Filter (12)
+                     :              +- InMemoryTableScan (8)
+                     :                    +- InMemoryRelation (9)
+                     :                          +- * ColumnarToRow (11)
+                     :                             +- Scan parquet  (10)
+                     +- BroadcastExchange (21)
+                        +- Project (20)
+                           +- Filter (19)
+                              +- InMemoryTableScan (17)
+                                    +- InMemoryRelation (18)
+                                          +- * ColumnarToRow (11)
+                                             +- Scan parquet  (10)
+
+
+(1) Scan parquet 
+Output [24]: [VendorID#28L, tpep_pickup_datetime#29, tpep_dropoff_datetime#30, passenger_count#31, trip_distance#32, RatecodeID#33, store_and_fwd_flag#34, PULocationID#35L, DOLocationID#36L, payment_type#37L, fare_amount#38, extra#39, mta_tax#40, tip_amount#41, tolls_amount#42, improvement_surcharge#43, total_amount#44, congestion_surcharge#45, airport_fee#46, _source#47, _source_file#48, _ingested_at#49, _source_version#50, _sha256#51]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bronze/nyc_tlc/records/ingest_date=2026-11-21/source_month=2023-01]
+ReadSchema: struct<VendorID:bigint,tpep_pickup_datetime:timestamp_ntz,tpep_dropoff_datetime:timestamp_ntz,passenger_count:double,trip_distance:double,RatecodeID:double,store_and_fwd_flag:string,PULocationID:bigint,DOLocationID:bigint,payment_type:bigint,fare_amount:double,extra:double,mta_tax:double,tip_amount:double,tolls_amount:double,improvement_surcharge:double,total_amount:double,congestion_surcharge:double,airport_fee:double,_source:string,_source_file:string,_ingested_at:timestamp,_source_version:string,_sha256:string>
+
+(2) Project
+Output [31]: [cast(VendorID#28L as int) AS vendor_id#105, tpep_pickup_datetime#29 AS pickup_datetime_local#106, tpep_dropoff_datetime#30 AS dropoff_datetime_local#107, cast(passenger_count#31 as int) AS passenger_count#108, trip_distance#32 AS trip_distance_mi#109, cast(RatecodeID#33 as int) AS ratecode_id#110, store_and_fwd_flag#34 AS store_and_fwd_flag#111, cast(PULocationID#35L as int) AS pu_location_id#112, cast(DOLocationID#36L as int) AS do_location_id#113, cast(payment_type#37L as int) AS payment_type#114, fare_amount#38 AS fare_amount_usd#115, extra#39 AS extra_usd#116, mta_tax#40 AS mta_tax_usd#117, tip_amount#41 AS tip_amount_usd#118, tolls_amount#42 AS tolls_amount_usd#119, improvement_surcharge#43 AS improvement_surcharge_usd#120, total_amount#44 AS total_amount_usd#121, congestion_surcharge#45 AS congestion_surcharge_usd#122, airport_fee#46 AS airport_fee_usd#123, passenger_count#31 AS passenger_count_src#124, RatecodeID#33 AS ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, 2023-01 AS source_month#126, (cast((unix_timestamp(cast(tpep_dropoff_datetime#30 as timestamp), yyyy-MM-dd HH:mm:ss, Some(UTC), false) - unix_timestamp(cast(tpep_pickup_datetime#29 as timestamp), yyyy-MM-dd HH:mm:ss, Some(UTC), false)) as double) / 60.0) AS trip_minutes#759, date_format(cast(tpep_pickup_datetime#29 as timestamp), yyyy-MM, Some(UTC)) AS pickup_month#788, cast(tpep_pickup_datetime#29 as date) AS pickup_date#818, hour(tpep_pickup_datetime#29, Some(UTC)) AS pickup_hour_local#849]
+Input [24]: [VendorID#28L, tpep_pickup_datetime#29, tpep_dropoff_datetime#30, passenger_count#31, trip_distance#32, RatecodeID#33, store_and_fwd_flag#34, PULocationID#35L, DOLocationID#36L, payment_type#37L, fare_amount#38, extra#39, mta_tax#40, tip_amount#41, tolls_amount#42, improvement_surcharge#43, total_amount#44, congestion_surcharge#45, airport_fee#46, _source#47, _source_file#48, _ingested_at#49, _source_version#50, _sha256#51]
+
+(3) Scan parquet 
+Output [24]: [VendorID#155, tpep_pickup_datetime#156, tpep_dropoff_datetime#157, passenger_count#158L, trip_distance#159, RatecodeID#160L, store_and_fwd_flag#161, PULocationID#162, DOLocationID#163, payment_type#164L, fare_amount#165, extra#166, mta_tax#167, tip_amount#168, tolls_amount#169, improvement_surcharge#170, total_amount#171, congestion_surcharge#172, Airport_fee#173, _source#174, _source_file#175, _ingested_at#176, _source_version#177, _sha256#178]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bronze/nyc_tlc/records/ingest_date=2026-11-21/source_month=2023-02]
+ReadSchema: struct<VendorID:int,tpep_pickup_datetime:timestamp_ntz,tpep_dropoff_datetime:timestamp_ntz,passenger_count:bigint,trip_distance:double,RatecodeID:bigint,store_and_fwd_flag:string,PULocationID:int,DOLocationID:int,payment_type:bigint,fare_amount:double,extra:double,mta_tax:double,tip_amount:double,tolls_amount:double,improvement_surcharge:double,total_amount:double,congestion_surcharge:double,Airport_fee:double,_source:string,_source_file:string,_ingested_at:timestamp,_source_version:string,_sha256:string>
+
+(4) Project
+Output [31]: [VendorID#155 AS vendor_id#232, tpep_pickup_datetime#156 AS pickup_datetime_local#233, tpep_dropoff_datetime#157 AS dropoff_datetime_local#234, cast(passenger_count#158L as int) AS passenger_count#235, trip_distance#159 AS trip_distance_mi#236, cast(RatecodeID#160L as int) AS ratecode_id#237, store_and_fwd_flag#161, PULocationID#162 AS pu_location_id#239, DOLocationID#163 AS do_location_id#240, cast(payment_type#164L as int) AS payment_type#241, fare_amount#165 AS fare_amount_usd#242, extra#166 AS extra_usd#243, mta_tax#167 AS mta_tax_usd#244, tip_amount#168 AS tip_amount_usd#245, tolls_amount#169 AS tolls_amount_usd#246, improvement_surcharge#170 AS improvement_surcharge_usd#247, total_amount#171 AS total_amount_usd#248, congestion_surcharge#172 AS congestion_surcharge_usd#249, Airport_fee#173 AS airport_fee_usd#250, cast(passenger_count#158L as double) AS passenger_count_src#251, cast(RatecodeID#160L as double) AS ratecode_id_src#252, _source#174, _source_file#175, _source_version#177, _sha256#178, _ingested_at#176, 2023-02 AS source_month#253, (cast((unix_timestamp(cast(tpep_dropoff_datetime#157 as timestamp), yyyy-MM-dd HH:mm:ss, Some(UTC), false) - unix_timestamp(cast(tpep_pickup_datetime#156 as timestamp), yyyy-MM-dd HH:mm:ss, Some(UTC), false)) as double) / 60.0) AS trip_minutes#1596, date_format(cast(tpep_pickup_datetime#156 as timestamp), yyyy-MM, Some(UTC)) AS pickup_month#1598, cast(tpep_pickup_datetime#156 as date) AS pickup_date#1599, hour(tpep_pickup_datetime#156, Some(UTC)) AS pickup_hour_local#1600]
+Input [24]: [VendorID#155, tpep_pickup_datetime#156, tpep_dropoff_datetime#157, passenger_count#158L, trip_distance#159, RatecodeID#160L, store_and_fwd_flag#161, PULocationID#162, DOLocationID#163, payment_type#164L, fare_amount#165, extra#166, mta_tax#167, tip_amount#168, tolls_amount#169, improvement_surcharge#170, total_amount#171, congestion_surcharge#172, Airport_fee#173, _source#174, _source_file#175, _ingested_at#176, _source_version#177, _sha256#178]
+
+(5) Scan parquet 
+Output [24]: [VendorID#282, tpep_pickup_datetime#283, tpep_dropoff_datetime#284, passenger_count#285L, trip_distance#286, RatecodeID#287L, store_and_fwd_flag#288, PULocationID#289, DOLocationID#290, payment_type#291L, fare_amount#292, extra#293, mta_tax#294, tip_amount#295, tolls_amount#296, improvement_surcharge#297, total_amount#298, congestion_surcharge#299, Airport_fee#300, _source#301, _source_file#302, _ingested_at#303, _source_version#304, _sha256#305]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bronze/nyc_tlc/records/ingest_date=2026-11-21/source_month=2023-03]
+ReadSchema: struct<VendorID:int,tpep_pickup_datetime:timestamp_ntz,tpep_dropoff_datetime:timestamp_ntz,passenger_count:bigint,trip_distance:double,RatecodeID:bigint,store_and_fwd_flag:string,PULocationID:int,DOLocationID:int,payment_type:bigint,fare_amount:double,extra:double,mta_tax:double,tip_amount:double,tolls_amount:double,improvement_surcharge:double,total_amount:double,congestion_surcharge:double,Airport_fee:double,_source:string,_source_file:string,_ingested_at:timestamp,_source_version:string,_sha256:string>
+
+(6) Project
+Output [31]: [VendorID#282 AS vendor_id#359, tpep_pickup_datetime#283 AS pickup_datetime_local#360, tpep_dropoff_datetime#284 AS dropoff_datetime_local#361, cast(passenger_count#285L as int) AS passenger_count#362, trip_distance#286 AS trip_distance_mi#363, cast(RatecodeID#287L as int) AS ratecode_id#364, store_and_fwd_flag#288, PULocationID#289 AS pu_location_id#366, DOLocationID#290 AS do_location_id#367, cast(payment_type#291L as int) AS payment_type#368, fare_amount#292 AS fare_amount_usd#369, extra#293 AS extra_usd#370, mta_tax#294 AS mta_tax_usd#371, tip_amount#295 AS tip_amount_usd#372, tolls_amount#296 AS tolls_amount_usd#373, improvement_surcharge#297 AS improvement_surcharge_usd#374, total_amount#298 AS total_amount_usd#375, congestion_surcharge#299 AS congestion_surcharge_usd#376, Airport_fee#300 AS airport_fee_usd#377, cast(passenger_count#285L as double) AS passenger_count_src#378, cast(RatecodeID#287L as double) AS ratecode_id_src#379, _source#301, _source_file#302, _source_version#304, _sha256#305, _ingested_at#303, 2023-03 AS source_month#380, (cast((unix_timestamp(cast(tpep_dropoff_datetime#284 as timestamp), yyyy-MM-dd HH:mm:ss, Some(UTC), false) - unix_timestamp(cast(tpep_pickup_datetime#283 as timestamp), yyyy-MM-dd HH:mm:ss, Some(UTC), false)) as double) / 60.0) AS trip_minutes#1597, date_format(cast(tpep_pickup_datetime#283 as timestamp), yyyy-MM, Some(UTC)) AS pickup_month#1601, cast(tpep_pickup_datetime#283 as date) AS pickup_date#1602, hour(tpep_pickup_datetime#283, Some(UTC)) AS pickup_hour_local#1603]
+Input [24]: [VendorID#282, tpep_pickup_datetime#283, tpep_dropoff_datetime#284, passenger_count#285L, trip_distance#286, RatecodeID#287L, store_and_fwd_flag#288, PULocationID#289, DOLocationID#290, payment_type#291L, fare_amount#292, extra#293, mta_tax#294, tip_amount#295, tolls_amount#296, improvement_surcharge#297, total_amount#298, congestion_surcharge#299, Airport_fee#300, _source#301, _source_file#302, _ingested_at#303, _source_version#304, _sha256#305]
+
+(7) Union
+
+(8) InMemoryTableScan
+Output [4]: [Borough#464, LocationID#463, Zone#465, service_zone#466]
+Arguments: [Borough#464, LocationID#463, Zone#465, service_zone#466], [isnotnull(cast(LocationID#463 as int))]
+
+(9) InMemoryRelation
+Arguments: [LocationID#463, Borough#464, Zone#465, service_zone#466, _source#467, _source_file#468, _ingested_at#469, _source_version#470, _sha256#471], CachedRDDBuilder(org.apache.spark.sql.execution.columnar.DefaultCachedBatchSerializer@7f9ddc4c,StorageLevel(disk, memory, deserialized, 1 replicas),*(1) ColumnarToRow
++- FileScan parquet [LocationID#463,Borough#464,Zone#465,service_zone#466,_source#467,_source_file#468,_ingested_at#469,_source_version#470,_sha256#471] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/bronze/nyc_tlc/zone_lookup/ingest_date=2..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct<LocationID:string,Borough:string,Zone:string,service_zone:string,_source:string,_source_fi...
+,None)
+
+(10) Scan parquet 
+Output [9]: [LocationID#463, Borough#464, Zone#465, service_zone#466, _source#467, _source_file#468, _ingested_at#469, _source_version#470, _sha256#471]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bronze/nyc_tlc/zone_lookup/ingest_date=2026-11-21]
+ReadSchema: struct<LocationID:string,Borough:string,Zone:string,service_zone:string,_source:string,_source_file:string,_ingested_at:timestamp,_source_version:string,_sha256:string>
+
+(11) ColumnarToRow [codegen id : 1]
+Input [9]: [LocationID#463, Borough#464, Zone#465, service_zone#466, _source#467, _source_file#468, _ingested_at#469, _source_version#470, _sha256#471]
+
+(12) Filter
+Input [4]: [Borough#464, LocationID#463, Zone#465, service_zone#466]
+Condition : isnotnull(cast(LocationID#463 as int))
+
+(13) Project
+Output [4]: [cast(LocationID#463 as int) AS pu_location_id#881, Borough#464 AS pu_borough#882, Zone#465 AS pu_zone#883, service_zone#466 AS pu_service_zone#884]
+Input [4]: [Borough#464, LocationID#463, Zone#465, service_zone#466]
+
+(14) BroadcastExchange
+Input [4]: [pu_location_id#881, pu_borough#882, pu_zone#883, pu_service_zone#884]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=332]
+
+(15) BroadcastHashJoin
+Left keys [1]: [pu_location_id#112]
+Right keys [1]: [pu_location_id#881]
+Join type: LeftOuter
+Join condition: None
+
+(16) Project
+Output [34]: [pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, do_location_id#113, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884]
+Input [35]: [vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, pu_location_id#112, do_location_id#113, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_location_id#881, pu_borough#882, pu_zone#883, pu_service_zone#884]
+
+(17) InMemoryTableScan
+Output [4]: [Borough#932, LocationID#931, Zone#933, service_zone#934]
+Arguments: [Borough#932, LocationID#931, Zone#933, service_zone#934], [isnotnull(cast(LocationID#931 as int))]
+
+(18) InMemoryRelation
+Arguments: [LocationID#931, Borough#932, Zone#933, service_zone#934, _source#935, _source_file#936, _ingested_at#937, _source_version#938, _sha256#939], CachedRDDBuilder(org.apache.spark.sql.execution.columnar.DefaultCachedBatchSerializer@7f9ddc4c,StorageLevel(disk, memory, deserialized, 1 replicas),*(1) ColumnarToRow
++- FileScan parquet [LocationID#463,Borough#464,Zone#465,service_zone#466,_source#467,_source_file#468,_ingested_at#469,_source_version#470,_sha256#471] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/bronze/nyc_tlc/zone_lookup/ingest_date=2..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct<LocationID:string,Borough:string,Zone:string,service_zone:string,_source:string,_source_fi...
+,None)
+
+(19) Filter
+Input [4]: [Borough#932, LocationID#931, Zone#933, service_zone#934]
+Condition : isnotnull(cast(LocationID#931 as int))
+
+(20) Project
+Output [4]: [cast(LocationID#931 as int) AS do_location_id#923, Borough#932 AS do_borough#924, Zone#933 AS do_zone#925, service_zone#934 AS do_service_zone#926]
+Input [4]: [Borough#932, LocationID#931, Zone#933, service_zone#934]
+
+(21) BroadcastExchange
+Input [4]: [do_location_id#923, do_borough#924, do_zone#925, do_service_zone#926]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=336]
+
+(22) BroadcastHashJoin
+Left keys [1]: [do_location_id#113]
+Right keys [1]: [do_location_id#923]
+Join type: LeftOuter
+Join condition: None
+
+(23) Project
+Output [37]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926]
+Input [38]: [pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, do_location_id#113, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_location_id#923, do_borough#924, do_zone#925, do_service_zone#926]
+
+(24) Exchange
+Input [37]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926]
+Arguments: hashpartitioning(vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, pu_location_id#112, do_location_id#113, knownfloatingpointnormalized(normalizenanandzero(trip_distance_mi#109)), knownfloatingpointnormalized(normalizenanandzero(total_amount_usd#121)), knownfloatingpointnormalized(normalizenanandzero(fare_amount_usd#115)), payment_type#114, passenger_count#108, 8), ENSURE_REQUIREMENTS, [plan_id=340]
+
+(25) Sort
+Input [37]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926]
+Arguments: [vendor_id#105 ASC NULLS FIRST, pickup_datetime_local#106 ASC NULLS FIRST, dropoff_datetime_local#107 ASC NULLS FIRST, pu_location_id#112 ASC NULLS FIRST, do_location_id#113 ASC NULLS FIRST, knownfloatingpointnormalized(normalizenanandzero(trip_distance_mi#109)) ASC NULLS FIRST, knownfloatingpointnormalized(normalizenanandzero(total_amount_usd#121)) ASC NULLS FIRST, knownfloatingpointnormalized(normalizenanandzero(fare_amount_usd#115)) ASC NULLS FIRST, payment_type#114 ASC NULLS FIRST, passenger_count#108 ASC NULLS FIRST], false, 0
+
+(26) Window
+Input [37]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926]
+Arguments: [count(1) windowspecdefinition(vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, pu_location_id#112, do_location_id#113, trip_distance_mi#109, total_amount_usd#121, fare_amount_usd#115, payment_type#114, passenger_count#108, specifiedwindowframe(RowFrame, unboundedpreceding$(), unboundedfollowing$())) AS dup_count#979L], [vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, pu_location_id#112, do_location_id#113, knownfloatingpointnormalized(normalizenanandzero(trip_distance_mi#109)), knownfloatingpointnormalized(normalizenanandzero(total_amount_usd#121)), knownfloatingpointnormalized(normalizenanandzero(fare_amount_usd#115)), payment_type#114, passenger_count#108]
+
+(27) Project
+Output [35]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926, filter(array(CASE WHEN ((isnull(pickup_datetime_local#106) OR isnull(dropoff_datetime_local#107)) OR (isnull(pu_location_id#112) OR isnull(do_location_id#113))) THEN [key_missing,business_key,reject] END, CASE WHEN (isnull(pu_borough#882) OR isnull(do_borough#924)) THEN [zone_not_in_lookup,business_key,quarantine] END, CASE WHEN coalesce((pu_location_id#112 IN (264,265) OR do_location_id#113 IN (264,265)), false) THEN [zone_unknown_or_outside,business_key,flag] END, CASE WHEN coalesce((dropoff_datetime_local#107 < pickup_datetime_local#106), false) THEN [ts_dropoff_before_pickup,timestamp,reject] END, CASE WHEN coalesce(NOT (pickup_month#788 = source_month#126), false) THEN [ts_pickup_outside_file_month,timestamp,quarantine] END, CASE WHEN coalesce((trip_minutes#759 = 0.0), false) THEN [ts_zero_duration,timestamp,quarantine] END, CASE WHEN coalesce((trip_minutes#759 > 1440.0), false) THEN [range_duration_over_max,range,quarantine] END, CASE WHEN coalesce((NOT (passenger_count_src#124 = cast(FLOOR(passenger_count_src#124) as double)) OR NOT (ratecode_id_src#125 = cast(FLOOR(ratecode_id_src#125) as double))), false) THEN [type_non_integer_code,type,quarantine] END, CASE WHEN coalesce((trip_distance_mi#109 < 0.0), false) THEN [range_distance_negative,range,reject] END, CASE WHEN coalesce((trip_distance_mi#109 > 100.0), false) THEN [range_distance_over_max,range,quarantine] END, CASE WHEN coalesce((trip_distance_mi#109 = 0.0), false) THEN [flag_distance_zero,range,flag] END, CASE WHEN coalesce(((fare_amount_usd#115 < 0.0) OR (total_amount_usd#121 < 0.0)), false) THEN [range_amount_negative,range,quarantine] END, CASE WHEN coalesce((total_amount_usd#121 > 1000.0), false) THEN [range_total_over_max,range,quarantine] END, CASE WHEN coalesce((passenger_count#108 = 0), false) THEN [flag_passenger_count_zero,range,flag] END, CASE WHEN coalesce((isnull(vendor_id#105) OR NOT vendor_id#105 IN (1,2,6,7)), false) THEN [range_vendor_unknown,range,quarantine] END, CASE WHEN coalesce((isnotnull(ratecode_id#110) AND NOT ratecode_id#110 IN (1,2,3,4,5,6,99)), false) THEN [range_ratecode_unknown,range,quarantine] END, CASE WHEN coalesce((isnull(payment_type#114) OR NOT payment_type#114 IN (0,1,2,3,4,5,6)), false) THEN [range_payment_type_unknown,range,quarantine] END, CASE WHEN coalesce((isnotnull(store_and_fwd_flag#111) AND NOT store_and_fwd_flag#111 IN (Y,N)), false) THEN [range_store_fwd_unknown,range,quarantine] END, CASE WHEN coalesce(((payment_type#114 = 0) AND (((isnull(passenger_count#108) OR isnull(ratecode_id#110)) OR isnull(store_and_fwd_flag#111)) OR (isnull(congestion_surcharge_usd#122) OR isnull(airport_fee_usd#123)))), false) THEN [missing_fields_flex_fare,missing,flag] END, CASE WHEN coalesce((NOT (payment_type#114 = 0) AND (((isnull(passenger_count#108) OR isnull(ratecode_id#110)) OR isnull(store_and_fwd_flag#111)) OR (isnull(congestion_surcharge_usd#122) OR isnull(airport_fee_usd#123)))), false) THEN [missing_fields_non_flex,missing,quarantine] END, CASE WHEN (dup_count#979L > 1) THEN [unique_trip_duplicate,uniqueness,quarantine] END), lambdafunction(isnotnull(lambda x_0#1082), lambda x_0#1082, false)) AS _violations#1081]
+Input [38]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, passenger_count_src#124, ratecode_id_src#125, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_month#788, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926, dup_count#979L]
+
+(28) Project
+Output [40]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926, _violations#1081, CASE WHEN array_contains(_violations#1081.severity, reject) THEN rejected WHEN array_contains(_violations#1081.severity, quarantine) THEN quarantine ELSE accepted END AS outcome#1292, (payment_type#114 = 0) AS is_flex_fare#1163, m2_20261121T112700Z AS _silver_run_id#1205, v1 AS _silver_version#1248, 2026-11-21 AS _bronze_ingest_date#1375]
+Input [35]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926, _violations#1081]
+
+(29) AdaptiveSparkPlan
+Output [40]: [do_location_id#113, pu_location_id#112, vendor_id#105, pickup_datetime_local#106, dropoff_datetime_local#107, passenger_count#108, trip_distance_mi#109, ratecode_id#110, store_and_fwd_flag#111, payment_type#114, fare_amount_usd#115, extra_usd#116, mta_tax_usd#117, tip_amount_usd#118, tolls_amount_usd#119, improvement_surcharge_usd#120, total_amount_usd#121, congestion_surcharge_usd#122, airport_fee_usd#123, _source#47, _source_file#48, _source_version#50, _sha256#51, _ingested_at#49, source_month#126, trip_minutes#759, pickup_date#818, pickup_hour_local#849, pu_borough#882, pu_zone#883, pu_service_zone#884, do_borough#924, do_zone#925, do_service_zone#926, _violations#1081, outcome#1292, is_flex_fare#1163, _silver_run_id#1205, _silver_version#1248, _bronze_ingest_date#1375]
+Arguments: isFinalPlan=false
+

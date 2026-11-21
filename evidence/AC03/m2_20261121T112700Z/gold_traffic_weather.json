@@ -1,0 +1,238 @@
+{
+  "dataset": "uci_traffic_weather_hourly",
+  "version": "v1",
+  "join": {
+    "type": "left (UCI accepted hours) on UTC hour",
+    "uci_hour_label": "start",
+    "offsets_hours_by_variable": {
+      "0": [
+        "cloud_cover",
+        "temperature_2m",
+        "weather_code",
+        "wind_speed_10m"
+      ],
+      "1": [
+        "precipitation",
+        "rain",
+        "snowfall"
+      ]
+    },
+    "example": {
+      "temperature_2m": "ERA5 at UCI hour + 0 h",
+      "cloud_cover": "ERA5 at UCI hour + 0 h",
+      "weather_code": "ERA5 at UCI hour + 0 h",
+      "wind_speed_10m": "ERA5 at UCI hour + 0 h",
+      "precipitation": "ERA5 at UCI hour + 1 h",
+      "rain": "ERA5 at UCI hour + 1 h",
+      "snowfall": "ERA5 at UCI hour + 1 h"
+    }
+  },
+  "reconciliation": {
+    "uci_accepted_rows": 40558,
+    "gold_rows": 40558,
+    "distinct_hours": 40558,
+    "no_fan_out": true
+  },
+  "matches": {
+    "instant_matched": 40558,
+    "sum_matched": 40558,
+    "both_matched": 40558,
+    "unmatched_hours": 0,
+    "unmatched_examples_utc": []
+  },
+  "alignment_check": [
+    {
+      "era5_time_minus_uci_hour_h": -1,
+      "pairs": 40558,
+      "corr_temp_c": 0.9819,
+      "corr_rain_vs_precipitation": 0.1854
+    },
+    {
+      "era5_time_minus_uci_hour_h": 0,
+      "pairs": 40558,
+      "corr_temp_c": 0.9832,
+      "corr_rain_vs_precipitation": 0.2221
+    },
+    {
+      "era5_time_minus_uci_hour_h": 1,
+      "pairs": 40558,
+      "corr_temp_c": 0.9802,
+      "corr_rain_vs_precipitation": 0.2065
+    }
+  ],
+  "inputs": [
+    "hdfs://namenode:8020/datalake/silver/uci_traffic_hourly/v1/outcome=accepted",
+    "hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1/outcome=accepted"
+  ],
+  "output": "hdfs://namenode:8020/datalake/gold/uci_traffic_weather_hourly/v1",
+  "run_id": "m2_20261121T112700Z",
+  "spark_app_id": "app-20261121113105-0012",
+  "schema": "struct<station_id:string,road:string,direction:string,latitude:double,longitude:double,hour_start_local:timestamp_ntz,hour_start_utc:timestamp,timezone:string,utc_offset_hours:int,dst_ambiguous:boolean,local_date:date,traffic_volume:int,traffic_volume_unit:string,temp_k:double,temp_c:double,rain_1h_mm:double,snow_1h_mm:double,clouds_all_pct:double,weather_main:array<string>,weather_description:array<string>,holiday_name:string,is_holiday_date:boolean,source_rows:bigint,weather_numeric_conflict:boolean,_source:string,_source_file:string,_source_version:string,_sha256:string,_ingested_at:timestamp,_bronze_ingest_date:string,_silver_run_id:string,_silver_version:string,era5_instant_time_utc:timestamp,era5_cloud_cover_pct:int,era5_temperature_2m_c:double,era5_weather_code:int,era5_wind_speed_10m_kmh:double,era5_sum_end_time_utc:timestamp,era5_precipitation_mm:double,era5_rain_mm:double,era5_snowfall_cm:double,era5_grid_latitude:double,era5_grid_longitude:double,era5_model:string,era5_data_kind:string,uci_hour_label:string,_gold_run_id:string,_gold_version:string,year:int>",
+  "samples": [
+    {
+      "station_id": "301",
+      "road": "I-94",
+      "direction": "westbound",
+      "latitude": 44.9516213956903,
+      "longitude": -93.1368848235347,
+      "hour_start_local": "2012-10-06T10:00:00",
+      "hour_start_utc": "2012-10-06T15:00:00",
+      "timezone": "America/Chicago",
+      "utc_offset_hours": -5,
+      "dst_ambiguous": false,
+      "local_date": "2012-10-06",
+      "traffic_volume": 4861,
+      "traffic_volume_unit": "vehicles/hour",
+      "temp_k": 276.88,
+      "temp_c": 3.73,
+      "rain_1h_mm": 0.0,
+      "snow_1h_mm": 0.0,
+      "clouds_all_pct": 20.0,
+      "weather_main": [
+        "Clouds"
+      ],
+      "weather_description": [
+        "few clouds"
+      ],
+      "holiday_name": null,
+      "is_holiday_date": false,
+      "source_rows": 1,
+      "weather_numeric_conflict": false,
+      "_source": "uci_metro",
+      "_source_file": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "_source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "_sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "_ingested_at": "2026-11-21T11:21:55",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T112700Z",
+      "_silver_version": "v1",
+      "era5_instant_time_utc": "2012-10-06T15:00:00",
+      "era5_cloud_cover_pct": 75,
+      "era5_temperature_2m_c": 4.6,
+      "era5_weather_code": 2,
+      "era5_wind_speed_10m_kmh": 19.7,
+      "era5_sum_end_time_utc": "2012-10-06T16:00:00",
+      "era5_precipitation_mm": 0.1,
+      "era5_rain_mm": 0.1,
+      "era5_snowfall_cm": 0.0,
+      "era5_grid_latitude": 45.0,
+      "era5_grid_longitude": -93.25,
+      "era5_model": "era5",
+      "era5_data_kind": "reanalysis",
+      "uci_hour_label": "start",
+      "_gold_run_id": "m2_20261121T112700Z",
+      "_gold_version": "v1",
+      "year": 2012
+    },
+    {
+      "station_id": "301",
+      "road": "I-94",
+      "direction": "westbound",
+      "latitude": 44.9516213956903,
+      "longitude": -93.1368848235347,
+      "hour_start_local": "2012-10-08T13:00:00",
+      "hour_start_utc": "2012-10-08T18:00:00",
+      "timezone": "America/Chicago",
+      "utc_offset_hours": -5,
+      "dst_ambiguous": false,
+      "local_date": "2012-10-08",
+      "traffic_volume": 4602,
+      "traffic_volume_unit": "vehicles/hour",
+      "temp_k": 282.34,
+      "temp_c": 9.19,
+      "rain_1h_mm": 0.0,
+      "snow_1h_mm": 0.0,
+      "clouds_all_pct": 40.0,
+      "weather_main": [
+        "Clouds"
+      ],
+      "weather_description": [
+        "scattered clouds"
+      ],
+      "holiday_name": "Columbus Day",
+      "is_holiday_date": true,
+      "source_rows": 1,
+      "weather_numeric_conflict": false,
+      "_source": "uci_metro",
+      "_source_file": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "_source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "_sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "_ingested_at": "2026-11-21T11:21:55",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T112700Z",
+      "_silver_version": "v1",
+      "era5_instant_time_utc": "2012-10-08T18:00:00",
+      "era5_cloud_cover_pct": 100,
+      "era5_temperature_2m_c": 13.4,
+      "era5_weather_code": 3,
+      "era5_wind_speed_10m_kmh": 23.2,
+      "era5_sum_end_time_utc": "2012-10-08T19:00:00",
+      "era5_precipitation_mm": 0.4,
+      "era5_rain_mm": 0.4,
+      "era5_snowfall_cm": 0.0,
+      "era5_grid_latitude": 45.0,
+      "era5_grid_longitude": -93.25,
+      "era5_model": "era5",
+      "era5_data_kind": "reanalysis",
+      "uci_hour_label": "start",
+      "_gold_run_id": "m2_20261121T112700Z",
+      "_gold_version": "v1",
+      "year": 2012
+    },
+    {
+      "station_id": "301",
+      "road": "I-94",
+      "direction": "westbound",
+      "latitude": 44.9516213956903,
+      "longitude": -93.1368848235347,
+      "hour_start_local": "2012-10-02T09:00:00",
+      "hour_start_utc": "2012-10-02T14:00:00",
+      "timezone": "America/Chicago",
+      "utc_offset_hours": -5,
+      "dst_ambiguous": false,
+      "local_date": "2012-10-02",
+      "traffic_volume": 5545,
+      "traffic_volume_unit": "vehicles/hour",
+      "temp_k": 288.28,
+      "temp_c": 15.13,
+      "rain_1h_mm": 0.0,
+      "snow_1h_mm": 0.0,
+      "clouds_all_pct": 40.0,
+      "weather_main": [
+        "Clouds"
+      ],
+      "weather_description": [
+        "scattered clouds"
+      ],
+      "holiday_name": null,
+      "is_holiday_date": false,
+      "source_rows": 1,
+      "weather_numeric_conflict": false,
+      "_source": "uci_metro",
+      "_source_file": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "_source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "_sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "_ingested_at": "2026-11-21T11:21:55",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T112700Z",
+      "_silver_version": "v1",
+      "era5_instant_time_utc": "2012-10-02T14:00:00",
+      "era5_cloud_cover_pct": 0,
+      "era5_temperature_2m_c": 9.4,
+      "era5_weather_code": 0,
+      "era5_wind_speed_10m_kmh": 5.4,
+      "era5_sum_end_time_utc": "2012-10-02T15:00:00",
+      "era5_precipitation_mm": 0.0,
+      "era5_rain_mm": 0.0,
+      "era5_snowfall_cm": 0.0,
+      "era5_grid_latitude": 45.0,
+      "era5_grid_longitude": -93.25,
+      "era5_model": "era5",
+      "era5_data_kind": "reanalysis",
+      "uci_hour_label": "start",
+      "_gold_run_id": "m2_20261121T112700Z",
+      "_gold_version": "v1",
+      "year": 2012
+    }
+  ]
+}

@@ -6,7 +6,9 @@ production method, reading instructions, known limitations) is in `contracts/<na
 generated `release` block records the run, row count, size, coverage, quality summary and read-back
 result. Versioning and R0/R1: `contracts/CHANGELOG.md`.
 
-Current release: build + read-back run **`m4_20261121T102858Z`** (`evidence/AC07/m4_20261121T102858Z/`).
+Current release: build + read-back run **`m4_20261121T115736Z`** (`evidence/AC07/m4_20261121T115736Z/`), made by the
+fresh-environment run `full_20261121T112047Z`. The previous release `m4_20261121T102858Z` had identical row counts,
+sizes, check results and quality summaries.
 
 | Product | Consumers | Grain / key | Rows | Size | Read-back |
 |---|---|---|---:|---:|---|

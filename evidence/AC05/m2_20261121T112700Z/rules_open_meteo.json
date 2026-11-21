@@ -1,0 +1,122 @@
+[
+  {
+    "stage": "row",
+    "name": "key_missing",
+    "category": "business_key",
+    "severity": "reject",
+    "violation_expr": "time IS NULL OR trim(time) = '' OR grid_latitude IS NULL OR grid_longitude IS NULL",
+    "description": "business key (grid point, hour) incomplete"
+  },
+  {
+    "stage": "row",
+    "name": "ts_unparseable",
+    "category": "timestamp",
+    "severity": "reject",
+    "violation_expr": "time IS NOT NULL AND trim(time) <> '' AND time_utc IS NULL",
+    "description": "time does not match yyyy-MM-dd'T'HH:mm on the hour"
+  },
+  {
+    "stage": "row",
+    "name": "ts_outside_request",
+    "category": "timestamp",
+    "severity": "quarantine",
+    "violation_expr": "time_utc < TIMESTAMP '2012-10-01 00:00:00' OR time_utc > TIMESTAMP '2018-10-01 23:00:00'",
+    "description": "hour outside the requested period 2012-10-01 00:00:00 .. 2018-10-01 23:00:00 UTC"
+  },
+  {
+    "stage": "row",
+    "name": "missing_variable",
+    "category": "missing",
+    "severity": "quarantine",
+    "violation_expr": "temperature_2m IS NULL OR precipitation IS NULL OR rain IS NULL OR snowfall IS NULL OR cloud_cover IS NULL OR weather_code IS NULL OR wind_speed_10m IS NULL",
+    "description": "one of the requested hourly variables is NULL"
+  },
+  {
+    "stage": "row",
+    "name": "type_non_finite",
+    "category": "type",
+    "severity": "quarantine",
+    "violation_expr": "isnan(CAST(temperature_2m AS DOUBLE)) OR isnan(CAST(precipitation AS DOUBLE)) OR isnan(CAST(rain AS DOUBLE)) OR isnan(CAST(snowfall AS DOUBLE)) OR isnan(CAST(cloud_cover AS DOUBLE)) OR isnan(CAST(weather_code AS DOUBLE)) OR isnan(CAST(wind_speed_10m AS DOUBLE))",
+    "description": "a variable is NaN"
+  },
+  {
+    "stage": "row",
+    "name": "type_integer_codes",
+    "category": "type",
+    "severity": "quarantine",
+    "violation_expr": "weather_code <> floor(weather_code) OR cloud_cover <> floor(cloud_cover)",
+    "description": "weather_code or cloud_cover is not an integer"
+  },
+  {
+    "stage": "row",
+    "name": "range_temperature_2m",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "temperature_2m < -60.0 OR temperature_2m > 60.0",
+    "description": "temperature_2m outside -60.0 .. 60.0 \u00b0C"
+  },
+  {
+    "stage": "row",
+    "name": "range_precipitation",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "precipitation < 0 OR precipitation > 305.0 OR rain < 0 OR rain > 305.0",
+    "description": "precipitation or rain outside 0 .. 305.0 mm"
+  },
+  {
+    "stage": "row",
+    "name": "range_snowfall",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "snowfall < 0 OR snowfall > 100.0",
+    "description": "snowfall outside 0 .. 100.0 cm"
+  },
+  {
+    "stage": "row",
+    "name": "range_cloud_cover",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "cloud_cover < 0 OR cloud_cover > 100",
+    "description": "cloud_cover outside 0 .. 100 %"
+  },
+  {
+    "stage": "row",
+    "name": "range_wind_speed_10m",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "wind_speed_10m < 0 OR wind_speed_10m > 250.0",
+    "description": "wind_speed_10m outside 0 .. 250.0 km/h"
+  },
+  {
+    "stage": "row",
+    "name": "range_weather_code_unknown",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "weather_code IS NOT NULL AND weather_code NOT IN (0, 1, 2, 3, 45, 48, 51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 71, 73, 75, 77, 80, 81, 82, 85, 86, 95, 96, 97, 99)",
+    "description": "weather_code is not one of the documented WMO codes"
+  },
+  {
+    "stage": "row",
+    "name": "range_rain_above_precipitation",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "rain > precipitation + 0.05",
+    "description": "rain exceeds total precipitation (rain is part of precipitation)"
+  },
+  {
+    "stage": "key",
+    "name": "unique_key_conflicting",
+    "category": "uniqueness",
+    "severity": "quarantine",
+    "violation_expr": "source_rows > 1 AND n_distinct_values > 1",
+    "description": "several rows for one (grid point, hour) disagree; values set to NULL"
+  },
+  {
+    "stage": "key",
+    "name": "unique_key_duplicate",
+    "category": "uniqueness",
+    "severity": "flag",
+    "violation_expr": "source_rows > 1 AND n_distinct_values = 1",
+    "description": "identical rows for one (grid point, hour); collapsed to one"
+  }
+]

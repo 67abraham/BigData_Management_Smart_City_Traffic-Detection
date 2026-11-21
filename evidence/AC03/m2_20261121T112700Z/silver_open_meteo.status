@@ -1,0 +1,1 @@
+reconciliation: {'bronze_rows': 52608, 'silver_source_rows': 52608, 'reconciled': True} checks: {'units_timezone_match_api_response': True, 'complete_requested_period': True, 'single_grid_point': True, 'station_inside_era5_cell': True}

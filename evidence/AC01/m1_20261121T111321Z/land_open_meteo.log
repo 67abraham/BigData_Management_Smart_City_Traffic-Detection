@@ -1,0 +1,10 @@
+           1            8              2.5 M /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21
+-rw-r--r--   2 root supergroup       8573 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/_manifest.json
+-rw-r--r--   2 root supergroup     107398 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2012-10-01_2012-12-31.json
+-rw-r--r--   2 root supergroup     427721 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2013-01-01_2013-12-31.json
+-rw-r--r--   2 root supergroup     428001 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2014-01-01_2014-12-31.json
+-rw-r--r--   2 root supergroup     426364 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2015-01-01_2015-12-31.json
+-rw-r--r--   2 root supergroup     427555 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2016-01-01_2016-12-31.json
+-rw-r--r--   2 root supergroup     426515 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2017-01-01_2017-12-31.json
+-rw-r--r--   2 root supergroup     320415 2026-11-21 11:14 /datalake/bronze/open_meteo/raw/ingest_date=2026-11-21/open_meteo_2018-01-01_2018-10-01.json
+file count: local=8 hdfs=8

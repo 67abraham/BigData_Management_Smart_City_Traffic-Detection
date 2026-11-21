@@ -1,0 +1,36 @@
+== Physical Plan ==
+AdaptiveSparkPlan (5)
++- HashAggregate (4)
+   +- Exchange (3)
+      +- HashAggregate (2)
+         +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [1]: [total_amount_usd#188]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bench/nyc_trips/parquet_flat]
+ReadSchema: struct<total_amount_usd:double>
+
+(2) HashAggregate
+Input [1]: [total_amount_usd#188]
+Keys: []
+Functions [1]: [partial_sum(cast(total_amount_usd#188 as decimal(12,2)))]
+Aggregate Attributes [2]: [sum#653, isEmpty#654]
+Results [2]: [sum#655, isEmpty#656]
+
+(3) Exchange
+Input [2]: [sum#655, isEmpty#656]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [plan_id=1209]
+
+(4) HashAggregate
+Input [2]: [sum#655, isEmpty#656]
+Keys: []
+Functions [1]: [sum(cast(total_amount_usd#188 as decimal(12,2)))]
+Aggregate Attributes [1]: [sum(cast(total_amount_usd#188 as decimal(12,2)))#651]
+Results [1]: [sum(cast(total_amount_usd#188 as decimal(12,2)))#651 AS total#650]
+
+(5) AdaptiveSparkPlan
+Output [1]: [total#650]
+Arguments: isFinalPlan=false
+

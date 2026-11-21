@@ -1,0 +1,2 @@
+2026-11-21 11:21:55,563 INFO ingestion unchanged, not re-downloaded: https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip
+/workspaces/BigData_Management_Smart_City_Traffic-Detection/data/local/landing/uci_metro/ingest_date=2026-11-21/_manifest.json

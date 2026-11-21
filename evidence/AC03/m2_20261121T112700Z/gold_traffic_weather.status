@@ -1,0 +1,3 @@
+{'uci_accepted_rows': 40558, 'gold_rows': 40558, 'distinct_hours': 40558, 'no_fan_out': True}
+matches {'instant_matched': 40558, 'sum_matched': 40558, 'both_matched': 40558, 'unmatched_hours': 0, 'unmatched_examples_utc': []}
+alignment_check [{'era5_time_minus_uci_hour_h': -1, 'pairs': 40558, 'corr_temp_c': 0.9819, 'corr_rain_vs_precipitation': 0.1854}, {'era5_time_minus_uci_hour_h': 0, 'pairs': 40558, 'corr_temp_c': 0.9832, 'corr_rain_vs_precipitation': 0.2221}, {'era5_time_minus_uci_hour_h': 1, 'pairs': 40558, 'corr_temp_c': 0.9802, 'corr_rain_vs_precipitation': 0.2065}]

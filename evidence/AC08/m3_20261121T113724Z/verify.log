@@ -1,0 +1,2 @@
+{"replay_events": 10000, "final_windows": 1854, "events_in_final_windows": 10000, "window_results": {"emitted": 1870, "on_time": 1870, "late_update": 0, "re_emitted": 16}, "dlq_reasons": {}}
+comparison: {"match": true, "windows_expected": 1854, "windows_got": 1854, "n_missing": 0, "n_extra": 0, "n_wrong": 0}

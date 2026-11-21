@@ -1,0 +1,450 @@
+{
+  "dataset": "nyc_yellow_trips",
+  "version": "v1",
+  "reconciliation": {
+    "bronze_rows": 9384487,
+    "silver_source_rows": 9384487,
+    "reconciled": true,
+    "per_month": {
+      "2023-01": {
+        "bronze": 3066766,
+        "silver": 3066766
+      },
+      "2023-02": {
+        "bronze": 2913955,
+        "silver": 2913955
+      },
+      "2023-03": {
+        "bronze": 3403766,
+        "silver": 3403766
+      }
+    }
+  },
+  "outcomes": {
+    "accepted": {
+      "records": 9300058,
+      "source_rows": 9300058
+    },
+    "quarantine": {
+      "records": 83793,
+      "source_rows": 83793
+    },
+    "rejected": {
+      "records": 636,
+      "source_rows": 636
+    }
+  },
+  "outcomes_per_month": {
+    "2023-01": {
+      "accepted": 3040278,
+      "quarantine": 26485,
+      "rejected": 3
+    },
+    "2023-02": {
+      "accepted": 2887622,
+      "quarantine": 26057,
+      "rejected": 276
+    },
+    "2023-03": {
+      "accepted": 3372158,
+      "quarantine": 31251,
+      "rejected": 357
+    }
+  },
+  "row_rule_violations": {
+    "zone_unknown_or_outside": 165102,
+    "flag_distance_zero": 135488,
+    "missing_fields_flex_fare": 236179,
+    "flag_passenger_count_zero": 156806,
+    "ts_zero_duration": 3203,
+    "range_duration_over_max": 68,
+    "range_amount_negative": 79954,
+    "range_distance_over_max": 297,
+    "ts_pickup_outside_file_month": 292,
+    "ts_dropoff_before_pickup": 636,
+    "range_total_over_max": 3
+  },
+  "record_rule_violations": {
+    "zone_unknown_or_outside": 165102,
+    "flag_distance_zero": 135488,
+    "missing_fields_flex_fare": 236179,
+    "flag_passenger_count_zero": 156806,
+    "ts_zero_duration": 3203,
+    "range_duration_over_max": 68,
+    "range_total_over_max": 3,
+    "range_amount_negative": 79954,
+    "range_distance_over_max": 297,
+    "ts_pickup_outside_file_month": 292,
+    "ts_dropoff_before_pickup": 636
+  },
+  "schema_unification": {
+    "2023-01": [
+      {
+        "bronze": "VendorID",
+        "silver": "vendor_id",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "tpep_pickup_datetime",
+        "silver": "pickup_datetime_local",
+        "from": "timestamp_ntz",
+        "to": "timestamp_ntz"
+      },
+      {
+        "bronze": "tpep_dropoff_datetime",
+        "silver": "dropoff_datetime_local",
+        "from": "timestamp_ntz",
+        "to": "timestamp_ntz"
+      },
+      {
+        "bronze": "passenger_count",
+        "silver": "passenger_count",
+        "from": "double",
+        "to": "int"
+      },
+      {
+        "bronze": "trip_distance",
+        "silver": "trip_distance_mi",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "RatecodeID",
+        "silver": "ratecode_id",
+        "from": "double",
+        "to": "int"
+      },
+      {
+        "bronze": "PULocationID",
+        "silver": "pu_location_id",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "DOLocationID",
+        "silver": "do_location_id",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "payment_type",
+        "silver": "payment_type",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "fare_amount",
+        "silver": "fare_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "extra",
+        "silver": "extra_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "mta_tax",
+        "silver": "mta_tax_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "tip_amount",
+        "silver": "tip_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "tolls_amount",
+        "silver": "tolls_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "improvement_surcharge",
+        "silver": "improvement_surcharge_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "total_amount",
+        "silver": "total_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "congestion_surcharge",
+        "silver": "congestion_surcharge_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "airport_fee",
+        "silver": "airport_fee_usd",
+        "from": "double",
+        "to": "double"
+      }
+    ],
+    "2023-02": [
+      {
+        "bronze": "VendorID",
+        "silver": "vendor_id",
+        "from": "int",
+        "to": "int"
+      },
+      {
+        "bronze": "tpep_pickup_datetime",
+        "silver": "pickup_datetime_local",
+        "from": "timestamp_ntz",
+        "to": "timestamp_ntz"
+      },
+      {
+        "bronze": "tpep_dropoff_datetime",
+        "silver": "dropoff_datetime_local",
+        "from": "timestamp_ntz",
+        "to": "timestamp_ntz"
+      },
+      {
+        "bronze": "passenger_count",
+        "silver": "passenger_count",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "trip_distance",
+        "silver": "trip_distance_mi",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "RatecodeID",
+        "silver": "ratecode_id",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "PULocationID",
+        "silver": "pu_location_id",
+        "from": "int",
+        "to": "int"
+      },
+      {
+        "bronze": "DOLocationID",
+        "silver": "do_location_id",
+        "from": "int",
+        "to": "int"
+      },
+      {
+        "bronze": "payment_type",
+        "silver": "payment_type",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "fare_amount",
+        "silver": "fare_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "extra",
+        "silver": "extra_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "mta_tax",
+        "silver": "mta_tax_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "tip_amount",
+        "silver": "tip_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "tolls_amount",
+        "silver": "tolls_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "improvement_surcharge",
+        "silver": "improvement_surcharge_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "total_amount",
+        "silver": "total_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "congestion_surcharge",
+        "silver": "congestion_surcharge_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "Airport_fee",
+        "silver": "airport_fee_usd",
+        "from": "double",
+        "to": "double"
+      }
+    ],
+    "2023-03": [
+      {
+        "bronze": "VendorID",
+        "silver": "vendor_id",
+        "from": "int",
+        "to": "int"
+      },
+      {
+        "bronze": "tpep_pickup_datetime",
+        "silver": "pickup_datetime_local",
+        "from": "timestamp_ntz",
+        "to": "timestamp_ntz"
+      },
+      {
+        "bronze": "tpep_dropoff_datetime",
+        "silver": "dropoff_datetime_local",
+        "from": "timestamp_ntz",
+        "to": "timestamp_ntz"
+      },
+      {
+        "bronze": "passenger_count",
+        "silver": "passenger_count",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "trip_distance",
+        "silver": "trip_distance_mi",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "RatecodeID",
+        "silver": "ratecode_id",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "PULocationID",
+        "silver": "pu_location_id",
+        "from": "int",
+        "to": "int"
+      },
+      {
+        "bronze": "DOLocationID",
+        "silver": "do_location_id",
+        "from": "int",
+        "to": "int"
+      },
+      {
+        "bronze": "payment_type",
+        "silver": "payment_type",
+        "from": "bigint",
+        "to": "int"
+      },
+      {
+        "bronze": "fare_amount",
+        "silver": "fare_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "extra",
+        "silver": "extra_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "mta_tax",
+        "silver": "mta_tax_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "tip_amount",
+        "silver": "tip_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "tolls_amount",
+        "silver": "tolls_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "improvement_surcharge",
+        "silver": "improvement_surcharge_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "total_amount",
+        "silver": "total_amount_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "congestion_surcharge",
+        "silver": "congestion_surcharge_usd",
+        "from": "double",
+        "to": "double"
+      },
+      {
+        "bronze": "Airport_fee",
+        "silver": "airport_fee_usd",
+        "from": "double",
+        "to": "double"
+      }
+    ]
+  },
+  "accepted_pickup_span": {
+    "first": "2023-01-01 00:00:00",
+    "last": "2023-03-31 23:59:59",
+    "days": 90
+  },
+  "checks": [
+    {
+      "name": "rows_reconciled_per_month",
+      "ok": true,
+      "detail": "bronze {'2023-01': 3066766, '2023-02': 2913955, '2023-03': 3403766} vs silver {'2023-01': 3066766, '2023-02': 2913955, '2023-03': 3403766}"
+    },
+    {
+      "name": "all_expected_months_present",
+      "ok": true,
+      "detail": "expected ['2023-01', '2023-02', '2023-03']"
+    },
+    {
+      "name": "zone_lookup_complete",
+      "ok": true,
+      "detail": "265 zones (expected 265)"
+    },
+    {
+      "name": "no_unexpected_columns",
+      "ok": true,
+      "detail": "extra columns per month: {'2023-01': [], '2023-02': [], '2023-03': []}"
+    }
+  ],
+  "labels": {
+    "model": "TLC TPEP trip records (provider-submitted)",
+    "data_kind": "trip records; not road-counter traffic volume (spec \u00a74)",
+    "valid_time": "local wall-clock, America/New_York assumed (not stated by TLC)"
+  },
+  "input": "hdfs://namenode:8020/datalake/bronze/nyc_tlc/records/ingest_date=2026-11-21",
+  "output": "hdfs://namenode:8020/datalake/silver/nyc_yellow_trips/v1",
+  "run_id": "m2_20261121T112700Z",
+  "bronze_ingest_date": "2026-11-21",
+  "spark_app_id": "app-20261121113147-0013",
+  "schema": "struct<do_location_id:int,pu_location_id:int,vendor_id:int,pickup_datetime_local:timestamp_ntz,dropoff_datetime_local:timestamp_ntz,passenger_count:int,trip_distance_mi:double,ratecode_id:int,store_and_fwd_flag:string,payment_type:int,fare_amount_usd:double,extra_usd:double,mta_tax_usd:double,tip_amount_usd:double,tolls_amount_usd:double,improvement_surcharge_usd:double,total_amount_usd:double,congestion_surcharge_usd:double,airport_fee_usd:double,_source:string,_source_file:string,_source_version:string,_sha256:string,_ingested_at:timestamp,source_month:string,trip_minutes:double,pickup_hour_local:int,pu_borough:string,pu_zone:string,pu_service_zone:string,do_borough:string,do_zone:string,do_service_zone:string,_violations:array<struct<rule:string,category:string,severity:string>>,is_flex_fare:boolean,_silver_run_id:string,_silver_version:string,_bronze_ingest_date:string,outcome:string,pickup_date:date>"
+}

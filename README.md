@@ -6,6 +6,30 @@ A big-data engineering platform: real traffic/weather/trip/image sources → HDF
 Spark batch → Kafka + Flink event-time processing (historical event replay) → quality and governance →
 four versioned data products with contracts → light dashboard.
 
+## Quick start
+
+`scripts/run_all.sh` is the starter for the whole project: it brings up the Docker stack
+(`docker compose up -d --build`, then waits until HDFS and Kafka are healthy) and runs every milestone in
+order, from data acquisition to the published products and the dashboard data.
+
+```bash
+# in a GitHub Codespace (4 cores / 16 GB) opened on this repository
+cp .env.example .env                    # then add your two KITTI download links (KITTI account e-mail)
+bash scripts/run_all.sh                 # 47 min measured (run full_20261121T112047Z) + image build on a new Codespace
+pip install -r requirements-dashboard.txt
+streamlit run src/visualisation/app.py  # dashboard on port 8501
+```
+
+`run_all.sh` stages: `00_stack` (Docker) → `01_smoke_m0` (HDFS/Spark/Kafka/Flink checks) → `02_ingest_m1`
+(download + Bronze) → `03_spark_m2` (Silver/Gold + quality) → `04_stream_m3` (Kafka replay → Flink windows,
+edge cases, failure/recovery) → `05_products_m4` (4 data products + read-back, SQL analyses, benchmark) →
+`06_export_m5` (dashboard data). Each stage's exit code and duration go to
+`evidence/AC08/full_<run>/stages.tsv`; it stops at the first failing stage and names its log. Every stage is
+idempotent, so after fixing a problem just run `bash scripts/run_all.sh` again.
+
+After a Codespace restart, `docker compose up -d` brings the stack back with its data. To redo one part,
+run its milestone script (sections below), e.g. `bash scripts/run_m3.sh edge`.
+
 **Status** (all from recorded runs in a GitHub Codespace):
 - M0 environment: `scripts/smoke_m0.sh` 8/8 PASS, run `m0_20261121T014208Z` (`evidence/AC02/`).
 - M1 ingestion: all 4 sources in Bronze; re-run `m1_20261121T072608Z` 0 failures, every file
@@ -23,7 +47,12 @@ four versioned data products with contracts → light dashboard.
   `docs/performance.md`). `evidence/AC06/`, `evidence/AC07/`.
 - M5 dashboard: Streamlit app reading only recorded outputs, every panel names its source
   (`m5_20261121T105711Z`, `evidence/AC09/`); architecture, project report and demo script in `docs/`.
-- Open: AC08 run from a fresh Codespace using only this README (`scripts/run_all.sh`).
+- AC08 fresh environment: after `docker compose down -v` and with the local cache moved away,
+  `scripts/run_all.sh` ran every stage with 0 failures in 47 min (`full_20261121T112047Z`:
+  stack 3 s, M0 62 s, M1 308 s, M2 624 s, M3 1,212 s, M4 602 s, M5 52 s) and reproduced every record
+  count, reconciliation, oracle match and read-back result. A first attempt (`full_20261121T111135Z`)
+  stopped at the M1 report step (bug fixed, kept as evidence). Docker images were cached; a brand-new
+  Codespace also builds them first.
 
 ## Stack (D04)
 
@@ -158,12 +187,8 @@ failed run kept as evidence). The runs shown are pinned in `configs/dashboard.ya
 
 ## Full pipeline in one go (spec T08)
 
-```bash
-cp .env.example .env    # add your KITTI download links
-bash scripts/run_all.sh # ~1 h: stack -> M0 smoke -> M1 -> M2 -> M3 -> M4 -> M5; stages in evidence/AC08/full_<run>/
-```
-
-Stops at the first failing stage; every stage is idempotent, so re-running is the recovery path.
+`bash scripts/run_all.sh` — see **Quick start** at the top. The milestone scripts above are what it runs,
+in that order.
 
 ## Deliverables (spec §9)
 

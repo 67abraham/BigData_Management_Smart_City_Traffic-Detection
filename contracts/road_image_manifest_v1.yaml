@@ -60,11 +60,11 @@ known_limitations:
   - "Only 500 of 7,481 training images are stored (deterministic sample, seed 241091038); the rest are listed with file_available = false."
   - "Testing split not included (no labels)."
   - "Non-commercial licence: consumers must hold their own KITTI access to use the images."
-# ---- generated release block (src/products/release.py, 2026-11-21T10:30:56Z; do not edit by hand) ----
+# ---- generated release block (src/products/release.py, 2026-11-21T11:59:35Z; do not edit by hand) ----
 release:
-  run_id: m4_20261121T102858Z
-  built_at: '2026-11-21T10:30:03.774757+00:00'
-  spark_app_id: app-20261121102922-0023
+  run_id: m4_20261121T115736Z
+  built_at: '2026-11-21T11:58:41.428244+00:00'
+  spark_app_id: app-20261121115802-0017
   location: hdfs://namenode:8020/datalake/gold/products/road_image_manifest/v1
   row_count: 7481
   size_bytes: 190544
@@ -75,7 +75,7 @@ release:
   csv_copy:
     path: data/manifests/road_image_manifest_v1.csv
     rows: 7481
-    sha256: 8cdbc0fe3ca820f15c85a6236e376f8391a715d700955f158bcbcd3dac0f87d2
+    sha256: 713ca18970c0d4b2bc28a65d90931ddca276e1ed43053637e1c6c6002e7a8211
   temporal_coverage: null
   quality_summary:
     null_counts:
@@ -89,9 +89,9 @@ release:
     objects: 40570
     dontcare_regions: 11295
   readback:
-    run_id: m4_20261121T102858Z
+    run_id: m4_20261121T115736Z
     passed: true
-    checked_at: '2026-11-21T10:30:50.062635+00:00'
+    checked_at: '2026-11-21T11:59:28.830117+00:00'
     checks_passed: 8
     checks_total: 8
-  evidence: evidence/AC07/m4_20261121T102858Z
+  evidence: evidence/AC07/m4_20261121T115736Z

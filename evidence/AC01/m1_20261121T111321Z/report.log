@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspaces/BigData_Management_Smart_City_Traffic-Detection/src/ingestion/report.py", line 104, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspaces/BigData_Management_Smart_City_Traffic-Detection/src/ingestion/report.py", line 92, in main
+    man, prof = load(run / f"manifest_{s}.json"), load(run / f"profile_{s}.json")
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/BigData_Management_Smart_City_Traffic-Detection/src/ingestion/report.py", line 20, in load
+    return json.loads(path.read_text(encoding="utf-8"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Invalid control character at: line 1 column 1064 (char 1063)

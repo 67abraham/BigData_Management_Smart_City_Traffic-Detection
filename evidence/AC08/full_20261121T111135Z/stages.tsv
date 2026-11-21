@@ -1,0 +1,4 @@
+stage	command	exit	seconds	started_utc
+00_stack	wait_stack	0	22	2026-11-21T11:11:35Z
+01_smoke_m0	bash scripts/smoke_m0.sh	0	84	2026-11-21T11:11:57Z
+02_ingest_m1	bash scripts/ingest_m1.sh	1	404	2026-11-21T11:13:21Z

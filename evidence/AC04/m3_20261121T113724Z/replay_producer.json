@@ -1,0 +1,15 @@
+{
+  "run_id": "m3_20261121T113724Z_replay",
+  "topic": "uci-traffic-replay-v1",
+  "source": "hdfs://namenode:8020/datalake/silver/uci_traffic_hourly/v1/outcome=accepted",
+  "events_sent": 40558,
+  "replay_events": 40558,
+  "flush_marker": false,
+  "first_event_time": "2012-10-02T14:00:00Z",
+  "last_event_time": "2018-10-01T04:00:00Z",
+  "rate_limit_per_s": 0.0,
+  "elapsed_s": 7.35,
+  "events_per_s": 5521.7,
+  "record_kind": "historical_event_replay",
+  "finished_at": "2026-11-21T11:38:09.810671+00:00"
+}

@@ -1,0 +1,46 @@
+== Physical Plan ==
+AdaptiveSparkPlan (7)
++- Sort (6)
+   +- Exchange (5)
+      +- HashAggregate (4)
+         +- Exchange (3)
+            +- HashAggregate (2)
+               +- Scan csv  (1)
+
+
+(1) Scan csv 
+Output [2]: [pu_borough#156, fare_amount_usd#158]
+Batched: false
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bench/nyc_trips/csv_flat]
+ReadSchema: struct<pu_borough:string,fare_amount_usd:double>
+
+(2) HashAggregate
+Input [2]: [pu_borough#156, fare_amount_usd#158]
+Keys [1]: [pu_borough#156]
+Functions [2]: [partial_count(1), partial_avg(cast(fare_amount_usd#158 as decimal(12,2)))]
+Aggregate Attributes [3]: [count#400L, sum#401, count#402L]
+Results [4]: [pu_borough#156, count#403L, sum#404, count#405L]
+
+(3) Exchange
+Input [4]: [pu_borough#156, count#403L, sum#404, count#405L]
+Arguments: hashpartitioning(pu_borough#156, 8), ENSURE_REQUIREMENTS, [plan_id=388]
+
+(4) HashAggregate
+Input [4]: [pu_borough#156, count#403L, sum#404, count#405L]
+Keys [1]: [pu_borough#156]
+Functions [2]: [count(1), avg(cast(fare_amount_usd#158 as decimal(12,2)))]
+Aggregate Attributes [2]: [count(1)#395L, avg(cast(fare_amount_usd#158 as decimal(12,2)))#396]
+Results [3]: [pu_borough#156, count(1)#395L AS trips#393L, round(avg(cast(fare_amount_usd#158 as decimal(12,2)))#396, 4) AS avg_fare#394]
+
+(5) Exchange
+Input [3]: [pu_borough#156, trips#393L, avg_fare#394]
+Arguments: rangepartitioning(pu_borough#156 ASC NULLS FIRST, 8), ENSURE_REQUIREMENTS, [plan_id=391]
+
+(6) Sort
+Input [3]: [pu_borough#156, trips#393L, avg_fare#394]
+Arguments: [pu_borough#156 ASC NULLS FIRST], true, 0
+
+(7) AdaptiveSparkPlan
+Output [3]: [pu_borough#156, trips#393L, avg_fare#394]
+Arguments: isFinalPlan=false
+

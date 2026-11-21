@@ -3,7 +3,8 @@
 Input   hdfs:///datalake/bronze/<source>/raw/ingest_date=D/        (byte-identical landed files)
         data/local/landing/<source>/ingest_date=D/_manifest.json  (same manifest as in raw/)
 Output  hdfs:///datalake/bronze/<source>/records/ingest_date=D/    (Parquet; values kept as delivered)
-        stdout line "PROFILE_JSON {...}" -> evidence/AC01/<run>/profile_<source>.json (by ingest_m1.sh)
+        --profile-out FILE -> evidence/AC01/<run>/profile_<source>.json (written to a file: a Spark log
+        line can interleave with a long stdout line and corrupt it, run m1_20261121T111321Z)
 
 Every record gets the provenance columns _source, _source_file, _ingested_at, _source_version,
 _sha256. Bronze does NOT clean or type-cast; anomalies are counted and reported here and handled
@@ -20,6 +21,7 @@ import io
 import json
 import re
 import sys
+from pathlib import Path
 import zipfile
 from typing import Any
 
@@ -280,6 +282,7 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--source", required=True, choices=["uci_metro", "nyc_tlc", "open_meteo", "kitti"])
     p.add_argument("--ingest-date", required=True)
+    p.add_argument("--profile-out", required=True, help="path for the profile JSON (driver-local)")
     args = p.parse_args()
     spark = SparkSession.builder.appName(f"bdfp-m1-bronze-{args.source}").getOrCreate()
     job = Job(spark, args.source, args.ingest_date)
@@ -287,7 +290,8 @@ def main() -> int:
     getattr(job, args.source)()
     integ = job.profile["integrity"]
     job.profile["ok"] = not (integ["sha256_mismatch"] or integ["missing_in_hdfs"] or job.profile["manifest_failures"])
-    print("PROFILE_JSON " + json.dumps(job.profile, default=str))
+    Path(args.profile_out).write_text(json.dumps(job.profile, default=str), encoding="utf-8")
+    print(f"profile -> {args.profile_out}; ok={job.profile['ok']}", flush=True)
     spark.stop()
     return 0 if job.profile["ok"] else 1
 

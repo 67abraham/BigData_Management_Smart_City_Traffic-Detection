@@ -1,0 +1,4 @@
+run_id=m5_20261121T120738Z commit=42b356d
+PASS  export dashboard data (Spark) -> evidence/AC09/m5_20261121T120738Z/export.log
+PASS  dashboard renders (AppTest) -> evidence/AC09/m5_20261121T120738Z/dashboard_tests.log
+--- failures: 0   evidence: evidence/AC09/m5_20261121T120738Z  data: outputs/dashboard/m5_20261121T120738Z

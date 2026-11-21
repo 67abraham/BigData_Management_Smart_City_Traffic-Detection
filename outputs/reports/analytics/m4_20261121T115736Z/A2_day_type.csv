@@ -1,0 +1,4 @@
+day_type,full_days,avg_daily_volume,min_daily_volume,max_daily_volume
+holiday,36,61710.0,39604,93417
+weekend,351,63503.0,22271,82409
+working_day,821,86583.0,46632,97332

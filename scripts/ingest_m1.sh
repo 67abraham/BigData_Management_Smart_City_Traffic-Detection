@@ -40,13 +40,12 @@ land() {  # copy the landing partition into HDFS Bronze raw (replace = idempoten
   [ -n "$got" ] && [ "$want" -eq "$got" ]
 }
 
-bronze() {  # Spark job; its PROFILE_JSON line becomes profile_<source>.json
+bronze() {  # Spark job; it writes its profile straight to profile_<source>.json (not via stdout)
   local s=$1 log="$OUT/bronze_$1.log"
   docker compose exec -T spark-master spark-submit /workspace/src/ingestion/bronze_load.py \
-    --source "$s" --ingest-date "$D" >"$log" 2>&1
+    --source "$s" --ingest-date "$D" --profile-out "/workspace/$OUT/profile_$s.json" >"$log" 2>&1
   local rc=$?
-  grep '^PROFILE_JSON ' "$log" | sed 's/^PROFILE_JSON //' >"$OUT/profile_$s.json"
-  [ -s "$OUT/profile_$s.json" ] || echo "no profile produced" >&2
+  $PY -c "import json,sys; json.load(open(sys.argv[1]))" "$OUT/profile_$s.json" || { echo "profile missing or not valid JSON" >&2; return 1; }
   return $rc
 }
 

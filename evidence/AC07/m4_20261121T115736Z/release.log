@@ -1,0 +1,4 @@
+traffic_hourly: released -> traffic_hourly_v1.yaml; rows 40558, 1143487 bytes
+traffic_features: released -> traffic_features_v1.yaml; rows 40558, 1366556 bytes
+road_image_manifest: released -> road_image_manifest_v1.yaml; rows 7481, 190544 bytes
+traffic_window_metrics: released -> traffic_window_metrics_v1.yaml; rows 7334, 274981 bytes

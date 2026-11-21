@@ -78,11 +78,11 @@ known_limitations:
   - "UCI gaps (11,976 absent hours) make lags NULL around gaps; see lags_complete."
   - "No weather features (not available at prediction time); a model wanting weather must join forecast data."
   - "One station; 2014-08 to 2015-06 is a long gap inside the train split."
-# ---- generated release block (src/products/release.py, 2026-11-21T10:30:56Z; do not edit by hand) ----
+# ---- generated release block (src/products/release.py, 2026-11-21T11:59:35Z; do not edit by hand) ----
 release:
-  run_id: m4_20261121T102858Z
-  built_at: '2026-11-21T10:29:57.256076+00:00'
-  spark_app_id: app-20261121102922-0023
+  run_id: m4_20261121T115736Z
+  built_at: '2026-11-21T11:58:35.195679+00:00'
+  spark_app_id: app-20261121115802-0017
   location: hdfs://namenode:8020/datalake/gold/products/traffic_features/v1
   row_count: 40558
   size_bytes: 1366556
@@ -106,9 +106,9 @@ release:
     rows_with_complete_lags: 34679
     rows_without_lag_1h: 2594
   readback:
-    run_id: m4_20261121T102858Z
+    run_id: m4_20261121T115736Z
     passed: true
-    checked_at: '2026-11-21T10:30:47.620247+00:00'
+    checked_at: '2026-11-21T11:59:25.448157+00:00'
     checks_passed: 11
     checks_total: 11
-  evidence: evidence/AC07/m4_20261121T102858Z
+  evidence: evidence/AC07/m4_20261121T115736Z

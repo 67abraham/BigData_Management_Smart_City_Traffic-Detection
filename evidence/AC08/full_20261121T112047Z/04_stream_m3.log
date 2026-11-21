@@ -1,0 +1,29 @@
+run_id=m3_20261121T113724Z parts=replay edge recovery commit=42b356d
+PASS  unit tests -> evidence/AC04/m3_20261121T113724Z/unit_tests.log
+=== replay
+PASS  replay: topics -> evidence/AC04/m3_20261121T113724Z/replay_topics.log
+PASS  replay: produce Silver UCI events -> evidence/AC04/m3_20261121T113724Z/replay_producer.log
+PASS  replay: Flink bounded job -> evidence/AC04/m3_20261121T113724Z/replay_flink.log
+PASS  replay: Flink job record -> evidence/AC04/m3_20261121T113724Z/replay_flink_job.txt
+PASS  replay: consume metrics -> evidence/AC04/m3_20261121T113724Z/replay_collect_metrics.log
+PASS  replay: consume DLQ -> evidence/AC04/m3_20261121T113724Z/replay_collect_dlq.log
+PASS  replay: results = oracle -> evidence/AC04/m3_20261121T113724Z/replay_verify.log
+=== edge
+PASS  edge: test topics -> evidence/AC04/m3_20261121T113724Z/edge_topics.log
+PASS  edge: job running -> evidence/AC04/m3_20261121T113724Z/edge_wait.log
+PASS  edge: produce scenario (paused phases) -> evidence/AC04/m3_20261121T113724Z/edge_producer.log
+PASS  edge: consume metrics -> evidence/AC04/m3_20261121T113724Z/edge_collect_metrics.log
+PASS  edge: consume DLQ -> evidence/AC04/m3_20261121T113724Z/edge_collect_dlq.log
+PASS  edge: expected results -> evidence/AC04/m3_20261121T113724Z/edge_check.log
+=== recovery
+PASS  recovery: topics -> evidence/AC08/m3_20261121T113724Z/topics.log
+PASS  recovery: job running -> evidence/AC08/m3_20261121T113724Z/wait1.log
+producing at 50 events/s in the background
+PASS  recovery: kill TaskManager -> evidence/AC08/m3_20261121T113724Z/kill.log
+PASS  recovery: start TaskManager -> evidence/AC08/m3_20261121T113724Z/start.log
+PASS  recovery: restored from checkpoint, running -> evidence/AC08/m3_20261121T113724Z/wait2.log
+PASS  recovery: Flink caught up -> evidence/AC08/m3_20261121T113724Z/catch_up.log
+PASS  recovery: consume metrics -> evidence/AC08/m3_20261121T113724Z/collect_metrics.log
+PASS  recovery: consume DLQ -> evidence/AC08/m3_20261121T113724Z/collect_dlq.log
+PASS  recovery: results = oracle after restart -> evidence/AC08/m3_20261121T113724Z/verify.log
+--- failures: 0   evidence: evidence/AC04/m3_20261121T113724Z evidence/AC08/m3_20261121T113724Z

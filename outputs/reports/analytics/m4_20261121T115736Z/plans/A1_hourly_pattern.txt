@@ -1,0 +1,51 @@
+== Physical Plan ==
+AdaptiveSparkPlan (8)
++- Sort (7)
+   +- Exchange (6)
+      +- ObjectHashAggregate (5)
+         +- Exchange (4)
+            +- ObjectHashAggregate (3)
+               +- Project (2)
+                  +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [4]: [hour_start_local#6, local_date#9, traffic_volume#10, year#30]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1]
+ReadSchema: struct<hour_start_local:timestamp_ntz,local_date:date,traffic_volume:int>
+
+(2) Project
+Output [3]: [traffic_volume#10, CASE WHEN dayofweek(local_date#9) IN (1,7) THEN weekend ELSE weekday END AS _groupingexpression#109, hour(hour_start_local#6, Some(UTC)) AS _groupingexpression#110]
+Input [4]: [hour_start_local#6, local_date#9, traffic_volume#10, year#30]
+
+(3) ObjectHashAggregate
+Input [3]: [traffic_volume#10, _groupingexpression#109, _groupingexpression#110]
+Keys [2]: [_groupingexpression#109, _groupingexpression#110]
+Functions [3]: [partial_count(1), partial_avg(traffic_volume#10), partial_percentile_approx(traffic_volume#10, 0.5, 10000, 0, 0)]
+Aggregate Attributes [4]: [count#111L, sum#112, count#113L, buf#114]
+Results [6]: [_groupingexpression#109, _groupingexpression#110, count#115L, sum#116, count#117L, buf#118]
+
+(4) Exchange
+Input [6]: [_groupingexpression#109, _groupingexpression#110, count#115L, sum#116, count#117L, buf#118]
+Arguments: hashpartitioning(_groupingexpression#109, _groupingexpression#110, 8), ENSURE_REQUIREMENTS, [plan_id=23]
+
+(5) ObjectHashAggregate
+Input [6]: [_groupingexpression#109, _groupingexpression#110, count#115L, sum#116, count#117L, buf#118]
+Keys [2]: [_groupingexpression#109, _groupingexpression#110]
+Functions [3]: [count(1), avg(traffic_volume#10), percentile_approx(traffic_volume#10, 0.5, 10000, 0, 0)]
+Aggregate Attributes [3]: [count(1)#101L, avg(traffic_volume#10)#102, percentile_approx(traffic_volume#10, 0.5, 10000, 0, 0)#103]
+Results [5]: [_groupingexpression#109 AS day_type#96, _groupingexpression#110 AS local_hour#97, count(1)#101L AS hours#98L, round(avg(traffic_volume#10)#102, 1) AS avg_volume#99, percentile_approx(traffic_volume#10, 0.5, 10000, 0, 0)#103 AS median_volume#100]
+
+(6) Exchange
+Input [5]: [day_type#96, local_hour#97, hours#98L, avg_volume#99, median_volume#100]
+Arguments: rangepartitioning(day_type#96 ASC NULLS FIRST, local_hour#97 ASC NULLS FIRST, 8), ENSURE_REQUIREMENTS, [plan_id=26]
+
+(7) Sort
+Input [5]: [day_type#96, local_hour#97, hours#98L, avg_volume#99, median_volume#100]
+Arguments: [day_type#96 ASC NULLS FIRST, local_hour#97 ASC NULLS FIRST], true, 0
+
+(8) AdaptiveSparkPlan
+Output [5]: [day_type#96, local_hour#97, hours#98L, avg_volume#99, median_volume#100]
+Arguments: isFinalPlan=false
+

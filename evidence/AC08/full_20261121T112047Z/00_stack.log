@@ -1,0 +1,229 @@
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+#0 building with "default" instance using docker driver
+
+#1 [flink-jobmanager internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.03kB 0.0s done
+#1 DONE 0.3s
+
+#2 [spark-history internal] load build definition from Dockerfile
+#2 transferring dockerfile: 351B 0.1s done
+#2 DONE 0.3s
+
+#3 [spark-master internal] load build definition from Dockerfile
+#3 transferring dockerfile: 351B 0.1s done
+#3 DONE 0.3s
+
+#4 [flink-jobmanager auth] library/flink:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [spark-history auth] library/spark:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#6 [spark-master internal] load metadata for docker.io/library/spark:3.5.3-scala2.12-java17-python3-ubuntu
+#6 ...
+
+#7 [flink-jobmanager internal] load metadata for docker.io/library/flink:1.18.1-scala_2.12-java11
+#7 DONE 0.6s
+
+#6 [spark-history internal] load metadata for docker.io/library/spark:3.5.3-scala2.12-java17-python3-ubuntu
+#6 DONE 0.6s
+
+#8 [spark-history internal] load .dockerignore
+#8 transferring context: 2B done
+#8 DONE 0.0s
+
+#9 [spark-master internal] load .dockerignore
+#9 transferring context: 2B done
+#9 DONE 0.0s
+
+#10 [spark-history 1/3] FROM docker.io/library/spark:3.5.3-scala2.12-java17-python3-ubuntu@sha256:3d6e110ff627cd7bbf4dd10051acb3c7de6695b55cf174d20dc4b445f7f83bcd
+#10 DONE 0.0s
+
+#11 [flink-jobmanager internal] load .dockerignore
+#11 transferring context: 2B done
+#11 DONE 0.0s
+
+#12 [flink-jobmanager 1/5] FROM docker.io/library/flink:1.18.1-scala_2.12-java11@sha256:f0e9ffd07f3d43291dfaf7e0609eb2871462193275d452affbe5fac091017ae3
+#12 DONE 0.0s
+
+#13 [spark-master internal] load build context
+#13 transferring context: 37B done
+#13 DONE 0.0s
+
+#14 [flink-jobmanager 2/5] RUN apt-get update -y  && apt-get install -y --no-install-recommends python3 python3-pip python3-dev curl  && rm -rf /var/lib/apt/lists/*  && ln -sf /usr/bin/python3 /usr/bin/python
+#14 CACHED
+
+#15 [flink-jobmanager 3/5] RUN pip3 install --no-cache-dir "apache-flink==1.18.1" pyyaml==6.0.2
+#15 CACHED
+
+#16 [flink-jobmanager 4/5] RUN curl -fsSL -o /opt/flink/lib/flink-sql-connector-kafka-3.1.0-1.18.jar       "https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.1.0-1.18/flink-sql-connector-kafka-3.1.0-1.18.jar"
+#16 CACHED
+
+#17 [flink-jobmanager 5/5] RUN mkdir -p /opt/flink/checkpoints /opt/flink/savepoints  && chown -R flink:flink /opt/flink/checkpoints /opt/flink/savepoints
+#17 CACHED
+
+#18 [spark-history internal] load build context
+#18 transferring context: 37B done
+#18 DONE 0.0s
+
+#19 [flink-jobmanager] exporting to image
+#19 exporting layers done
+#19 writing image sha256:9db0a7a164bc84a204cb20f00532d2bb710d953b58dc79aacf11f3a5459ef617 done
+#19 naming to docker.io/bdfp/flink:1.18.1 done
+#19 DONE 0.0s
+
+#20 [spark-master 2/3] COPY requirements.txt /tmp/requirements.txt
+#20 CACHED
+
+#21 [spark-master 3/3] RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+#21 CACHED
+
+#21 [spark-history 3/3] RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+#21 CACHED
+
+#22 [spark-master] exporting to image
+#22 exporting layers done
+#22 writing image sha256:ab85134011e78a5aa24d8ab84b4d97da9ca0153822de1a726bdb2c7fa0c42818 done
+#22 naming to docker.io/bdfp/spark:3.5.3 0.0s done
+#22 DONE 0.0s
+
+#23 [spark-history] exporting to image
+#23 exporting layers done
+#23 writing image sha256:9f4e2840103ec95e4413b1a804ea846db1d8e3d698d75346ceb519df4a40a950 done
+#23 naming to docker.io/bdfp/spark:3.5.3 done
+#23 DONE 0.0s
+
+#24 [flink-jobmanager] resolving provenance for metadata file
+#24 DONE 0.0s
+
+#25 [spark-master] resolving provenance for metadata file
+#25 DONE 0.0s
+
+#26 [spark-history] resolving provenance for metadata file
+#26 DONE 0.0s
+
+#27 [spark-worker-2 internal] load build definition from Dockerfile
+#27 transferring dockerfile: 351B done
+#27 DONE 0.0s
+
+#28 [flink-taskmanager internal] load build definition from Dockerfile
+#28 transferring dockerfile: 1.03kB done
+#28 DONE 0.0s
+
+#29 [spark-worker-1 internal] load build definition from Dockerfile
+#29 transferring dockerfile: 351B done
+#29 DONE 0.0s
+
+#6 [spark-worker-1 internal] load metadata for docker.io/library/spark:3.5.3-scala2.12-java17-python3-ubuntu
+#6 DONE 0.7s
+
+#30 [spark-worker-2 internal] load .dockerignore
+#30 transferring context: 2B done
+#30 DONE 0.0s
+
+#7 [flink-taskmanager internal] load metadata for docker.io/library/flink:1.18.1-scala_2.12-java11
+#7 DONE 0.7s
+
+#31 [spark-worker-1 internal] load .dockerignore
+#31 transferring context: 2B done
+#31 DONE 0.0s
+
+#10 [spark-worker-1 1/3] FROM docker.io/library/spark:3.5.3-scala2.12-java17-python3-ubuntu@sha256:3d6e110ff627cd7bbf4dd10051acb3c7de6695b55cf174d20dc4b445f7f83bcd
+#10 DONE 0.0s
+
+#32 [flink-taskmanager internal] load .dockerignore
+#32 transferring context: 2B done
+#32 DONE 0.0s
+
+#33 [spark-worker-2 internal] load build context
+#33 transferring context: 37B done
+#33 DONE 0.0s
+
+#12 [flink-taskmanager 1/5] FROM docker.io/library/flink:1.18.1-scala_2.12-java11@sha256:f0e9ffd07f3d43291dfaf7e0609eb2871462193275d452affbe5fac091017ae3
+#12 DONE 0.0s
+
+#34 [spark-worker-1 internal] load build context
+#34 transferring context: 37B done
+#34 DONE 0.0s
+
+#16 [flink-taskmanager 4/5] RUN curl -fsSL -o /opt/flink/lib/flink-sql-connector-kafka-3.1.0-1.18.jar       "https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.1.0-1.18/flink-sql-connector-kafka-3.1.0-1.18.jar"
+#16 CACHED
+
+#15 [flink-taskmanager 3/5] RUN pip3 install --no-cache-dir "apache-flink==1.18.1" pyyaml==6.0.2
+#15 CACHED
+
+#14 [flink-taskmanager 2/5] RUN apt-get update -y  && apt-get install -y --no-install-recommends python3 python3-pip python3-dev curl  && rm -rf /var/lib/apt/lists/*  && ln -sf /usr/bin/python3 /usr/bin/python
+#14 CACHED
+
+#17 [flink-taskmanager 5/5] RUN mkdir -p /opt/flink/checkpoints /opt/flink/savepoints  && chown -R flink:flink /opt/flink/checkpoints /opt/flink/savepoints
+#17 CACHED
+
+#35 [spark-worker-2 2/3] COPY requirements.txt /tmp/requirements.txt
+#35 CACHED
+
+#36 [spark-worker-2 3/3] RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+#36 CACHED
+
+#37 [flink-taskmanager] exporting to image
+#37 exporting layers done
+#37 writing image sha256:cfae9da96a1aba51e2601b28295f64d78fe7a7c02de61f3ec42ccb2ff53e5743 done
+#37 naming to docker.io/bdfp/flink:1.18.1 done
+#37 DONE 0.0s
+
+#38 [spark-worker-2] exporting to image
+#38 exporting layers done
+#38 writing image sha256:c5ed6db0f4dee7ad19fe594162ecd119db83854d25ec0f2cc7d4160573bd8eac done
+#38 naming to docker.io/bdfp/spark:3.5.3 0.0s done
+#38 DONE 0.0s
+
+#39 [spark-worker-1] exporting to image
+#39 exporting layers done
+#39 writing image sha256:7eca4e59517311856825e004784ef886ff3a1c6d17006747ed891fb280f262cc done
+#39 naming to docker.io/bdfp/spark:3.5.3 done
+#39 DONE 0.0s
+
+#40 [flink-taskmanager] resolving provenance for metadata file
+#40 DONE 0.0s
+
+#41 [spark-worker-1] resolving provenance for metadata file
+#41 DONE 0.0s
+
+#42 [spark-worker-2] resolving provenance for metadata file
+#42 DONE 0.0s
+ flink-jobmanager  Built
+ flink-taskmanager  Built
+ spark-history  Built
+ spark-master  Built
+ spark-worker-1  Built
+ spark-worker-2  Built
+ Container bdfp-namenode-1  Running
+ Container bdfp-kafka-1  Running
+ Container bdfp-flink-jobmanager-1  Running
+ Container bdfp-spark-master-1  Running
+ Container bdfp-datanode3-1  Running
+ Container bdfp-spark-history-1  Running
+ Container bdfp-spark-worker-1-1  Running
+ Container bdfp-datanode1-1  Running
+ Container bdfp-datanode2-1  Running
+ Container bdfp-spark-worker-2-1  Running
+ Container bdfp-flink-taskmanager-1  Running
+ Container bdfp-kafka-1  Waiting
+ Container bdfp-namenode-1  Waiting
+ Container bdfp-namenode-1  Waiting
+ Container bdfp-namenode-1  Healthy
+ Container bdfp-namenode-1  Healthy
+ Container bdfp-kafka-1  Healthy
+t=5s health: healthy 
+NAME                       IMAGE                 COMMAND                  SERVICE             CREATED         STATUS                   PORTS
+bdfp-datanode1-1           apache/hadoop:3.3.6   "/bin/bash /opt/bdfp…"   datanode1           9 minutes ago   Up 9 minutes             
+bdfp-datanode2-1           apache/hadoop:3.3.6   "/bin/bash /opt/bdfp…"   datanode2           9 minutes ago   Up 9 minutes             
+bdfp-datanode3-1           apache/hadoop:3.3.6   "/bin/bash /opt/bdfp…"   datanode3           9 minutes ago   Up 9 minutes             
+bdfp-flink-jobmanager-1    bdfp/flink:1.18.1     "/docker-entrypoint.…"   flink-jobmanager    9 minutes ago   Up 8 minutes             6123/tcp, 0.0.0.0:8082->8081/tcp, [::]:8082->8081/tcp
+bdfp-flink-taskmanager-1   bdfp/flink:1.18.1     "/docker-entrypoint.…"   flink-taskmanager   9 minutes ago   Up 8 minutes             6123/tcp, 8081/tcp
+bdfp-kafka-1               apache/kafka:3.7.1    "/__cacert_entrypoin…"   kafka               9 minutes ago   Up 9 minutes (healthy)   9092/tcp, 0.0.0.0:29092->29092/tcp, [::]:29092->29092/tcp
+bdfp-namenode-1            apache/hadoop:3.3.6   "/bin/bash /opt/bdfp…"   namenode            9 minutes ago   Up 9 minutes (healthy)   0.0.0.0:9870->9870/tcp, [::]:9870->9870/tcp
+bdfp-spark-history-1       bdfp/spark:3.5.3      "/opt/entrypoint.sh …"   spark-history       9 minutes ago   Up 8 minutes             0.0.0.0:18080->18080/tcp, [::]:18080->18080/tcp
+bdfp-spark-master-1        bdfp/spark:3.5.3      "/opt/entrypoint.sh …"   spark-master        9 minutes ago   Up 8 minutes             0.0.0.0:4040->4040/tcp, [::]:4040->4040/tcp, 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+bdfp-spark-worker-1-1      bdfp/spark:3.5.3      "/opt/entrypoint.sh …"   spark-worker-1      9 minutes ago   Up 8 minutes             0.0.0.0:8081->8081/tcp, [::]:8081->8081/tcp
+bdfp-spark-worker-2-1      bdfp/spark:3.5.3      "/opt/entrypoint.sh …"   spark-worker-2      9 minutes ago   Up 8 minutes             0.0.0.0:8083->8081/tcp, [::]:8083->8081/tcp

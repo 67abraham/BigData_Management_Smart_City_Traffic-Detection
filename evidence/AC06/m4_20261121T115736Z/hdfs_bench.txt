@@ -1,0 +1,4 @@
+           1           17              1.0 G /datalake/bench/nyc_trips/csv_flat
+          91           91            202.2 M /datalake/bench/nyc_trips/parquet_by_date
+           1           17            232.3 M /datalake/bench/nyc_trips/parquet_flat
+           1           17            179.7 M /datalake/bench/nyc_trips/parquet_sorted

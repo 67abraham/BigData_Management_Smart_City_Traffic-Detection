@@ -1,0 +1,27 @@
+{
+  "question": "Is daily volume lower on holidays than on working days and weekends?",
+  "sql": "WITH d AS (SELECT local_date, max(is_holiday_date) AS holiday, dayofweek(local_date) AS dow,\n                              count(*) AS hours, sum(traffic_volume) AS volume\n                       FROM traffic_hourly GROUP BY local_date)\n            SELECT CASE WHEN holiday THEN 'holiday' WHEN dow IN (1, 7) THEN 'weekend' ELSE 'working_day' END AS day_type,\n                   count(*) AS full_days, round(avg(volume)) AS avg_daily_volume,\n                   min(volume) AS min_daily_volume, max(volume) AS max_daily_volume\n            FROM d WHERE hours = 24 GROUP BY 1 ORDER BY 1",
+  "rows": [
+    {
+      "day_type": "holiday",
+      "full_days": 36,
+      "avg_daily_volume": 61710.0,
+      "min_daily_volume": 39604,
+      "max_daily_volume": 93417
+    },
+    {
+      "day_type": "weekend",
+      "full_days": 351,
+      "avg_daily_volume": 63503.0,
+      "min_daily_volume": 22271,
+      "max_daily_volume": 82409
+    },
+    {
+      "day_type": "working_day",
+      "full_days": 821,
+      "avg_daily_volume": 86583.0,
+      "min_daily_volume": 46632,
+      "max_daily_volume": 97332
+    }
+  ]
+}

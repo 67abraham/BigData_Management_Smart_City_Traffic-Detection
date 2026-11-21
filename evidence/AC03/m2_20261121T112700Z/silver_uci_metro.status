@@ -1,0 +1,1 @@
+reconciliation: {'bronze_rows': 48204, 'silver_source_rows': 48204, 'reconciled': True} checks: {'all_expected_files_present': True}

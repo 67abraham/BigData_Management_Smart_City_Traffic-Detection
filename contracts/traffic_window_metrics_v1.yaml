@@ -65,19 +65,19 @@ known_limitations:
   - "Built from a historical event replay, not live sensor data."
   - "Windows only exist where at least one hour was replayed; no rows for empty 6-hour periods."
   - "Results reflect one replay run (job_run_id); a new replay produces a new release."
-# ---- generated release block (src/products/release.py, 2026-11-21T10:30:56Z; do not edit by hand) ----
+# ---- generated release block (src/products/release.py, 2026-11-21T11:59:35Z; do not edit by hand) ----
 release:
-  run_id: m4_20261121T102858Z
-  built_at: '2026-11-21T10:30:08.300682+00:00'
-  spark_app_id: app-20261121102922-0023
+  run_id: m4_20261121T115736Z
+  built_at: '2026-11-21T11:58:45.785744+00:00'
+  spark_app_id: app-20261121115802-0017
   location: hdfs://namenode:8020/datalake/gold/products/traffic_window_metrics/v1
   row_count: 7334
-  size_bytes: 274309
+  size_bytes: 274981
   files: 8
   inputs:
-  - data/local/m3/m3_20261121T092806Z/replay_metrics.jsonl
-  input_sha256: 08ea69ecbd82fc8b1e6c8c45eca127260fa34e9e250f1490bbd4635599dad0bd
-  flink_job_run_id: m3_20261121T092806Z_replay
+  - data/local/m3/m3_20261121T113724Z/replay_metrics.jsonl
+  input_sha256: b876ac2c8d3c32bf61186f42c2665fffefaea91bb3f77e3d0428ebea5d4f7f2b
+  flink_job_run_id: m3_20261121T113724Z_replay
   temporal_coverage:
     first_window_start_utc: '2012-10-02 12:00:00'
     last_window_start_utc: '2018-10-01 00:00:00'
@@ -89,9 +89,9 @@ release:
     windows_with_late_update: 0
     flink_job_runs: 1
   readback:
-    run_id: m4_20261121T102858Z
+    run_id: m4_20261121T115736Z
     passed: true
-    checked_at: '2026-11-21T10:30:55.887615+00:00'
+    checked_at: '2026-11-21T11:59:34.048987+00:00'
     checks_passed: 9
     checks_total: 9
-  evidence: evidence/AC07/m4_20261121T102858Z
+  evidence: evidence/AC07/m4_20261121T115736Z
