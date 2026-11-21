@@ -13,7 +13,7 @@ enough to run in front of an audience) and the recorded evidence to show if time
 | 5 | Quality report | — | `evidence/AC05/m2_20261121T083320Z/quality_report_nyc_tlc.md`; dashboard tab *Quality* |
 | 6 | SQL / performance | `bash scripts/run_m4.sh analytics` (≈1 min) | `docs/analytics.md`; `docs/performance.md`; dashboard tab *Performance* |
 | 7 | Product read-back | `bash scripts/run_m4.sh products` (≈3 min) | `contracts/traffic_features_v1.yaml` release block; `evidence/AC07/m4_20261121T115736Z/readback_report.json` |
-| 8 | Visualisation | `streamlit run src/visualisation/app.py` | all tabs; each panel names its source file and run |
+| 8 | Visualisation | `bash scripts/start_dashboard.sh` (prints the link) | all tabs; each panel names its source file and run |
 | 9 | Failure / recovery | `bash scripts/run_m3.sh recovery` (≈6 min) | dashboard tab *Abnormal cases* (timeline: kill → RESTARTING → restored chk-7); `evidence/AC08/m3_20261121T094727Z/` |
 
 Talking points: data is real and its provenance is checked (SHA-256 in HDFS); replay is labelled

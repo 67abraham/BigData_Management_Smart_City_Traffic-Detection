@@ -9,26 +9,28 @@ four versioned data products with contracts → light dashboard.
 ## Quick start
 
 `scripts/run_all.sh` is the starter for the whole project: it brings up the Docker stack
-(`docker compose up -d --build`, then waits until HDFS and Kafka are healthy) and runs every milestone in
-order, from data acquisition to the published products and the dashboard data.
+(`docker compose up -d --build`, then waits until HDFS and Kafka are healthy), runs every milestone in
+order, from data acquisition to the published products, and finally starts the dashboard and prints
+its link.
 
 ```bash
 # in a GitHub Codespace (4 cores / 16 GB) opened on this repository
 cp .env.example .env                    # then add your two KITTI download links (KITTI account e-mail)
 bash scripts/run_all.sh                 # 47 min measured (run full_20261121T112047Z) + image build on a new Codespace
-pip install -r requirements-dashboard.txt
-streamlit run src/visualisation/app.py  # dashboard on port 8501
+                                        # ends with the dashboard running on port 8501 and its link
 ```
 
 `run_all.sh` stages: `00_stack` (Docker) → `01_smoke_m0` (HDFS/Spark/Kafka/Flink checks) → `02_ingest_m1`
 (download + Bronze) → `03_spark_m2` (Silver/Gold + quality) → `04_stream_m3` (Kafka replay → Flink windows,
 edge cases, failure/recovery) → `05_products_m4` (4 data products + read-back, SQL analyses, benchmark) →
-`06_export_m5` (dashboard data). Each stage's exit code and duration go to
+`06_export_m5` (dashboard data) → `07_dashboard` (starts Streamlit; last, because it shows the outputs of
+all earlier stages). Each stage's exit code and duration go to
 `evidence/AC08/full_<run>/stages.tsv`; it stops at the first failing stage and names its log. Every stage is
 idempotent, so after fixing a problem just run `bash scripts/run_all.sh` again.
 
-After a Codespace restart, `docker compose up -d` brings the stack back with its data. To redo one part,
-run its milestone script (sections below), e.g. `bash scripts/run_m3.sh edge`.
+After a Codespace restart, `docker compose up -d` brings the stack back with its data and
+`bash scripts/start_dashboard.sh` the dashboard. To redo one part, run its milestone script (sections
+below), e.g. `bash scripts/run_m3.sh edge`.
 
 **Status** (all from recorded runs in a GitHub Codespace):
 - M0 environment: `scripts/smoke_m0.sh` 8/8 PASS, run `m0_20261121T014208Z` (`evidence/AC02/`).
@@ -177,8 +179,7 @@ writes its four data layouts once to `/datalake/bench/nyc_trips/` (about 1.7 GB,
 
 ```bash
 bash scripts/run_m5.sh                          # export small tables from the products + dashboard tests
-pip install -r requirements-dashboard.txt       # Streamlit, pandas, Altair (host side)
-streamlit run src/visualisation/app.py          # port 8501
+bash scripts/start_dashboard.sh                 # installs requirements-dashboard.txt if needed, starts port 8501, prints the link
 ```
 
 Tabs: Pipeline (processing volume, the runs shown), Sources, Quality, Batch results, Streaming,

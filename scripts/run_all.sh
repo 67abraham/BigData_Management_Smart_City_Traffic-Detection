@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Full pipeline, acquisition -> publication -> dashboard data (spec T08/AC08 run order).
 # From a fresh Codespace: cp .env.example .env (add the KITTI links), then
-#   bash scripts/run_all.sh            # ~1 h: stack, M0 smoke, M1 ingest, M2 Spark, M3 streaming, M4 products/benchmarks, M5 export
+#   bash scripts/run_all.sh            # ~1 h: stack, M0 smoke, M1 ingest, M2 Spark, M3 streaming, M4 products/benchmarks,
+#                                      # M5 export, then starts the dashboard and prints its link
 # Each stage is a milestone script with its own evidence folder; this script records the order, exit
 # codes and durations in evidence/AC08/full_<UTC>/stages.tsv and stops at the first failing stage
 # (re-run it: every stage is idempotent, so a re-run is also the recovery path).
@@ -41,5 +42,7 @@ stage 03_spark_m2     bash scripts/run_m2.sh
 stage 04_stream_m3    bash scripts/run_m3.sh replay edge recovery
 stage 05_products_m4  bash scripts/run_m4.sh products analytics benchmark
 stage 06_export_m5    bash scripts/run_m5.sh
+stage 07_dashboard    bash scripts/start_dashboard.sh   # last: it shows the outputs of all stages above
 echo "=== all stages passed: $E/stages.tsv"
 column -t -s $'\t' "$E/stages.tsv"
+grep '^dashboard: ' "$E/07_dashboard.log"
