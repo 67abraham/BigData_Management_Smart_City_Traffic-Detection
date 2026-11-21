@@ -1,0 +1,25 @@
+run_id=m2_20261121T081847Z sources=uci_metro open_meteo traffic_weather
+efa2658
+ M configs/quality.yaml
+ M scripts/run_m2.sh
+ M src/quality/report_md.py
+?? src/batch/gold_traffic_weather.py
+?? src/batch/silver_open_meteo.py
+?? src/quality/alignment.py
+?? src/quality/open_meteo_rules.py
+?? tests/data_quality/test_open_meteo_silver.py
+?? tests/unit/test_open_meteo_rules.py
+PASS  unit tests -> evidence/AC05/m2_20261121T081847Z/unit_tests.log
+PASS  data-quality tests -> evidence/AC05/m2_20261121T081847Z/data_quality_tests.log
+=== uci_metro
+PASS  uci_metro rule catalogue -> evidence/AC05/m2_20261121T081847Z/rules_uci_metro.json
+PASS  uci_metro silver (Spark) -> evidence/AC03/m2_20261121T081847Z/silver_uci_metro.status
+PASS  uci_metro quality report -> evidence/AC05/m2_20261121T081847Z/quality_report_uci_metro.md
+=== open_meteo
+PASS  open_meteo rule catalogue -> evidence/AC05/m2_20261121T081847Z/rules_open_meteo.json
+PASS  open_meteo silver (Spark) -> evidence/AC03/m2_20261121T081847Z/silver_open_meteo.status
+PASS  open_meteo quality report -> evidence/AC05/m2_20261121T081847Z/quality_report_open_meteo.md
+=== traffic_weather
+PASS  traffic_weather gold join (Spark) -> evidence/AC03/m2_20261121T081847Z/gold_traffic_weather.status
+PASS  hdfs silver/gold layout -> evidence/AC03/m2_20261121T081847Z/hdfs_silver_gold_layout.txt
+--- failures: 0   evidence: evidence/AC03/m2_20261121T081847Z evidence/AC05/m2_20261121T081847Z

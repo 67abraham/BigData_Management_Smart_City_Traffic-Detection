@@ -1,0 +1,67 @@
+           0            1                  0 /datalake/silver/open_meteo_hourly/v1/_SUCCESS
+           8            7              1.4 M /datalake/silver/open_meteo_hourly/v1/outcome=accepted
+           0            1                  0 /datalake/silver/uci_traffic_hourly/v1/_SUCCESS
+           8            7              1.8 M /datalake/silver/uci_traffic_hourly/v1/outcome=accepted
+           6            5             72.6 K /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine
+           8            8              1.8 M /datalake/gold/uci_traffic_weather_hourly/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2012
+-rw-r--r--   2 root supergroup      70497 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2012/part-00001-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2013
+-rw-r--r--   2 root supergroup     235548 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2013/part-00001-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2014
+-rw-r--r--   2 root supergroup     235411 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2014/part-00000-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2015
+-rw-r--r--   2 root supergroup     233552 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2015/part-00001-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2016
+-rw-r--r--   2 root supergroup     235744 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2016/part-00000-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2017
+-rw-r--r--   2 root supergroup     235165 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2017/part-00001-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2018
+-rw-r--r--   2 root supergroup     179719 2026-11-21 08:22 /datalake/silver/open_meteo_hourly/v1/outcome=accepted/year=2018/part-00000-76c830f3-dbc9-4172-a222-1b82eeca55d8.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2012
+-rw-r--r--   2 root supergroup     116243 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2012/part-00001-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2013
+-rw-r--r--   2 root supergroup     343969 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2013/part-00001-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2014
+-rw-r--r--   2 root supergroup     214835 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2014/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2015
+-rw-r--r--   2 root supergroup     185282 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2015/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2016
+-rw-r--r--   2 root supergroup     358842 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2016/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2017
+-rw-r--r--   2 root supergroup     386175 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2017/part-00001-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2018
+-rw-r--r--   2 root supergroup     303619 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=accepted/year=2018/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2012
+-rw-r--r--   2 root supergroup      14408 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2012/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2014
+-rw-r--r--   2 root supergroup      15615 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2014/part-00001-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2015
+-rw-r--r--   2 root supergroup      14197 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2015/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2016
+-rw-r--r--   2 root supergroup      15540 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2016/part-00001-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2017
+-rw-r--r--   2 root supergroup      14562 2026-11-21 08:21 /datalake/silver/uci_traffic_hourly/v1/outcome=quarantine/year=2017/part-00000-55abdce0-9270-41e4-94fb-72fbe9099744.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2012
+-rw-r--r--   2 root supergroup     110401 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2012/part-00001-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2013
+-rw-r--r--   2 root supergroup     330648 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2013/part-00001-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2014
+-rw-r--r--   2 root supergroup     214648 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2014/part-00001-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2015
+-rw-r--r--   2 root supergroup     173804 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2015/part-00000-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2016
+-rw-r--r--   2 root supergroup     346944 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2016/part-00000-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2017
+-rw-r--r--   2 root supergroup     376892 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2017/part-00000-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2018
+-rw-r--r--   2 root supergroup     292456 2026-11-21 08:22 /datalake/gold/uci_traffic_weather_hourly/v1/year=2018/part-00001-e1de5002-13fe-4e19-b655-1754f97589ce.c000.snappy.parquet

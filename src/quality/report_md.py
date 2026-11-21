@@ -32,21 +32,35 @@ def render(rep: Mapping[str, Any], rules: Sequence[Mapping[str, str]]) -> str:
             "| Rule | Category | Severity | Source rows | Records | Meaning |", "|---|---|---|---:|---:|---|"]
     rv, cv = rep.get("row_rule_violations", {}), rep.get("record_rule_violations", {})
     for r in rules:
-        src = _n(rv[r["name"]]) if r["name"] in rv else ("—" if r.get("stage") == "hour" else "0")
+        src = _n(rv[r["name"]]) if r["name"] in rv else ("—" if r.get("stage", "row") != "row" else "0")
         out.append(f"| `{r['name']}` | {r['category']} | {r['severity']} | {src} | "
                    f"{_n(cv.get(r['name'], 0))} | {r['description']} |")
-    c, d, cp = rep["coverage"], rep["duplicates"], rep["completeness"]
-    out += ["", "## Dataset-level checks", "",
-            f"- **Source completeness:** expected files {cp['expected_files']}; rows per file in Bronze "
-            f"{cp['files_in_bronze']}; all present: **{'yes' if cp['all_expected_files_present'] else 'NO'}**",
-            f"- **Duplicate hours:** {_n(d['hours_with_several_rows'])} hours had several source rows; "
-            f"{_n(d['extra_rows_collapsed'])} extra rows collapsed",
-            f"- **Hourly coverage** (accepted + quarantine): {_n(c['distinct_hours'])} distinct hours from "
-            f"{c['first_hour_local']} to {c['last_hour_local']} (local); {_n(c['hours_in_span'])} hours in that "
-            f"span, so **{_n(c['absent_hours'])} hours absent**",
-            f"- **DST:** {rep['dst']['ambiguous_hours_in_data']} ambiguous fall-back hours in the data; "
-            f"UTC offsets {rep['dst']['utc_offsets']}",
-            f"- **Holidays:** {rep['holidays']['dates']} dates, {_n(rep['holidays']['hours'])} hours marked"]
+    out += ["", "## Dataset-level checks", ""]
+    if "completeness" in rep:
+        cp = rep["completeness"]
+        out.append(f"- **Source completeness:** expected files {cp['expected_files']}; rows per file in Bronze "
+                   f"{cp['files_in_bronze']}; all present: **{'yes' if cp['all_expected_files_present'] else 'NO'}**")
+    if "duplicates" in rep:
+        d = rep["duplicates"]
+        groups = d.get("hours_with_several_rows", d.get("keys_with_several_rows", 0))
+        out.append(f"- **Duplicates:** {_n(groups)} keys had several source rows; "
+                   f"{_n(d['extra_rows_collapsed'])} extra rows collapsed")
+    if "coverage" in rep:
+        c = rep["coverage"]
+        basis = c.get("time_basis", "local")
+        out.append(f"- **Hourly coverage** (accepted + quarantine): {_n(c['distinct_hours'])} distinct hours from "
+                   f"{c.get('first_hour_local', c.get('first_hour'))} to {c.get('last_hour_local', c.get('last_hour'))} "
+                   f"({basis}); {_n(c['hours_in_span'])} hours in that span, so **{_n(c['absent_hours'])} hours absent**")
+    if "dst" in rep:
+        out.append(f"- **DST:** {rep['dst']['ambiguous_hours_in_data']} ambiguous fall-back hours in the data; "
+                   f"UTC offsets {rep['dst']['utc_offsets']}")
+    if "holidays" in rep:
+        out.append(f"- **Holidays:** {rep['holidays']['dates']} dates, {_n(rep['holidays']['hours'])} hours marked")
+    for chk in rep.get("checks", []):
+        out.append(f"- **{chk['name']}:** {'PASS' if chk['ok'] else '**FAIL**'} — {chk['detail']}")
+    if "labels" in rep:
+        out += ["", "## Labels", "", f"- model `{rep['labels']['model']}`, data kind `{rep['labels']['data_kind']}`",
+                f"- valid time per variable: {rep['labels']['valid_time']}"]
     return "\n".join(out) + "\n"
 
 

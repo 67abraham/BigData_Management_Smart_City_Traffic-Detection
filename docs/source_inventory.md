@@ -25,7 +25,7 @@ Ingestion patterns used (spec T01 asks for at least 2): **file batch** (UCI, NYC
 | Format delivered | zip → one `Metro_Interstate_Traffic_Volume.csv.gz` | JSON (`hourly` column arrays) | Parquet (monthly) + CSV zone lookup | zip of PNG images; zip of label TXT files |
 | Fields | `holiday, temp, rain_1h, snow_1h, clouds_all, weather_main, weather_description, date_time, traffic_volume` (file header; matched expected header in the run) | `temperature_2m` °C, `precipitation` mm, `rain` mm, `snowfall` cm, `cloud_cover` %, `weather_code` WMO code, `wind_speed_10m` km/h (units as returned by the API) | TLC yellow schema, 19 columns; **types and one column name differ between months** (see below) | label line: type, truncated, occluded, alpha, 2D bbox (4), 3D dimensions (3), location (3), rotation_y |
 | Time coverage | 2012-10-02 09:00 .. 2018-09-30 23:00 (recorded min/max); hourly **with gaps** | 2012-10-01 00:00 .. 2018-10-01 23:00 UTC, hourly, complete (recorded) | 2023-01 .. 2023-03 (chosen); pickups outside those months exist (see below) | not time-indexed |
-| Time semantics | local time of Minneapolis–St Paul as given by UCI; no offset in the data; DST handling checked in M2 | `timezone=GMT` requested, so raw times are UTC | pickup/drop-off as local NYC wall-clock time (`timestamp_ntz`, no zone) | — |
+| Time semantics | UCI: date_time is the "Hour of the data collected in local CST time"; the data follows US Central time **with DST** (see limitations); start vs end of hour not stated | `timezone=GMT` requested, so raw times are UTC | pickup/drop-off as local NYC wall-clock time (`timestamp_ntz`, no zone) | — |
 | Spatial coverage | one counter: I-94 **westbound**, MnDOT ATR station 301, "roughly midway between Minneapolis and St Paul" (UCI) | one ERA5 grid cell: 45.00° N, 93.25° W, elevation 267 m (returned by the API) | New York City, 265 TLC taxi zones | Karlsruhe, Germany (unrelated to the other sources) |
 | Size observed | zip 405,547 B | 7 JSON files, 2,563,969 B in HDFS | 2023-01: 47,673,370 B · 2023-02: 47,748,012 B · 2023-03: 56,127,762 B (HTTP Content-Length) | labels zip 5,601,213 B; images zip 12,569,945,557 B (only ~526 MB read) |
 | Update behaviour | static (donated dataset) | reanalysis; past values can be reprocessed upstream. A request already made is **not re-sent** unless `--force` (see limitations) | files published monthly and republished upstream at times (Last-Modified differs per month); ETag + checksum detect changes | static benchmark release |
@@ -127,8 +127,10 @@ HDFS with the same SHA-256 (`integrity` in the run profile).
 
 ## Known limitations
 - **Weather is reanalysis, not observation.** ERA5 is a ~0.25° (~25 km) grid, and the cell used is
-  ~10 km from the counter. UCI's own weather columns (OpenWeatherMap-derived, per UCI) are kept as
-  delivered and are a different source from Open-Meteo.
+  ~10 km from the counter (the station lies inside the 0.25° cell, checked in M2). UCI's own weather
+  columns are kept as delivered and are a different source from Open-Meteo. **The UCI page does not
+  name the source of its weather columns** (read 2026-11-21); an earlier version of this file wrongly
+  called them OpenWeatherMap-derived.
 - **ATR 301 is matched by ID only** (see above), and the site is listed as Retired today. The
   coordinates are MnDOT's current record of the site, not necessarily its location in 2012–2018.
 - **Open-Meteo changes upstream go unnoticed on a normal re-run.** A request that was already made
@@ -137,5 +139,11 @@ HDFS with the same SHA-256 (`integrity` in the run profile).
 - **KITTI is a 500-image sample** (seed 241091038) of the 7,481 training images. Labels are complete.
   The testing split has no labels and is not ingested.
 - **NYC TLC covers 3 months of Yellow taxi trips only** (Green, FHV and other months are not ingested).
-- **UCI timezone:** the data gives local times with no offset. How DST transitions appear (repeated or
-  missing hours) is checked in M2 before the hour-level join with UTC weather.
+- **UCI timezone:** UCI's page says "local CST time", but the data shows daylight saving time: the
+  spring-forward 02:00 hour is absent in every year 2012–2018. M2 Silver therefore reads it as
+  `America/Chicago` (CST/CDT). The fall-back 01:00 hour is ambiguous (its UTC hour is uncertain), so
+  those hours are quarantined (4 hours / 10 source rows in M2 run `m2_20261121T080753Z`).
+- **UCI hour label:** the UCI page does not say whether `date_time` is the start or the end of the hour
+  ("Hour of the data collected"). M2 assumes the **start** (`configs/quality.yaml`
+  `traffic_weather.uci_hour_label`); the Gold join report gives temperature/rain correlations with ERA5
+  at other offsets as supporting evidence, not proof.
