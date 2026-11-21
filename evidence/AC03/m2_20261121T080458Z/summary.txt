@@ -1,0 +1,21 @@
+run_id=m2_20261121T080458Z sources=uci_metro
+cad3c99
+?? configs/quality.yaml
+?? scripts/run_m2.sh
+?? scripts/test_spark.sh
+?? src/batch/silver_uci.py
+?? src/quality/__init__.py
+?? src/quality/report_md.py
+?? src/quality/rules.py
+?? src/quality/spark_rules.py
+?? src/quality/uci_rules.py
+?? tests/data_quality/conftest.py
+?? tests/data_quality/test_uci_silver.py
+?? tests/unit/test_quality_rules.py
+PASS  unit tests -> evidence/AC05/m2_20261121T080458Z/unit_tests.log
+PASS  data-quality tests -> evidence/AC05/m2_20261121T080458Z/data_quality_tests.log
+=== uci_metro
+PASS  uci_metro rule catalogue -> evidence/AC05/m2_20261121T080458Z/rules_uci_metro.json
+FAIL  uci_metro silver (Spark) -> evidence/AC03/m2_20261121T080458Z/silver_uci_metro.status (exit 1)
+PASS  hdfs silver layout -> evidence/AC03/m2_20261121T080458Z/hdfs_silver_layout.txt
+--- failures: 1   evidence: evidence/AC03/m2_20261121T080458Z evidence/AC05/m2_20261121T080458Z

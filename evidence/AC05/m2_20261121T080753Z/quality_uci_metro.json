@@ -1,0 +1,79 @@
+{
+  "dataset": "uci_traffic_hourly",
+  "version": "v1",
+  "bronze_ingest_date": "2026-11-21",
+  "reconciliation": {
+    "bronze_rows": 48204,
+    "silver_source_rows": 48204,
+    "reconciled": true
+  },
+  "outcomes": {
+    "quarantine": {
+      "records": 17,
+      "source_rows": 23
+    },
+    "accepted": {
+      "records": 40558,
+      "source_rows": 48181
+    }
+  },
+  "row_rule_violations": {
+    "range_volume_zero": 2,
+    "range_temp_k": 10,
+    "ts_dst_ambiguous": 10,
+    "range_rain_1h": 1
+  },
+  "record_rule_violations": {
+    "range_volume_zero": 2,
+    "range_temp_k": 10,
+    "ts_dst_ambiguous": 4,
+    "unique_hour_conflicting_weather": 79,
+    "range_rain_1h": 1
+  },
+  "duplicates": {
+    "hours_with_several_rows": 5445,
+    "extra_rows_collapsed": 7629
+  },
+  "coverage": {
+    "first_hour_local": "2012-10-02 09:00:00",
+    "last_hour_local": "2018-09-30 23:00:00",
+    "distinct_hours": 40575,
+    "hours_in_span": 52551,
+    "absent_hours": 11976
+  },
+  "completeness": {
+    "expected_files": [
+      "Metro_Interstate_Traffic_Volume.csv.gz"
+    ],
+    "files_in_bronze": {
+      "Metro_Interstate_Traffic_Volume.csv.gz": 48204
+    },
+    "all_expected_files_present": true
+  },
+  "dst": {
+    "ambiguous_hours_in_data": 4,
+    "utc_offsets": {
+      "-6": 13533,
+      "-5": 27038,
+      "None": 4
+    }
+  },
+  "holidays": {
+    "dates": 53,
+    "hours": 1203
+  },
+  "input": "hdfs://namenode:8020/datalake/bronze/uci_metro/records/ingest_date=2026-11-21",
+  "output": "hdfs://namenode:8020/datalake/silver/uci_traffic_hourly/v1",
+  "run_id": "m2_20261121T080753Z",
+  "spark_app_id": "app-20261121080912-0008",
+  "station": {
+    "id": "301",
+    "road": "I-94",
+    "direction": "westbound",
+    "latitude": 44.9516213956903,
+    "longitude": -93.1368848235347,
+    "location_source": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_infra/CONTINUOUS_COLLECTION_SITES/FeatureServer",
+    "location_retrieved_at": "2026-11-21T06:18:53+00:00"
+  },
+  "schema": "struct<station_id:string,road:string,direction:string,latitude:double,longitude:double,hour_start_local:timestamp_ntz,hour_start_utc:timestamp,timezone:string,utc_offset_hours:int,dst_ambiguous:boolean,local_date:date,traffic_volume:int,traffic_volume_unit:string,temp_k:double,temp_c:double,rain_1h_mm:double,snow_1h_mm:double,clouds_all_pct:double,weather_main:array<string>,weather_description:array<string>,holiday_name:string,is_holiday_date:boolean,source_rows:bigint,weather_numeric_conflict:boolean,_violations:array<struct<rule:string,category:string,severity:string>>,_raw_rows:array<struct<holiday:string,temp:string,rain_1h:string,snow_1h:string,clouds_all:string,weather_main:string,weather_description:string,date_time:string,traffic_volume:string,_corrupt_record:string>>,_source:string,_source_file:string,_source_version:string,_sha256:string,_ingested_at:timestamp,_bronze_ingest_date:string,_silver_run_id:string,_silver_version:string,outcome:string,year:int>"
+}

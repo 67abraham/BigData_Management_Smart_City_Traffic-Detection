@@ -1,0 +1,1298 @@
+26/11/21 08:09:11 INFO SparkContext: Running Spark version 3.5.3
+26/11/21 08:09:11 INFO SparkContext: OS info Linux, 6.8.0-1070-azure, amd64
+26/11/21 08:09:11 INFO SparkContext: Java version 17.0.13
+26/11/21 08:09:11 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/11/21 08:09:11 INFO ResourceUtils: ==============================================================
+26/11/21 08:09:11 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/11/21 08:09:11 INFO ResourceUtils: ==============================================================
+26/11/21 08:09:11 INFO SparkContext: Submitted application: bdfp-m2-silver-uci_metro
+26/11/21 08:09:11 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/11/21 08:09:11 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/11/21 08:09:11 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/11/21 08:09:11 INFO SecurityManager: Changing view acls to: root
+26/11/21 08:09:11 INFO SecurityManager: Changing modify acls to: root
+26/11/21 08:09:11 INFO SecurityManager: Changing view acls groups to: 
+26/11/21 08:09:11 INFO SecurityManager: Changing modify acls groups to: 
+26/11/21 08:09:11 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+26/11/21 08:09:11 INFO Utils: Successfully started service 'sparkDriver' on port 44103.
+26/11/21 08:09:11 INFO SparkEnv: Registering MapOutputTracker
+26/11/21 08:09:11 INFO SparkEnv: Registering BlockManagerMaster
+26/11/21 08:09:11 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/11/21 08:09:11 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/11/21 08:09:11 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/11/21 08:09:12 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-4622cbdc-4e48-4c42-b4f1-74c325c51af5
+26/11/21 08:09:12 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+26/11/21 08:09:12 INFO SparkEnv: Registering OutputCommitCoordinator
+26/11/21 08:09:12 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/11/21 08:09:12 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/11/21 08:09:12 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/11/21 08:09:12 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.4:7077 after 27 ms (0 ms spent in bootstraps)
+26/11/21 08:09:12 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20261121080912-0008
+26/11/21 08:09:12 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261121080912-0008/0 on worker-20261121065406-172.18.0.5-42867 (172.18.0.5:42867) with 1 core(s)
+26/11/21 08:09:12 INFO StandaloneSchedulerBackend: Granted executor ID app-20261121080912-0008/0 on hostPort 172.18.0.5:42867 with 1 core(s), 1024.0 MiB RAM
+26/11/21 08:09:12 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46771.
+26/11/21 08:09:12 INFO NettyBlockTransferService: Server created on spark-master:46771
+26/11/21 08:09:12 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261121080912-0008/1 on worker-20261121065405-172.18.0.12-41729 (172.18.0.12:41729) with 1 core(s)
+26/11/21 08:09:12 INFO StandaloneSchedulerBackend: Granted executor ID app-20261121080912-0008/1 on hostPort 172.18.0.12:41729 with 1 core(s), 1024.0 MiB RAM
+26/11/21 08:09:12 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/11/21 08:09:12 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-master, 46771, None)
+26/11/21 08:09:12 INFO BlockManagerMasterEndpoint: Registering block manager spark-master:46771 with 413.9 MiB RAM, BlockManagerId(driver, spark-master, 46771, None)
+26/11/21 08:09:12 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-master, 46771, None)
+26/11/21 08:09:12 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-master, 46771, None)
+26/11/21 08:09:12 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20261121080912-0008/1 is now RUNNING
+26/11/21 08:09:12 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20261121080912-0008/0 is now RUNNING
+26/11/21 08:09:13 INFO SingleEventLogFileWriter: Logging events to hdfs://namenode:8020/spark-events/app-20261121080912-0008.inprogress
+26/11/21 08:09:14 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+26/11/21 08:09:14 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/11/21 08:09:14 INFO SharedState: Warehouse path is 'file:/workspace/spark-warehouse'.
+26/11/21 08:09:16 INFO InMemoryFileIndex: It took 154 ms to list leaf files for 1 paths.
+26/11/21 08:09:17 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:17 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:17 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:17 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:17 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:17 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:17 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 105.0 KiB, free 413.8 MiB)
+26/11/21 08:09:17 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 38.0 KiB, free 413.8 MiB)
+26/11/21 08:09:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on spark-master:46771 (size: 38.0 KiB, free: 413.9 MiB)
+26/11/21 08:09:17 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:17 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:17 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+26/11/21 08:09:18 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.12:40864) with ID 1,  ResourceProfileId 0
+26/11/21 08:09:18 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.12:38109 with 434.4 MiB RAM, BlockManagerId(1, 172.18.0.12, 38109, None)
+26/11/21 08:09:18 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.5:54004) with ID 0,  ResourceProfileId 0
+26/11/21 08:09:18 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.12, executor 1, partition 0, PROCESS_LOCAL, 9243 bytes) 
+26/11/21 08:09:18 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.5:38827 with 434.4 MiB RAM, BlockManagerId(0, 172.18.0.5, 38827, None)
+26/11/21 08:09:19 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.12:38109 (size: 38.0 KiB, free: 434.4 MiB)
+26/11/21 08:09:20 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1417 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:09:20 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+26/11/21 08:09:20 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 2.706 s
+26/11/21 08:09:20 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:20 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+26/11/21 08:09:20 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 2.873657 s
+26/11/21 08:09:20 INFO DataSourceStrategy: Pruning directories with: 
+26/11/21 08:09:20 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:09:20 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:09:20 INFO BlockManagerInfo: Removed broadcast_0_piece0 on spark-master:46771 in memory (size: 38.0 KiB, free: 413.9 MiB)
+26/11/21 08:09:20 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 172.18.0.12:38109 in memory (size: 38.0 KiB, free: 434.4 MiB)
+26/11/21 08:09:21 INFO CodeGenerator: Code generated in 234.480412 ms
+26/11/21 08:09:21 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 202.4 KiB, free 413.7 MiB)
+26/11/21 08:09:21 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 35.6 KiB, free 413.7 MiB)
+26/11/21 08:09:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on spark-master:46771 (size: 35.6 KiB, free: 413.9 MiB)
+26/11/21 08:09:21 INFO SparkContext: Created broadcast 1 from first at /workspace/src/batch/silver_uci.py:239
+26/11/21 08:09:21 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:21 INFO DAGScheduler: Registering RDD 5 (first at /workspace/src/batch/silver_uci.py:239) as input to shuffle 0
+26/11/21 08:09:21 INFO DAGScheduler: Got map stage job 1 (first at /workspace/src/batch/silver_uci.py:239) with 1 output partitions
+26/11/21 08:09:21 INFO DAGScheduler: Final stage: ShuffleMapStage 1 (first at /workspace/src/batch/silver_uci.py:239)
+26/11/21 08:09:21 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:21 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:21 INFO DAGScheduler: Submitting ShuffleMapStage 1 (MapPartitionsRDD[5] at first at /workspace/src/batch/silver_uci.py:239), which has no missing parents
+26/11/21 08:09:21 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 18.4 KiB, free 413.7 MiB)
+26/11/21 08:09:21 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 8.2 KiB, free 413.7 MiB)
+26/11/21 08:09:21 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on spark-master:46771 (size: 8.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:21 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:21 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 1 (MapPartitionsRDD[5] at first at /workspace/src/batch/silver_uci.py:239) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:21 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+26/11/21 08:09:21 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (172.18.0.5, executor 0, partition 0, ANY, 9710 bytes) 
+26/11/21 08:09:21 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.18.0.5:38827 (size: 8.2 KiB, free: 434.4 MiB)
+26/11/21 08:09:22 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.18.0.5:38827 (size: 35.6 KiB, free: 434.4 MiB)
+26/11/21 08:09:23 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 2312 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:23 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+26/11/21 08:09:23 INFO DAGScheduler: ShuffleMapStage 1 (first at /workspace/src/batch/silver_uci.py:239) finished in 2.364 s
+26/11/21 08:09:23 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:23 INFO DAGScheduler: running: Set()
+26/11/21 08:09:23 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:23 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:23 INFO CodeGenerator: Code generated in 35.642766 ms
+26/11/21 08:09:23 INFO SparkContext: Starting job: first at /workspace/src/batch/silver_uci.py:239
+26/11/21 08:09:24 INFO DAGScheduler: Got job 2 (first at /workspace/src/batch/silver_uci.py:239) with 1 output partitions
+26/11/21 08:09:24 INFO DAGScheduler: Final stage: ResultStage 3 (first at /workspace/src/batch/silver_uci.py:239)
+26/11/21 08:09:24 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 2)
+26/11/21 08:09:24 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:24 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[8] at first at /workspace/src/batch/silver_uci.py:239), which has no missing parents
+26/11/21 08:09:24 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 13.1 KiB, free 413.7 MiB)
+26/11/21 08:09:24 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 6.2 KiB, free 413.6 MiB)
+26/11/21 08:09:24 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on spark-master:46771 (size: 6.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:24 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:24 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[8] at first at /workspace/src/batch/silver_uci.py:239) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:24 INFO TaskSchedulerImpl: Adding task set 3.0 with 1 tasks resource profile 0
+26/11/21 08:09:24 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 2) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:24 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.18.0.5:38827 (size: 6.2 KiB, free: 434.4 MiB)
+26/11/21 08:09:24 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.18.0.5:54004
+26/11/21 08:09:24 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 2) in 270 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:24 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+26/11/21 08:09:24 INFO DAGScheduler: ResultStage 3 (first at /workspace/src/batch/silver_uci.py:239) finished in 0.290 s
+26/11/21 08:09:24 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:24 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage finished
+26/11/21 08:09:24 INFO DAGScheduler: Job 2 finished: first at /workspace/src/batch/silver_uci.py:239, took 0.317447 s
+26/11/21 08:09:24 INFO DataSourceStrategy: Pruning directories with: isnotnull(ingest_date#15),(ingest_date#15 = 2026-11-21)
+26/11/21 08:09:24 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:09:24 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:09:24 INFO BlockManagerInfo: Removed broadcast_3_piece0 on spark-master:46771 in memory (size: 6.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:24 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 172.18.0.5:38827 in memory (size: 6.2 KiB, free: 434.4 MiB)
+26/11/21 08:09:24 INFO BlockManagerInfo: Removed broadcast_2_piece0 on spark-master:46771 in memory (size: 8.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:24 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 172.18.0.5:38827 in memory (size: 8.2 KiB, free: 434.4 MiB)
+26/11/21 08:09:27 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+26/11/21 08:09:28 INFO CodeGenerator: Code generated in 59.312697 ms
+26/11/21 08:09:28 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 204.4 KiB, free 413.5 MiB)
+26/11/21 08:09:28 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 36.2 KiB, free 413.5 MiB)
+26/11/21 08:09:28 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on spark-master:46771 (size: 36.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:28 INFO SparkContext: Created broadcast 4 from parquet at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:28 INFO BlockManagerInfo: Removed broadcast_1_piece0 on spark-master:46771 in memory (size: 35.6 KiB, free: 413.9 MiB)
+26/11/21 08:09:28 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 172.18.0.5:38827 in memory (size: 35.6 KiB, free: 434.4 MiB)
+26/11/21 08:09:28 INFO InMemoryFileIndex: Selected 1 partitions out of 1, pruned 0.0% partitions.
+26/11/21 08:09:28 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:28 INFO DAGScheduler: Got job 3 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:28 INFO DAGScheduler: Final stage: ResultStage 4 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:28 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:28 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:28 INFO DAGScheduler: Submitting ResultStage 4 (*(1) ColumnarToRow
++- FileScan parquet [holiday#0,temp#1,rain_1h#2,snow_1h#3,clouds_all#4,weather_main#5,weather_description#6,date_time#7,traffic_volume#8,_corrupt_record#9,_source#10,_source_file#11,_ingested_at#12,_source_version#13,_sha256#14,ingest_date#15] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/bronze/uci_metro/records], PartitionFilters: [isnotnull(ingest_date#15), (ingest_date#15 = 2026-11-21)], PushedFilters: [], ReadSchema: struct<holiday:string,temp:string,rain_1h:string,snow_1h:string,clouds_all:string,weather_main:st...
+ MapPartitionsRDD[13] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:28 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 26.9 KiB, free 413.7 MiB)
+26/11/21 08:09:28 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 9.2 KiB, free 413.7 MiB)
+26/11/21 08:09:28 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on spark-master:46771 (size: 9.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:28 INFO SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:28 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 4 (*(1) ColumnarToRow
++- FileScan parquet [holiday#0,temp#1,rain_1h#2,snow_1h#3,clouds_all#4,weather_main#5,weather_description#6,date_time#7,traffic_volume#8,_corrupt_record#9,_source#10,_source_file#11,_ingested_at#12,_source_version#13,_sha256#14,ingest_date#15] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/bronze/uci_metro/records], PartitionFilters: [isnotnull(ingest_date#15), (ingest_date#15 = 2026-11-21)], PushedFilters: [], ReadSchema: struct<holiday:string,temp:string,rain_1h:string,snow_1h:string,clouds_all:string,weather_main:st...
+ MapPartitionsRDD[13] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:28 INFO TaskSchedulerImpl: Adding task set 4.0 with 1 tasks resource profile 0
+26/11/21 08:09:28 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 3) (172.18.0.5, executor 0, partition 0, ANY, 9721 bytes) 
+26/11/21 08:09:28 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.18.0.5:38827 (size: 9.2 KiB, free: 434.4 MiB)
+26/11/21 08:09:28 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.18.0.5:38827 (size: 36.2 KiB, free: 434.4 MiB)
+26/11/21 08:09:29 INFO BlockManagerInfo: Added rdd_13_0 in memory on 172.18.0.5:38827 (size: 2.1 MiB, free: 432.3 MiB)
+26/11/21 08:09:29 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 3) in 1081 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:29 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+26/11/21 08:09:29 INFO DAGScheduler: ResultStage 4 (parquet at NativeMethodAccessorImpl.java:0) finished in 1.097 s
+26/11/21 08:09:29 INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:29 INFO TaskSchedulerImpl: Killing all running tasks in stage 4: Stage finished
+26/11/21 08:09:29 INFO CodeGenerator: Code generated in 128.476869 ms
+26/11/21 08:09:29 INFO CodeGenerator: Code generated in 96.08782 ms
+26/11/21 08:09:29 INFO DAGScheduler: Got job 4 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:29 INFO DAGScheduler: Final stage: ResultStage 5 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:29 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:29 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:29 INFO DAGScheduler: Submitting ResultStage 5 (AdaptiveSparkPlan isFinalPlan=false
++- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 3 more fields]
+   +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 2 more fields]
+      +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corr... MapPartitionsRDD[21] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:29 INFO BlockManagerInfo: Removed broadcast_5_piece0 on spark-master:46771 in memory (size: 9.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:29 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 101.6 KiB, free 413.6 MiB)
+26/11/21 08:09:29 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 32.2 KiB, free 413.6 MiB)
+26/11/21 08:09:29 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on spark-master:46771 (size: 32.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:29 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:29 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 5 (AdaptiveSparkPlan isFinalPlan=false
++- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 3 more fields]
+   +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 2 more fields]
+      +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corr... MapPartitionsRDD[21] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:29 INFO TaskSchedulerImpl: Adding task set 5.0 with 1 tasks resource profile 0
+26/11/21 08:09:29 INFO BlockManagerInfo: Removed broadcast_5_piece0 on 172.18.0.5:38827 in memory (size: 9.2 KiB, free: 432.3 MiB)
+26/11/21 08:09:29 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 4) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9721 bytes) 
+26/11/21 08:09:29 INFO DAGScheduler: Got job 5 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:29 INFO DAGScheduler: Final stage: ResultStage 6 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:29 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:29 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:29 INFO DAGScheduler: Submitting ResultStage 6 (AdaptiveSparkPlan isFinalPlan=false
++- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 3 more fields]
+   +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 2 more fields]
+      +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corr... MapPartitionsRDD[21] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:29 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 101.6 KiB, free 413.5 MiB)
+26/11/21 08:09:29 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 32.2 KiB, free 413.4 MiB)
+26/11/21 08:09:29 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on spark-master:46771 (size: 32.2 KiB, free: 413.8 MiB)
+26/11/21 08:09:29 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:29 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 6 (AdaptiveSparkPlan isFinalPlan=false
++- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 3 more fields]
+   +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corrupt_record#9, _source#10, _source_file#11, _ingested_at#12, _source_version#13, _sha256#14, ingest_date#15, hour_start_local#120, is_dst_nonexistent#138, is_dst_ambiguous#157, volume_num#177, temp_k#198, rain_1h_mm#220, snow_1h_mm#243, clouds_all_pct#267, ... 2 more fields]
+      +- Project [holiday#0, temp#1, rain_1h#2, snow_1h#3, clouds_all#4, weather_main#5, weather_description#6, date_time#7, traffic_volume#8, _corr... MapPartitionsRDD[21] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:29 INFO TaskSchedulerImpl: Adding task set 6.0 with 1 tasks resource profile 0
+26/11/21 08:09:29 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.18.0.5:38827 (size: 32.2 KiB, free: 432.3 MiB)
+26/11/21 08:09:32 INFO BlockManagerInfo: Added rdd_21_0 in memory on 172.18.0.5:38827 (size: 13.5 MiB, free: 418.8 MiB)
+26/11/21 08:09:32 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 5) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9721 bytes) 
+26/11/21 08:09:32 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 4) in 3134 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:32 INFO DAGScheduler: ResultStage 5 (parquet at NativeMethodAccessorImpl.java:0) finished in 3.290 s
+26/11/21 08:09:32 INFO DAGScheduler: Job 4 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:32 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+26/11/21 08:09:32 INFO TaskSchedulerImpl: Killing all running tasks in stage 5: Stage finished
+26/11/21 08:09:32 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 172.18.0.5:38827 (size: 32.2 KiB, free: 418.7 MiB)
+26/11/21 08:09:33 INFO TaskSetManager: Finished task 0.0 in stage 6.0 (TID 5) in 74 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:33 INFO TaskSchedulerImpl: Removed TaskSet 6.0, whose tasks have all completed, from pool 
+26/11/21 08:09:33 INFO DAGScheduler: ResultStage 6 (parquet at NativeMethodAccessorImpl.java:0) finished in 3.188 s
+26/11/21 08:09:33 INFO DAGScheduler: Job 5 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:33 INFO TaskSchedulerImpl: Killing all running tasks in stage 6: Stage finished
+26/11/21 08:09:33 INFO BlockManagerInfo: Removed broadcast_7_piece0 on spark-master:46771 in memory (size: 32.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:33 INFO CodeGenerator: Code generated in 101.946628 ms
+26/11/21 08:09:33 INFO BlockManagerInfo: Removed broadcast_7_piece0 on 172.18.0.5:38827 in memory (size: 32.2 KiB, free: 418.8 MiB)
+26/11/21 08:09:33 INFO DefaultCachedBatchSerializer: Predicate isnotnull(hour_start_local#120) generates partition filter: ((hour_start_local.count#5070 - hour_start_local.nullCount#5069) > 0)
+26/11/21 08:09:33 INFO BlockManagerInfo: Removed broadcast_6_piece0 on spark-master:46771 in memory (size: 32.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:33 INFO BlockManagerInfo: Removed broadcast_6_piece0 on 172.18.0.5:38827 in memory (size: 32.2 KiB, free: 418.8 MiB)
+26/11/21 08:09:33 INFO DAGScheduler: Registering RDD 27 (parquet at NativeMethodAccessorImpl.java:0) as input to shuffle 1
+26/11/21 08:09:33 INFO DAGScheduler: Got map stage job 6 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:33 INFO DAGScheduler: Final stage: ShuffleMapStage 7 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:33 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:33 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:33 INFO DAGScheduler: Submitting ShuffleMapStage 7 (MapPartitionsRDD[27] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:33 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 164.1 KiB, free 413.5 MiB)
+26/11/21 08:09:33 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 50.2 KiB, free 413.5 MiB)
+26/11/21 08:09:33 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on spark-master:46771 (size: 50.2 KiB, free: 413.8 MiB)
+26/11/21 08:09:33 INFO SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:33 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 7 (MapPartitionsRDD[27] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:33 INFO TaskSchedulerImpl: Adding task set 7.0 with 1 tasks resource profile 0
+26/11/21 08:09:33 INFO TaskSetManager: Starting task 0.0 in stage 7.0 (TID 6) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9710 bytes) 
+26/11/21 08:09:33 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 172.18.0.5:38827 (size: 50.2 KiB, free: 418.7 MiB)
+26/11/21 08:09:37 INFO TaskSetManager: Finished task 0.0 in stage 7.0 (TID 6) in 4005 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:37 INFO TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+26/11/21 08:09:37 INFO DAGScheduler: ShuffleMapStage 7 (parquet at NativeMethodAccessorImpl.java:0) finished in 4.052 s
+26/11/21 08:09:37 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:37 INFO DAGScheduler: running: Set()
+26/11/21 08:09:37 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:37 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:37 INFO ShufflePartitionsUtil: For shuffle(1), advisory target size: 67108864, actual target size 5882608, minimum partition size: 1048576
+26/11/21 08:09:37 INFO CodeGenerator: Code generated in 12.660351 ms
+26/11/21 08:09:37 INFO DAGScheduler: Registering RDD 32 (parquet at NativeMethodAccessorImpl.java:0) as input to shuffle 2
+26/11/21 08:09:37 INFO DAGScheduler: Got map stage job 7 (parquet at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/11/21 08:09:37 INFO DAGScheduler: Final stage: ShuffleMapStage 9 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:37 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 8)
+26/11/21 08:09:37 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:37 INFO DAGScheduler: Submitting ShuffleMapStage 9 (MapPartitionsRDD[32] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:37 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 165.9 KiB, free 413.3 MiB)
+26/11/21 08:09:37 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 54.1 KiB, free 413.3 MiB)
+26/11/21 08:09:37 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on spark-master:46771 (size: 54.1 KiB, free: 413.8 MiB)
+26/11/21 08:09:37 INFO BlockManagerInfo: Removed broadcast_8_piece0 on spark-master:46771 in memory (size: 50.2 KiB, free: 413.8 MiB)
+26/11/21 08:09:37 INFO BlockManagerInfo: Removed broadcast_8_piece0 on 172.18.0.5:38827 in memory (size: 50.2 KiB, free: 418.8 MiB)
+26/11/21 08:09:37 INFO SparkContext: Created broadcast 9 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:37 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 9 (MapPartitionsRDD[32] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:37 INFO TaskSchedulerImpl: Adding task set 9.0 with 2 tasks resource profile 0
+26/11/21 08:09:37 INFO TaskSetManager: Starting task 0.0 in stage 9.0 (TID 7) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 8992 bytes) 
+26/11/21 08:09:37 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 172.18.0.5:38827 (size: 54.1 KiB, free: 418.7 MiB)
+26/11/21 08:09:37 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.18.0.5:54004
+26/11/21 08:09:40 INFO TaskSetManager: Starting task 1.0 in stage 9.0 (TID 8) (172.18.0.5, executor 0, partition 1, NODE_LOCAL, 8992 bytes) 
+26/11/21 08:09:40 INFO TaskSetManager: Finished task 0.0 in stage 9.0 (TID 7) in 2709 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:41 INFO TaskSetManager: Finished task 1.0 in stage 9.0 (TID 8) in 1460 ms on 172.18.0.5 (executor 0) (2/2)
+26/11/21 08:09:41 INFO TaskSchedulerImpl: Removed TaskSet 9.0, whose tasks have all completed, from pool 
+26/11/21 08:09:41 INFO DAGScheduler: ShuffleMapStage 9 (parquet at NativeMethodAccessorImpl.java:0) finished in 4.221 s
+26/11/21 08:09:41 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:41 INFO DAGScheduler: running: Set()
+26/11/21 08:09:41 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:41 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:41 INFO ShufflePartitionsUtil: For shuffle(2), advisory target size: 67108864, actual target size 3557060, minimum partition size: 1048576
+26/11/21 08:09:41 INFO CodeGenerator: Code generated in 43.367107 ms
+26/11/21 08:09:41 INFO CodeGenerator: Code generated in 26.814781 ms
+26/11/21 08:09:41 INFO BlockManagerInfo: Removed broadcast_9_piece0 on spark-master:46771 in memory (size: 54.1 KiB, free: 413.9 MiB)
+26/11/21 08:09:41 INFO CodeGenerator: Code generated in 27.70908 ms
+26/11/21 08:09:41 INFO BlockManagerInfo: Removed broadcast_9_piece0 on 172.18.0.5:38827 in memory (size: 54.1 KiB, free: 418.8 MiB)
+26/11/21 08:09:41 INFO CodeGenerator: Code generated in 40.365934 ms
+26/11/21 08:09:41 INFO DefaultCachedBatchSerializer: Predicate ((_outcome#397 = rejected) OR isnull(hour_start_local#120)) generates partition filter: (((_outcome.lowerBound#5417 <= rejected) AND (rejected <= _outcome.upperBound#5416)) OR (hour_start_local.nullCount#5368 > 0))
+26/11/21 08:09:41 INFO DAGScheduler: Registering RDD 44 (parquet at NativeMethodAccessorImpl.java:0) as input to shuffle 3
+26/11/21 08:09:41 INFO DAGScheduler: Got map stage job 8 (parquet at NativeMethodAccessorImpl.java:0) with 3 output partitions
+26/11/21 08:09:41 INFO DAGScheduler: Final stage: ShuffleMapStage 12 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:41 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 11)
+26/11/21 08:09:41 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:41 INFO DAGScheduler: Submitting ShuffleMapStage 12 (MapPartitionsRDD[44] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:42 INFO MemoryStore: Block broadcast_10 stored as values in memory (estimated size 280.4 KiB, free 413.4 MiB)
+26/11/21 08:09:42 INFO MemoryStore: Block broadcast_10_piece0 stored as bytes in memory (estimated size 84.5 KiB, free 413.3 MiB)
+26/11/21 08:09:42 INFO BlockManagerInfo: Added broadcast_10_piece0 in memory on spark-master:46771 (size: 84.5 KiB, free: 413.8 MiB)
+26/11/21 08:09:42 INFO SparkContext: Created broadcast 10 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:42 INFO DAGScheduler: Submitting 3 missing tasks from ShuffleMapStage 12 (MapPartitionsRDD[44] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1, 2))
+26/11/21 08:09:42 INFO TaskSchedulerImpl: Adding task set 12.0 with 3 tasks resource profile 0
+26/11/21 08:09:42 INFO TaskSetManager: Starting task 2.0 in stage 12.0 (TID 9) (172.18.0.5, executor 0, partition 2, PROCESS_LOCAL, 9819 bytes) 
+26/11/21 08:09:42 INFO BlockManagerInfo: Added broadcast_10_piece0 in memory on 172.18.0.5:38827 (size: 84.5 KiB, free: 418.7 MiB)
+26/11/21 08:09:42 INFO TaskSetManager: Starting task 0.0 in stage 12.0 (TID 10) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9101 bytes) 
+26/11/21 08:09:42 INFO TaskSetManager: Finished task 2.0 in stage 12.0 (TID 9) in 184 ms on 172.18.0.5 (executor 0) (1/3)
+26/11/21 08:09:42 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 2 to 172.18.0.5:54004
+26/11/21 08:09:44 INFO TaskSetManager: Starting task 1.0 in stage 12.0 (TID 11) (172.18.0.5, executor 0, partition 1, NODE_LOCAL, 9101 bytes) 
+26/11/21 08:09:44 INFO TaskSetManager: Finished task 0.0 in stage 12.0 (TID 10) in 1983 ms on 172.18.0.5 (executor 0) (2/3)
+26/11/21 08:09:44 INFO TaskSetManager: Finished task 1.0 in stage 12.0 (TID 11) in 836 ms on 172.18.0.5 (executor 0) (3/3)
+26/11/21 08:09:44 INFO TaskSchedulerImpl: Removed TaskSet 12.0, whose tasks have all completed, from pool 
+26/11/21 08:09:45 INFO DAGScheduler: ShuffleMapStage 12 (parquet at NativeMethodAccessorImpl.java:0) finished in 3.016 s
+26/11/21 08:09:45 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:45 INFO DAGScheduler: running: Set()
+26/11/21 08:09:45 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:45 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:45 INFO ShufflePartitionsUtil: For shuffle(3), advisory target size: 67108864, actual target size 2253217, minimum partition size: 1048576
+26/11/21 08:09:45 INFO BlockManagerInfo: Removed broadcast_10_piece0 on spark-master:46771 in memory (size: 84.5 KiB, free: 413.9 MiB)
+26/11/21 08:09:45 INFO BlockManagerInfo: Removed broadcast_10_piece0 on 172.18.0.5:38827 in memory (size: 84.5 KiB, free: 418.8 MiB)
+26/11/21 08:09:45 INFO CodeGenerator: Code generated in 62.964586 ms
+26/11/21 08:09:45 INFO CodeGenerator: Code generated in 14.377246 ms
+26/11/21 08:09:45 INFO DAGScheduler: Registering RDD 49 (parquet at NativeMethodAccessorImpl.java:0) as input to shuffle 4
+26/11/21 08:09:45 INFO DAGScheduler: Got map stage job 9 (parquet at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/11/21 08:09:45 INFO DAGScheduler: Final stage: ShuffleMapStage 16 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:45 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 15)
+26/11/21 08:09:45 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:45 INFO DAGScheduler: Submitting ShuffleMapStage 16 (MapPartitionsRDD[49] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:45 INFO MemoryStore: Block broadcast_11 stored as values in memory (estimated size 264.4 KiB, free 413.4 MiB)
+26/11/21 08:09:45 INFO MemoryStore: Block broadcast_11_piece0 stored as bytes in memory (estimated size 81.7 KiB, free 413.4 MiB)
+26/11/21 08:09:45 INFO BlockManagerInfo: Added broadcast_11_piece0 in memory on spark-master:46771 (size: 81.7 KiB, free: 413.8 MiB)
+26/11/21 08:09:45 INFO SparkContext: Created broadcast 11 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:45 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 16 (MapPartitionsRDD[49] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:45 INFO TaskSchedulerImpl: Adding task set 16.0 with 2 tasks resource profile 0
+26/11/21 08:09:45 INFO TaskSetManager: Starting task 0.0 in stage 16.0 (TID 12) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 8992 bytes) 
+26/11/21 08:09:45 INFO BlockManagerInfo: Added broadcast_11_piece0 in memory on 172.18.0.5:38827 (size: 81.7 KiB, free: 418.7 MiB)
+26/11/21 08:09:45 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 3 to 172.18.0.5:54004
+26/11/21 08:09:45 INFO TaskSetManager: Starting task 1.0 in stage 16.0 (TID 13) (172.18.0.5, executor 0, partition 1, NODE_LOCAL, 8992 bytes) 
+26/11/21 08:09:45 INFO TaskSetManager: Finished task 0.0 in stage 16.0 (TID 12) in 597 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:46 INFO TaskSetManager: Finished task 1.0 in stage 16.0 (TID 13) in 246 ms on 172.18.0.5 (executor 0) (2/2)
+26/11/21 08:09:46 INFO TaskSchedulerImpl: Removed TaskSet 16.0, whose tasks have all completed, from pool 
+26/11/21 08:09:46 INFO DAGScheduler: ShuffleMapStage 16 (parquet at NativeMethodAccessorImpl.java:0) finished in 0.870 s
+26/11/21 08:09:46 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:46 INFO DAGScheduler: running: Set()
+26/11/21 08:09:46 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:46 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:46 INFO ShufflePartitionsUtil: For shuffle(4), advisory target size: 67108864, actual target size 2433464, minimum partition size: 1048576
+26/11/21 08:09:46 INFO ParquetUtils: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+26/11/21 08:09:46 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/11/21 08:09:46 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/11/21 08:09:46 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/11/21 08:09:46 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+26/11/21 08:09:46 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+26/11/21 08:09:46 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+26/11/21 08:09:46 INFO BlockManagerInfo: Removed broadcast_11_piece0 on spark-master:46771 in memory (size: 81.7 KiB, free: 413.9 MiB)
+26/11/21 08:09:46 INFO BlockManagerInfo: Removed broadcast_11_piece0 on 172.18.0.5:38827 in memory (size: 81.7 KiB, free: 418.8 MiB)
+26/11/21 08:09:46 INFO CodeGenerator: Code generated in 48.002328 ms
+26/11/21 08:09:46 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:46 INFO DAGScheduler: Got job 10 (parquet at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/11/21 08:09:46 INFO DAGScheduler: Final stage: ResultStage 21 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:46 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 20)
+26/11/21 08:09:46 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:46 INFO DAGScheduler: Submitting ResultStage 21 (MapPartitionsRDD[52] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:46 INFO MemoryStore: Block broadcast_12 stored as values in memory (estimated size 461.4 KiB, free 413.2 MiB)
+26/11/21 08:09:46 INFO MemoryStore: Block broadcast_12_piece0 stored as bytes in memory (estimated size 152.2 KiB, free 413.1 MiB)
+26/11/21 08:09:46 INFO BlockManagerInfo: Added broadcast_12_piece0 in memory on spark-master:46771 (size: 152.2 KiB, free: 413.7 MiB)
+26/11/21 08:09:46 INFO SparkContext: Created broadcast 12 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:46 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 21 (MapPartitionsRDD[52] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:46 INFO TaskSchedulerImpl: Adding task set 21.0 with 2 tasks resource profile 0
+26/11/21 08:09:46 INFO TaskSetManager: Starting task 0.0 in stage 21.0 (TID 14) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:46 INFO BlockManagerInfo: Added broadcast_12_piece0 in memory on 172.18.0.5:38827 (size: 152.2 KiB, free: 418.6 MiB)
+26/11/21 08:09:46 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 4 to 172.18.0.5:54004
+26/11/21 08:09:49 INFO TaskSetManager: Starting task 1.0 in stage 21.0 (TID 15) (172.18.0.5, executor 0, partition 1, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:49 INFO TaskSetManager: Finished task 0.0 in stage 21.0 (TID 14) in 2550 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:49 INFO TaskSetManager: Finished task 1.0 in stage 21.0 (TID 15) in 792 ms on 172.18.0.5 (executor 0) (2/2)
+26/11/21 08:09:49 INFO TaskSchedulerImpl: Removed TaskSet 21.0, whose tasks have all completed, from pool 
+26/11/21 08:09:49 INFO DAGScheduler: ResultStage 21 (parquet at NativeMethodAccessorImpl.java:0) finished in 3.423 s
+26/11/21 08:09:49 INFO DAGScheduler: Job 10 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:49 INFO TaskSchedulerImpl: Killing all running tasks in stage 21: Stage finished
+26/11/21 08:09:49 INFO DAGScheduler: Job 10 finished: parquet at NativeMethodAccessorImpl.java:0, took 3.439600 s
+26/11/21 08:09:49 INFO FileFormatWriter: Start to commit write Job b93f4b2e-799c-489e-86c9-73209051c54a.
+26/11/21 08:09:50 INFO FileFormatWriter: Write Job b93f4b2e-799c-489e-86c9-73209051c54a committed. Elapsed time: 62 ms.
+26/11/21 08:09:50 INFO FileFormatWriter: Finished processing stats for write job b93f4b2e-799c-489e-86c9-73209051c54a.
+26/11/21 08:09:50 INFO InMemoryFileIndex: It took 60 ms to list leaf files for 1 paths.
+26/11/21 08:09:50 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:50 INFO DAGScheduler: Got job 11 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:50 INFO DAGScheduler: Final stage: ResultStage 22 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:50 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:50 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:50 INFO DAGScheduler: Submitting ResultStage 22 (MapPartitionsRDD[54] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_13 stored as values in memory (estimated size 105.0 KiB, free 413.0 MiB)
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_13_piece0 stored as bytes in memory (estimated size 38.0 KiB, free 413.0 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_13_piece0 in memory on spark-master:46771 (size: 38.0 KiB, free: 413.7 MiB)
+26/11/21 08:09:50 INFO SparkContext: Created broadcast 13 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:50 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 22 (MapPartitionsRDD[54] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Adding task set 22.0 with 1 tasks resource profile 0
+26/11/21 08:09:50 INFO TaskSetManager: Starting task 0.0 in stage 22.0 (TID 16) (172.18.0.12, executor 1, partition 0, PROCESS_LOCAL, 9251 bytes) 
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_13_piece0 in memory on 172.18.0.12:38109 (size: 38.0 KiB, free: 434.4 MiB)
+26/11/21 08:09:50 INFO TaskSetManager: Finished task 0.0 in stage 22.0 (TID 16) in 145 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:09:50 INFO DAGScheduler: ResultStage 22 (parquet at NativeMethodAccessorImpl.java:0) finished in 0.167 s
+26/11/21 08:09:50 INFO DAGScheduler: Job 11 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Removed TaskSet 22.0, whose tasks have all completed, from pool 
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Killing all running tasks in stage 22: Stage finished
+26/11/21 08:09:50 INFO DAGScheduler: Job 11 finished: parquet at NativeMethodAccessorImpl.java:0, took 0.185247 s
+26/11/21 08:09:50 INFO CodeGenerator: Code generated in 6.067235 ms
+26/11/21 08:09:50 INFO DAGScheduler: Registering RDD 59 (count at NativeMethodAccessorImpl.java:0) as input to shuffle 5
+26/11/21 08:09:50 INFO DAGScheduler: Got map stage job 12 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:50 INFO DAGScheduler: Final stage: ShuffleMapStage 23 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:50 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:50 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:50 INFO DAGScheduler: Submitting ShuffleMapStage 23 (MapPartitionsRDD[59] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_14 stored as values in memory (estimated size 34.7 KiB, free 412.9 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Removed broadcast_13_piece0 on spark-master:46771 in memory (size: 38.0 KiB, free: 413.7 MiB)
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_14_piece0 stored as bytes in memory (estimated size 12.3 KiB, free 413.0 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_14_piece0 in memory on spark-master:46771 (size: 12.3 KiB, free: 413.7 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Removed broadcast_13_piece0 on 172.18.0.12:38109 in memory (size: 38.0 KiB, free: 434.4 MiB)
+26/11/21 08:09:50 INFO SparkContext: Created broadcast 14 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:50 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 23 (MapPartitionsRDD[59] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Adding task set 23.0 with 1 tasks resource profile 0
+26/11/21 08:09:50 INFO TaskSetManager: Starting task 0.0 in stage 23.0 (TID 17) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9710 bytes) 
+26/11/21 08:09:50 INFO BlockManagerInfo: Removed broadcast_12_piece0 on spark-master:46771 in memory (size: 152.2 KiB, free: 413.9 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Removed broadcast_12_piece0 on 172.18.0.5:38827 in memory (size: 152.2 KiB, free: 418.8 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_14_piece0 in memory on 172.18.0.5:38827 (size: 12.3 KiB, free: 418.8 MiB)
+26/11/21 08:09:50 INFO TaskSetManager: Finished task 0.0 in stage 23.0 (TID 17) in 72 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Removed TaskSet 23.0, whose tasks have all completed, from pool 
+26/11/21 08:09:50 INFO DAGScheduler: ShuffleMapStage 23 (count at NativeMethodAccessorImpl.java:0) finished in 0.091 s
+26/11/21 08:09:50 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:50 INFO DAGScheduler: running: Set()
+26/11/21 08:09:50 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:50 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:50 INFO CodeGenerator: Code generated in 14.770186 ms
+26/11/21 08:09:50 INFO SparkContext: Starting job: count at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:50 INFO DAGScheduler: Got job 13 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:50 INFO DAGScheduler: Final stage: ResultStage 25 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:50 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 24)
+26/11/21 08:09:50 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:50 INFO DAGScheduler: Submitting ResultStage 25 (MapPartitionsRDD[62] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_15 stored as values in memory (estimated size 12.5 KiB, free 413.6 MiB)
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_15_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 413.6 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_15_piece0 in memory on spark-master:46771 (size: 6.0 KiB, free: 413.9 MiB)
+26/11/21 08:09:50 INFO SparkContext: Created broadcast 15 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:50 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 25 (MapPartitionsRDD[62] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Adding task set 25.0 with 1 tasks resource profile 0
+26/11/21 08:09:50 INFO TaskSetManager: Starting task 0.0 in stage 25.0 (TID 18) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_15_piece0 in memory on 172.18.0.5:38827 (size: 6.0 KiB, free: 418.8 MiB)
+26/11/21 08:09:50 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 5 to 172.18.0.5:54004
+26/11/21 08:09:50 INFO TaskSetManager: Finished task 0.0 in stage 25.0 (TID 18) in 39 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:50 INFO DAGScheduler: ResultStage 25 (count at NativeMethodAccessorImpl.java:0) finished in 0.048 s
+26/11/21 08:09:50 INFO DAGScheduler: Job 13 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Removed TaskSet 25.0, whose tasks have all completed, from pool 
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Killing all running tasks in stage 25: Stage finished
+26/11/21 08:09:50 INFO DAGScheduler: Job 13 finished: count at NativeMethodAccessorImpl.java:0, took 0.055045 s
+26/11/21 08:09:50 INFO DataSourceStrategy: Pruning directories with: 
+26/11/21 08:09:50 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:09:50 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:09:50 INFO CodeGenerator: Code generated in 36.761297 ms
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_16 stored as values in memory (estimated size 202.5 KiB, free 413.4 MiB)
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_16_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 413.4 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_16_piece0 in memory on spark-master:46771 (size: 35.7 KiB, free: 413.8 MiB)
+26/11/21 08:09:50 INFO SparkContext: Created broadcast 16 from collect at /workspace/src/batch/silver_uci.py:177
+26/11/21 08:09:50 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:50 INFO DAGScheduler: Registering RDD 66 (collect at /workspace/src/batch/silver_uci.py:177) as input to shuffle 6
+26/11/21 08:09:50 INFO DAGScheduler: Got map stage job 14 (collect at /workspace/src/batch/silver_uci.py:177) with 2 output partitions
+26/11/21 08:09:50 INFO DAGScheduler: Final stage: ShuffleMapStage 26 (collect at /workspace/src/batch/silver_uci.py:177)
+26/11/21 08:09:50 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:50 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:50 INFO DAGScheduler: Submitting ShuffleMapStage 26 (MapPartitionsRDD[66] at collect at /workspace/src/batch/silver_uci.py:177), which has no missing parents
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_17 stored as values in memory (estimated size 43.9 KiB, free 413.4 MiB)
+26/11/21 08:09:50 INFO MemoryStore: Block broadcast_17_piece0 stored as bytes in memory (estimated size 19.3 KiB, free 413.3 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_17_piece0 in memory on spark-master:46771 (size: 19.3 KiB, free: 413.8 MiB)
+26/11/21 08:09:50 INFO SparkContext: Created broadcast 17 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:50 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 26 (MapPartitionsRDD[66] at collect at /workspace/src/batch/silver_uci.py:177) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:50 INFO TaskSchedulerImpl: Adding task set 26.0 with 2 tasks resource profile 0
+26/11/21 08:09:50 INFO TaskSetManager: Starting task 0.0 in stage 26.0 (TID 19) (172.18.0.12, executor 1, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:50 INFO TaskSetManager: Starting task 1.0 in stage 26.0 (TID 20) (172.18.0.5, executor 0, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_17_piece0 in memory on 172.18.0.5:38827 (size: 19.3 KiB, free: 418.8 MiB)
+26/11/21 08:09:50 INFO BlockManagerInfo: Added broadcast_17_piece0 in memory on 172.18.0.12:38109 (size: 19.3 KiB, free: 434.4 MiB)
+26/11/21 08:09:51 INFO BlockManagerInfo: Added broadcast_16_piece0 in memory on 172.18.0.5:38827 (size: 35.7 KiB, free: 418.7 MiB)
+26/11/21 08:09:51 INFO TaskSetManager: Finished task 1.0 in stage 26.0 (TID 20) in 609 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_16_piece0 in memory on 172.18.0.12:38109 (size: 35.7 KiB, free: 434.3 MiB)
+26/11/21 08:09:52 INFO TaskSetManager: Finished task 0.0 in stage 26.0 (TID 19) in 1712 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:09:52 INFO TaskSchedulerImpl: Removed TaskSet 26.0, whose tasks have all completed, from pool 
+26/11/21 08:09:52 INFO DAGScheduler: ShuffleMapStage 26 (collect at /workspace/src/batch/silver_uci.py:177) finished in 1.719 s
+26/11/21 08:09:52 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:52 INFO DAGScheduler: running: Set()
+26/11/21 08:09:52 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:52 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:52 INFO ShufflePartitionsUtil: For shuffle(6), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:09:52 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_17_piece0 on spark-master:46771 in memory (size: 19.3 KiB, free: 413.8 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_17_piece0 on 172.18.0.5:38827 in memory (size: 19.3 KiB, free: 418.7 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_17_piece0 on 172.18.0.12:38109 in memory (size: 19.3 KiB, free: 434.4 MiB)
+26/11/21 08:09:52 INFO CodeGenerator: Code generated in 36.555463 ms
+26/11/21 08:09:52 INFO SparkContext: Starting job: collect at /workspace/src/batch/silver_uci.py:177
+26/11/21 08:09:52 INFO DAGScheduler: Got job 15 (collect at /workspace/src/batch/silver_uci.py:177) with 1 output partitions
+26/11/21 08:09:52 INFO DAGScheduler: Final stage: ResultStage 28 (collect at /workspace/src/batch/silver_uci.py:177)
+26/11/21 08:09:52 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 27)
+26/11/21 08:09:52 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_15_piece0 on spark-master:46771 in memory (size: 6.0 KiB, free: 413.8 MiB)
+26/11/21 08:09:52 INFO DAGScheduler: Submitting ResultStage 28 (MapPartitionsRDD[69] at collect at /workspace/src/batch/silver_uci.py:177), which has no missing parents
+26/11/21 08:09:52 INFO MemoryStore: Block broadcast_18 stored as values in memory (estimated size 43.6 KiB, free 413.4 MiB)
+26/11/21 08:09:52 INFO MemoryStore: Block broadcast_18_piece0 stored as bytes in memory (estimated size 19.9 KiB, free 413.3 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_18_piece0 in memory on spark-master:46771 (size: 19.9 KiB, free: 413.8 MiB)
+26/11/21 08:09:52 INFO SparkContext: Created broadcast 18 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_15_piece0 on 172.18.0.5:38827 in memory (size: 6.0 KiB, free: 418.8 MiB)
+26/11/21 08:09:52 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 28 (MapPartitionsRDD[69] at collect at /workspace/src/batch/silver_uci.py:177) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:52 INFO TaskSchedulerImpl: Adding task set 28.0 with 1 tasks resource profile 0
+26/11/21 08:09:52 INFO TaskSetManager: Starting task 0.0 in stage 28.0 (TID 21) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_14_piece0 on spark-master:46771 in memory (size: 12.3 KiB, free: 413.8 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Removed broadcast_14_piece0 on 172.18.0.5:38827 in memory (size: 12.3 KiB, free: 418.8 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_18_piece0 in memory on 172.18.0.5:38827 (size: 19.9 KiB, free: 418.7 MiB)
+26/11/21 08:09:52 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 6 to 172.18.0.5:54004
+26/11/21 08:09:52 INFO TaskSetManager: Finished task 0.0 in stage 28.0 (TID 21) in 91 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:52 INFO TaskSchedulerImpl: Removed TaskSet 28.0, whose tasks have all completed, from pool 
+26/11/21 08:09:52 INFO DAGScheduler: ResultStage 28 (collect at /workspace/src/batch/silver_uci.py:177) finished in 0.106 s
+26/11/21 08:09:52 INFO DAGScheduler: Job 15 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:52 INFO TaskSchedulerImpl: Killing all running tasks in stage 28: Stage finished
+26/11/21 08:09:52 INFO DAGScheduler: Job 15 finished: collect at /workspace/src/batch/silver_uci.py:177, took 0.120077 s
+26/11/21 08:09:52 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),NOT (outcome#5455 = rejected)
+26/11/21 08:09:52 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:09:52 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:09:52 INFO CodeGenerator: Code generated in 20.47076 ms
+26/11/21 08:09:52 INFO MemoryStore: Block broadcast_19 stored as values in memory (estimated size 202.6 KiB, free 413.2 MiB)
+26/11/21 08:09:52 INFO MemoryStore: Block broadcast_19_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 413.2 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_19_piece0 in memory on spark-master:46771 (size: 35.7 KiB, free: 413.8 MiB)
+26/11/21 08:09:52 INFO SparkContext: Created broadcast 19 from first at /workspace/src/batch/silver_uci.py:181
+26/11/21 08:09:52 INFO InMemoryFileIndex: Selected 12 partitions out of 12, pruned 0.0% partitions.
+26/11/21 08:09:52 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:52 INFO DAGScheduler: Registering RDD 73 (first at /workspace/src/batch/silver_uci.py:181) as input to shuffle 7
+26/11/21 08:09:52 INFO DAGScheduler: Got map stage job 16 (first at /workspace/src/batch/silver_uci.py:181) with 2 output partitions
+26/11/21 08:09:52 INFO DAGScheduler: Final stage: ShuffleMapStage 29 (first at /workspace/src/batch/silver_uci.py:181)
+26/11/21 08:09:52 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:52 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:52 INFO DAGScheduler: Submitting ShuffleMapStage 29 (MapPartitionsRDD[73] at first at /workspace/src/batch/silver_uci.py:181), which has no missing parents
+26/11/21 08:09:52 INFO MemoryStore: Block broadcast_20 stored as values in memory (estimated size 43.2 KiB, free 413.1 MiB)
+26/11/21 08:09:52 INFO MemoryStore: Block broadcast_20_piece0 stored as bytes in memory (estimated size 18.8 KiB, free 413.1 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_20_piece0 in memory on spark-master:46771 (size: 18.8 KiB, free: 413.8 MiB)
+26/11/21 08:09:52 INFO SparkContext: Created broadcast 20 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:52 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 29 (MapPartitionsRDD[73] at first at /workspace/src/batch/silver_uci.py:181) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:52 INFO TaskSchedulerImpl: Adding task set 29.0 with 2 tasks resource profile 0
+26/11/21 08:09:52 INFO TaskSetManager: Starting task 0.0 in stage 29.0 (TID 22) (172.18.0.12, executor 1, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:52 INFO TaskSetManager: Starting task 1.0 in stage 29.0 (TID 23) (172.18.0.5, executor 0, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_20_piece0 in memory on 172.18.0.12:38109 (size: 18.8 KiB, free: 434.3 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_20_piece0 in memory on 172.18.0.5:38827 (size: 18.8 KiB, free: 418.7 MiB)
+26/11/21 08:09:52 INFO BlockManagerInfo: Added broadcast_19_piece0 in memory on 172.18.0.5:38827 (size: 35.7 KiB, free: 418.7 MiB)
+26/11/21 08:09:53 INFO BlockManagerInfo: Added broadcast_19_piece0 in memory on 172.18.0.12:38109 (size: 35.7 KiB, free: 434.3 MiB)
+26/11/21 08:09:53 INFO TaskSetManager: Finished task 1.0 in stage 29.0 (TID 23) in 724 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:53 INFO TaskSetManager: Finished task 0.0 in stage 29.0 (TID 22) in 1194 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:09:53 INFO TaskSchedulerImpl: Removed TaskSet 29.0, whose tasks have all completed, from pool 
+26/11/21 08:09:53 INFO DAGScheduler: ShuffleMapStage 29 (first at /workspace/src/batch/silver_uci.py:181) finished in 1.203 s
+26/11/21 08:09:53 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:53 INFO DAGScheduler: running: Set()
+26/11/21 08:09:53 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:53 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:53 INFO ShufflePartitionsUtil: For shuffle(7), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:09:54 INFO CodeGenerator: Code generated in 36.572698 ms
+26/11/21 08:09:54 INFO DAGScheduler: Registering RDD 76 (first at /workspace/src/batch/silver_uci.py:181) as input to shuffle 8
+26/11/21 08:09:54 INFO DAGScheduler: Got map stage job 17 (first at /workspace/src/batch/silver_uci.py:181) with 1 output partitions
+26/11/21 08:09:54 INFO DAGScheduler: Final stage: ShuffleMapStage 31 (first at /workspace/src/batch/silver_uci.py:181)
+26/11/21 08:09:54 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 30)
+26/11/21 08:09:54 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:54 INFO BlockManagerInfo: Removed broadcast_18_piece0 on 172.18.0.5:38827 in memory (size: 19.9 KiB, free: 418.7 MiB)
+26/11/21 08:09:54 INFO DAGScheduler: Submitting ShuffleMapStage 31 (MapPartitionsRDD[76] at first at /workspace/src/batch/silver_uci.py:181), which has no missing parents
+26/11/21 08:09:54 INFO BlockManagerInfo: Removed broadcast_18_piece0 on spark-master:46771 in memory (size: 19.9 KiB, free: 413.8 MiB)
+26/11/21 08:09:54 INFO MemoryStore: Block broadcast_21 stored as values in memory (estimated size 55.4 KiB, free 413.1 MiB)
+26/11/21 08:09:54 INFO MemoryStore: Block broadcast_21_piece0 stored as bytes in memory (estimated size 23.8 KiB, free 413.1 MiB)
+26/11/21 08:09:54 INFO BlockManagerInfo: Added broadcast_21_piece0 in memory on spark-master:46771 (size: 23.8 KiB, free: 413.8 MiB)
+26/11/21 08:09:54 INFO SparkContext: Created broadcast 21 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:54 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 31 (MapPartitionsRDD[76] at first at /workspace/src/batch/silver_uci.py:181) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Adding task set 31.0 with 1 tasks resource profile 0
+26/11/21 08:09:54 INFO TaskSetManager: Starting task 0.0 in stage 31.0 (TID 24) (172.18.0.12, executor 1, partition 0, NODE_LOCAL, 8992 bytes) 
+26/11/21 08:09:54 INFO BlockManagerInfo: Removed broadcast_20_piece0 on spark-master:46771 in memory (size: 18.8 KiB, free: 413.8 MiB)
+26/11/21 08:09:54 INFO BlockManagerInfo: Removed broadcast_20_piece0 on 172.18.0.5:38827 in memory (size: 18.8 KiB, free: 418.7 MiB)
+26/11/21 08:09:54 INFO BlockManagerInfo: Removed broadcast_20_piece0 on 172.18.0.12:38109 in memory (size: 18.8 KiB, free: 434.3 MiB)
+26/11/21 08:09:54 INFO BlockManagerInfo: Added broadcast_21_piece0 in memory on 172.18.0.12:38109 (size: 23.8 KiB, free: 434.3 MiB)
+26/11/21 08:09:54 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 7 to 172.18.0.12:40864
+26/11/21 08:09:54 INFO TaskSetManager: Finished task 0.0 in stage 31.0 (TID 24) in 415 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Removed TaskSet 31.0, whose tasks have all completed, from pool 
+26/11/21 08:09:54 INFO DAGScheduler: ShuffleMapStage 31 (first at /workspace/src/batch/silver_uci.py:181) finished in 0.433 s
+26/11/21 08:09:54 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:54 INFO DAGScheduler: running: Set()
+26/11/21 08:09:54 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:54 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:54 INFO CodeGenerator: Code generated in 16.419158 ms
+26/11/21 08:09:54 INFO SparkContext: Starting job: first at /workspace/src/batch/silver_uci.py:181
+26/11/21 08:09:54 INFO DAGScheduler: Got job 18 (first at /workspace/src/batch/silver_uci.py:181) with 1 output partitions
+26/11/21 08:09:54 INFO DAGScheduler: Final stage: ResultStage 34 (first at /workspace/src/batch/silver_uci.py:181)
+26/11/21 08:09:54 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 33)
+26/11/21 08:09:54 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:54 INFO DAGScheduler: Submitting ResultStage 34 (MapPartitionsRDD[79] at first at /workspace/src/batch/silver_uci.py:181), which has no missing parents
+26/11/21 08:09:54 INFO MemoryStore: Block broadcast_22 stored as values in memory (estimated size 15.1 KiB, free 413.1 MiB)
+26/11/21 08:09:54 INFO MemoryStore: Block broadcast_22_piece0 stored as bytes in memory (estimated size 6.7 KiB, free 413.1 MiB)
+26/11/21 08:09:54 INFO BlockManagerInfo: Added broadcast_22_piece0 in memory on spark-master:46771 (size: 6.7 KiB, free: 413.8 MiB)
+26/11/21 08:09:54 INFO SparkContext: Created broadcast 22 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:54 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 34 (MapPartitionsRDD[79] at first at /workspace/src/batch/silver_uci.py:181) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Adding task set 34.0 with 1 tasks resource profile 0
+26/11/21 08:09:54 INFO TaskSetManager: Starting task 0.0 in stage 34.0 (TID 25) (172.18.0.12, executor 1, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:54 INFO BlockManagerInfo: Added broadcast_22_piece0 in memory on 172.18.0.12:38109 (size: 6.7 KiB, free: 434.3 MiB)
+26/11/21 08:09:54 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 8 to 172.18.0.12:40864
+26/11/21 08:09:54 INFO TaskSetManager: Finished task 0.0 in stage 34.0 (TID 25) in 140 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Removed TaskSet 34.0, whose tasks have all completed, from pool 
+26/11/21 08:09:54 INFO DAGScheduler: ResultStage 34 (first at /workspace/src/batch/silver_uci.py:181) finished in 0.153 s
+26/11/21 08:09:54 INFO DAGScheduler: Job 18 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Killing all running tasks in stage 34: Stage finished
+26/11/21 08:09:54 INFO DAGScheduler: Job 18 finished: first at /workspace/src/batch/silver_uci.py:181, took 0.159439 s
+26/11/21 08:09:54 INFO CodeGenerator: Code generated in 21.926097 ms
+26/11/21 08:09:54 INFO DAGScheduler: Registering RDD 84 (collect at /workspace/src/batch/silver_uci.py:183) as input to shuffle 9
+26/11/21 08:09:54 INFO DAGScheduler: Got map stage job 19 (collect at /workspace/src/batch/silver_uci.py:183) with 1 output partitions
+26/11/21 08:09:54 INFO DAGScheduler: Final stage: ShuffleMapStage 35 (collect at /workspace/src/batch/silver_uci.py:183)
+26/11/21 08:09:54 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:54 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:54 INFO DAGScheduler: Submitting ShuffleMapStage 35 (MapPartitionsRDD[84] at collect at /workspace/src/batch/silver_uci.py:183), which has no missing parents
+26/11/21 08:09:54 INFO MemoryStore: Block broadcast_23 stored as values in memory (estimated size 54.5 KiB, free 413.1 MiB)
+26/11/21 08:09:54 INFO MemoryStore: Block broadcast_23_piece0 stored as bytes in memory (estimated size 21.2 KiB, free 413.1 MiB)
+26/11/21 08:09:54 INFO BlockManagerInfo: Added broadcast_23_piece0 in memory on spark-master:46771 (size: 21.2 KiB, free: 413.8 MiB)
+26/11/21 08:09:54 INFO SparkContext: Created broadcast 23 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:54 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 35 (MapPartitionsRDD[84] at collect at /workspace/src/batch/silver_uci.py:183) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Adding task set 35.0 with 1 tasks resource profile 0
+26/11/21 08:09:54 INFO TaskSetManager: Starting task 0.0 in stage 35.0 (TID 26) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9710 bytes) 
+26/11/21 08:09:54 INFO BlockManagerInfo: Added broadcast_23_piece0 in memory on 172.18.0.5:38827 (size: 21.2 KiB, free: 418.7 MiB)
+26/11/21 08:09:54 INFO TaskSetManager: Finished task 0.0 in stage 35.0 (TID 26) in 128 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:54 INFO TaskSchedulerImpl: Removed TaskSet 35.0, whose tasks have all completed, from pool 
+26/11/21 08:09:54 INFO DAGScheduler: ShuffleMapStage 35 (collect at /workspace/src/batch/silver_uci.py:183) finished in 0.135 s
+26/11/21 08:09:54 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:54 INFO DAGScheduler: running: Set()
+26/11/21 08:09:54 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:54 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:54 INFO ShufflePartitionsUtil: For shuffle(9), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:09:54 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+26/11/21 08:09:55 INFO CodeGenerator: Code generated in 16.376898 ms
+26/11/21 08:09:55 INFO SparkContext: Starting job: collect at /workspace/src/batch/silver_uci.py:183
+26/11/21 08:09:55 INFO DAGScheduler: Got job 20 (collect at /workspace/src/batch/silver_uci.py:183) with 1 output partitions
+26/11/21 08:09:55 INFO DAGScheduler: Final stage: ResultStage 37 (collect at /workspace/src/batch/silver_uci.py:183)
+26/11/21 08:09:55 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 36)
+26/11/21 08:09:55 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:55 INFO DAGScheduler: Submitting ResultStage 37 (MapPartitionsRDD[87] at collect at /workspace/src/batch/silver_uci.py:183), which has no missing parents
+26/11/21 08:09:55 INFO MemoryStore: Block broadcast_24 stored as values in memory (estimated size 56.2 KiB, free 413.0 MiB)
+26/11/21 08:09:55 INFO MemoryStore: Block broadcast_24_piece0 stored as bytes in memory (estimated size 22.3 KiB, free 413.0 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_24_piece0 in memory on spark-master:46771 (size: 22.3 KiB, free: 413.7 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Removed broadcast_23_piece0 on spark-master:46771 in memory (size: 21.2 KiB, free: 413.8 MiB)
+26/11/21 08:09:55 INFO SparkContext: Created broadcast 24 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:55 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 37 (MapPartitionsRDD[87] at collect at /workspace/src/batch/silver_uci.py:183) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:55 INFO TaskSchedulerImpl: Adding task set 37.0 with 1 tasks resource profile 0
+26/11/21 08:09:55 INFO TaskSetManager: Starting task 0.0 in stage 37.0 (TID 27) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:55 INFO BlockManagerInfo: Removed broadcast_23_piece0 on 172.18.0.5:38827 in memory (size: 21.2 KiB, free: 418.7 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_24_piece0 in memory on 172.18.0.5:38827 (size: 22.3 KiB, free: 418.7 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Removed broadcast_22_piece0 on spark-master:46771 in memory (size: 6.7 KiB, free: 413.8 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Removed broadcast_22_piece0 on 172.18.0.12:38109 in memory (size: 6.7 KiB, free: 434.3 MiB)
+26/11/21 08:09:55 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 9 to 172.18.0.5:54004
+26/11/21 08:09:55 INFO BlockManagerInfo: Removed broadcast_21_piece0 on spark-master:46771 in memory (size: 23.8 KiB, free: 413.8 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Removed broadcast_21_piece0 on 172.18.0.12:38109 in memory (size: 23.8 KiB, free: 434.3 MiB)
+26/11/21 08:09:55 INFO TaskSetManager: Finished task 0.0 in stage 37.0 (TID 27) in 67 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:55 INFO TaskSchedulerImpl: Removed TaskSet 37.0, whose tasks have all completed, from pool 
+26/11/21 08:09:55 INFO DAGScheduler: ResultStage 37 (collect at /workspace/src/batch/silver_uci.py:183) finished in 0.099 s
+26/11/21 08:09:55 INFO DAGScheduler: Job 20 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:55 INFO TaskSchedulerImpl: Killing all running tasks in stage 37: Stage finished
+26/11/21 08:09:55 INFO DAGScheduler: Job 20 finished: collect at /workspace/src/batch/silver_uci.py:183, took 0.107446 s
+26/11/21 08:09:55 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),NOT (outcome#5455 = rejected)
+26/11/21 08:09:55 INFO FileSourceStrategy: Pushed Filters: IsNotNull(source_rows),GreaterThan(source_rows,1)
+26/11/21 08:09:55 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(source_rows#5443L),(source_rows#5443L > 1)
+26/11/21 08:09:55 INFO CodeGenerator: Code generated in 26.158129 ms
+26/11/21 08:09:55 INFO MemoryStore: Block broadcast_25 stored as values in memory (estimated size 202.5 KiB, free 413.0 MiB)
+26/11/21 08:09:55 INFO MemoryStore: Block broadcast_25_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 412.9 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_25_piece0 in memory on spark-master:46771 (size: 35.7 KiB, free: 413.8 MiB)
+26/11/21 08:09:55 INFO SparkContext: Created broadcast 25 from first at /workspace/src/batch/silver_uci.py:186
+26/11/21 08:09:55 INFO InMemoryFileIndex: Selected 12 partitions out of 12, pruned 0.0% partitions.
+26/11/21 08:09:55 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:55 INFO DAGScheduler: Registering RDD 91 (first at /workspace/src/batch/silver_uci.py:186) as input to shuffle 10
+26/11/21 08:09:55 INFO DAGScheduler: Got map stage job 21 (first at /workspace/src/batch/silver_uci.py:186) with 2 output partitions
+26/11/21 08:09:55 INFO DAGScheduler: Final stage: ShuffleMapStage 38 (first at /workspace/src/batch/silver_uci.py:186)
+26/11/21 08:09:55 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:55 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:55 INFO DAGScheduler: Submitting ShuffleMapStage 38 (MapPartitionsRDD[91] at first at /workspace/src/batch/silver_uci.py:186), which has no missing parents
+26/11/21 08:09:55 INFO MemoryStore: Block broadcast_26 stored as values in memory (estimated size 21.3 KiB, free 412.9 MiB)
+26/11/21 08:09:55 INFO MemoryStore: Block broadcast_26_piece0 stored as bytes in memory (estimated size 9.1 KiB, free 412.9 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_26_piece0 in memory on spark-master:46771 (size: 9.1 KiB, free: 413.8 MiB)
+26/11/21 08:09:55 INFO SparkContext: Created broadcast 26 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:55 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 38 (MapPartitionsRDD[91] at first at /workspace/src/batch/silver_uci.py:186) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:55 INFO TaskSchedulerImpl: Adding task set 38.0 with 2 tasks resource profile 0
+26/11/21 08:09:55 INFO TaskSetManager: Starting task 0.0 in stage 38.0 (TID 28) (172.18.0.5, executor 0, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:55 INFO TaskSetManager: Starting task 1.0 in stage 38.0 (TID 29) (172.18.0.12, executor 1, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_26_piece0 in memory on 172.18.0.5:38827 (size: 9.1 KiB, free: 418.7 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_26_piece0 in memory on 172.18.0.12:38109 (size: 9.1 KiB, free: 434.3 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_25_piece0 in memory on 172.18.0.5:38827 (size: 35.7 KiB, free: 418.7 MiB)
+26/11/21 08:09:55 INFO BlockManagerInfo: Added broadcast_25_piece0 in memory on 172.18.0.12:38109 (size: 35.7 KiB, free: 434.3 MiB)
+26/11/21 08:09:55 INFO TaskSetManager: Finished task 0.0 in stage 38.0 (TID 28) in 592 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:55 INFO TaskSetManager: Finished task 1.0 in stage 38.0 (TID 29) in 604 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:09:55 INFO TaskSchedulerImpl: Removed TaskSet 38.0, whose tasks have all completed, from pool 
+26/11/21 08:09:55 INFO DAGScheduler: ShuffleMapStage 38 (first at /workspace/src/batch/silver_uci.py:186) finished in 0.620 s
+26/11/21 08:09:55 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:55 INFO DAGScheduler: running: Set()
+26/11/21 08:09:55 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:55 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:56 INFO CodeGenerator: Code generated in 6.646767 ms
+26/11/21 08:09:56 INFO SparkContext: Starting job: first at /workspace/src/batch/silver_uci.py:186
+26/11/21 08:09:56 INFO DAGScheduler: Got job 22 (first at /workspace/src/batch/silver_uci.py:186) with 1 output partitions
+26/11/21 08:09:56 INFO DAGScheduler: Final stage: ResultStage 40 (first at /workspace/src/batch/silver_uci.py:186)
+26/11/21 08:09:56 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 39)
+26/11/21 08:09:56 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:56 INFO DAGScheduler: Submitting ResultStage 40 (MapPartitionsRDD[94] at first at /workspace/src/batch/silver_uci.py:186), which has no missing parents
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_27 stored as values in memory (estimated size 14.3 KiB, free 412.9 MiB)
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_27_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 412.9 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_27_piece0 in memory on spark-master:46771 (size: 6.6 KiB, free: 413.7 MiB)
+26/11/21 08:09:56 INFO SparkContext: Created broadcast 27 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:56 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 40 (MapPartitionsRDD[94] at first at /workspace/src/batch/silver_uci.py:186) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Adding task set 40.0 with 1 tasks resource profile 0
+26/11/21 08:09:56 INFO TaskSetManager: Starting task 0.0 in stage 40.0 (TID 30) (172.18.0.12, executor 1, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_27_piece0 in memory on 172.18.0.12:38109 (size: 6.6 KiB, free: 434.3 MiB)
+26/11/21 08:09:56 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 10 to 172.18.0.12:40864
+26/11/21 08:09:56 INFO TaskSetManager: Finished task 0.0 in stage 40.0 (TID 30) in 136 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Removed TaskSet 40.0, whose tasks have all completed, from pool 
+26/11/21 08:09:56 INFO DAGScheduler: ResultStage 40 (first at /workspace/src/batch/silver_uci.py:186) finished in 0.143 s
+26/11/21 08:09:56 INFO DAGScheduler: Job 22 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Killing all running tasks in stage 40: Stage finished
+26/11/21 08:09:56 INFO DAGScheduler: Job 22 finished: first at /workspace/src/batch/silver_uci.py:186, took 0.146641 s
+26/11/21 08:09:56 INFO CodeGenerator: Code generated in 18.486616 ms
+26/11/21 08:09:56 INFO DAGScheduler: Registering RDD 99 (first at /workspace/src/batch/silver_uci.py:189) as input to shuffle 11
+26/11/21 08:09:56 INFO DAGScheduler: Got map stage job 23 (first at /workspace/src/batch/silver_uci.py:189) with 1 output partitions
+26/11/21 08:09:56 INFO DAGScheduler: Final stage: ShuffleMapStage 41 (first at /workspace/src/batch/silver_uci.py:189)
+26/11/21 08:09:56 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:56 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:56 INFO DAGScheduler: Submitting ShuffleMapStage 41 (MapPartitionsRDD[99] at first at /workspace/src/batch/silver_uci.py:189), which has no missing parents
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_28 stored as values in memory (estimated size 35.4 KiB, free 412.8 MiB)
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_28_piece0 stored as bytes in memory (estimated size 12.7 KiB, free 412.8 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_28_piece0 in memory on spark-master:46771 (size: 12.7 KiB, free: 413.7 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_24_piece0 on spark-master:46771 in memory (size: 22.3 KiB, free: 413.8 MiB)
+26/11/21 08:09:56 INFO SparkContext: Created broadcast 28 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:56 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 41 (MapPartitionsRDD[99] at first at /workspace/src/batch/silver_uci.py:189) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_24_piece0 on 172.18.0.5:38827 in memory (size: 22.3 KiB, free: 418.7 MiB)
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Adding task set 41.0 with 1 tasks resource profile 0
+26/11/21 08:09:56 INFO TaskSetManager: Starting task 0.0 in stage 41.0 (TID 31) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9710 bytes) 
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_26_piece0 on spark-master:46771 in memory (size: 9.1 KiB, free: 413.8 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_26_piece0 on 172.18.0.12:38109 in memory (size: 9.1 KiB, free: 434.3 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_26_piece0 on 172.18.0.5:38827 in memory (size: 9.1 KiB, free: 418.7 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_28_piece0 in memory on 172.18.0.5:38827 (size: 12.7 KiB, free: 418.7 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_27_piece0 on spark-master:46771 in memory (size: 6.6 KiB, free: 413.8 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_27_piece0 on 172.18.0.12:38109 in memory (size: 6.6 KiB, free: 434.3 MiB)
+26/11/21 08:09:56 INFO TaskSetManager: Finished task 0.0 in stage 41.0 (TID 31) in 127 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Removed TaskSet 41.0, whose tasks have all completed, from pool 
+26/11/21 08:09:56 INFO DAGScheduler: ShuffleMapStage 41 (first at /workspace/src/batch/silver_uci.py:189) finished in 0.190 s
+26/11/21 08:09:56 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:56 INFO DAGScheduler: running: Set()
+26/11/21 08:09:56 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:56 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:56 INFO SparkContext: Starting job: first at /workspace/src/batch/silver_uci.py:189
+26/11/21 08:09:56 INFO DAGScheduler: Got job 24 (first at /workspace/src/batch/silver_uci.py:189) with 1 output partitions
+26/11/21 08:09:56 INFO DAGScheduler: Final stage: ResultStage 43 (first at /workspace/src/batch/silver_uci.py:189)
+26/11/21 08:09:56 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 42)
+26/11/21 08:09:56 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:56 INFO DAGScheduler: Submitting ResultStage 43 (MapPartitionsRDD[102] at first at /workspace/src/batch/silver_uci.py:189), which has no missing parents
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_29 stored as values in memory (estimated size 13.1 KiB, free 412.9 MiB)
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_29_piece0 stored as bytes in memory (estimated size 6.2 KiB, free 412.9 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_29_piece0 in memory on spark-master:46771 (size: 6.2 KiB, free: 413.8 MiB)
+26/11/21 08:09:56 INFO SparkContext: Created broadcast 29 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:56 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 43 (MapPartitionsRDD[102] at first at /workspace/src/batch/silver_uci.py:189) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Adding task set 43.0 with 1 tasks resource profile 0
+26/11/21 08:09:56 INFO TaskSetManager: Starting task 0.0 in stage 43.0 (TID 32) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_29_piece0 in memory on 172.18.0.5:38827 (size: 6.2 KiB, free: 418.7 MiB)
+26/11/21 08:09:56 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 11 to 172.18.0.5:54004
+26/11/21 08:09:56 INFO TaskSetManager: Finished task 0.0 in stage 43.0 (TID 32) in 100 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Removed TaskSet 43.0, whose tasks have all completed, from pool 
+26/11/21 08:09:56 INFO DAGScheduler: ResultStage 43 (first at /workspace/src/batch/silver_uci.py:189) finished in 0.127 s
+26/11/21 08:09:56 INFO DAGScheduler: Job 24 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Killing all running tasks in stage 43: Stage finished
+26/11/21 08:09:56 INFO DAGScheduler: Job 24 finished: first at /workspace/src/batch/silver_uci.py:189, took 0.140054 s
+26/11/21 08:09:56 INFO CodeGenerator: Code generated in 30.95545 ms
+26/11/21 08:09:56 INFO DAGScheduler: Registering RDD 107 (collect at /workspace/src/quality/spark_rules.py:48) as input to shuffle 12
+26/11/21 08:09:56 INFO DAGScheduler: Got map stage job 25 (collect at /workspace/src/quality/spark_rules.py:48) with 1 output partitions
+26/11/21 08:09:56 INFO DAGScheduler: Final stage: ShuffleMapStage 44 (collect at /workspace/src/quality/spark_rules.py:48)
+26/11/21 08:09:56 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:56 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:56 INFO DAGScheduler: Submitting ShuffleMapStage 44 (MapPartitionsRDD[107] at collect at /workspace/src/quality/spark_rules.py:48), which has no missing parents
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_30 stored as values in memory (estimated size 125.2 KiB, free 412.8 MiB)
+26/11/21 08:09:56 INFO MemoryStore: Block broadcast_30_piece0 stored as bytes in memory (estimated size 41.6 KiB, free 412.8 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_30_piece0 in memory on spark-master:46771 (size: 41.6 KiB, free: 413.7 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_29_piece0 on spark-master:46771 in memory (size: 6.2 KiB, free: 413.7 MiB)
+26/11/21 08:09:56 INFO SparkContext: Created broadcast 30 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:56 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 44 (MapPartitionsRDD[107] at collect at /workspace/src/quality/spark_rules.py:48) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:56 INFO TaskSchedulerImpl: Adding task set 44.0 with 1 tasks resource profile 0
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_29_piece0 on 172.18.0.5:38827 in memory (size: 6.2 KiB, free: 418.7 MiB)
+26/11/21 08:09:56 INFO TaskSetManager: Starting task 0.0 in stage 44.0 (TID 33) (172.18.0.5, executor 0, partition 0, PROCESS_LOCAL, 9710 bytes) 
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_28_piece0 on spark-master:46771 in memory (size: 12.7 KiB, free: 413.7 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Removed broadcast_28_piece0 on 172.18.0.5:38827 in memory (size: 12.7 KiB, free: 418.7 MiB)
+26/11/21 08:09:56 INFO BlockManagerInfo: Added broadcast_30_piece0 in memory on 172.18.0.5:38827 (size: 41.6 KiB, free: 418.7 MiB)
+26/11/21 08:09:57 INFO TaskSetManager: Finished task 0.0 in stage 44.0 (TID 33) in 183 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:57 INFO DAGScheduler: ShuffleMapStage 44 (collect at /workspace/src/quality/spark_rules.py:48) finished in 0.229 s
+26/11/21 08:09:57 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:57 INFO DAGScheduler: running: Set()
+26/11/21 08:09:57 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:57 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:57 INFO TaskSchedulerImpl: Removed TaskSet 44.0, whose tasks have all completed, from pool 
+26/11/21 08:09:57 INFO ShufflePartitionsUtil: For shuffle(12), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:09:57 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+26/11/21 08:09:57 INFO SparkContext: Starting job: collect at /workspace/src/quality/spark_rules.py:48
+26/11/21 08:09:57 INFO DAGScheduler: Got job 26 (collect at /workspace/src/quality/spark_rules.py:48) with 1 output partitions
+26/11/21 08:09:57 INFO DAGScheduler: Final stage: ResultStage 46 (collect at /workspace/src/quality/spark_rules.py:48)
+26/11/21 08:09:57 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 45)
+26/11/21 08:09:57 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:57 INFO DAGScheduler: Submitting ResultStage 46 (MapPartitionsRDD[110] at collect at /workspace/src/quality/spark_rules.py:48), which has no missing parents
+26/11/21 08:09:57 INFO MemoryStore: Block broadcast_31 stored as values in memory (estimated size 124.4 KiB, free 412.7 MiB)
+26/11/21 08:09:57 INFO MemoryStore: Block broadcast_31_piece0 stored as bytes in memory (estimated size 41.8 KiB, free 412.7 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_31_piece0 in memory on spark-master:46771 (size: 41.8 KiB, free: 413.7 MiB)
+26/11/21 08:09:57 INFO SparkContext: Created broadcast 31 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:57 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 46 (MapPartitionsRDD[110] at collect at /workspace/src/quality/spark_rules.py:48) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:57 INFO TaskSchedulerImpl: Adding task set 46.0 with 1 tasks resource profile 0
+26/11/21 08:09:57 INFO TaskSetManager: Starting task 0.0 in stage 46.0 (TID 34) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_31_piece0 in memory on 172.18.0.5:38827 (size: 41.8 KiB, free: 418.6 MiB)
+26/11/21 08:09:57 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 12 to 172.18.0.5:54004
+26/11/21 08:09:57 INFO TaskSetManager: Finished task 0.0 in stage 46.0 (TID 34) in 60 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:57 INFO TaskSchedulerImpl: Removed TaskSet 46.0, whose tasks have all completed, from pool 
+26/11/21 08:09:57 INFO DAGScheduler: ResultStage 46 (collect at /workspace/src/quality/spark_rules.py:48) finished in 0.084 s
+26/11/21 08:09:57 INFO DAGScheduler: Job 26 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:57 INFO TaskSchedulerImpl: Killing all running tasks in stage 46: Stage finished
+26/11/21 08:09:57 INFO DAGScheduler: Job 26 finished: collect at /workspace/src/quality/spark_rules.py:48, took 0.093151 s
+26/11/21 08:09:57 INFO DataSourceStrategy: Pruning directories with: 
+26/11/21 08:09:57 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:09:57 INFO FileSourceStrategy: Post-Scan Filters: (size(_violations#5445.rule, true) > 0),isnotnull(_violations#5445.rule)
+26/11/21 08:09:57 INFO CodeGenerator: Code generated in 33.725561 ms
+26/11/21 08:09:57 INFO MemoryStore: Block broadcast_32 stored as values in memory (estimated size 202.8 KiB, free 412.5 MiB)
+26/11/21 08:09:57 INFO MemoryStore: Block broadcast_32_piece0 stored as bytes in memory (estimated size 35.9 KiB, free 412.4 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_32_piece0 in memory on spark-master:46771 (size: 35.9 KiB, free: 413.7 MiB)
+26/11/21 08:09:57 INFO SparkContext: Created broadcast 32 from collect at /workspace/src/quality/spark_rules.py:48
+26/11/21 08:09:57 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:57 INFO DAGScheduler: Registering RDD 114 (collect at /workspace/src/quality/spark_rules.py:48) as input to shuffle 13
+26/11/21 08:09:57 INFO DAGScheduler: Got map stage job 27 (collect at /workspace/src/quality/spark_rules.py:48) with 2 output partitions
+26/11/21 08:09:57 INFO DAGScheduler: Final stage: ShuffleMapStage 47 (collect at /workspace/src/quality/spark_rules.py:48)
+26/11/21 08:09:57 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:57 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:57 INFO DAGScheduler: Submitting ShuffleMapStage 47 (MapPartitionsRDD[114] at collect at /workspace/src/quality/spark_rules.py:48), which has no missing parents
+26/11/21 08:09:57 INFO MemoryStore: Block broadcast_33 stored as values in memory (estimated size 48.6 KiB, free 412.4 MiB)
+26/11/21 08:09:57 INFO MemoryStore: Block broadcast_33_piece0 stored as bytes in memory (estimated size 20.8 KiB, free 412.4 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Removed broadcast_31_piece0 on spark-master:46771 in memory (size: 41.8 KiB, free: 413.7 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_33_piece0 in memory on spark-master:46771 (size: 20.8 KiB, free: 413.7 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Removed broadcast_31_piece0 on 172.18.0.5:38827 in memory (size: 41.8 KiB, free: 418.7 MiB)
+26/11/21 08:09:57 INFO SparkContext: Created broadcast 33 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:57 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 47 (MapPartitionsRDD[114] at collect at /workspace/src/quality/spark_rules.py:48) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:57 INFO TaskSchedulerImpl: Adding task set 47.0 with 2 tasks resource profile 0
+26/11/21 08:09:57 INFO TaskSetManager: Starting task 0.0 in stage 47.0 (TID 35) (172.18.0.12, executor 1, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:57 INFO TaskSetManager: Starting task 1.0 in stage 47.0 (TID 36) (172.18.0.5, executor 0, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:57 INFO BlockManagerInfo: Removed broadcast_30_piece0 on spark-master:46771 in memory (size: 41.6 KiB, free: 413.7 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Removed broadcast_30_piece0 on 172.18.0.5:38827 in memory (size: 41.6 KiB, free: 418.7 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_33_piece0 in memory on 172.18.0.5:38827 (size: 20.8 KiB, free: 418.7 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_33_piece0 in memory on 172.18.0.12:38109 (size: 20.8 KiB, free: 434.3 MiB)
+26/11/21 08:09:57 INFO BlockManagerInfo: Added broadcast_32_piece0 in memory on 172.18.0.5:38827 (size: 35.9 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_32_piece0 in memory on 172.18.0.12:38109 (size: 35.9 KiB, free: 434.2 MiB)
+26/11/21 08:09:58 INFO TaskSetManager: Finished task 1.0 in stage 47.0 (TID 36) in 654 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:58 INFO TaskSetManager: Finished task 0.0 in stage 47.0 (TID 35) in 959 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Removed TaskSet 47.0, whose tasks have all completed, from pool 
+26/11/21 08:09:58 INFO DAGScheduler: ShuffleMapStage 47 (collect at /workspace/src/quality/spark_rules.py:48) finished in 1.003 s
+26/11/21 08:09:58 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:58 INFO DAGScheduler: running: Set()
+26/11/21 08:09:58 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:58 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:58 INFO ShufflePartitionsUtil: For shuffle(13), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:09:58 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+26/11/21 08:09:58 INFO SparkContext: Starting job: collect at /workspace/src/quality/spark_rules.py:48
+26/11/21 08:09:58 INFO DAGScheduler: Got job 28 (collect at /workspace/src/quality/spark_rules.py:48) with 1 output partitions
+26/11/21 08:09:58 INFO DAGScheduler: Final stage: ResultStage 49 (collect at /workspace/src/quality/spark_rules.py:48)
+26/11/21 08:09:58 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 48)
+26/11/21 08:09:58 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:58 INFO DAGScheduler: Submitting ResultStage 49 (MapPartitionsRDD[117] at collect at /workspace/src/quality/spark_rules.py:48), which has no missing parents
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_34 stored as values in memory (estimated size 44.0 KiB, free 412.6 MiB)
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_34_piece0 stored as bytes in memory (estimated size 20.1 KiB, free 412.6 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_34_piece0 in memory on spark-master:46771 (size: 20.1 KiB, free: 413.7 MiB)
+26/11/21 08:09:58 INFO SparkContext: Created broadcast 34 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:58 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 49 (MapPartitionsRDD[117] at collect at /workspace/src/quality/spark_rules.py:48) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Adding task set 49.0 with 1 tasks resource profile 0
+26/11/21 08:09:58 INFO TaskSetManager: Starting task 0.0 in stage 49.0 (TID 37) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_34_piece0 in memory on 172.18.0.5:38827 (size: 20.1 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 13 to 172.18.0.5:54004
+26/11/21 08:09:58 INFO TaskSetManager: Finished task 0.0 in stage 49.0 (TID 37) in 39 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Removed TaskSet 49.0, whose tasks have all completed, from pool 
+26/11/21 08:09:58 INFO DAGScheduler: ResultStage 49 (collect at /workspace/src/quality/spark_rules.py:48) finished in 0.045 s
+26/11/21 08:09:58 INFO DAGScheduler: Job 28 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Killing all running tasks in stage 49: Stage finished
+26/11/21 08:09:58 INFO DAGScheduler: Job 28 finished: collect at /workspace/src/quality/spark_rules.py:48, took 0.048597 s
+26/11/21 08:09:58 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),NOT (outcome#5455 = rejected)
+26/11/21 08:09:58 INFO FileSourceStrategy: Pushed Filters: IsNotNull(dst_ambiguous),EqualTo(dst_ambiguous,true)
+26/11/21 08:09:58 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(dst_ambiguous#5430),dst_ambiguous#5430
+26/11/21 08:09:58 INFO CodeGenerator: Code generated in 10.059848 ms
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_35 stored as values in memory (estimated size 202.6 KiB, free 412.4 MiB)
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_35_piece0 stored as bytes in memory (estimated size 35.8 KiB, free 412.4 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_35_piece0 in memory on spark-master:46771 (size: 35.8 KiB, free: 413.7 MiB)
+26/11/21 08:09:58 INFO SparkContext: Created broadcast 35 from count at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:58 INFO InMemoryFileIndex: Selected 12 partitions out of 12, pruned 0.0% partitions.
+26/11/21 08:09:58 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:58 INFO DAGScheduler: Registering RDD 121 (count at NativeMethodAccessorImpl.java:0) as input to shuffle 14
+26/11/21 08:09:58 INFO DAGScheduler: Got map stage job 29 (count at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/11/21 08:09:58 INFO DAGScheduler: Final stage: ShuffleMapStage 50 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:58 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:58 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:58 INFO DAGScheduler: Submitting ShuffleMapStage 50 (MapPartitionsRDD[121] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_36 stored as values in memory (estimated size 19.0 KiB, free 412.4 MiB)
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_36_piece0 stored as bytes in memory (estimated size 8.4 KiB, free 412.4 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_36_piece0 in memory on spark-master:46771 (size: 8.4 KiB, free: 413.7 MiB)
+26/11/21 08:09:58 INFO SparkContext: Created broadcast 36 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:58 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 50 (MapPartitionsRDD[121] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Adding task set 50.0 with 2 tasks resource profile 0
+26/11/21 08:09:58 INFO TaskSetManager: Starting task 0.0 in stage 50.0 (TID 38) (172.18.0.5, executor 0, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:58 INFO TaskSetManager: Starting task 1.0 in stage 50.0 (TID 39) (172.18.0.12, executor 1, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_36_piece0 in memory on 172.18.0.5:38827 (size: 8.4 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_36_piece0 in memory on 172.18.0.12:38109 (size: 8.4 KiB, free: 434.2 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_35_piece0 in memory on 172.18.0.5:38827 (size: 35.8 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_35_piece0 in memory on 172.18.0.12:38109 (size: 35.8 KiB, free: 434.2 MiB)
+26/11/21 08:09:58 INFO TaskSetManager: Finished task 0.0 in stage 50.0 (TID 38) in 229 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:58 INFO TaskSetManager: Finished task 1.0 in stage 50.0 (TID 39) in 289 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Removed TaskSet 50.0, whose tasks have all completed, from pool 
+26/11/21 08:09:58 INFO DAGScheduler: ShuffleMapStage 50 (count at NativeMethodAccessorImpl.java:0) finished in 0.295 s
+26/11/21 08:09:58 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:58 INFO DAGScheduler: running: Set()
+26/11/21 08:09:58 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:58 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:58 INFO SparkContext: Starting job: count at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:58 INFO DAGScheduler: Got job 30 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:09:58 INFO DAGScheduler: Final stage: ResultStage 52 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:58 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 51)
+26/11/21 08:09:58 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:58 INFO DAGScheduler: Submitting ResultStage 52 (MapPartitionsRDD[124] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_37 stored as values in memory (estimated size 12.5 KiB, free 412.4 MiB)
+26/11/21 08:09:58 INFO MemoryStore: Block broadcast_37_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 412.4 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_37_piece0 in memory on spark-master:46771 (size: 6.0 KiB, free: 413.7 MiB)
+26/11/21 08:09:58 INFO SparkContext: Created broadcast 37 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:58 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 52 (MapPartitionsRDD[124] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Adding task set 52.0 with 1 tasks resource profile 0
+26/11/21 08:09:58 INFO TaskSetManager: Starting task 0.0 in stage 52.0 (TID 40) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:58 INFO BlockManagerInfo: Added broadcast_37_piece0 in memory on 172.18.0.5:38827 (size: 6.0 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 14 to 172.18.0.5:54004
+26/11/21 08:09:58 INFO BlockManagerInfo: Removed broadcast_36_piece0 on spark-master:46771 in memory (size: 8.4 KiB, free: 413.7 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Removed broadcast_36_piece0 on 172.18.0.5:38827 in memory (size: 8.4 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Removed broadcast_36_piece0 on 172.18.0.12:38109 in memory (size: 8.4 KiB, free: 434.2 MiB)
+26/11/21 08:09:58 INFO TaskSetManager: Finished task 0.0 in stage 52.0 (TID 40) in 48 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Removed TaskSet 52.0, whose tasks have all completed, from pool 
+26/11/21 08:09:58 INFO DAGScheduler: ResultStage 52 (count at NativeMethodAccessorImpl.java:0) finished in 0.058 s
+26/11/21 08:09:58 INFO DAGScheduler: Job 30 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:58 INFO TaskSchedulerImpl: Killing all running tasks in stage 52: Stage finished
+26/11/21 08:09:58 INFO DAGScheduler: Job 30 finished: count at NativeMethodAccessorImpl.java:0, took 0.066240 s
+26/11/21 08:09:58 INFO BlockManagerInfo: Removed broadcast_34_piece0 on spark-master:46771 in memory (size: 20.1 KiB, free: 413.7 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Removed broadcast_34_piece0 on 172.18.0.5:38827 in memory (size: 20.1 KiB, free: 418.6 MiB)
+26/11/21 08:09:58 INFO BlockManagerInfo: Removed broadcast_33_piece0 on spark-master:46771 in memory (size: 20.8 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_33_piece0 on 172.18.0.12:38109 in memory (size: 20.8 KiB, free: 434.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_33_piece0 on 172.18.0.5:38827 in memory (size: 20.8 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),NOT (outcome#5455 = rejected)
+26/11/21 08:09:59 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:09:59 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:09:59 INFO CodeGenerator: Code generated in 17.27275 ms
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_38 stored as values in memory (estimated size 202.6 KiB, free 412.3 MiB)
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_38_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 412.3 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_38_piece0 in memory on spark-master:46771 (size: 35.7 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO SparkContext: Created broadcast 38 from collect at /workspace/src/batch/silver_uci.py:204
+26/11/21 08:09:59 INFO InMemoryFileIndex: Selected 12 partitions out of 12, pruned 0.0% partitions.
+26/11/21 08:09:59 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:59 INFO DAGScheduler: Registering RDD 128 (collect at /workspace/src/batch/silver_uci.py:204) as input to shuffle 15
+26/11/21 08:09:59 INFO DAGScheduler: Got map stage job 31 (collect at /workspace/src/batch/silver_uci.py:204) with 2 output partitions
+26/11/21 08:09:59 INFO DAGScheduler: Final stage: ShuffleMapStage 53 (collect at /workspace/src/batch/silver_uci.py:204)
+26/11/21 08:09:59 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:59 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:59 INFO DAGScheduler: Submitting ShuffleMapStage 53 (MapPartitionsRDD[128] at collect at /workspace/src/batch/silver_uci.py:204), which has no missing parents
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_39 stored as values in memory (estimated size 40.3 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_39_piece0 stored as bytes in memory (estimated size 18.1 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_39_piece0 in memory on spark-master:46771 (size: 18.1 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO SparkContext: Created broadcast 39 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:59 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 53 (MapPartitionsRDD[128] at collect at /workspace/src/batch/silver_uci.py:204) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:59 INFO TaskSchedulerImpl: Adding task set 53.0 with 2 tasks resource profile 0
+26/11/21 08:09:59 INFO TaskSetManager: Starting task 0.0 in stage 53.0 (TID 41) (172.18.0.5, executor 0, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:59 INFO TaskSetManager: Starting task 1.0 in stage 53.0 (TID 42) (172.18.0.12, executor 1, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_39_piece0 in memory on 172.18.0.5:38827 (size: 18.1 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_39_piece0 in memory on 172.18.0.12:38109 (size: 18.1 KiB, free: 434.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_38_piece0 in memory on 172.18.0.5:38827 (size: 35.7 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_38_piece0 in memory on 172.18.0.12:38109 (size: 35.7 KiB, free: 434.2 MiB)
+26/11/21 08:09:59 INFO TaskSetManager: Finished task 0.0 in stage 53.0 (TID 41) in 358 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:09:59 INFO TaskSetManager: Finished task 1.0 in stage 53.0 (TID 42) in 443 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:09:59 INFO TaskSchedulerImpl: Removed TaskSet 53.0, whose tasks have all completed, from pool 
+26/11/21 08:09:59 INFO DAGScheduler: ShuffleMapStage 53 (collect at /workspace/src/batch/silver_uci.py:204) finished in 0.449 s
+26/11/21 08:09:59 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:09:59 INFO DAGScheduler: running: Set()
+26/11/21 08:09:59 INFO DAGScheduler: waiting: Set()
+26/11/21 08:09:59 INFO DAGScheduler: failed: Set()
+26/11/21 08:09:59 INFO ShufflePartitionsUtil: For shuffle(15), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:09:59 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+26/11/21 08:09:59 INFO CodeGenerator: Code generated in 7.112055 ms
+26/11/21 08:09:59 INFO SparkContext: Starting job: collect at /workspace/src/batch/silver_uci.py:204
+26/11/21 08:09:59 INFO DAGScheduler: Got job 32 (collect at /workspace/src/batch/silver_uci.py:204) with 1 output partitions
+26/11/21 08:09:59 INFO DAGScheduler: Final stage: ResultStage 55 (collect at /workspace/src/batch/silver_uci.py:204)
+26/11/21 08:09:59 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 54)
+26/11/21 08:09:59 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:59 INFO DAGScheduler: Submitting ResultStage 55 (MapPartitionsRDD[131] at collect at /workspace/src/batch/silver_uci.py:204), which has no missing parents
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_40 stored as values in memory (estimated size 39.8 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_40_piece0 stored as bytes in memory (estimated size 18.6 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_40_piece0 in memory on spark-master:46771 (size: 18.6 KiB, free: 413.6 MiB)
+26/11/21 08:09:59 INFO SparkContext: Created broadcast 40 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:59 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 55 (MapPartitionsRDD[131] at collect at /workspace/src/batch/silver_uci.py:204) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:09:59 INFO TaskSchedulerImpl: Adding task set 55.0 with 1 tasks resource profile 0
+26/11/21 08:09:59 INFO TaskSetManager: Starting task 0.0 in stage 55.0 (TID 43) (172.18.0.5, executor 0, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_40_piece0 in memory on 172.18.0.5:38827 (size: 18.6 KiB, free: 418.5 MiB)
+26/11/21 08:09:59 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 15 to 172.18.0.5:54004
+26/11/21 08:09:59 INFO TaskSetManager: Finished task 0.0 in stage 55.0 (TID 43) in 40 ms on 172.18.0.5 (executor 0) (1/1)
+26/11/21 08:09:59 INFO TaskSchedulerImpl: Removed TaskSet 55.0, whose tasks have all completed, from pool 
+26/11/21 08:09:59 INFO DAGScheduler: ResultStage 55 (collect at /workspace/src/batch/silver_uci.py:204) finished in 0.046 s
+26/11/21 08:09:59 INFO DAGScheduler: Job 32 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:09:59 INFO TaskSchedulerImpl: Killing all running tasks in stage 55: Stage finished
+26/11/21 08:09:59 INFO DAGScheduler: Job 32 finished: collect at /workspace/src/batch/silver_uci.py:204, took 0.049148 s
+26/11/21 08:09:59 INFO DataSourceStrategy: Pruning directories with: 
+26/11/21 08:09:59 INFO FileSourceStrategy: Pushed Filters: IsNotNull(is_holiday_date),EqualTo(is_holiday_date,true)
+26/11/21 08:09:59 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(is_holiday_date#5442),is_holiday_date#5442
+26/11/21 08:09:59 INFO CodeGenerator: Code generated in 15.477683 ms
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_41 stored as values in memory (estimated size 202.7 KiB, free 412.0 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_32_piece0 on spark-master:46771 in memory (size: 35.9 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_41_piece0 stored as bytes in memory (estimated size 35.8 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_32_piece0 on 172.18.0.12:38109 in memory (size: 35.9 KiB, free: 434.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_41_piece0 in memory on spark-master:46771 (size: 35.8 KiB, free: 413.6 MiB)
+26/11/21 08:09:59 INFO SparkContext: Created broadcast 41 from count at NativeMethodAccessorImpl.java:0
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_32_piece0 on 172.18.0.5:38827 in memory (size: 35.9 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_39_piece0 on spark-master:46771 in memory (size: 18.1 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO DAGScheduler: Registering RDD 135 (count at NativeMethodAccessorImpl.java:0) as input to shuffle 16
+26/11/21 08:09:59 INFO DAGScheduler: Got map stage job 33 (count at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/11/21 08:09:59 INFO DAGScheduler: Final stage: ShuffleMapStage 56 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:09:59 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:09:59 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:09:59 INFO DAGScheduler: Submitting ShuffleMapStage 56 (MapPartitionsRDD[135] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_42 stored as values in memory (estimated size 39.3 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_39_piece0 on 172.18.0.5:38827 in memory (size: 18.1 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_39_piece0 on 172.18.0.12:38109 in memory (size: 18.1 KiB, free: 434.2 MiB)
+26/11/21 08:09:59 INFO MemoryStore: Block broadcast_42_piece0 stored as bytes in memory (estimated size 17.3 KiB, free 412.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_42_piece0 in memory on spark-master:46771 (size: 17.3 KiB, free: 413.6 MiB)
+26/11/21 08:09:59 INFO SparkContext: Created broadcast 42 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:09:59 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 56 (MapPartitionsRDD[135] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:09:59 INFO TaskSchedulerImpl: Adding task set 56.0 with 2 tasks resource profile 0
+26/11/21 08:09:59 INFO TaskSetManager: Starting task 0.0 in stage 56.0 (TID 44) (172.18.0.5, executor 0, partition 0, ANY, 11050 bytes) 
+26/11/21 08:09:59 INFO TaskSetManager: Starting task 1.0 in stage 56.0 (TID 45) (172.18.0.12, executor 1, partition 1, ANY, 11070 bytes) 
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_35_piece0 on spark-master:46771 in memory (size: 35.8 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_35_piece0 on 172.18.0.5:38827 in memory (size: 35.8 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_35_piece0 on 172.18.0.12:38109 in memory (size: 35.8 KiB, free: 434.3 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_42_piece0 in memory on 172.18.0.5:38827 (size: 17.3 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_37_piece0 on spark-master:46771 in memory (size: 6.0 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_42_piece0 in memory on 172.18.0.12:38109 (size: 17.3 KiB, free: 434.2 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_37_piece0 on 172.18.0.5:38827 in memory (size: 6.0 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_40_piece0 on spark-master:46771 in memory (size: 18.6 KiB, free: 413.7 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Removed broadcast_40_piece0 on 172.18.0.5:38827 in memory (size: 18.6 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_41_piece0 in memory on 172.18.0.5:38827 (size: 35.8 KiB, free: 418.6 MiB)
+26/11/21 08:09:59 INFO BlockManagerInfo: Added broadcast_41_piece0 in memory on 172.18.0.12:38109 (size: 35.8 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 0.0 in stage 56.0 (TID 44) in 361 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 1.0 in stage 56.0 (TID 45) in 365 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Removed TaskSet 56.0, whose tasks have all completed, from pool 
+26/11/21 08:10:00 INFO DAGScheduler: ShuffleMapStage 56 (count at NativeMethodAccessorImpl.java:0) finished in 0.374 s
+26/11/21 08:10:00 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:10:00 INFO DAGScheduler: running: Set()
+26/11/21 08:10:00 INFO DAGScheduler: waiting: Set()
+26/11/21 08:10:00 INFO DAGScheduler: failed: Set()
+26/11/21 08:10:00 INFO ShufflePartitionsUtil: For shuffle(16), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/21 08:10:00 INFO CodeGenerator: Code generated in 15.404122 ms
+26/11/21 08:10:00 INFO DAGScheduler: Registering RDD 138 (count at NativeMethodAccessorImpl.java:0) as input to shuffle 17
+26/11/21 08:10:00 INFO DAGScheduler: Got map stage job 34 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:10:00 INFO DAGScheduler: Final stage: ShuffleMapStage 58 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:10:00 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 57)
+26/11/21 08:10:00 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:00 INFO DAGScheduler: Submitting ShuffleMapStage 58 (MapPartitionsRDD[138] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_43 stored as values in memory (estimated size 46.6 KiB, free 412.4 MiB)
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_43_piece0 stored as bytes in memory (estimated size 21.0 KiB, free 412.4 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_43_piece0 in memory on spark-master:46771 (size: 21.0 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO SparkContext: Created broadcast 43 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:00 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 58 (MapPartitionsRDD[138] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Adding task set 58.0 with 1 tasks resource profile 0
+26/11/21 08:10:00 INFO TaskSetManager: Starting task 0.0 in stage 58.0 (TID 46) (172.18.0.12, executor 1, partition 0, NODE_LOCAL, 8992 bytes) 
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_43_piece0 in memory on 172.18.0.12:38109 (size: 21.0 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 16 to 172.18.0.12:40864
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 0.0 in stage 58.0 (TID 46) in 89 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Removed TaskSet 58.0, whose tasks have all completed, from pool 
+26/11/21 08:10:00 INFO DAGScheduler: ShuffleMapStage 58 (count at NativeMethodAccessorImpl.java:0) finished in 0.097 s
+26/11/21 08:10:00 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:10:00 INFO DAGScheduler: running: Set()
+26/11/21 08:10:00 INFO DAGScheduler: waiting: Set()
+26/11/21 08:10:00 INFO DAGScheduler: failed: Set()
+26/11/21 08:10:00 INFO CodeGenerator: Code generated in 5.164069 ms
+26/11/21 08:10:00 INFO SparkContext: Starting job: count at NativeMethodAccessorImpl.java:0
+26/11/21 08:10:00 INFO DAGScheduler: Got job 35 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:10:00 INFO DAGScheduler: Final stage: ResultStage 61 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:10:00 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 60)
+26/11/21 08:10:00 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:00 INFO DAGScheduler: Submitting ResultStage 61 (MapPartitionsRDD[141] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_44 stored as values in memory (estimated size 12.5 KiB, free 412.4 MiB)
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_44_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 412.4 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_44_piece0 in memory on spark-master:46771 (size: 6.0 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO SparkContext: Created broadcast 44 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:00 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 61 (MapPartitionsRDD[141] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Adding task set 61.0 with 1 tasks resource profile 0
+26/11/21 08:10:00 INFO TaskSetManager: Starting task 0.0 in stage 61.0 (TID 47) (172.18.0.12, executor 1, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_44_piece0 in memory on 172.18.0.12:38109 (size: 6.0 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 17 to 172.18.0.12:40864
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 0.0 in stage 61.0 (TID 47) in 71 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Removed TaskSet 61.0, whose tasks have all completed, from pool 
+26/11/21 08:10:00 INFO DAGScheduler: ResultStage 61 (count at NativeMethodAccessorImpl.java:0) finished in 0.081 s
+26/11/21 08:10:00 INFO DAGScheduler: Job 35 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Killing all running tasks in stage 61: Stage finished
+26/11/21 08:10:00 INFO DAGScheduler: Job 35 finished: count at NativeMethodAccessorImpl.java:0, took 0.085381 s
+26/11/21 08:10:00 INFO DataSourceStrategy: Pruning directories with: 
+26/11/21 08:10:00 INFO FileSourceStrategy: Pushed Filters: IsNotNull(is_holiday_date),EqualTo(is_holiday_date,true)
+26/11/21 08:10:00 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(is_holiday_date#5442),is_holiday_date#5442
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_45 stored as values in memory (estimated size 202.6 KiB, free 412.2 MiB)
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_45_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 412.2 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_45_piece0 in memory on spark-master:46771 (size: 35.7 KiB, free: 413.6 MiB)
+26/11/21 08:10:00 INFO SparkContext: Created broadcast 45 from count at NativeMethodAccessorImpl.java:0
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_44_piece0 on spark-master:46771 in memory (size: 6.0 KiB, free: 413.6 MiB)
+26/11/21 08:10:00 INFO FileSourceScanExec: Planning scan with bin packing, max size: 26157358 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_44_piece0 on 172.18.0.12:38109 in memory (size: 6.0 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO DAGScheduler: Registering RDD 145 (count at NativeMethodAccessorImpl.java:0) as input to shuffle 18
+26/11/21 08:10:00 INFO DAGScheduler: Got map stage job 36 (count at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/11/21 08:10:00 INFO DAGScheduler: Final stage: ShuffleMapStage 62 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:10:00 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:10:00 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_41_piece0 on spark-master:46771 in memory (size: 35.8 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO DAGScheduler: Submitting ShuffleMapStage 62 (MapPartitionsRDD[145] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_46 stored as values in memory (estimated size 19.0 KiB, free 412.4 MiB)
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_46_piece0 stored as bytes in memory (estimated size 8.4 KiB, free 412.4 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_41_piece0 on 172.18.0.12:38109 in memory (size: 35.8 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_41_piece0 on 172.18.0.5:38827 in memory (size: 35.8 KiB, free: 418.6 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_46_piece0 in memory on spark-master:46771 (size: 8.4 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO SparkContext: Created broadcast 46 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:00 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 62 (MapPartitionsRDD[145] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Adding task set 62.0 with 2 tasks resource profile 0
+26/11/21 08:10:00 INFO TaskSetManager: Starting task 0.0 in stage 62.0 (TID 48) (172.18.0.5, executor 0, partition 0, ANY, 11050 bytes) 
+26/11/21 08:10:00 INFO TaskSetManager: Starting task 1.0 in stage 62.0 (TID 49) (172.18.0.12, executor 1, partition 1, ANY, 11070 bytes) 
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_42_piece0 on spark-master:46771 in memory (size: 17.3 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_42_piece0 on 172.18.0.12:38109 in memory (size: 17.3 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_42_piece0 on 172.18.0.5:38827 in memory (size: 17.3 KiB, free: 418.7 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_43_piece0 on spark-master:46771 in memory (size: 21.0 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Removed broadcast_43_piece0 on 172.18.0.12:38109 in memory (size: 21.0 KiB, free: 434.3 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_46_piece0 in memory on 172.18.0.5:38827 (size: 8.4 KiB, free: 418.6 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_46_piece0 in memory on 172.18.0.12:38109 (size: 8.4 KiB, free: 434.3 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_45_piece0 in memory on 172.18.0.12:38109 (size: 35.7 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_45_piece0 in memory on 172.18.0.5:38827 (size: 35.7 KiB, free: 418.6 MiB)
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 1.0 in stage 62.0 (TID 49) in 261 ms on 172.18.0.12 (executor 1) (1/2)
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 0.0 in stage 62.0 (TID 48) in 338 ms on 172.18.0.5 (executor 0) (2/2)
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Removed TaskSet 62.0, whose tasks have all completed, from pool 
+26/11/21 08:10:00 INFO DAGScheduler: ShuffleMapStage 62 (count at NativeMethodAccessorImpl.java:0) finished in 0.357 s
+26/11/21 08:10:00 INFO DAGScheduler: looking for newly runnable stages
+26/11/21 08:10:00 INFO DAGScheduler: running: Set()
+26/11/21 08:10:00 INFO DAGScheduler: waiting: Set()
+26/11/21 08:10:00 INFO DAGScheduler: failed: Set()
+26/11/21 08:10:00 INFO SparkContext: Starting job: count at NativeMethodAccessorImpl.java:0
+26/11/21 08:10:00 INFO DAGScheduler: Got job 37 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/21 08:10:00 INFO DAGScheduler: Final stage: ResultStage 64 (count at NativeMethodAccessorImpl.java:0)
+26/11/21 08:10:00 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 63)
+26/11/21 08:10:00 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:00 INFO DAGScheduler: Submitting ResultStage 64 (MapPartitionsRDD[148] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_47 stored as values in memory (estimated size 12.5 KiB, free 412.5 MiB)
+26/11/21 08:10:00 INFO MemoryStore: Block broadcast_47_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 412.5 MiB)
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_47_piece0 in memory on spark-master:46771 (size: 6.0 KiB, free: 413.7 MiB)
+26/11/21 08:10:00 INFO SparkContext: Created broadcast 47 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:00 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 64 (MapPartitionsRDD[148] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Adding task set 64.0 with 1 tasks resource profile 0
+26/11/21 08:10:00 INFO TaskSetManager: Starting task 0.0 in stage 64.0 (TID 50) (172.18.0.12, executor 1, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/21 08:10:00 INFO BlockManagerInfo: Added broadcast_47_piece0 in memory on 172.18.0.12:38109 (size: 6.0 KiB, free: 434.2 MiB)
+26/11/21 08:10:00 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 18 to 172.18.0.12:40864
+26/11/21 08:10:00 INFO TaskSetManager: Finished task 0.0 in stage 64.0 (TID 50) in 66 ms on 172.18.0.12 (executor 1) (1/1)
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Removed TaskSet 64.0, whose tasks have all completed, from pool 
+26/11/21 08:10:00 INFO DAGScheduler: ResultStage 64 (count at NativeMethodAccessorImpl.java:0) finished in 0.078 s
+26/11/21 08:10:00 INFO DAGScheduler: Job 37 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:10:00 INFO TaskSchedulerImpl: Killing all running tasks in stage 64: Stage finished
+26/11/21 08:10:00 INFO DAGScheduler: Job 37 finished: count at NativeMethodAccessorImpl.java:0, took 0.082603 s
+26/11/21 08:10:01 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),(outcome#5455 = accepted)
+26/11/21 08:10:01 INFO FileSourceStrategy: Pushed Filters: IsNotNull(source_rows),EqualTo(source_rows,1)
+26/11/21 08:10:01 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(source_rows#5443L),(source_rows#5443L = 1)
+26/11/21 08:10:01 INFO CodeGenerator: Code generated in 13.835295 ms
+26/11/21 08:10:01 INFO CodeGenerator: Code generated in 33.542361 ms
+26/11/21 08:10:01 INFO MemoryStore: Block broadcast_48 stored as values in memory (estimated size 209.3 KiB, free 412.3 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_46_piece0 on spark-master:46771 in memory (size: 8.4 KiB, free: 413.7 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_46_piece0 on 172.18.0.5:38827 in memory (size: 8.4 KiB, free: 418.6 MiB)
+26/11/21 08:10:01 INFO MemoryStore: Block broadcast_48_piece0 stored as bytes in memory (estimated size 37.6 KiB, free 412.3 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Added broadcast_48_piece0 in memory on spark-master:46771 (size: 37.6 KiB, free: 413.7 MiB)
+26/11/21 08:10:01 INFO SparkContext: Created broadcast 48 from collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:01 INFO InMemoryFileIndex: Selected 7 partitions out of 12, pruned 41.666666666666664% partitions.
+26/11/21 08:10:01 INFO FileSourceScanExec: Planning scan with bin packing, max size: 15634436 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_46_piece0 on 172.18.0.12:38109 in memory (size: 8.4 KiB, free: 434.2 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_45_piece0 on spark-master:46771 in memory (size: 35.7 KiB, free: 413.7 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_45_piece0 on 172.18.0.12:38109 in memory (size: 35.7 KiB, free: 434.3 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_45_piece0 on 172.18.0.5:38827 in memory (size: 35.7 KiB, free: 418.7 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_47_piece0 on spark-master:46771 in memory (size: 6.0 KiB, free: 413.7 MiB)
+26/11/21 08:10:01 INFO SparkContext: Starting job: collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:01 INFO DAGScheduler: Got job 38 (collect at /workspace/src/batch/silver_uci.py:217) with 2 output partitions
+26/11/21 08:10:01 INFO DAGScheduler: Final stage: ResultStage 65 (collect at /workspace/src/batch/silver_uci.py:217)
+26/11/21 08:10:01 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:10:01 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:01 INFO DAGScheduler: Submitting ResultStage 65 (MapPartitionsRDD[153] at collect at /workspace/src/batch/silver_uci.py:217), which has no missing parents
+26/11/21 08:10:01 INFO BlockManagerInfo: Removed broadcast_47_piece0 on 172.18.0.12:38109 in memory (size: 6.0 KiB, free: 434.3 MiB)
+26/11/21 08:10:01 INFO MemoryStore: Block broadcast_49 stored as values in memory (estimated size 50.5 KiB, free 412.5 MiB)
+26/11/21 08:10:01 INFO MemoryStore: Block broadcast_49_piece0 stored as bytes in memory (estimated size 13.8 KiB, free 412.5 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Added broadcast_49_piece0 in memory on spark-master:46771 (size: 13.8 KiB, free: 413.7 MiB)
+26/11/21 08:10:01 INFO SparkContext: Created broadcast 49 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:01 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 65 (MapPartitionsRDD[153] at collect at /workspace/src/batch/silver_uci.py:217) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:10:01 INFO TaskSchedulerImpl: Adding task set 65.0 with 2 tasks resource profile 0
+26/11/21 08:10:01 INFO TaskSetManager: Starting task 0.0 in stage 65.0 (TID 51) (172.18.0.12, executor 1, partition 0, ANY, 10557 bytes) 
+26/11/21 08:10:01 INFO TaskSetManager: Starting task 1.0 in stage 65.0 (TID 52) (172.18.0.5, executor 0, partition 1, ANY, 10305 bytes) 
+26/11/21 08:10:01 INFO BlockManagerInfo: Added broadcast_49_piece0 in memory on 172.18.0.12:38109 (size: 13.8 KiB, free: 434.2 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Added broadcast_49_piece0 in memory on 172.18.0.5:38827 (size: 13.8 KiB, free: 418.6 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Added broadcast_48_piece0 in memory on 172.18.0.5:38827 (size: 37.6 KiB, free: 418.6 MiB)
+26/11/21 08:10:01 INFO BlockManagerInfo: Added broadcast_48_piece0 in memory on 172.18.0.12:38109 (size: 37.6 KiB, free: 434.2 MiB)
+26/11/21 08:10:01 INFO TaskSetManager: Finished task 1.0 in stage 65.0 (TID 52) in 620 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:10:02 INFO TaskSetManager: Finished task 0.0 in stage 65.0 (TID 51) in 1294 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:10:02 INFO TaskSchedulerImpl: Removed TaskSet 65.0, whose tasks have all completed, from pool 
+26/11/21 08:10:02 INFO DAGScheduler: ResultStage 65 (collect at /workspace/src/batch/silver_uci.py:217) finished in 1.304 s
+26/11/21 08:10:02 INFO DAGScheduler: Job 38 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:10:02 INFO TaskSchedulerImpl: Killing all running tasks in stage 65: Stage finished
+26/11/21 08:10:02 INFO DAGScheduler: Job 38 finished: collect at /workspace/src/batch/silver_uci.py:217, took 1.320781 s
+26/11/21 08:10:02 INFO CodeGenerator: Code generated in 53.406515 ms
+26/11/21 08:10:02 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),(outcome#5455 = accepted)
+26/11/21 08:10:02 INFO FileSourceStrategy: Pushed Filters: IsNotNull(source_rows),GreaterThan(source_rows,2)
+26/11/21 08:10:02 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(source_rows#5443L),(source_rows#5443L > 2)
+26/11/21 08:10:02 INFO CodeGenerator: Code generated in 29.277498 ms
+26/11/21 08:10:02 INFO MemoryStore: Block broadcast_50 stored as values in memory (estimated size 209.3 KiB, free 412.3 MiB)
+26/11/21 08:10:02 INFO BlockManagerInfo: Removed broadcast_49_piece0 on spark-master:46771 in memory (size: 13.8 KiB, free: 413.7 MiB)
+26/11/21 08:10:02 INFO BlockManagerInfo: Removed broadcast_49_piece0 on 172.18.0.5:38827 in memory (size: 13.8 KiB, free: 418.6 MiB)
+26/11/21 08:10:02 INFO BlockManagerInfo: Removed broadcast_49_piece0 on 172.18.0.12:38109 in memory (size: 13.8 KiB, free: 434.2 MiB)
+26/11/21 08:10:02 INFO MemoryStore: Block broadcast_50_piece0 stored as bytes in memory (estimated size 37.6 KiB, free 412.3 MiB)
+26/11/21 08:10:02 INFO BlockManagerInfo: Added broadcast_50_piece0 in memory on spark-master:46771 (size: 37.6 KiB, free: 413.7 MiB)
+26/11/21 08:10:02 INFO SparkContext: Created broadcast 50 from collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:02 INFO InMemoryFileIndex: Selected 7 partitions out of 12, pruned 41.666666666666664% partitions.
+26/11/21 08:10:02 INFO FileSourceScanExec: Planning scan with bin packing, max size: 15634436 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:10:02 INFO SparkContext: Starting job: collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:02 INFO DAGScheduler: Got job 39 (collect at /workspace/src/batch/silver_uci.py:217) with 2 output partitions
+26/11/21 08:10:02 INFO DAGScheduler: Final stage: ResultStage 66 (collect at /workspace/src/batch/silver_uci.py:217)
+26/11/21 08:10:02 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:10:02 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:02 INFO DAGScheduler: Submitting ResultStage 66 (MapPartitionsRDD[158] at collect at /workspace/src/batch/silver_uci.py:217), which has no missing parents
+26/11/21 08:10:02 INFO MemoryStore: Block broadcast_51 stored as values in memory (estimated size 50.5 KiB, free 412.2 MiB)
+26/11/21 08:10:02 INFO MemoryStore: Block broadcast_51_piece0 stored as bytes in memory (estimated size 13.8 KiB, free 412.2 MiB)
+26/11/21 08:10:02 INFO BlockManagerInfo: Added broadcast_51_piece0 in memory on spark-master:46771 (size: 13.8 KiB, free: 413.7 MiB)
+26/11/21 08:10:02 INFO SparkContext: Created broadcast 51 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:02 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 66 (MapPartitionsRDD[158] at collect at /workspace/src/batch/silver_uci.py:217) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:10:02 INFO TaskSchedulerImpl: Adding task set 66.0 with 2 tasks resource profile 0
+26/11/21 08:10:02 INFO TaskSetManager: Starting task 0.0 in stage 66.0 (TID 53) (172.18.0.12, executor 1, partition 0, ANY, 10557 bytes) 
+26/11/21 08:10:02 INFO TaskSetManager: Starting task 1.0 in stage 66.0 (TID 54) (172.18.0.5, executor 0, partition 1, ANY, 10305 bytes) 
+26/11/21 08:10:02 INFO BlockManagerInfo: Added broadcast_51_piece0 in memory on 172.18.0.5:38827 (size: 13.8 KiB, free: 418.6 MiB)
+26/11/21 08:10:02 INFO BlockManagerInfo: Added broadcast_51_piece0 in memory on 172.18.0.12:38109 (size: 13.8 KiB, free: 434.2 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Added broadcast_50_piece0 in memory on 172.18.0.5:38827 (size: 37.6 KiB, free: 418.6 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Added broadcast_50_piece0 in memory on 172.18.0.12:38109 (size: 37.6 KiB, free: 434.2 MiB)
+26/11/21 08:10:03 INFO TaskSetManager: Finished task 1.0 in stage 66.0 (TID 54) in 624 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:10:03 INFO TaskSetManager: Finished task 0.0 in stage 66.0 (TID 53) in 785 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:10:03 INFO TaskSchedulerImpl: Removed TaskSet 66.0, whose tasks have all completed, from pool 
+26/11/21 08:10:03 INFO DAGScheduler: ResultStage 66 (collect at /workspace/src/batch/silver_uci.py:217) finished in 0.796 s
+26/11/21 08:10:03 INFO DAGScheduler: Job 39 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:10:03 INFO TaskSchedulerImpl: Killing all running tasks in stage 66: Stage finished
+26/11/21 08:10:03 INFO DAGScheduler: Job 39 finished: collect at /workspace/src/batch/silver_uci.py:217, took 0.803746 s
+26/11/21 08:10:03 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),(outcome#5455 = quarantine)
+26/11/21 08:10:03 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:10:03 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:10:03 INFO CodeGenerator: Code generated in 22.395563 ms
+26/11/21 08:10:03 INFO MemoryStore: Block broadcast_52 stored as values in memory (estimated size 209.3 KiB, free 412.0 MiB)
+26/11/21 08:10:03 INFO MemoryStore: Block broadcast_52_piece0 stored as bytes in memory (estimated size 37.6 KiB, free 412.0 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Added broadcast_52_piece0 in memory on spark-master:46771 (size: 37.6 KiB, free: 413.6 MiB)
+26/11/21 08:10:03 INFO SparkContext: Created broadcast 52 from collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:03 INFO InMemoryFileIndex: Selected 5 partitions out of 12, pruned 58.33333333333333% partitions.
+26/11/21 08:10:03 INFO FileSourceScanExec: Planning scan with bin packing, max size: 10522922 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:10:03 INFO SparkContext: Starting job: collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:03 INFO DAGScheduler: Got job 40 (collect at /workspace/src/batch/silver_uci.py:217) with 2 output partitions
+26/11/21 08:10:03 INFO DAGScheduler: Final stage: ResultStage 67 (collect at /workspace/src/batch/silver_uci.py:217)
+26/11/21 08:10:03 INFO DAGScheduler: Parents of final stage: List()
+26/11/21 08:10:03 INFO DAGScheduler: Missing parents: List()
+26/11/21 08:10:03 INFO DAGScheduler: Submitting ResultStage 67 (MapPartitionsRDD[163] at collect at /workspace/src/batch/silver_uci.py:217), which has no missing parents
+26/11/21 08:10:03 INFO MemoryStore: Block broadcast_53 stored as values in memory (estimated size 47.5 KiB, free 411.9 MiB)
+26/11/21 08:10:03 INFO MemoryStore: Block broadcast_53_piece0 stored as bytes in memory (estimated size 12.9 KiB, free 411.9 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Removed broadcast_51_piece0 on spark-master:46771 in memory (size: 13.8 KiB, free: 413.6 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Added broadcast_53_piece0 in memory on spark-master:46771 (size: 12.9 KiB, free: 413.6 MiB)
+26/11/21 08:10:03 INFO SparkContext: Created broadcast 53 from broadcast at DAGScheduler.scala:1585
+26/11/21 08:10:03 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 67 (MapPartitionsRDD[163] at collect at /workspace/src/batch/silver_uci.py:217) (first 15 tasks are for partitions Vector(0, 1))
+26/11/21 08:10:03 INFO BlockManagerInfo: Removed broadcast_51_piece0 on 172.18.0.5:38827 in memory (size: 13.8 KiB, free: 418.6 MiB)
+26/11/21 08:10:03 INFO TaskSchedulerImpl: Adding task set 67.0 with 2 tasks resource profile 0
+26/11/21 08:10:03 INFO TaskSetManager: Starting task 0.0 in stage 67.0 (TID 55) (172.18.0.12, executor 1, partition 0, ANY, 10317 bytes) 
+26/11/21 08:10:03 INFO TaskSetManager: Starting task 1.0 in stage 67.0 (TID 56) (172.18.0.5, executor 0, partition 1, ANY, 10061 bytes) 
+26/11/21 08:10:03 INFO BlockManagerInfo: Removed broadcast_51_piece0 on 172.18.0.12:38109 in memory (size: 13.8 KiB, free: 434.2 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Added broadcast_53_piece0 in memory on 172.18.0.5:38827 (size: 12.9 KiB, free: 418.6 MiB)
+26/11/21 08:10:03 INFO BlockManagerInfo: Added broadcast_53_piece0 in memory on 172.18.0.12:38109 (size: 12.9 KiB, free: 434.2 MiB)
+26/11/21 08:10:04 INFO BlockManagerInfo: Added broadcast_52_piece0 in memory on 172.18.0.5:38827 (size: 37.6 KiB, free: 418.5 MiB)
+26/11/21 08:10:04 INFO BlockManagerInfo: Added broadcast_52_piece0 in memory on 172.18.0.12:38109 (size: 37.6 KiB, free: 434.1 MiB)
+26/11/21 08:10:04 INFO TaskSetManager: Finished task 1.0 in stage 67.0 (TID 56) in 284 ms on 172.18.0.5 (executor 0) (1/2)
+26/11/21 08:10:04 INFO TaskSetManager: Finished task 0.0 in stage 67.0 (TID 55) in 335 ms on 172.18.0.12 (executor 1) (2/2)
+26/11/21 08:10:04 INFO TaskSchedulerImpl: Removed TaskSet 67.0, whose tasks have all completed, from pool 
+26/11/21 08:10:04 INFO DAGScheduler: ResultStage 67 (collect at /workspace/src/batch/silver_uci.py:217) finished in 0.359 s
+26/11/21 08:10:04 INFO DAGScheduler: Job 40 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/21 08:10:04 INFO TaskSchedulerImpl: Killing all running tasks in stage 67: Stage finished
+26/11/21 08:10:04 INFO DAGScheduler: Job 40 finished: collect at /workspace/src/batch/silver_uci.py:217, took 0.366703 s
+26/11/21 08:10:04 INFO DataSourceStrategy: Pruning directories with: isnotnull(outcome#5455),(outcome#5455 = rejected)
+26/11/21 08:10:04 INFO FileSourceStrategy: Pushed Filters: 
+26/11/21 08:10:04 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/21 08:10:04 INFO MemoryStore: Block broadcast_54 stored as values in memory (estimated size 209.3 KiB, free 411.8 MiB)
+26/11/21 08:10:04 INFO MemoryStore: Block broadcast_54_piece0 stored as bytes in memory (estimated size 37.6 KiB, free 411.7 MiB)
+26/11/21 08:10:04 INFO BlockManagerInfo: Added broadcast_54_piece0 in memory on spark-master:46771 (size: 37.6 KiB, free: 413.6 MiB)
+26/11/21 08:10:04 INFO SparkContext: Created broadcast 54 from collect at /workspace/src/batch/silver_uci.py:217
+26/11/21 08:10:04 INFO InMemoryFileIndex: Selected 0 partitions out of 12, pruned 100.0% partitions.
+26/11/21 08:10:04 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/21 08:10:04 INFO SparkContext: SparkContext is stopping with exitCode 0.
+report -> /workspace/evidence/AC05/m2_20261121T080753Z/quality_uci_metro.json; reconciled={'bronze_rows': 48204, 'silver_source_rows': 48204, 'reconciled': True}
+26/11/21 08:10:04 INFO SparkUI: Stopped Spark web UI at http://spark-master:4040
+26/11/21 08:10:04 INFO StandaloneSchedulerBackend: Shutting down all executors
+26/11/21 08:10:04 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+26/11/21 08:10:04 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/11/21 08:10:04 INFO MemoryStore: MemoryStore cleared
+26/11/21 08:10:04 INFO BlockManager: BlockManager stopped
+26/11/21 08:10:04 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/11/21 08:10:04 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/11/21 08:10:04 INFO SparkContext: Successfully stopped SparkContext
+26/11/21 08:10:04 INFO ShutdownHookManager: Shutdown hook called
+26/11/21 08:10:04 INFO ShutdownHookManager: Deleting directory /tmp/spark-bd69433e-e0af-4051-b6ae-a47273919213
+26/11/21 08:10:04 INFO ShutdownHookManager: Deleting directory /tmp/spark-522e054e-4405-4faa-9d76-2321ef14d6d6
+26/11/21 08:10:04 INFO ShutdownHookManager: Deleting directory /tmp/spark-bd69433e-e0af-4051-b6ae-a47273919213/pyspark-19172ac9-6ee4-4fba-ae15-131a8e1f228a

@@ -1,0 +1,40 @@
+# Silver / quality configuration (spec T03, T05). Rule logic lives in src/quality/; the
+# thresholds, units and semantics live here so they are reviewable without reading code.
+#
+# Outcome per record (worst rule severity wins):
+#   reject     -> outcome=rejected   structurally unusable (no key, unparseable, impossible type)
+#   quarantine -> outcome=quarantine parseable but suspicious; kept for review, not published
+#   flag       -> outcome=accepted   accepted, with the rule name kept in _violations
+
+uci_metro:
+  silver_dataset: uci_traffic_hourly
+  version: v1
+  # Station facts: UCI dataset page ("I-94 ATR 301 reported westbound traffic volume");
+  # coordinates come from data/manifests/atr301_location.json (MnDOT), never hard-coded.
+  station:
+    id: "301"
+    road: I-94
+    direction: westbound
+  # UCI gives local wall-clock time with no offset. M1 profile: the spring-forward 02:00 hour is
+  # absent in every year 2012-2018, so the times follow US Central time with DST.
+  timezone: America/Chicago
+  timestamp_format: "yyyy-MM-dd HH:mm:ss"
+  # Documented source period (UCI page: 2012-2018). Timestamps outside it are quarantined.
+  coverage_start_local: "2012-01-01 00:00:00"
+  coverage_end_local: "2018-12-31 23:00:00"
+  expected_source_files: [Metro_Interstate_Traffic_Volume.csv.gz]
+  units:   # as described on the UCI dataset page
+    traffic_volume: vehicles/hour
+    temp: K
+    rain_1h: mm
+    snow_1h: mm
+    clouds_all: percent
+  ranges:
+    # Sanity bounds, not capacity estimates. Values outside are quarantined (negative volume rejected).
+    traffic_volume_max: 10000     # max observed in M1 was 7,280
+    temp_k_min: 223.15            # -50 degC; M1 found 10 rows with 0 K
+    temp_k_max: 333.15            # +60 degC
+    rain_1h_mm_max: 305.0         # ~ world-record 1-hour rainfall; M1 found one row with 9,831.3 mm
+    snow_1h_mm_max: 100.0
+    clouds_all_min: 0
+    clouds_all_max: 100

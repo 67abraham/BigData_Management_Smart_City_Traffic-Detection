@@ -1,0 +1,227 @@
+[
+  {
+    "case": "outcome = 'accepted' AND source_rows = 1",
+    "bronze_rows": [
+      {
+        "holiday": "None",
+        "temp": "288.28",
+        "rain_1h": "0.0",
+        "snow_1h": "0.0",
+        "clouds_all": "40",
+        "weather_main": "Clouds",
+        "weather_description": "scattered clouds",
+        "date_time": "2012-10-02 09:00:00",
+        "traffic_volume": "5545",
+        "_corrupt_record": null
+      }
+    ],
+    "silver": {
+      "station_id": "301",
+      "road": "I-94",
+      "direction": "westbound",
+      "latitude": 44.9516213956903,
+      "longitude": -93.1368848235347,
+      "hour_start_local": "2012-10-02T09:00:00",
+      "hour_start_utc": "2012-10-02T14:00:00",
+      "timezone": "America/Chicago",
+      "utc_offset_hours": -5,
+      "dst_ambiguous": false,
+      "local_date": "2012-10-02",
+      "traffic_volume": 5545,
+      "traffic_volume_unit": "vehicles/hour",
+      "temp_k": 288.28,
+      "temp_c": 15.13,
+      "rain_1h_mm": 0.0,
+      "snow_1h_mm": 0.0,
+      "clouds_all_pct": 40.0,
+      "weather_main": [
+        "Clouds"
+      ],
+      "weather_description": [
+        "scattered clouds"
+      ],
+      "holiday_name": null,
+      "is_holiday_date": false,
+      "source_rows": 1,
+      "weather_numeric_conflict": false,
+      "_violations": [],
+      "_source": "uci_metro",
+      "_source_file": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "_source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "_sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "_ingested_at": "2026-11-21T07:26:12",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T080753Z",
+      "_silver_version": "v1",
+      "outcome": "accepted",
+      "year": 2012
+    }
+  },
+  {
+    "case": "outcome = 'accepted' AND source_rows > 2",
+    "bronze_rows": [
+      {
+        "holiday": "None",
+        "temp": "282.43",
+        "rain_1h": "0.0",
+        "snow_1h": "0.0",
+        "clouds_all": "57",
+        "weather_main": "Drizzle",
+        "weather_description": "light intensity drizzle",
+        "date_time": "2012-10-14 09:00:00",
+        "traffic_volume": "2685",
+        "_corrupt_record": null
+      },
+      {
+        "holiday": "None",
+        "temp": "282.43",
+        "rain_1h": "0.0",
+        "snow_1h": "0.0",
+        "clouds_all": "57",
+        "weather_main": "Mist",
+        "weather_description": "mist",
+        "date_time": "2012-10-14 09:00:00",
+        "traffic_volume": "2685",
+        "_corrupt_record": null
+      },
+      {
+        "holiday": "None",
+        "temp": "282.43",
+        "rain_1h": "0.0",
+        "snow_1h": "0.0",
+        "clouds_all": "57",
+        "weather_main": "Haze",
+        "weather_description": "haze",
+        "date_time": "2012-10-14 09:00:00",
+        "traffic_volume": "2685",
+        "_corrupt_record": null
+      }
+    ],
+    "silver": {
+      "station_id": "301",
+      "road": "I-94",
+      "direction": "westbound",
+      "latitude": 44.9516213956903,
+      "longitude": -93.1368848235347,
+      "hour_start_local": "2012-10-14T09:00:00",
+      "hour_start_utc": "2012-10-14T14:00:00",
+      "timezone": "America/Chicago",
+      "utc_offset_hours": -5,
+      "dst_ambiguous": false,
+      "local_date": "2012-10-14",
+      "traffic_volume": 2685,
+      "traffic_volume_unit": "vehicles/hour",
+      "temp_k": 282.43,
+      "temp_c": 9.28,
+      "rain_1h_mm": 0.0,
+      "snow_1h_mm": 0.0,
+      "clouds_all_pct": 57.0,
+      "weather_main": [
+        "Drizzle",
+        "Haze",
+        "Mist"
+      ],
+      "weather_description": [
+        "haze",
+        "light intensity drizzle",
+        "mist"
+      ],
+      "holiday_name": null,
+      "is_holiday_date": false,
+      "source_rows": 3,
+      "weather_numeric_conflict": false,
+      "_violations": [],
+      "_source": "uci_metro",
+      "_source_file": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "_source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "_sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "_ingested_at": "2026-11-21T07:26:12",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T080753Z",
+      "_silver_version": "v1",
+      "outcome": "accepted",
+      "year": 2012
+    }
+  },
+  {
+    "case": "outcome = 'quarantine'",
+    "bronze_rows": [
+      {
+        "holiday": "None",
+        "temp": "275.6",
+        "rain_1h": "0.0",
+        "snow_1h": "0.0",
+        "clouds_all": "90",
+        "weather_main": "Clouds",
+        "weather_description": "overcast clouds",
+        "date_time": "2012-11-04 01:00:00",
+        "traffic_volume": "730",
+        "_corrupt_record": null
+      },
+      {
+        "holiday": "None",
+        "temp": "275.77",
+        "rain_1h": "0.0",
+        "snow_1h": "0.0",
+        "clouds_all": "90",
+        "weather_main": "Clouds",
+        "weather_description": "overcast clouds",
+        "date_time": "2012-11-04 01:00:00",
+        "traffic_volume": "730",
+        "_corrupt_record": null
+      }
+    ],
+    "silver": {
+      "station_id": "301",
+      "road": "I-94",
+      "direction": "westbound",
+      "latitude": 44.9516213956903,
+      "longitude": -93.1368848235347,
+      "hour_start_local": "2012-11-04T01:00:00",
+      "hour_start_utc": null,
+      "timezone": "America/Chicago",
+      "utc_offset_hours": null,
+      "dst_ambiguous": true,
+      "local_date": "2012-11-04",
+      "traffic_volume": 730,
+      "traffic_volume_unit": "vehicles/hour",
+      "temp_k": null,
+      "temp_c": null,
+      "rain_1h_mm": 0.0,
+      "snow_1h_mm": 0.0,
+      "clouds_all_pct": 90.0,
+      "weather_main": [
+        "Clouds"
+      ],
+      "weather_description": [
+        "overcast clouds"
+      ],
+      "holiday_name": null,
+      "is_holiday_date": false,
+      "source_rows": 2,
+      "weather_numeric_conflict": true,
+      "_violations": [
+        {
+          "rule": "ts_dst_ambiguous",
+          "category": "timestamp",
+          "severity": "quarantine"
+        },
+        {
+          "rule": "unique_hour_conflicting_weather",
+          "category": "uniqueness",
+          "severity": "flag"
+        }
+      ],
+      "_source": "uci_metro",
+      "_source_file": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "_source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "_sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "_ingested_at": "2026-11-21T07:26:12",
+      "_bronze_ingest_date": "2026-11-21",
+      "_silver_run_id": "m2_20261121T080753Z",
+      "_silver_version": "v1",
+      "outcome": "quarantine",
+      "year": 2012
+    }
+  }
+]
