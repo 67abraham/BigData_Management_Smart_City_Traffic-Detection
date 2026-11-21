@@ -6,7 +6,8 @@ A big-data engineering platform: real traffic/weather/trip/image sources → HDF
 Spark batch → Kafka + Flink event-time processing (historical event replay) → quality and governance →
 four versioned data products with contracts → light dashboard.
 
-**Status:** M0 (environment) — stack defined; awaiting first verified run in Codespaces.
+**Status:** M0 (environment) verified in a GitHub Codespace: `scripts/smoke_m0.sh` 8/8 PASS, run
+`m0_20261121T014208Z` (evidence in `evidence/AC02/`). Next: M1 ingestion.
 
 ## Stack (D04)
 
@@ -55,6 +56,26 @@ infrastructure check, not project data), `fsck` block locations, a Kafka produce
 and the Flink cluster with PyFlink. It exits non-zero if any step fails.
 
 Stop: `docker compose down` (keeps volumes) · full reset: `docker compose down -v`.
+
+## Run (M1 — ingestion, spec T01/AC01)
+
+Needs the M0 stack running. KITTI needs your personal download links in `.env`
+(`KITTI_LABEL_URL`, `KITTI_IMAGE_URL`; see `.env.example`). The links are never committed.
+
+```bash
+pip install -r requirements-dev.txt          # fetchers run on the Codespace host
+bash scripts/ingest_m1.sh                    # all four sources -> evidence/AC01/m1_<timestamp>/
+bash scripts/ingest_m1.sh                    # re-run: unchanged files are skipped ("unchanged")
+FORCE=1 bash scripts/ingest_m1.sh uci_metro  # forced re-download: expect "redownloaded_identical"
+```
+
+Per source, the script: fetches into `data/local/landing/` (with SHA-256, ETag and version in
+`_manifest.json`); copies the files byte-identical into HDFS `bronze/<source>/raw/`; runs a Spark job
+that recomputes every checksum on the HDFS copy, profiles the data (row counts, schemas, malformed,
+duplicate and out-of-range records) and writes Bronze Parquet with provenance columns. The run ends
+with a generated `ingestion_report.md`. Open-Meteo first looks up MnDOT ATR station 301 in MnDOT's
+GIS layer (`data/manifests/atr301_location.json`). Sources and layout: `docs/source_inventory.md`,
+`docs/storage_layout.md`.
 
 ## Tests
 ```bash

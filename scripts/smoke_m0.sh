@@ -65,12 +65,35 @@ flink_cluster() {
   echo "$ov" | python3 -c "import json,sys; o=json.load(sys.stdin); sys.exit(0 if o['taskmanagers']>=1 else 1)"
 }
 
+dfsadmin_report() {  # pass only if all 3 DataNodes are live
+  local rep
+  rep=$(dc namenode hdfs dfsadmin -report)
+  echo "$rep"
+  echo "$rep" | grep -q "Live datanodes (3)"
+}
+
+spark_smoke() {  # pass only if the job printed "ok": true
+  local out
+  out=$(dc spark-master spark-submit /workspace/src/batch/hdfs_smoke.py 2>&1)
+  echo "$out"
+  echo "$out" | grep "\[smoke\] RESULT" | grep -q '"ok": true'
+}
+
+fsck_check() {  # pass only if HEALTHY, nothing under-replicated, and every block has 2 replicas
+  local out
+  out=$(dc namenode hdfs fsck /datalake -files -blocks -locations)
+  echo "$out"
+  echo "$out" | grep -q "is HEALTHY" \
+    && echo "$out" | grep -Eq "Under-replicated blocks:[[:space:]]+0 " \
+    && ! echo "$out" | grep -Eq "repl=[013-9]"
+}
+
 step "environment & versions"       env.txt            environment
 step "hdfs init (layers)"           hdfs_init.txt      bash scripts/hdfs_init.sh
-step "hdfs dfsadmin -report"        dfsadmin_report.txt dc namenode hdfs dfsadmin -report
+step "hdfs dfsadmin -report (3 DN)" dfsadmin_report.txt dfsadmin_report
 step "hdfs write/read"              hdfs_rw.txt        hdfs_write_read
-step "spark on hdfs (parquet)"      spark_smoke.txt    dc spark-master spark-submit /workspace/src/batch/hdfs_smoke.py
-step "hdfs fsck (blocks/replicas)"  fsck.txt           dc namenode hdfs fsck /datalake -files -blocks -locations
+step "spark on hdfs (parquet)"      spark_smoke.txt    spark_smoke
+step "hdfs fsck (repl=2, healthy)"  fsck.txt           fsck_check
 step "kafka produce/consume"        kafka.txt          kafka_roundtrip
 step "flink cluster + pyflink"      flink.txt          flink_cluster
 

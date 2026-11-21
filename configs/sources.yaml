@@ -1,0 +1,57 @@
+# M1 source definitions (spec §4, T01). Fetchers read this file; facts about each
+# source (licence, coverage, fields) are documented in docs/source_inventory.md.
+
+uci_metro:
+  pattern: file_batch
+  url: https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip
+  landing_name: metro_interstate_traffic_volume.zip
+  member: Metro_Interstate_Traffic_Volume.csv.gz   # the single file inside the zip
+  dataset_page: https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume
+  licence: CC BY 4.0
+  doi: 10.24432/C5X60B
+
+atr301_location:
+  # Official MnDOT layer of continuous count (ATR) sites, queried from the Codespace by
+  # src/ingestion/locate_atr301.py; result saved to data/manifests/atr301_location.json.
+  feature_service: https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_infra/CONTINUOUS_COLLECTION_SITES/FeatureServer
+  arcgis_item_id: 4e85cd73d09949f5ac2a9d08b266d74e
+  station_id: "301"
+  output: data/manifests/atr301_location.json
+
+open_meteo:
+  pattern: api
+  endpoint: https://archive-api.open-meteo.com/v1/archive
+  # latitude/longitude come from data/manifests/atr301_location.json unless set here.
+  latitude: null
+  longitude: null
+  # Same period as UCI (2012-10-02 .. 2018-09-30), padded by one day each side for the UTC<->local shift.
+  start_date: "2012-10-01"
+  end_date: "2018-10-01"
+  chunk: year            # one API call and one raw JSON file per calendar year
+  model: era5            # ERA5 reanalysis (0.25° grid) — reanalysis, NOT station observations
+  timezone: GMT          # raw times kept in UTC; alignment with UCI local time happens in Silver (M2)
+  hourly: [temperature_2m, precipitation, rain, snowfall, cloud_cover, weather_code, wind_speed_10m]
+  licence: CC BY 4.0 (Open-Meteo data); ERA5 contains modified Copernicus Climate Change Service information
+  pause_seconds: 2       # polite gap between calls (free API, non-commercial use)
+
+nyc_tlc:
+  pattern: file_batch
+  base_url: https://d37ci6vzurychx.cloudfront.net/trip-data
+  dataset: yellow
+  months: ["2023-01", "2023-02", "2023-03"]
+  zone_lookup_url: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
+  dataset_page: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+  licence: NYC Open Data Terms of Use
+
+kitti:
+  pattern: file_batch_partial   # labels in full; image subset via HTTP range reads
+  # Download URLs come from your KITTI account e-mail and are read from .env (never committed):
+  #   KITTI_LABEL_URL  -> data_object_label_2.zip   (~5.6 MB)
+  #   KITTI_IMAGE_URL  -> data_object_image_2.zip   (~12.6 GB; only the subset is read)
+  label_url_env: KITTI_LABEL_URL
+  image_url_env: KITTI_IMAGE_URL
+  split: training             # only KITTI's training split has labels
+  subset_size: 500
+  subset_seed: 241091038      # deterministic sample, reproducible
+  dataset_page: https://www.cvlibs.net/datasets/kitti/eval_object.php
+  licence: CC BY-NC-SA 3.0 (non-commercial; images must not be redistributed via this repository)
