@@ -3,10 +3,10 @@
 Student ID: 241091038. All project work lives in `04-projects/241091038/`. Never edit other students' folders, the course materials, or `04-projects/README.md`.
 
 ## Source of truth: the spec
-`../final-project-task-specification.md` is authoritative. This file is only a summary and checklist.
+`docs/spec/final-project-task-specification.md` is authoritative. This file is only a summary and checklist. It is a byte-identical copy of the course file `04-projects/final-project-task-specification.md` (copied 2026-11-21), kept in the project so the Codespace has it too. If the course publishes a new version, re-copy it on the Mac (`cp ../final-project-task-specification.md docs/spec/`) and note the date here.
 - **Before any technical decision, read the relevant spec section first** and cite it in your reasoning (e.g. "spec §5 T04"). That includes: tool or version choice, schemas, storage layout and partitioning, quality rules, window/watermark design, contract fields, benchmark design, and acceptance evidence.
 - If this file and the spec disagree, the spec wins. Then fix this file.
-- Section map: §3 scope and technology boundaries · §4 data sources and minimum volumes · §5 tasks T01–T09 · §6 extensions · §7 product interface and R0/R1 · §8 acceptance AC01–AC09 · §9 deliverables and directory layout · §10 rubric and integrity. Architecture diagram: `../assets/BD-FP-Architecture-v1.0.en.png`.
+- Section map: §3 scope and technology boundaries · §4 data sources and minimum volumes · §5 tasks T01–T09 · §6 extensions · §7 product interface and R0/R1 · §8 acceptance AC01–AC09 · §9 deliverables and directory layout · §10 rubric and integrity. Architecture diagram: `docs/spec/assets/BD-FP-Architecture-v1.0.en.png` (and `.svg`).
 
 ## What we are building
 A big-data **engineering** platform, not an ML model and not a web app:
@@ -65,6 +65,11 @@ Cross-course: R0 is the baseline snapshot (supplied or approved by the course), 
 - HDFS paths: Bronze raw files `/datalake/bronze/<source>/raw/ingest_date=YYYY-MM-DD/`, Bronze Parquet `/datalake/bronze/<source>/records/ingest_date=YYYY-MM-DD/` (separate trees so partition discovery works; see `docs/storage_layout.md`). Silver/Gold follow `/datalake/{silver,gold}/<dataset>/...`.
 - Bronze records carry provenance: `_source`, `_ingested_at`, `_source_version`, `_sha256`.
 - Quality outcomes are split into `accepted` / `quarantine` / `rejected`, and every rule has a test.
+- **Every job is tested before it counts as done.** That covers each Spark, Kafka/Flink, quality and product job, and each fetch or check script. Three levels:
+  1. **Unit tests** (`tests/unit/`) for the job's pure logic: parsing, matching, sampling, rule functions. Use small fake inputs, and include one failure case. These must run on the Mac and in the Codespace without Docker.
+  2. **A run on the stack** in the Codespace. The job's check must verify the *result* (row counts reconciled, checksums, expected schema), not just exit code 0. Integration, data-quality and streaming tests go in `tests/integration/`, `tests/data_quality/` and `tests/streaming/`.
+  3. **Recorded evidence:** that run's logs and summary are saved in `evidence/ACxx/<run>/` and cited by run ID.
+  Add or update the tests in the same change as the job, and run `pytest` before saying a job works. If a test fails, report it with its output; don't skip or delete it.
 - After each milestone, update `README.md` run steps and the matching `evidence/ACxx/` folder.
 
 ## Acceptance checklist (minimum requirement per task; evidence goes in `evidence/ACxx/`)
@@ -101,7 +106,7 @@ Rubric: ingestion 8 · storage 12 · Spark + performance 18 · streaming 15 · q
 - 4 GB RAM and almost no free disk (about 150 MB on 2026-11-21). Edit code and docs only, check with `python -m py_compile` and `.venv/bin/python -m pytest -q tests/unit`. No Docker, no downloads.
 - Nothing counts as "working" until it has run in the Codespace.
 
-**Syncing:** the GitHub repo (`67abraham/BigData_Management_Smart_City_Traffic-Detection`, project folder at the root) is the working copy. The graded submission is the Gitee fork of the course repo at `04-projects/241091038/`, which the user syncs from GitHub before submitting. This `CLAUDE.md` is git-ignored, so the user copies it between the Mac and the Codespace by hand. When you change it, tell the user.
+**Syncing:** the GitHub repo (`67abraham/BigData_Management_Smart_City_Traffic-Detection`, project folder at the root) is the working copy. The graded submission is the Gitee fork of the course repo at `04-projects/241091038/`, which the user syncs from GitHub before submitting. This `CLAUDE.md` and the spec copy in `docs/spec/` are tracked in git (since 2026-11-21), so they reach the Codespace with `git pull`. When you change `CLAUDE.md`, tell the user so they commit it.
 
 ## Lessons from earlier sessions (don't repeat these)
 - **Explain plainly.** The user asked "what are you actually trying to do". Before a multi-step change, say in 1–2 plain sentences what you're doing and why. Keep answers short.
@@ -110,17 +115,20 @@ Rubric: ingestion 8 · storage 12 · Spark + performance 18 · streaming 15 · q
 - **Flink memory:** `jobmanager.memory.process.size` / `taskmanager.memory.process.size` must fit under the containers' `mem_limit`, or the containers get OOM-killed.
 - **Spark `input_file_name()`** returns `''` on cached or RDD-built DataFrames. Attach provenance from the manifest instead (see `bronze_load.py`).
 - **smoke_m0.sh:** PASS must mean the *result* is right (3 live DataNodes, repl=2, read-back count), not just exit code 0. Apply the same rule to every new check script.
-- **MnDOT GIS** (`webgis.dot.state.mn.us`) timed out from outside the US. It should answer from the Codespace. Never hard-code ATR 301 coordinates without that official answer.
+- **MnDOT GIS** (`webgis.dot.state.mn.us`) timed out from outside the US **and from the Codespace** (run `m1_20261121T060408Z`). `locate_atr301.py` falls back to the ArcGIS Hub CSV export of the same official item. Match on `DOT_ID` only: `OBJECTID` 301 is a different site. Never hard-code ATR 301 coordinates; they come from `data/manifests/atr301_location.json`.
+- **`cmd | head` under `set -o pipefail`** can fail the step with SIGPIPE even when the work succeeded (run `m1_20261121T071308Z`). Add `|| true` to informational listings and make the step's PASS depend on a real check (here, the HDFS file count equal to the local count).
+- **Codespace stops** interrupt long jobs (run `m1_20261121T061620Z`). After `docker compose up -d`, re-run the step. Idempotent jobs make that safe.
 - **KITTI image zip** (12.6 GB) supports HTTP range requests. `range_zip.py` reads only the 500 sampled images. Tested against the real archive listing: training/image_2 has 7,481 PNGs and training/label_2 has 7,481 TXT files.
-- **NYC TLC monthly files may differ in schema** (column names/types; not yet checked for 2023-01..03, the M1 profile reports it). Bronze keeps one `source_month=` sub-partition per file and records each schema; unify in Silver.
+- **NYC TLC monthly files do differ in schema** (confirmed in M1). 2023-01 has `airport_fee` and `bigint` IDs. 2023-02 and 2023-03 have `Airport_fee` and `int` IDs, and the type of `passenger_count`/`RatecodeID` differs between the months. Bronze keeps one `source_month=` sub-partition per file; Silver must unify the names and types (details in `docs/source_inventory.md`).
 
 ## Milestones
 M0 environment (AC02) → M1 ingestion (AC01) → M2 Spark and quality (AC03, AC05) → M3 Kafka/Flink and recovery (AC04, AC08) → M4 products and benchmarks (AC06, AC07) → M5 dashboard and docs (AC09, D01–D10).
 
-**Progress:** M0 done 2026-11-21 (smoke_m0.sh 8/8 PASS, run m0_20261121T014208Z). M1 code written 2026-11-21 (`src/ingestion/`, `scripts/ingest_m1.sh`, unit tests pass locally) but **not yet run on the stack**. Next: run `bash scripts/ingest_m1.sh uci_metro`, then all sources, then a second run (expect `unchanged`), check `data/manifests/atr301_location.json`, and commit `evidence/AC01/`.
+**Progress:** M0 done 2026-11-21 (smoke_m0.sh 8/8 PASS, run m0_20261121T014208Z). M1 done 2026-11-21: all 4 sources in Bronze, and the second full run `m1_20261121T072608Z` has 0 failures, every file `unchanged` and the same record counts. Results and anomalies are in `docs/source_inventory.md`, evidence in `evidence/AC01/`. **Next: M2** (Spark Silver + quality, AC03/AC05). Start by reading spec §5 T03 and T05. Also carry the UCI duplicate-hour and gap counts, which were checked by hand in M1, into the M2 quality job so they come from a recorded run.
 
 ## Open decisions / TODO
-- [ ] UCI station coordinates: DECIDED 2026-11-21 — research MnDOT ATR station 301 location from an official source, cite it in `docs/`, note the reanalysis grid resolution, list as a known limitation. Implemented as `src/ingestion/locate_atr301.py` (queries MnDOT's official GIS layer from the Codespace). Open-Meteo variables chosen in `configs/sources.yaml` (temperature_2m, precipitation, rain, snowfall, cloud_cover, weather_code, wind_speed_10m; ERA5; UTC). Still open: confirm the located station once the run produces `data/manifests/atr301_location.json`.
+- [x] UCI station coordinates: DONE 2026-11-21. `DOT_ID` 301 was found in MnDOT's official layer (via the ArcGIS Hub export): 44.9516° N, 93.1369° W, site status Retired. The ERA5 cell used is 45.00° N, 93.25° W. Documented, with its limitations, in `docs/source_inventory.md`.
+- [ ] Confirm on a map that ATR 301 lies on I-94 westbound (the layer has no route field). The link and steps are in `docs/source_inventory.md`; record the result and date there.
 - [x] NYC TLC: DECIDED 2026-11-21 — Yellow taxi, 3 consecutive months (e.g. 2023-01..03); monthly partitions feed the T06 partitioned-vs-unpartitioned benchmark. Row counts come from the actual ingest, not estimates.
 - [x] KITTI: DECIDED 2026-11-21 — user's KITTI account is approved (2026-11-21). Download in the Codespace only: full 2D labels (small) + a subset of training images; the manifest lists every image ID with a file-availability flag; commit only the manifest. Never put KITTI download links or credentials in git.
 - [ ] Ask the instructor whether single-host multi-container HDFS is acceptable as "distributed"

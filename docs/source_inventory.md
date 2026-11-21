@@ -106,6 +106,17 @@ full answer to `data/manifests/atr301_location.json`. The Open-Meteo request use
 (`mentions_i94: false`), so the station is matched by its ID only. Cross-checking that this point lies
 on I-94 westbound is still open, against a map or a MnDOT station page.
 
+**Plausibility check (not a confirmation):** the point lies between the two city centres, east of
+downtown Minneapolis (≈93.27° W) and west of downtown St Paul (≈93.09° W), which fits UCI's
+"roughly midway between Minneapolis and St Paul". To confirm, open
+`https://www.openstreetmap.org/?mlat=44.95162&mlon=-93.13688#map=17/44.95162/-93.13688` and check
+that the point is on I-94, then record the result and date here.
+
+**About "Retired":** the status is MnDOT's current record (retrieved 2026-11-21), not the status in
+2012–2018, when UCI's data was collected. The layer gives no retirement date. UCI's data ending on
+2018-09-30 is *consistent* with a later retirement, but nothing in the source shows when the station
+was retired, so this document does not claim one.
+
 ## Provenance kept for every landed file
 `_manifest.json` next to the raw files (also copied to `evidence/AC01/<run>/manifest_<source>.json`)
 records the URL (KITTI: file name only), HTTP ETag and Last-Modified, `source_version`, download time

@@ -1,6 +1,6 @@
 # Smart City Traffic Data Platform — Big Data final project
 
-Student ID: **241091038** · Spec: [`../final-project-task-specification.md`](../final-project-task-specification.md)
+Student ID: **241091038** · Spec: [`docs/spec/final-project-task-specification.md`](docs/spec/final-project-task-specification.md)
 
 A big-data engineering platform: real traffic/weather/trip/image sources → HDFS Bronze/Silver/Gold →
 Spark batch → Kafka + Flink event-time processing (historical event replay) → quality and governance →
