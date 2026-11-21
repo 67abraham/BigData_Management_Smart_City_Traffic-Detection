@@ -1,0 +1,62 @@
+{
+  "question": "Where in NYC do yellow-taxi trips start (2023-01..03)?",
+  "sql": "SELECT pu_borough, sum(trips) AS trips, round(100 * sum(trips) / sum(sum(trips)) OVER (), 2) AS pct_trips,\n                   round(sum(trip_distance_mi_sum) / sum(trips), 2) AS avg_trip_mi,\n                   round(sum(total_amount_usd_sum) / sum(trips), 2) AS avg_total_usd\n            FROM nyc_zone_hourly GROUP BY pu_borough ORDER BY trips DESC",
+  "rows": [
+    {
+      "pu_borough": "Manhattan",
+      "trips": 8267291,
+      "pct_trips": 88.9,
+      "avg_trip_mi": 2.41,
+      "avg_total_usd": 23.18
+    },
+    {
+      "pu_borough": "Queens",
+      "trips": 848263,
+      "pct_trips": 9.12,
+      "avg_trip_mi": 12.42,
+      "avg_total_usd": 69.82
+    },
+    {
+      "pu_borough": "Unknown",
+      "trips": 104034,
+      "pct_trips": 1.12,
+      "avg_trip_mi": 4.49,
+      "avg_total_usd": 34.39
+    },
+    {
+      "pu_borough": "Brooklyn",
+      "trips": 57577,
+      "pct_trips": 0.62,
+      "avg_trip_mi": 4.9,
+      "avg_total_usd": 33.35
+    },
+    {
+      "pu_borough": "Bronx",
+      "trips": 13843,
+      "pct_trips": 0.15,
+      "avg_trip_mi": 5.19,
+      "avg_total_usd": 34.77
+    },
+    {
+      "pu_borough": "N/A",
+      "trips": 6994,
+      "pct_trips": 0.08,
+      "avg_trip_mi": 5.38,
+      "avg_total_usd": 88.31
+    },
+    {
+      "pu_borough": "EWR",
+      "trips": 1187,
+      "pct_trips": 0.01,
+      "avg_trip_mi": 1.33,
+      "avg_total_usd": 107.72
+    },
+    {
+      "pu_borough": "Staten Island",
+      "trips": 869,
+      "pct_trips": 0.01,
+      "avg_trip_mi": 10.97,
+      "avg_total_usd": 64.99
+    }
+  ]
+}

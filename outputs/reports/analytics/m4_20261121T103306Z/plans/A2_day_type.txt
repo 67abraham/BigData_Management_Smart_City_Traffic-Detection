@@ -1,0 +1,82 @@
+== Physical Plan ==
+AdaptiveSparkPlan (13)
++- Sort (12)
+   +- Exchange (11)
+      +- HashAggregate (10)
+         +- Exchange (9)
+            +- HashAggregate (8)
+               +- Project (7)
+                  +- Filter (6)
+                     +- HashAggregate (5)
+                        +- Exchange (4)
+                           +- HashAggregate (3)
+                              +- Project (2)
+                                 +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [4]: [local_date#9, traffic_volume#10, is_holiday_date#12, year#30]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1]
+ReadSchema: struct<local_date:date,traffic_volume:int,is_holiday_date:boolean>
+
+(2) Project
+Output [3]: [local_date#9, traffic_volume#10, is_holiday_date#12]
+Input [4]: [local_date#9, traffic_volume#10, is_holiday_date#12, year#30]
+
+(3) HashAggregate
+Input [3]: [local_date#9, traffic_volume#10, is_holiday_date#12]
+Keys [1]: [local_date#9]
+Functions [3]: [partial_max(is_holiday_date#12), partial_count(1), partial_sum(traffic_volume#10)]
+Aggregate Attributes [3]: [max#163, count#164L, sum#165L]
+Results [4]: [local_date#9, max#166, count#167L, sum#168L]
+
+(4) Exchange
+Input [4]: [local_date#9, max#166, count#167L, sum#168L]
+Arguments: hashpartitioning(local_date#9, 8), ENSURE_REQUIREMENTS, [plan_id=123]
+
+(5) HashAggregate
+Input [4]: [local_date#9, max#166, count#167L, sum#168L]
+Keys [1]: [local_date#9]
+Functions [3]: [max(is_holiday_date#12), count(1), sum(traffic_volume#10)]
+Aggregate Attributes [3]: [max(is_holiday_date#12)#140, count(1)#141L, sum(traffic_volume#10)#142L]
+Results [4]: [max(is_holiday_date#12)#140 AS holiday#136, dayofweek(local_date#9) AS dow#137, count(1)#141L AS hours#138L, sum(traffic_volume#10)#142L AS volume#139L]
+
+(6) Filter
+Input [4]: [holiday#136, dow#137, hours#138L, volume#139L]
+Condition : (hours#138L = 24)
+
+(7) Project
+Output [2]: [volume#139L, CASE WHEN holiday#136 THEN holiday WHEN dow#137 IN (1,7) THEN weekend ELSE working_day END AS _groupingexpression#152]
+Input [4]: [holiday#136, dow#137, hours#138L, volume#139L]
+
+(8) HashAggregate
+Input [2]: [volume#139L, _groupingexpression#152]
+Keys [1]: [_groupingexpression#152]
+Functions [4]: [partial_count(1), partial_avg(volume#139L), partial_min(volume#139L), partial_max(volume#139L)]
+Aggregate Attributes [5]: [count#153L, sum#154, count#155L, min#156L, max#157L]
+Results [6]: [_groupingexpression#152, count#158L, sum#159, count#160L, min#161L, max#162L]
+
+(9) Exchange
+Input [6]: [_groupingexpression#152, count#158L, sum#159, count#160L, min#161L, max#162L]
+Arguments: hashpartitioning(_groupingexpression#152, 8), ENSURE_REQUIREMENTS, [plan_id=129]
+
+(10) HashAggregate
+Input [6]: [_groupingexpression#152, count#158L, sum#159, count#160L, min#161L, max#162L]
+Keys [1]: [_groupingexpression#152]
+Functions [4]: [count(1), avg(volume#139L), min(volume#139L), max(volume#139L)]
+Aggregate Attributes [4]: [count(1)#143L, avg(volume#139L)#144, min(volume#139L)#145L, max(volume#139L)#146L]
+Results [5]: [_groupingexpression#152 AS day_type#131, count(1)#143L AS full_days#132L, round(avg(volume#139L)#144, 0) AS avg_daily_volume#133, min(volume#139L)#145L AS min_daily_volume#134L, max(volume#139L)#146L AS max_daily_volume#135L]
+
+(11) Exchange
+Input [5]: [day_type#131, full_days#132L, avg_daily_volume#133, min_daily_volume#134L, max_daily_volume#135L]
+Arguments: rangepartitioning(day_type#131 ASC NULLS FIRST, 8), ENSURE_REQUIREMENTS, [plan_id=132]
+
+(12) Sort
+Input [5]: [day_type#131, full_days#132L, avg_daily_volume#133, min_daily_volume#134L, max_daily_volume#135L]
+Arguments: [day_type#131 ASC NULLS FIRST], true, 0
+
+(13) AdaptiveSparkPlan
+Output [5]: [day_type#131, full_days#132L, avg_daily_volume#133, min_daily_volume#134L, max_daily_volume#135L]
+Arguments: isFinalPlan=false
+

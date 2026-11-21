@@ -1,0 +1,1243 @@
+{
+  "run_id": "m4_20261121T104058Z",
+  "finished_at": "2026-11-21T10:45:33.055554+00:00",
+  "environment": {
+    "spark_version": "3.5.3",
+    "master": "spark://spark-master:7077",
+    "app_id": "app-20261121104102-0027",
+    "executor_memory": "1g",
+    "executor_cores": "1",
+    "shuffle_partitions": "8",
+    "aqe": "true",
+    "driver_host_cpus": 4,
+    "python": "3.10.12",
+    "storage": "HDFS 3.3.6, 3 DataNodes on one host, replication 2",
+    "cache": "no DataFrame caching; OS page cache and HDFS short-circuit not controlled (warm-up run reported separately)"
+  },
+  "layouts": {
+    "csv_flat": {
+      "path": "hdfs://namenode:8020/datalake/bench/nyc_trips/csv_flat",
+      "bytes": 1076815737,
+      "files": 17
+    },
+    "parquet_flat": {
+      "path": "hdfs://namenode:8020/datalake/bench/nyc_trips/parquet_flat",
+      "bytes": 243552717,
+      "files": 17
+    },
+    "parquet_by_date": {
+      "path": "hdfs://namenode:8020/datalake/bench/nyc_trips/parquet_by_date",
+      "bytes": 212163100,
+      "files": 91
+    },
+    "parquet_sorted": {
+      "path": "hdfs://namenode:8020/datalake/bench/nyc_trips/parquet_sorted",
+      "bytes": 188509534,
+      "files": 17
+    }
+  },
+  "rows_per_layout": {
+    "csv_flat": 9300058,
+    "parquet_flat": 9300058,
+    "parquet_by_date": 9300058,
+    "parquet_sorted": 9300058
+  },
+  "repeats": 3,
+  "queries": {
+    "Q1_full_agg": "SELECT pu_borough, count(*) AS trips, round(avg(CAST(fare_amount_usd AS DECIMAL(12,2))), 4) AS avg_fare FROM {t} GROUP BY pu_borough ORDER BY pu_borough",
+    "Q2_one_week": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM {t} WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+    "Q3_one_column": "SELECT sum(CAST(total_amount_usd AS DECIMAL(12,2))) AS total FROM {t}"
+  },
+  "results": [
+    {
+      "pair": "A_csv_vs_parquet",
+      "query": "Q1_full_agg",
+      "layout": "csv_flat",
+      "conf": {},
+      "sql": "SELECT pu_borough, count(*) AS trips, round(avg(CAST(fare_amount_usd AS DECIMAL(12,2))), 4) AS avg_fare FROM csv_flat GROUP BY pu_borough ORDER BY pu_borough",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 17.458,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 22905,
+          "tasks": 19
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 14.655,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 22905,
+          "tasks": 19
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 14.809,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 22905,
+          "tasks": 19
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 13.861,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 22905,
+          "tasks": 19
+        }
+      ],
+      "median_s": 14.655,
+      "min_s": 13.861,
+      "max_s": 14.809,
+      "warmup_s": 17.458,
+      "input_bytes_median": 1076815737,
+      "result": [
+        [
+          "Bronx",
+          13843,
+          "30.5615"
+        ],
+        [
+          "Brooklyn",
+          57577,
+          "27.0382"
+        ],
+        [
+          "EWR",
+          1187,
+          "91.8448"
+        ],
+        [
+          "Manhattan",
+          8267291,
+          "15.2605"
+        ],
+        [
+          "N/A",
+          6994,
+          "79.1708"
+        ],
+        [
+          "Queens",
+          848263,
+          "51.6681"
+        ],
+        [
+          "Staten Island",
+          869,
+          "50.3624"
+        ],
+        [
+          "Unknown",
+          104034,
+          "23.9657"
+        ]
+      ]
+    },
+    {
+      "pair": "A_csv_vs_parquet",
+      "query": "Q1_full_agg",
+      "layout": "parquet_flat",
+      "conf": {},
+      "sql": "SELECT pu_borough, count(*) AS trips, round(avg(CAST(fare_amount_usd AS DECIMAL(12,2))), 4) AS avg_fare FROM parquet_flat GROUP BY pu_borough ORDER BY pu_borough",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 4.347,
+          "input_bytes": 15899383,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 4861,
+          "tasks": 6
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 3.178,
+          "input_bytes": 15899383,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 4861,
+          "tasks": 6
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 3.136,
+          "input_bytes": 15899383,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 4861,
+          "tasks": 6
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 3.428,
+          "input_bytes": 15899383,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 4861,
+          "tasks": 6
+        }
+      ],
+      "median_s": 3.178,
+      "min_s": 3.136,
+      "max_s": 3.428,
+      "warmup_s": 4.347,
+      "input_bytes_median": 15899383,
+      "result": [
+        [
+          "Bronx",
+          13843,
+          "30.5615"
+        ],
+        [
+          "Brooklyn",
+          57577,
+          "27.0382"
+        ],
+        [
+          "EWR",
+          1187,
+          "91.8448"
+        ],
+        [
+          "Manhattan",
+          8267291,
+          "15.2605"
+        ],
+        [
+          "N/A",
+          6994,
+          "79.1708"
+        ],
+        [
+          "Queens",
+          848263,
+          "51.6681"
+        ],
+        [
+          "Staten Island",
+          869,
+          "50.3624"
+        ],
+        [
+          "Unknown",
+          104034,
+          "23.9657"
+        ]
+      ]
+    },
+    {
+      "pair": "A_csv_vs_parquet",
+      "query": "Q3_one_column",
+      "layout": "csv_flat",
+      "conf": {},
+      "sql": "SELECT sum(CAST(total_amount_usd AS DECIMAL(12,2))) AS total FROM csv_flat",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 12.603,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 1232,
+          "tasks": 17
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 12.485,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 1232,
+          "tasks": 17
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 12.383,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 1232,
+          "tasks": 17
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 12.314,
+          "input_bytes": 1076815737,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 1232,
+          "tasks": 17
+        }
+      ],
+      "median_s": 12.383,
+      "min_s": 12.314,
+      "max_s": 12.485,
+      "warmup_s": 12.603,
+      "input_bytes_median": 1076815737,
+      "result": [
+        [
+          "257646745.86"
+        ]
+      ]
+    },
+    {
+      "pair": "A_csv_vs_parquet",
+      "query": "Q3_one_column",
+      "layout": "parquet_flat",
+      "conf": {},
+      "sql": "SELECT sum(CAST(total_amount_usd AS DECIMAL(12,2))) AS total FROM parquet_flat",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 1.976,
+          "input_bytes": 16346706,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 236,
+          "tasks": 4
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 1.811,
+          "input_bytes": 16346706,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 236,
+          "tasks": 4
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 1.982,
+          "input_bytes": 16346706,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 236,
+          "tasks": 4
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 1.9,
+          "input_bytes": 16346706,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 236,
+          "tasks": 4
+        }
+      ],
+      "median_s": 1.9,
+      "min_s": 1.811,
+      "max_s": 1.982,
+      "warmup_s": 1.976,
+      "input_bytes_median": 16346706,
+      "result": [
+        [
+          "257646745.86"
+        ]
+      ]
+    },
+    {
+      "pair": "B_partitioned_vs_flat",
+      "query": "Q2_one_week",
+      "layout": "parquet_flat",
+      "conf": {},
+      "sql": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM parquet_flat WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 1.713,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 1.161,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 1.403,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 1.529,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        }
+      ],
+      "median_s": 1.403,
+      "min_s": 1.161,
+      "max_s": 1.529,
+      "warmup_s": 1.713,
+      "input_bytes_median": 73621167,
+      "result": [
+        [
+          0,
+          19765
+        ],
+        [
+          1,
+          13481
+        ],
+        [
+          2,
+          9485
+        ],
+        [
+          3,
+          6213
+        ],
+        [
+          4,
+          3963
+        ],
+        [
+          5,
+          4081
+        ],
+        [
+          6,
+          10223
+        ],
+        [
+          7,
+          20957
+        ],
+        [
+          8,
+          28618
+        ],
+        [
+          9,
+          32119
+        ],
+        [
+          10,
+          34068
+        ],
+        [
+          11,
+          36301
+        ],
+        [
+          12,
+          39339
+        ],
+        [
+          13,
+          40886
+        ],
+        [
+          14,
+          44166
+        ],
+        [
+          15,
+          45026
+        ],
+        [
+          16,
+          45669
+        ],
+        [
+          17,
+          50999
+        ],
+        [
+          18,
+          53173
+        ],
+        [
+          19,
+          46256
+        ],
+        [
+          20,
+          40653
+        ],
+        [
+          21,
+          41702
+        ],
+        [
+          22,
+          40261
+        ],
+        [
+          23,
+          30043
+        ]
+      ]
+    },
+    {
+      "pair": "B_partitioned_vs_flat",
+      "query": "Q2_one_week",
+      "layout": "parquet_by_date",
+      "conf": {},
+      "sql": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM parquet_by_date WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 0.567,
+          "input_bytes": 4333826,
+          "input_records": 737447,
+          "shuffle_read_bytes": 3603,
+          "tasks": 5
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 0.391,
+          "input_bytes": 4333826,
+          "input_records": 737447,
+          "shuffle_read_bytes": 3603,
+          "tasks": 5
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 0.359,
+          "input_bytes": 4333826,
+          "input_records": 737447,
+          "shuffle_read_bytes": 3603,
+          "tasks": 5
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 0.318,
+          "input_bytes": 4333826,
+          "input_records": 737447,
+          "shuffle_read_bytes": 3603,
+          "tasks": 5
+        }
+      ],
+      "median_s": 0.359,
+      "min_s": 0.318,
+      "max_s": 0.391,
+      "warmup_s": 0.567,
+      "input_bytes_median": 4333826,
+      "result": [
+        [
+          0,
+          19765
+        ],
+        [
+          1,
+          13481
+        ],
+        [
+          2,
+          9485
+        ],
+        [
+          3,
+          6213
+        ],
+        [
+          4,
+          3963
+        ],
+        [
+          5,
+          4081
+        ],
+        [
+          6,
+          10223
+        ],
+        [
+          7,
+          20957
+        ],
+        [
+          8,
+          28618
+        ],
+        [
+          9,
+          32119
+        ],
+        [
+          10,
+          34068
+        ],
+        [
+          11,
+          36301
+        ],
+        [
+          12,
+          39339
+        ],
+        [
+          13,
+          40886
+        ],
+        [
+          14,
+          44166
+        ],
+        [
+          15,
+          45026
+        ],
+        [
+          16,
+          45669
+        ],
+        [
+          17,
+          50999
+        ],
+        [
+          18,
+          53173
+        ],
+        [
+          19,
+          46256
+        ],
+        [
+          20,
+          40653
+        ],
+        [
+          21,
+          41702
+        ],
+        [
+          22,
+          40261
+        ],
+        [
+          23,
+          30043
+        ]
+      ]
+    },
+    {
+      "pair": "C_pushdown_off_vs_on",
+      "query": "Q2_one_week",
+      "layout": "parquet_flat",
+      "conf": {
+        "spark.sql.parquet.filterPushdown": "false"
+      },
+      "sql": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM parquet_flat WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 0.845,
+          "input_bytes": 73595602,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 1.103,
+          "input_bytes": 73595602,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 1.291,
+          "input_bytes": 73595602,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 0.686,
+          "input_bytes": 73595602,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        }
+      ],
+      "median_s": 1.103,
+      "min_s": 0.686,
+      "max_s": 1.291,
+      "warmup_s": 0.845,
+      "input_bytes_median": 73595602,
+      "result": [
+        [
+          0,
+          19765
+        ],
+        [
+          1,
+          13481
+        ],
+        [
+          2,
+          9485
+        ],
+        [
+          3,
+          6213
+        ],
+        [
+          4,
+          3963
+        ],
+        [
+          5,
+          4081
+        ],
+        [
+          6,
+          10223
+        ],
+        [
+          7,
+          20957
+        ],
+        [
+          8,
+          28618
+        ],
+        [
+          9,
+          32119
+        ],
+        [
+          10,
+          34068
+        ],
+        [
+          11,
+          36301
+        ],
+        [
+          12,
+          39339
+        ],
+        [
+          13,
+          40886
+        ],
+        [
+          14,
+          44166
+        ],
+        [
+          15,
+          45026
+        ],
+        [
+          16,
+          45669
+        ],
+        [
+          17,
+          50999
+        ],
+        [
+          18,
+          53173
+        ],
+        [
+          19,
+          46256
+        ],
+        [
+          20,
+          40653
+        ],
+        [
+          21,
+          41702
+        ],
+        [
+          22,
+          40261
+        ],
+        [
+          23,
+          30043
+        ]
+      ]
+    },
+    {
+      "pair": "C_pushdown_off_vs_on",
+      "query": "Q2_one_week",
+      "layout": "parquet_flat",
+      "conf": {
+        "spark.sql.parquet.filterPushdown": "true"
+      },
+      "sql": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM parquet_flat WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 0.815,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 0.877,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 0.816,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 1.177,
+          "input_bytes": 73621167,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 5031,
+          "tasks": 6
+        }
+      ],
+      "median_s": 0.877,
+      "min_s": 0.816,
+      "max_s": 1.177,
+      "warmup_s": 0.815,
+      "input_bytes_median": 73621167,
+      "result": [
+        [
+          0,
+          19765
+        ],
+        [
+          1,
+          13481
+        ],
+        [
+          2,
+          9485
+        ],
+        [
+          3,
+          6213
+        ],
+        [
+          4,
+          3963
+        ],
+        [
+          5,
+          4081
+        ],
+        [
+          6,
+          10223
+        ],
+        [
+          7,
+          20957
+        ],
+        [
+          8,
+          28618
+        ],
+        [
+          9,
+          32119
+        ],
+        [
+          10,
+          34068
+        ],
+        [
+          11,
+          36301
+        ],
+        [
+          12,
+          39339
+        ],
+        [
+          13,
+          40886
+        ],
+        [
+          14,
+          44166
+        ],
+        [
+          15,
+          45026
+        ],
+        [
+          16,
+          45669
+        ],
+        [
+          17,
+          50999
+        ],
+        [
+          18,
+          53173
+        ],
+        [
+          19,
+          46256
+        ],
+        [
+          20,
+          40653
+        ],
+        [
+          21,
+          41702
+        ],
+        [
+          22,
+          40261
+        ],
+        [
+          23,
+          30043
+        ]
+      ]
+    },
+    {
+      "pair": "C_pushdown_off_vs_on",
+      "query": "Q2_one_week",
+      "layout": "parquet_sorted",
+      "conf": {
+        "spark.sql.parquet.filterPushdown": "false"
+      },
+      "sql": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM parquet_sorted WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 1.37,
+          "input_bytes": 39674700,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 0.927,
+          "input_bytes": 39674700,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 0.772,
+          "input_bytes": 39674700,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 0.668,
+          "input_bytes": 39674700,
+          "input_records": 9300058,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        }
+      ],
+      "median_s": 0.772,
+      "min_s": 0.668,
+      "max_s": 0.927,
+      "warmup_s": 1.37,
+      "input_bytes_median": 39674700,
+      "result": [
+        [
+          0,
+          19765
+        ],
+        [
+          1,
+          13481
+        ],
+        [
+          2,
+          9485
+        ],
+        [
+          3,
+          6213
+        ],
+        [
+          4,
+          3963
+        ],
+        [
+          5,
+          4081
+        ],
+        [
+          6,
+          10223
+        ],
+        [
+          7,
+          20957
+        ],
+        [
+          8,
+          28618
+        ],
+        [
+          9,
+          32119
+        ],
+        [
+          10,
+          34068
+        ],
+        [
+          11,
+          36301
+        ],
+        [
+          12,
+          39339
+        ],
+        [
+          13,
+          40886
+        ],
+        [
+          14,
+          44166
+        ],
+        [
+          15,
+          45026
+        ],
+        [
+          16,
+          45669
+        ],
+        [
+          17,
+          50999
+        ],
+        [
+          18,
+          53173
+        ],
+        [
+          19,
+          46256
+        ],
+        [
+          20,
+          40653
+        ],
+        [
+          21,
+          41702
+        ],
+        [
+          22,
+          40261
+        ],
+        [
+          23,
+          30043
+        ]
+      ]
+    },
+    {
+      "pair": "C_pushdown_off_vs_on",
+      "query": "Q2_one_week",
+      "layout": "parquet_sorted",
+      "conf": {
+        "spark.sql.parquet.filterPushdown": "true"
+      },
+      "sql": "SELECT hour(pickup_datetime_local) AS h, count(*) AS trips FROM parquet_sorted WHERE pickup_date BETWEEN DATE'2023-02-06' AND DATE'2023-02-12' GROUP BY 1 ORDER BY 1",
+      "runs": [
+        {
+          "run": 0,
+          "warmup": true,
+          "elapsed_s": 0.421,
+          "input_bytes": 3642576,
+          "input_records": 743427,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "elapsed_s": 0.314,
+          "input_bytes": 3642576,
+          "input_records": 743427,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "elapsed_s": 0.555,
+          "input_bytes": 3642576,
+          "input_records": 743427,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "elapsed_s": 0.42,
+          "input_bytes": 3642576,
+          "input_records": 743427,
+          "shuffle_read_bytes": 3627,
+          "tasks": 5
+        }
+      ],
+      "median_s": 0.42,
+      "min_s": 0.314,
+      "max_s": 0.555,
+      "warmup_s": 0.421,
+      "input_bytes_median": 3642576,
+      "result": [
+        [
+          0,
+          19765
+        ],
+        [
+          1,
+          13481
+        ],
+        [
+          2,
+          9485
+        ],
+        [
+          3,
+          6213
+        ],
+        [
+          4,
+          3963
+        ],
+        [
+          5,
+          4081
+        ],
+        [
+          6,
+          10223
+        ],
+        [
+          7,
+          20957
+        ],
+        [
+          8,
+          28618
+        ],
+        [
+          9,
+          32119
+        ],
+        [
+          10,
+          34068
+        ],
+        [
+          11,
+          36301
+        ],
+        [
+          12,
+          39339
+        ],
+        [
+          13,
+          40886
+        ],
+        [
+          14,
+          44166
+        ],
+        [
+          15,
+          45026
+        ],
+        [
+          16,
+          45669
+        ],
+        [
+          17,
+          50999
+        ],
+        [
+          18,
+          53173
+        ],
+        [
+          19,
+          46256
+        ],
+        [
+          20,
+          40653
+        ],
+        [
+          21,
+          41702
+        ],
+        [
+          22,
+          40261
+        ],
+        [
+          23,
+          30043
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,567 @@
+{
+  "traffic_hourly": {
+    "product": "traffic_hourly_v1",
+    "location": "hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1/",
+    "rows": 40558,
+    "passed": true,
+    "checks": [
+      {
+        "check": "schema_matches_contract",
+        "passed": true,
+        "detail": {
+          "missing": [],
+          "extra": [],
+          "type_mismatch": {}
+        }
+      },
+      {
+        "check": "row_count_matches_build",
+        "passed": true,
+        "detail": {
+          "read": 40558,
+          "built": 40558
+        }
+      },
+      {
+        "check": "primary_key_unique",
+        "passed": true,
+        "detail": {
+          "key": [
+            "station_id",
+            "hour_start_utc"
+          ],
+          "distinct": 40558,
+          "rows": 40558
+        }
+      },
+      {
+        "check": "required_fields_not_null",
+        "passed": true,
+        "detail": {}
+      },
+      {
+        "check": "rule:volume_in_range",
+        "passed": true,
+        "detail": {
+          "rule": "traffic_volume BETWEEN 1 AND 10000",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:offset_matches_zone",
+        "passed": true,
+        "detail": {
+          "rule": "utc_offset_hours IN (-5, -6) AND timezone = 'America/Chicago'",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:utc_is_local_minus_offset",
+        "passed": true,
+        "detail": {
+          "rule": "hour_start_utc = to_utc_timestamp(CAST(hour_start_local AS TIMESTAMP), 'America/Chicago')",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:era5_matched",
+        "passed": true,
+        "detail": {
+          "rule": "era5_temperature_2m_c IS NOT NULL AND era5_precipitation_mm IS NOT NULL",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:units_constant",
+        "passed": true,
+        "detail": {
+          "rule": "traffic_volume_unit = 'vehicles/hour'",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:year_matches_date",
+        "passed": true,
+        "detail": {
+          "rule": "year = year(local_date)",
+          "rows_breaking": 0
+        }
+      }
+    ],
+    "sample_rows": [
+      {
+        "station_id": "301",
+        "road": "I-94",
+        "direction": "westbound",
+        "latitude": 44.9516213956903,
+        "longitude": -93.1368848235347,
+        "hour_start_utc": "2012-10-02T14:00:00",
+        "hour_start_local": "2012-10-02T09:00:00",
+        "timezone": "America/Chicago",
+        "utc_offset_hours": -5,
+        "local_date": "2012-10-02",
+        "traffic_volume": 5545,
+        "traffic_volume_unit": "vehicles/hour",
+        "is_holiday_date": false,
+        "holiday_name": null,
+        "uci_temp_c": 15.13,
+        "uci_rain_1h_mm": 0.0,
+        "uci_snow_1h_mm": 0.0,
+        "uci_clouds_all_pct": 40.0,
+        "uci_weather_main": [
+          "Clouds"
+        ],
+        "uci_weather_conflict": false,
+        "era5_temperature_2m_c": 9.4,
+        "era5_precipitation_mm": 0.0,
+        "era5_snowfall_cm": 0.0,
+        "era5_cloud_cover_pct": 0,
+        "era5_weather_code": 0,
+        "era5_wind_speed_10m_kmh": 5.4,
+        "source_rows": 1,
+        "_silver_run_id": "m2_20261121T081847Z",
+        "_gold_run_id": "m2_20261121T081847Z",
+        "_product_run_id": "m4_20261121T102858Z",
+        "year": 2012
+      },
+      {
+        "station_id": "301",
+        "road": "I-94",
+        "direction": "westbound",
+        "latitude": 44.9516213956903,
+        "longitude": -93.1368848235347,
+        "hour_start_utc": "2012-10-02T15:00:00",
+        "hour_start_local": "2012-10-02T10:00:00",
+        "timezone": "America/Chicago",
+        "utc_offset_hours": -5,
+        "local_date": "2012-10-02",
+        "traffic_volume": 4516,
+        "traffic_volume_unit": "vehicles/hour",
+        "is_holiday_date": false,
+        "holiday_name": null,
+        "uci_temp_c": 16.21,
+        "uci_rain_1h_mm": 0.0,
+        "uci_snow_1h_mm": 0.0,
+        "uci_clouds_all_pct": 75.0,
+        "uci_weather_main": [
+          "Clouds"
+        ],
+        "uci_weather_conflict": false,
+        "era5_temperature_2m_c": 15.5,
+        "era5_precipitation_mm": 0.0,
+        "era5_snowfall_cm": 0.0,
+        "era5_cloud_cover_pct": 0,
+        "era5_weather_code": 0,
+        "era5_wind_speed_10m_kmh": 6.4,
+        "source_rows": 1,
+        "_silver_run_id": "m2_20261121T081847Z",
+        "_gold_run_id": "m2_20261121T081847Z",
+        "_product_run_id": "m4_20261121T102858Z",
+        "year": 2012
+      }
+    ],
+    "run_id": "m4_20261121T102858Z",
+    "spark_app_id": "app-20261121103014-0024",
+    "checked_at": "2026-11-21T10:30:37.964775+00:00"
+  },
+  "traffic_features": {
+    "product": "traffic_features_v1",
+    "location": "hdfs://namenode:8020/datalake/gold/products/traffic_features/v1/",
+    "rows": 40558,
+    "passed": true,
+    "checks": [
+      {
+        "check": "schema_matches_contract",
+        "passed": true,
+        "detail": {
+          "missing": [],
+          "extra": [],
+          "type_mismatch": {}
+        }
+      },
+      {
+        "check": "row_count_matches_build",
+        "passed": true,
+        "detail": {
+          "read": 40558,
+          "built": 40558
+        }
+      },
+      {
+        "check": "primary_key_unique",
+        "passed": true,
+        "detail": {
+          "key": [
+            "station_id",
+            "hour_start_utc"
+          ],
+          "distinct": 40558,
+          "rows": 40558
+        }
+      },
+      {
+        "check": "required_fields_not_null",
+        "passed": true,
+        "detail": {}
+      },
+      {
+        "check": "rule:split_matches_date",
+        "passed": true,
+        "detail": {
+          "rule": "(split = 'train' AND local_date < DATE '2017-01-01') OR (split = 'validation' AND local_date >= DATE '2017-01-01' AND local_date < DATE '2018-01-01') OR (split = 'test' AND local_date >= DATE '2018-01-01')",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:calendar_ranges",
+        "passed": true,
+        "detail": {
+          "rule": "hour_of_day BETWEEN 0 AND 23 AND day_of_week BETWEEN 1 AND 7 AND month BETWEEN 1 AND 12",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:rolling_count_range",
+        "passed": true,
+        "detail": {
+          "rule": "rolling_count_prev_24h BETWEEN 0 AND 24",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:rolling_mean_needs_count",
+        "passed": true,
+        "detail": {
+          "rule": "(rolling_count_prev_24h = 0) = (rolling_mean_prev_24h IS NULL)",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:lags_complete_consistent",
+        "passed": true,
+        "detail": {
+          "rule": "lags_complete = (lag_1h IS NOT NULL AND lag_24h IS NOT NULL AND lag_168h IS NOT NULL)",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:target_positive",
+        "passed": true,
+        "detail": {
+          "rule": "target_traffic_volume BETWEEN 1 AND 10000",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "leakage:lags_equal_earlier_hours",
+        "passed": true,
+        "detail": {
+          "lag_1h_mismatches": 0,
+          "lag_24h_mismatches": 0
+        }
+      }
+    ],
+    "sample_rows": [
+      {
+        "station_id": "301",
+        "hour_start_utc": "2012-10-02T14:00:00",
+        "hour_start_local": "2012-10-02T09:00:00",
+        "local_date": "2012-10-02",
+        "target_traffic_volume": 5545,
+        "hour_of_day": 9,
+        "day_of_week": 2,
+        "month": 10,
+        "is_weekend": false,
+        "is_holiday_date": false,
+        "lag_1h": null,
+        "lag_2h": null,
+        "lag_24h": null,
+        "lag_168h": null,
+        "rolling_mean_prev_24h": null,
+        "rolling_count_prev_24h": 0,
+        "lags_complete": false,
+        "_product_run_id": "m4_20261121T102858Z",
+        "split": "train"
+      },
+      {
+        "station_id": "301",
+        "hour_start_utc": "2012-10-02T15:00:00",
+        "hour_start_local": "2012-10-02T10:00:00",
+        "local_date": "2012-10-02",
+        "target_traffic_volume": 4516,
+        "hour_of_day": 10,
+        "day_of_week": 2,
+        "month": 10,
+        "is_weekend": false,
+        "is_holiday_date": false,
+        "lag_1h": 5545,
+        "lag_2h": null,
+        "lag_24h": null,
+        "lag_168h": null,
+        "rolling_mean_prev_24h": 5545.0,
+        "rolling_count_prev_24h": 1,
+        "lags_complete": false,
+        "_product_run_id": "m4_20261121T102858Z",
+        "split": "train"
+      }
+    ],
+    "run_id": "m4_20261121T102858Z",
+    "spark_app_id": "app-20261121103014-0024",
+    "checked_at": "2026-11-21T10:30:47.620247+00:00"
+  },
+  "road_image_manifest": {
+    "product": "road_image_manifest_v1",
+    "location": "hdfs://namenode:8020/datalake/gold/products/road_image_manifest/v1/",
+    "rows": 7481,
+    "passed": true,
+    "checks": [
+      {
+        "check": "schema_matches_contract",
+        "passed": true,
+        "detail": {
+          "missing": [],
+          "extra": [],
+          "type_mismatch": {}
+        }
+      },
+      {
+        "check": "row_count_matches_build",
+        "passed": true,
+        "detail": {
+          "read": 7481,
+          "built": 7481
+        }
+      },
+      {
+        "check": "primary_key_unique",
+        "passed": true,
+        "detail": {
+          "key": [
+            "image_id"
+          ],
+          "distinct": 7481,
+          "rows": 7481
+        }
+      },
+      {
+        "check": "required_fields_not_null",
+        "passed": true,
+        "detail": {}
+      },
+      {
+        "check": "rule:id_format",
+        "passed": true,
+        "detail": {
+          "rule": "image_id RLIKE '^[0-9]{6}$'",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:available_has_file_facts",
+        "passed": true,
+        "detail": {
+          "rule": "file_available = (image_path IS NOT NULL AND image_bytes > 0 AND width_px > 0 AND height_px > 0 AND length(image_sha256) = 64)",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:label_counts_consistent",
+        "passed": true,
+        "detail": {
+          "rule": "object_count + dontcare_count = label_lines",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:format_png",
+        "passed": true,
+        "detail": {
+          "rule": "image_format = 'png' AND split = 'training'",
+          "rows_breaking": 0
+        }
+      }
+    ],
+    "sample_rows": [
+      {
+        "image_id": "000000",
+        "split": "training",
+        "file_available": false,
+        "image_path": null,
+        "image_format": "png",
+        "image_bytes": null,
+        "width_px": null,
+        "height_px": null,
+        "image_sha256": null,
+        "label_path": "hdfs://namenode:8020/datalake/bronze/kitti/raw/ingest_date=2026-11-21/data_object_label_2.zip!training/label_2/000000.txt",
+        "label_bytes": 87,
+        "label_lines": 1,
+        "object_count": 1,
+        "dontcare_count": 0,
+        "object_types": [
+          "Pedestrian"
+        ],
+        "origin": "KITTI 2D object detection benchmark, training split",
+        "label_archive_sha256": "4efc76220d867e1c31bb980bbf8cbc02599f02a9cb4350effa98dbb04aaed880",
+        "_product_run_id": "m4_20261121T102858Z"
+      },
+      {
+        "image_id": "000001",
+        "split": "training",
+        "file_available": false,
+        "image_path": null,
+        "image_format": "png",
+        "image_bytes": null,
+        "width_px": null,
+        "height_px": null,
+        "image_sha256": null,
+        "label_path": "hdfs://namenode:8020/datalake/bronze/kitti/raw/ingest_date=2026-11-21/data_object_label_2.zip!training/label_2/000001.txt",
+        "label_bytes": 565,
+        "label_lines": 7,
+        "object_count": 3,
+        "dontcare_count": 4,
+        "object_types": [
+          "Car",
+          "Cyclist",
+          "Truck"
+        ],
+        "origin": "KITTI 2D object detection benchmark, training split",
+        "label_archive_sha256": "4efc76220d867e1c31bb980bbf8cbc02599f02a9cb4350effa98dbb04aaed880",
+        "_product_run_id": "m4_20261121T102858Z"
+      }
+    ],
+    "run_id": "m4_20261121T102858Z",
+    "spark_app_id": "app-20261121103014-0024",
+    "checked_at": "2026-11-21T10:30:50.062635+00:00"
+  },
+  "traffic_window_metrics": {
+    "product": "traffic_window_metrics_v1",
+    "location": "hdfs://namenode:8020/datalake/gold/products/traffic_window_metrics/v1/",
+    "rows": 7334,
+    "passed": true,
+    "checks": [
+      {
+        "check": "schema_matches_contract",
+        "passed": true,
+        "detail": {
+          "missing": [],
+          "extra": [],
+          "type_mismatch": {}
+        }
+      },
+      {
+        "check": "row_count_matches_build",
+        "passed": true,
+        "detail": {
+          "read": 7334,
+          "built": 7334
+        }
+      },
+      {
+        "check": "primary_key_unique",
+        "passed": true,
+        "detail": {
+          "key": [
+            "station_id",
+            "window_start_utc"
+          ],
+          "distinct": 7334,
+          "rows": 7334
+        }
+      },
+      {
+        "check": "required_fields_not_null",
+        "passed": true,
+        "detail": {}
+      },
+      {
+        "check": "rule:window_6h",
+        "passed": true,
+        "detail": {
+          "rule": "window_size_hours = 6 AND window_end_utc = window_start_utc + INTERVAL 6 HOURS",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:aligned",
+        "passed": true,
+        "detail": {
+          "rule": "hour(window_start_utc) % 6 = 0 AND minute(window_start_utc) = 0",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:counts_range",
+        "passed": true,
+        "detail": {
+          "rule": "event_count BETWEEN 1 AND 6 AND expected_events = 6 AND abs(completeness - event_count / 6.0) < 0.0001",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:stats_consistent",
+        "passed": true,
+        "detail": {
+          "rule": "volume_min <= volume_avg AND volume_avg <= volume_max AND abs(volume_sum - volume_avg * event_count) < 0.01 * event_count",
+          "rows_breaking": 0
+        }
+      },
+      {
+        "check": "rule:replay_labelled",
+        "passed": true,
+        "detail": {
+          "rule": "record_kind = 'historical_event_replay_window'",
+          "rows_breaking": 0
+        }
+      }
+    ],
+    "sample_rows": [
+      {
+        "station_id": "301",
+        "window_start_utc": "2012-10-02T12:00:00",
+        "window_end_utc": "2012-10-02T18:00:00",
+        "window_size_hours": 6,
+        "event_count": 4,
+        "expected_events": 6,
+        "completeness": 0.6667,
+        "volume_sum": 19854,
+        "volume_avg": 4963.5,
+        "volume_min": 4516,
+        "volume_max": 5545,
+        "final_firing": "on_time",
+        "final_update_seq": 0,
+        "firings_seen": 1,
+        "watermark_at_emit": "2012-10-02T19:59:59Z",
+        "record_kind": "historical_event_replay_window",
+        "source_topic": "uci-traffic-replay-v1",
+        "job_run_id": "m3_20261121T092806Z_replay",
+        "_product_run_id": "m4_20261121T102858Z",
+        "window_year": 2012
+      },
+      {
+        "station_id": "301",
+        "window_start_utc": "2012-10-02T18:00:00",
+        "window_end_utc": "2012-10-03T00:00:00",
+        "window_size_hours": 6,
+        "event_count": 6,
+        "expected_events": 6,
+        "completeness": 1.0,
+        "volume_sum": 32259,
+        "volume_avg": 5376.5,
+        "volume_min": 4770,
+        "volume_max": 6015,
+        "final_firing": "on_time",
+        "final_update_seq": 0,
+        "firings_seen": 1,
+        "watermark_at_emit": "2012-10-03T04:59:59Z",
+        "record_kind": "historical_event_replay_window",
+        "source_topic": "uci-traffic-replay-v1",
+        "job_run_id": "m3_20261121T092806Z_replay",
+        "_product_run_id": "m4_20261121T102858Z",
+        "window_year": 2012
+      }
+    ],
+    "run_id": "m4_20261121T102858Z",
+    "spark_app_id": "app-20261121103014-0024",
+    "checked_at": "2026-11-21T10:30:55.887615+00:00"
+  }
+}

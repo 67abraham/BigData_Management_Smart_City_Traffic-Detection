@@ -1,0 +1,52 @@
+== Physical Plan ==
+AdaptiveSparkPlan (8)
++- Sort (7)
+   +- Exchange (6)
+      +- HashAggregate (5)
+         +- Exchange (4)
+            +- HashAggregate (3)
+               +- Project (2)
+                  +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [2]: [pickup_datetime_local#192, pickup_date#204]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bench/nyc_trips/parquet_by_date]
+PartitionFilters: [isnotnull(pickup_date#204), (pickup_date#204 >= 2023-02-06), (pickup_date#204 <= 2023-02-12)]
+ReadSchema: struct<pickup_datetime_local:timestamp_ntz>
+
+(2) Project
+Output [1]: [hour(pickup_datetime_local#192, Some(UTC)) AS _groupingexpression#671]
+Input [2]: [pickup_datetime_local#192, pickup_date#204]
+
+(3) HashAggregate
+Input [1]: [_groupingexpression#671]
+Keys [1]: [_groupingexpression#671]
+Functions [1]: [partial_count(1)]
+Aggregate Attributes [1]: [count#672L]
+Results [2]: [_groupingexpression#671, count#673L]
+
+(4) Exchange
+Input [2]: [_groupingexpression#671, count#673L]
+Arguments: hashpartitioning(_groupingexpression#671, 8), ENSURE_REQUIREMENTS, [plan_id=1696]
+
+(5) HashAggregate
+Input [2]: [_groupingexpression#671, count#673L]
+Keys [1]: [_groupingexpression#671]
+Functions [1]: [count(1)]
+Aggregate Attributes [1]: [count(1)#668L]
+Results [2]: [_groupingexpression#671 AS h#666, count(1)#668L AS trips#667L]
+
+(6) Exchange
+Input [2]: [h#666, trips#667L]
+Arguments: rangepartitioning(h#666 ASC NULLS FIRST, 8), ENSURE_REQUIREMENTS, [plan_id=1699]
+
+(7) Sort
+Input [2]: [h#666, trips#667L]
+Arguments: [h#666 ASC NULLS FIRST], true, 0
+
+(8) AdaptiveSparkPlan
+Output [2]: [h#666, trips#667L]
+Arguments: isFinalPlan=false
+

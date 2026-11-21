@@ -1,0 +1,4 @@
+run_id=m4_20261121T103358Z part=benchmark repeats=3 commit=d67a61e
+PASS  benchmark (Spark) -> evidence/AC06/m4_20261121T103358Z/benchmark.log
+PASS  benchmark layouts on HDFS -> evidence/AC06/m4_20261121T103358Z/hdfs_bench.txt
+--- failures: 0   evidence: evidence/AC06/m4_20261121T103358Z  outputs: outputs/benchmarks/m4_20261121T103358Z

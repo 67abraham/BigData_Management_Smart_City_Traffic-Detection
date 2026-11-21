@@ -1,0 +1,36 @@
+== Physical Plan ==
+AdaptiveSparkPlan (5)
++- HashAggregate (4)
+   +- Exchange (3)
+      +- HashAggregate (2)
+         +- Scan csv  (1)
+
+
+(1) Scan csv 
+Output [1]: [total_amount_usd#118]
+Batched: false
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/bench/nyc_trips/csv_flat]
+ReadSchema: struct<total_amount_usd:double>
+
+(2) HashAggregate
+Input [1]: [total_amount_usd#118]
+Keys: []
+Functions [1]: [partial_sum(cast(total_amount_usd#118 as decimal(12,2)))]
+Aggregate Attributes [2]: [sum#556, isEmpty#557]
+Results [2]: [sum#558, isEmpty#559]
+
+(3) Exchange
+Input [2]: [sum#558, isEmpty#559]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [plan_id=912]
+
+(4) HashAggregate
+Input [2]: [sum#558, isEmpty#559]
+Keys: []
+Functions [1]: [sum(cast(total_amount_usd#118 as decimal(12,2)))]
+Aggregate Attributes [1]: [sum(cast(total_amount_usd#118 as decimal(12,2)))#554]
+Results [1]: [sum(cast(total_amount_usd#118 as decimal(12,2)))#554 AS total#553]
+
+(5) AdaptiveSparkPlan
+Output [1]: [total#553]
+Arguments: isFinalPlan=false
+

@@ -1,0 +1,61 @@
+== Physical Plan ==
+AdaptiveSparkPlan (10)
++- Sort (9)
+   +- Project (8)
+      +- Window (7)
+         +- Exchange (6)
+            +- HashAggregate (5)
+               +- Exchange (4)
+                  +- HashAggregate (3)
+                     +- Project (2)
+                        +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [5]: [pu_borough#64, trips#66L, trip_distance_mi_sum#69, total_amount_usd_sum#73, pickup_date#78]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/gold/nyc_zone_hourly_demand/v1]
+ReadSchema: struct<pu_borough:string,trips:bigint,trip_distance_mi_sum:double,total_amount_usd_sum:double>
+
+(2) Project
+Output [4]: [pu_borough#64, trips#66L, trip_distance_mi_sum#69, total_amount_usd_sum#73]
+Input [5]: [pu_borough#64, trips#66L, trip_distance_mi_sum#69, total_amount_usd_sum#73, pickup_date#78]
+
+(3) HashAggregate
+Input [4]: [pu_borough#64, trips#66L, trip_distance_mi_sum#69, total_amount_usd_sum#73]
+Keys [1]: [pu_borough#64]
+Functions [3]: [partial_sum(trips#66L), partial_sum(trip_distance_mi_sum#69), partial_sum(total_amount_usd_sum#73)]
+Aggregate Attributes [3]: [sum#345L, sum#346, sum#347]
+Results [4]: [pu_borough#64, sum#348L, sum#349, sum#350]
+
+(4) Exchange
+Input [4]: [pu_borough#64, sum#348L, sum#349, sum#350]
+Arguments: hashpartitioning(pu_borough#64, 8), ENSURE_REQUIREMENTS, [plan_id=599]
+
+(5) HashAggregate
+Input [4]: [pu_borough#64, sum#348L, sum#349, sum#350]
+Keys [1]: [pu_borough#64]
+Functions [3]: [sum(trips#66L), sum(trip_distance_mi_sum#69), sum(total_amount_usd_sum#73)]
+Aggregate Attributes [3]: [sum(trips#66L)#330L, sum(trip_distance_mi_sum#69)#333, sum(total_amount_usd_sum#73)#335]
+Results [5]: [pu_borough#64, sum(trips#66L)#330L AS trips#326L, round((sum(trip_distance_mi_sum#69)#333 / cast(sum(trips#66L)#330L as double)), 2) AS avg_trip_mi#328, round((sum(total_amount_usd_sum#73)#335 / cast(sum(trips#66L)#330L as double)), 2) AS avg_total_usd#329, sum(trips#66L)#330L AS _w0#338L]
+
+(6) Exchange
+Input [5]: [pu_borough#64, trips#326L, avg_trip_mi#328, avg_total_usd#329, _w0#338L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [plan_id=602]
+
+(7) Window
+Input [5]: [pu_borough#64, trips#326L, avg_trip_mi#328, avg_total_usd#329, _w0#338L]
+Arguments: [sum(_w0#338L) windowspecdefinition(specifiedwindowframe(RowFrame, unboundedpreceding$(), unboundedfollowing$())) AS _we0#339L]
+
+(8) Project
+Output [5]: [pu_borough#64, trips#326L, round((cast((100 * _w0#338L) as double) / cast(_we0#339L as double)), 2) AS pct_trips#327, avg_trip_mi#328, avg_total_usd#329]
+Input [6]: [pu_borough#64, trips#326L, avg_trip_mi#328, avg_total_usd#329, _w0#338L, _we0#339L]
+
+(9) Sort
+Input [5]: [pu_borough#64, trips#326L, pct_trips#327, avg_trip_mi#328, avg_total_usd#329]
+Arguments: [trips#326L DESC NULLS LAST], true, 0
+
+(10) AdaptiveSparkPlan
+Output [5]: [pu_borough#64, trips#326L, pct_trips#327, avg_trip_mi#328, avg_total_usd#329]
+Arguments: isFinalPlan=false
+

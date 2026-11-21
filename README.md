@@ -17,7 +17,11 @@ four versioned data products with contracts → light dashboard.
   independent oracle (`m3_20261121T092806Z`); late / duplicate / malformed / out-of-order tests
   (`m3_20261121T091237Z`); TaskManager kill → restore from checkpoint → results still equal the oracle
   (`m3_20261121T094727Z`). `evidence/AC04/`, `evidence/AC08/`, `docs/streaming.md`.
-- Next: M4 data products (contracts, read-back tests) and T06 benchmarks.
+- M4 products + analytics: 4 data products with contracts, all read-back tests passed
+  (`m4_20261121T102858Z`, `docs/data_products.md`, `contracts/`); 5 SQL analyses (`m4_20261121T103306Z`,
+  `docs/analytics.md`); benchmark of 3 strategy pairs × 3 timed runs (`m4_20261121T104058Z`,
+  `docs/performance.md`). `evidence/AC06/`, `evidence/AC07/`.
+- Next: M5 dashboard (T09) and remaining docs (D01–D10).
 
 ## Stack (D04)
 
@@ -122,6 +126,21 @@ its result is right (window results equal the oracle; the edge-case expectations
 kill the job restored from a checkpoint). Evidence in `evidence/AC04/m3_<timestamp>/` and
 `evidence/AC08/m3_<timestamp>/`; large JSONL files stay in `data/local/m3/`. Design, watermark and
 update semantics, and the verified delivery guarantee: `docs/streaming.md`.
+
+## Run (M4 — data products, analytics, benchmarks; spec T06/AC06, T07/AC07)
+
+Needs M1–M3 done (Gold in HDFS and a verified M3 replay run for the window metrics).
+
+```bash
+bash scripts/run_m4.sh products     # build 4 products -> read-back test -> contract release blocks (~3 min)
+bash scripts/run_m4.sh analytics    # 5 Spark SQL analyses -> outputs/reports/analytics/<run>/ (~1 min)
+bash scripts/run_m4.sh benchmark    # CSV vs Parquet, partitioned vs flat, pushdown off/on (~8 min)
+```
+
+Products are written to `/datalake/gold/products/<name>/v1/`; each contract in `contracts/` ends with a
+generated `release` block (run, row count, size, quality summary, read-back result). The benchmark
+writes its four data layouts once to `/datalake/bench/nyc_trips/` (about 1.7 GB, untimed), then runs
+1 warm-up + 3 timed runs per configuration and fails if any query result differs between layouts.
 
 ## Tests
 ```bash

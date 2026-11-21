@@ -1,0 +1,3 @@
+run_id=m4_20261121T103306Z part=analytics commit=d67a61e
+PASS  SQL analyses (Spark) -> evidence/AC06/m4_20261121T103306Z/analytics.log
+--- failures: 0   evidence: evidence/AC06/m4_20261121T103306Z  outputs: outputs/reports/analytics/m4_20261121T103306Z

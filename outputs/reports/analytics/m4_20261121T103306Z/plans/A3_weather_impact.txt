@@ -1,0 +1,113 @@
+== Physical Plan ==
+AdaptiveSparkPlan (18)
++- Sort (17)
+   +- Exchange (16)
+      +- HashAggregate (15)
+         +- Exchange (14)
+            +- HashAggregate (13)
+               +- Project (12)
+                  +- BroadcastHashJoin Inner BuildRight (11)
+                     :- Project (3)
+                     :  +- Filter (2)
+                     :     +- Scan parquet  (1)
+                     +- BroadcastExchange (10)
+                        +- HashAggregate (9)
+                           +- Exchange (8)
+                              +- HashAggregate (7)
+                                 +- Project (6)
+                                    +- Filter (5)
+                                       +- Scan parquet  (4)
+
+
+(1) Scan parquet 
+Output [7]: [hour_start_local#253, local_date#256, traffic_volume#257, is_holiday_date#259, era5_precipitation_mm#268, era5_snowfall_cm#269, year#277]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1]
+PushedFilters: [IsNotNull(is_holiday_date), IsNotNull(local_date), IsNotNull(hour_start_local), Not(EqualTo(is_holiday_date,true))]
+ReadSchema: struct<hour_start_local:timestamp_ntz,local_date:date,traffic_volume:int,is_holiday_date:boolean,era5_precipitation_mm:double,era5_snowfall_cm:double>
+
+(2) Filter
+Input [7]: [hour_start_local#253, local_date#256, traffic_volume#257, is_holiday_date#259, era5_precipitation_mm#268, era5_snowfall_cm#269, year#277]
+Condition : (((((((isnotnull(is_holiday_date#259) AND isnotnull(local_date#256)) AND isnotnull(hour_start_local#253)) AND NOT is_holiday_date#259) AND (dayofweek(local_date#256) >= 2)) AND (dayofweek(local_date#256) <= 6)) AND (hour(hour_start_local#253, Some(UTC)) >= 7)) AND (hour(hour_start_local#253, Some(UTC)) <= 18))
+
+(3) Project
+Output [3]: [hour(hour_start_local#253, Some(UTC)) AS local_hour#204, traffic_volume#257, CASE WHEN (era5_snowfall_cm#269 > 0.0) THEN snow WHEN (era5_precipitation_mm#268 = 0.0) THEN dry WHEN (era5_precipitation_mm#268 < 1.0) THEN rain_lt_1mm ELSE rain_ge_1mm END AS weather_class#206]
+Input [7]: [hour_start_local#253, local_date#256, traffic_volume#257, is_holiday_date#259, era5_precipitation_mm#268, era5_snowfall_cm#269, year#277]
+
+(4) Scan parquet 
+Output [7]: [hour_start_local#6, local_date#9, traffic_volume#10, is_holiday_date#12, era5_precipitation_mm#21, era5_snowfall_cm#22, year#30]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1]
+PushedFilters: [IsNotNull(is_holiday_date), IsNotNull(local_date), IsNotNull(hour_start_local), Not(EqualTo(is_holiday_date,true))]
+ReadSchema: struct<hour_start_local:timestamp_ntz,local_date:date,traffic_volume:int,is_holiday_date:boolean,era5_precipitation_mm:double,era5_snowfall_cm:double>
+
+(5) Filter
+Input [7]: [hour_start_local#6, local_date#9, traffic_volume#10, is_holiday_date#12, era5_precipitation_mm#21, era5_snowfall_cm#22, year#30]
+Condition : ((((((((isnotnull(is_holiday_date#12) AND isnotnull(local_date#9)) AND isnotnull(hour_start_local#6)) AND NOT is_holiday_date#12) AND (dayofweek(local_date#9) >= 2)) AND (dayofweek(local_date#9) <= 6)) AND (hour(hour_start_local#6, Some(UTC)) >= 7)) AND (hour(hour_start_local#6, Some(UTC)) <= 18)) AND CASE WHEN (era5_snowfall_cm#22 > 0.0) THEN false WHEN (era5_precipitation_mm#21 = 0.0) THEN true WHEN (era5_precipitation_mm#21 < 1.0) THEN false ELSE false END)
+
+(6) Project
+Output [2]: [hour(hour_start_local#6, Some(UTC)) AS local_hour#200, traffic_volume#10]
+Input [7]: [hour_start_local#6, local_date#9, traffic_volume#10, is_holiday_date#12, era5_precipitation_mm#21, era5_snowfall_cm#22, year#30]
+
+(7) HashAggregate
+Input [2]: [local_hour#200, traffic_volume#10]
+Keys [1]: [local_hour#200]
+Functions [1]: [partial_avg(traffic_volume#10)]
+Aggregate Attributes [2]: [sum#290, count#291L]
+Results [3]: [local_hour#200, sum#292, count#293L]
+
+(8) Exchange
+Input [3]: [local_hour#200, sum#292, count#293L]
+Arguments: hashpartitioning(local_hour#200, 8), ENSURE_REQUIREMENTS, [plan_id=324]
+
+(9) HashAggregate
+Input [3]: [local_hour#200, sum#292, count#293L]
+Keys [1]: [local_hour#200]
+Functions [1]: [avg(traffic_volume#10)]
+Aggregate Attributes [1]: [avg(traffic_volume#10)#207]
+Results [2]: [local_hour#200, avg(traffic_volume#10)#207 AS dry_avg#202]
+
+(10) BroadcastExchange
+Input [2]: [local_hour#200, dry_avg#202]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=327]
+
+(11) BroadcastHashJoin
+Left keys [1]: [local_hour#204]
+Right keys [1]: [local_hour#200]
+Join type: Inner
+Join condition: None
+
+(12) Project
+Output [3]: [traffic_volume#257, weather_class#206, dry_avg#202]
+Input [5]: [local_hour#204, traffic_volume#257, weather_class#206, local_hour#200, dry_avg#202]
+
+(13) HashAggregate
+Input [3]: [traffic_volume#257, weather_class#206, dry_avg#202]
+Keys [1]: [weather_class#206]
+Functions [3]: [partial_count(1), partial_avg(traffic_volume#257), partial_avg((cast(traffic_volume#257 as double) / dry_avg#202))]
+Aggregate Attributes [5]: [count#280L, sum#281, count#282L, sum#283, count#284L]
+Results [6]: [weather_class#206, count#285L, sum#286, count#287L, sum#288, count#289L]
+
+(14) Exchange
+Input [6]: [weather_class#206, count#285L, sum#286, count#287L, sum#288, count#289L]
+Arguments: hashpartitioning(weather_class#206, 8), ENSURE_REQUIREMENTS, [plan_id=332]
+
+(15) HashAggregate
+Input [6]: [weather_class#206, count#285L, sum#286, count#287L, sum#288, count#289L]
+Keys [1]: [weather_class#206]
+Functions [3]: [count(1), avg(traffic_volume#257), avg((cast(traffic_volume#257 as double) / dry_avg#202))]
+Aggregate Attributes [3]: [count(1)#203L, avg(traffic_volume#257)#208, avg((cast(traffic_volume#257 as double) / dry_avg#202))#209]
+Results [4]: [weather_class#206, count(1)#203L AS hours#197L, round(avg(traffic_volume#257)#208, 1) AS avg_volume#198, round(avg((cast(traffic_volume#257 as double) / dry_avg#202))#209, 4) AS volume_vs_dry_same_hour#199]
+
+(16) Exchange
+Input [4]: [weather_class#206, hours#197L, avg_volume#198, volume_vs_dry_same_hour#199]
+Arguments: rangepartitioning(volume_vs_dry_same_hour#199 DESC NULLS LAST, 8), ENSURE_REQUIREMENTS, [plan_id=335]
+
+(17) Sort
+Input [4]: [weather_class#206, hours#197L, avg_volume#198, volume_vs_dry_same_hour#199]
+Arguments: [volume_vs_dry_same_hour#199 DESC NULLS LAST], true, 0
+
+(18) AdaptiveSparkPlan
+Output [4]: [weather_class#206, hours#197L, avg_volume#198, volume_vs_dry_same_hour#199]
+Arguments: isFinalPlan=false
+

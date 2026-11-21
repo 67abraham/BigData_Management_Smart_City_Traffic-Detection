@@ -1,0 +1,44 @@
+           1            2            186.1 K /datalake/gold/products/road_image_manifest/v1
+           4            4              1.3 M /datalake/gold/products/traffic_features/v1
+           8            8              1.1 M /datalake/gold/products/traffic_hourly/v1
+           8            8            267.9 K /datalake/gold/products/traffic_window_metrics/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/road_image_manifest
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/road_image_manifest/v1
+-rw-r--r--   2 root supergroup     190544 2026-11-21 10:30 /datalake/gold/products/road_image_manifest/v1/part-00000-267dd9ce-038e-4488-bd7a-13d4f94b4aba-c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_features
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1/split=test
+-rw-r--r--   2 root supergroup     247431 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1/split=test/part-00000-ddf74d06-9a41-4501-9b61-0392e724d945.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1/split=train
+-rw-r--r--   2 root supergroup     797791 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1/split=train/part-00000-ddf74d06-9a41-4501-9b61-0392e724d945.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1/split=validation
+-rw-r--r--   2 root supergroup     321334 2026-11-21 10:29 /datalake/gold/products/traffic_features/v1/split=validation/part-00000-ddf74d06-9a41-4501-9b61-0392e724d945.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2012
+-rw-r--r--   2 root supergroup      68753 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2012/part-00001-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2013
+-rw-r--r--   2 root supergroup     205094 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2013/part-00001-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2014
+-rw-r--r--   2 root supergroup     133677 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2014/part-00001-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2015
+-rw-r--r--   2 root supergroup     108191 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2015/part-00000-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2016
+-rw-r--r--   2 root supergroup     214586 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2016/part-00000-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2017
+-rw-r--r--   2 root supergroup     231904 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2017/part-00000-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2018
+-rw-r--r--   2 root supergroup     181977 2026-11-21 10:29 /datalake/gold/products/traffic_hourly/v1/year=2018/part-00001-7a042c24-bc25-4089-b8cd-fa88dbf58dd7.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2012
+-rw-r--r--   2 root supergroup      17969 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2012/part-00000-10aad27b-d239-46e4-82f4-4b5670f4f2ed.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2013
+-rw-r--r--   2 root supergroup      50172 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2013/part-00000-10aad27b-d239-46e4-82f4-4b5670f4f2ed.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2014
+-rw-r--r--   2 root supergroup      32445 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2014/part-00000-10aad27b-d239-46e4-82f4-4b5670f4f2ed.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2015
+-rw-r--r--   2 root supergroup      30203 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2015/part-00000-10aad27b-d239-46e4-82f4-4b5670f4f2ed.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2016
+-rw-r--r--   2 root supergroup      51804 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2016/part-00000-10aad27b-d239-46e4-82f4-4b5670f4f2ed.c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-21 10:30 /datalake/gold/products/traffic_window_metrics/v1/window_year=2017
