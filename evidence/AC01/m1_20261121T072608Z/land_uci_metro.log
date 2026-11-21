@@ -1,0 +1,6 @@
+Deleted /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21
+           1            3            793.6 K /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21
+-rw-r--r--   2 root supergroup     405373 2026-11-21 07:26 /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21/Metro_Interstate_Traffic_Volume.csv.gz
+-rw-r--r--   2 root supergroup       1712 2026-11-21 07:26 /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21/_manifest.json
+-rw-r--r--   2 root supergroup     405547 2026-11-21 07:26 /datalake/bronze/uci_metro/raw/ingest_date=2026-11-21/metro_interstate_traffic_volume.zip
+file count: local=3 hdfs=3

@@ -1,0 +1,21 @@
+run_id=m1_20261121T072608Z ingest_date=2026-11-21 sources=uci_metro open_meteo nyc_tlc kitti force=0
+Safe mode is OFF
+=== uci_metro
+PASS  uci_metro fetch -> fetch_uci_metro.log
+PASS  uci_metro land in HDFS -> land_uci_metro.log
+PASS  uci_metro bronze (Spark) -> bronze_uci_metro.log.status
+=== open_meteo
+PASS  open_meteo fetch -> fetch_open_meteo.log
+PASS  open_meteo land in HDFS -> land_open_meteo.log
+PASS  open_meteo bronze (Spark) -> bronze_open_meteo.log.status
+=== nyc_tlc
+PASS  nyc_tlc fetch -> fetch_nyc_tlc.log
+PASS  nyc_tlc land in HDFS -> land_nyc_tlc.log
+PASS  nyc_tlc bronze (Spark) -> bronze_nyc_tlc.log.status
+=== kitti
+PASS  kitti fetch -> fetch_kitti.log
+PASS  kitti land in HDFS -> land_kitti.log
+PASS  kitti bronze (Spark) -> bronze_kitti.log.status
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+PASS  ingestion report -> report.log
+--- failures: 0   evidence: evidence/AC01/m1_20261121T072608Z

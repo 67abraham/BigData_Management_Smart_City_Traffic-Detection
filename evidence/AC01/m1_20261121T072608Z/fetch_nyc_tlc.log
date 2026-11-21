@@ -1,0 +1,5 @@
+2026-11-21 07:27:33,308 INFO ingestion unchanged, not re-downloaded: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet
+2026-11-21 07:27:33,430 INFO ingestion unchanged, not re-downloaded: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-02.parquet
+2026-11-21 07:27:33,774 INFO ingestion unchanged, not re-downloaded: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-03.parquet
+2026-11-21 07:27:33,780 INFO ingestion unchanged, not re-downloaded: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
+/workspaces/BigData_Management_Smart_City_Traffic-Detection/data/local/landing/nyc_tlc/ingest_date=2026-11-21/_manifest.json
