@@ -72,6 +72,11 @@ A **4-core / 16 GB / 32 GB disk** GitHub Codespace (the minimum declared in `.de
 or any Linux host with Docker Engine + Compose v2 and the same resources. The first build downloads several
 GB of images (exact size to be recorded in `evidence/AC02/`).
 
+> **Note for the next user:** this project was developed and run in a **GitHub Codespace**
+> (4 cores / 16 GB RAM / 32 GB disk), because the author's own PC did not have enough resources
+> (RAM and disk) for the Docker stack. All recorded runs and timings in this README and in `evidence/`
+> come from that Codespace. Any Linux host with the resources above and Docker works the same way.
+
 ## Codespace setup
 `.devcontainer/devcontainer.json` uses GitHub's default Codespaces image (`devcontainers/universal:2`),
 which already includes Docker, Python and Java, and installs `requirements-dev.txt`. Check Docker before anything else:
