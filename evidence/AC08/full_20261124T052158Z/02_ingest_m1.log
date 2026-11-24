@@ -1,0 +1,34 @@
+run_id=m1_20261124T052354Z ingest_date=2026-11-24 sources=uci_metro open_meteo nyc_tlc kitti force=0
+=== uci_metro
+RUN   uci_metro fetch
+PASS  uci_metro fetch -> fetch_uci_metro.log
+RUN   uci_metro land in HDFS
+PASS  uci_metro land in HDFS -> land_uci_metro.log
+RUN   uci_metro bronze (Spark)
+PASS  uci_metro bronze (Spark) -> bronze_uci_metro.log.status
+=== open_meteo
+RUN   open_meteo fetch
+PASS  open_meteo fetch -> fetch_open_meteo.log
+RUN   open_meteo land in HDFS
+PASS  open_meteo land in HDFS -> land_open_meteo.log
+RUN   open_meteo bronze (Spark)
+PASS  open_meteo bronze (Spark) -> bronze_open_meteo.log.status
+=== nyc_tlc
+RUN   nyc_tlc fetch
+PASS  nyc_tlc fetch -> fetch_nyc_tlc.log
+RUN   nyc_tlc land in HDFS
+PASS  nyc_tlc land in HDFS -> land_nyc_tlc.log
+RUN   nyc_tlc bronze (Spark)
+PASS  nyc_tlc bronze (Spark) -> bronze_nyc_tlc.log.status
+=== kitti
+RUN   kitti fetch
+PASS  kitti fetch -> fetch_kitti.log
+RUN   kitti land in HDFS
+PASS  kitti land in HDFS -> land_kitti.log
+RUN   kitti bronze (Spark)
+PASS  kitti bronze (Spark) -> bronze_kitti.log.status
+RUN   hdfs bronze layout
+PASS  hdfs bronze layout -> hdfs_bronze_layout.txt
+RUN   ingestion report
+PASS  ingestion report -> report.log
+--- failures: 0   evidence: evidence/AC01/m1_20261124T052354Z

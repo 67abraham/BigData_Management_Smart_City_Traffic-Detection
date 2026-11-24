@@ -1,0 +1,76 @@
+{
+  "question": "Which ten pickup zones have the most trips, and at what local hour do they peak?",
+  "sql": "WITH z AS (SELECT pu_location_id, pu_borough, pu_zone, sum(trips) AS trips\n                       FROM nyc_zone_hourly GROUP BY 1, 2, 3),\n                 hh AS (SELECT pu_location_id, pickup_hour_local, sum(trips) AS t,\n                               row_number() OVER (PARTITION BY pu_location_id ORDER BY sum(trips) DESC) AS rk\n                        FROM nyc_zone_hourly GROUP BY 1, 2)\n            SELECT z.pu_location_id, z.pu_borough, z.pu_zone, z.trips, hh.pickup_hour_local AS peak_local_hour\n            FROM z JOIN hh ON z.pu_location_id = hh.pu_location_id AND hh.rk = 1\n            ORDER BY z.trips DESC LIMIT 10",
+  "rows": [
+    {
+      "pu_location_id": 132,
+      "pu_borough": "Queens",
+      "pu_zone": "JFK Airport",
+      "trips": 454035,
+      "peak_local_hour": 22
+    },
+    {
+      "pu_location_id": 237,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Upper East Side South",
+      "trips": 433962,
+      "peak_local_hour": 14
+    },
+    {
+      "pu_location_id": 161,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Midtown Center",
+      "trips": 428424,
+      "peak_local_hour": 18
+    },
+    {
+      "pu_location_id": 236,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Upper East Side North",
+      "trips": 401705,
+      "peak_local_hour": 15
+    },
+    {
+      "pu_location_id": 162,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Midtown East",
+      "trips": 330008,
+      "peak_local_hour": 18
+    },
+    {
+      "pu_location_id": 186,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Penn Station/Madison Sq West",
+      "trips": 326799,
+      "peak_local_hour": 18
+    },
+    {
+      "pu_location_id": 230,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Times Sq/Theatre District",
+      "trips": 310666,
+      "peak_local_hour": 22
+    },
+    {
+      "pu_location_id": 142,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Lincoln Square East",
+      "trips": 301212,
+      "peak_local_hour": 21
+    },
+    {
+      "pu_location_id": 138,
+      "pu_borough": "Queens",
+      "pu_zone": "LaGuardia Airport",
+      "trips": 286286,
+      "peak_local_hour": 14
+    },
+    {
+      "pu_location_id": 170,
+      "pu_borough": "Manhattan",
+      "pu_zone": "Murray Hill",
+      "trips": 273218,
+      "peak_local_hour": 18
+    }
+  ]
+}

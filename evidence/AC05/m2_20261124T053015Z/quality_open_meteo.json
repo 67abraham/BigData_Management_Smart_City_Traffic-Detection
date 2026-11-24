@@ -1,0 +1,94 @@
+{
+  "dataset": "open_meteo_hourly",
+  "version": "v1",
+  "bronze_ingest_date": "2026-11-24",
+  "reconciliation": {
+    "bronze_rows": 52608,
+    "silver_source_rows": 52608,
+    "reconciled": true
+  },
+  "outcomes": {
+    "accepted": {
+      "records": 52608,
+      "source_rows": 52608
+    }
+  },
+  "row_rule_violations": {},
+  "record_rule_violations": {},
+  "duplicates": {
+    "keys_with_several_rows": 0,
+    "extra_rows_collapsed": 0
+  },
+  "coverage": {
+    "time_basis": "UTC",
+    "first_hour": "2012-10-01 00:00:00",
+    "last_hour": "2018-10-01 23:00:00",
+    "distinct_hours": 52608,
+    "hours_in_span": 52608,
+    "absent_hours": 0
+  },
+  "checks": [
+    {
+      "name": "units_timezone_match_api_response",
+      "ok": true,
+      "detail": "7 raw files checked; not matching: []"
+    },
+    {
+      "name": "complete_requested_period",
+      "ok": true,
+      "detail": "52,608 of 52,608 requested hours present (2012-10-01 00:00:00 .. 2018-10-01 23:00:00 UTC)"
+    },
+    {
+      "name": "single_grid_point",
+      "ok": true,
+      "detail": "grid points: [[45.0, -93.25]]"
+    },
+    {
+      "name": "station_inside_era5_cell",
+      "ok": true,
+      "detail": "ATR 301 is 10.4 km from grid point [45.0, -93.25]; inside the \u00b10.125\u00b0 cell: True"
+    }
+  ],
+  "units": {
+    "files_checked": 7,
+    "files_not_matching": [],
+    "ok": true,
+    "expected_units": {
+      "temperature_2m": "\u00b0C",
+      "precipitation": "mm",
+      "rain": "mm",
+      "snowfall": "cm",
+      "cloud_cover": "%",
+      "weather_code": "wmo code",
+      "wind_speed_10m": "km/h"
+    },
+    "expected_timezone": "GMT"
+  },
+  "station_cell": {
+    "grid_point": [
+      45.0,
+      -93.25
+    ],
+    "cell_half_width_deg": 0.125,
+    "station_inside_cell": true,
+    "distance_km": 10.4
+  },
+  "labels": {
+    "model": "era5",
+    "data_kind": "reanalysis",
+    "valid_time": {
+      "temperature_2m": "instant",
+      "cloud_cover": "instant",
+      "weather_code": "instant",
+      "wind_speed_10m": "instant",
+      "precipitation": "preceding_hour_sum",
+      "rain": "preceding_hour_sum",
+      "snowfall": "preceding_hour_sum"
+    }
+  },
+  "input": "hdfs://namenode:8020/datalake/bronze/open_meteo/records/ingest_date=2026-11-24",
+  "output": "hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1",
+  "run_id": "m2_20261124T053015Z",
+  "spark_app_id": "app-20261124053332-0006",
+  "schema": "struct<grid_latitude:double,grid_longitude:double,elevation_m:double,model:string,data_kind:string,time_utc:timestamp,sum_interval_start_utc:timestamp,temperature_2m_c:double,precipitation_mm:double,rain_mm:double,snowfall_cm:double,cloud_cover_pct:int,weather_code:int,wind_speed_10m_kmh:double,source_rows:bigint,_violations:array<struct<rule:string,category:string,severity:string>>,_raw_rows:array<struct<time:string,temperature_2m:double,precipitation:double,rain:double,snowfall:double,cloud_cover:bigint,weather_code:bigint,wind_speed_10m:double>>,_source:string,_source_file:string,_source_version:string,_sha256:string,_ingested_at:timestamp,_bronze_ingest_date:string,_silver_run_id:string,_silver_version:string,outcome:string,year:int>"
+}

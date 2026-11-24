@@ -1,0 +1,5 @@
+weather_class,hours,avg_volume,volume_vs_dry_same_hour
+rain_lt_1mm,1025,5306.0,1.0009
+dry,11747,5320.6,1.0
+rain_ge_1mm,366,5229.3,0.9795
+snow,636,4689.9,0.8813

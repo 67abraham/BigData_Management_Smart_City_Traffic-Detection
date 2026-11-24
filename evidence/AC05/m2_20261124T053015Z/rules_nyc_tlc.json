@@ -1,0 +1,170 @@
+[
+  {
+    "stage": "row",
+    "name": "key_missing",
+    "category": "business_key",
+    "severity": "reject",
+    "violation_expr": "pickup_datetime_local IS NULL OR dropoff_datetime_local IS NULL OR pu_location_id IS NULL OR do_location_id IS NULL",
+    "description": "pickup/drop-off time or zone missing"
+  },
+  {
+    "stage": "row",
+    "name": "zone_not_in_lookup",
+    "category": "business_key",
+    "severity": "quarantine",
+    "violation_expr": "pu_borough IS NULL OR do_borough IS NULL",
+    "description": "pickup or drop-off LocationID not in the TLC taxi zone lookup"
+  },
+  {
+    "stage": "row",
+    "name": "zone_unknown_or_outside",
+    "category": "business_key",
+    "severity": "flag",
+    "violation_expr": "pu_location_id IN (264, 265) OR do_location_id IN (264, 265)",
+    "description": "zone 264 (Unknown) or 265 (Outside of NYC)"
+  },
+  {
+    "stage": "row",
+    "name": "ts_dropoff_before_pickup",
+    "category": "timestamp",
+    "severity": "reject",
+    "violation_expr": "dropoff_datetime_local < pickup_datetime_local",
+    "description": "drop-off earlier than pickup"
+  },
+  {
+    "stage": "row",
+    "name": "ts_pickup_outside_file_month",
+    "category": "timestamp",
+    "severity": "quarantine",
+    "violation_expr": "pickup_month <> source_month",
+    "description": "pickup not in the month of the file it was published in"
+  },
+  {
+    "stage": "row",
+    "name": "ts_zero_duration",
+    "category": "timestamp",
+    "severity": "quarantine",
+    "violation_expr": "trip_minutes = 0",
+    "description": "pickup and drop-off at the same second"
+  },
+  {
+    "stage": "row",
+    "name": "range_duration_over_max",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "trip_minutes > 1440",
+    "description": "trip longer than 1440 minutes"
+  },
+  {
+    "stage": "row",
+    "name": "type_non_integer_code",
+    "category": "type",
+    "severity": "quarantine",
+    "violation_expr": "passenger_count_src <> floor(passenger_count_src) OR ratecode_id_src <> floor(ratecode_id_src)",
+    "description": "passenger_count or RatecodeID is not a whole number before the int cast"
+  },
+  {
+    "stage": "row",
+    "name": "range_distance_negative",
+    "category": "range",
+    "severity": "reject",
+    "violation_expr": "trip_distance_mi < 0",
+    "description": "negative trip distance"
+  },
+  {
+    "stage": "row",
+    "name": "range_distance_over_max",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "trip_distance_mi > 100.0",
+    "description": "trip distance above 100.0 miles"
+  },
+  {
+    "stage": "row",
+    "name": "flag_distance_zero",
+    "category": "range",
+    "severity": "flag",
+    "violation_expr": "trip_distance_mi = 0",
+    "description": "trip distance 0 miles"
+  },
+  {
+    "stage": "row",
+    "name": "range_amount_negative",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "fare_amount_usd < 0 OR total_amount_usd < 0",
+    "description": "negative fare or total (refund/dispute)"
+  },
+  {
+    "stage": "row",
+    "name": "range_total_over_max",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "total_amount_usd > 1000.0",
+    "description": "total amount above 1000.0 USD"
+  },
+  {
+    "stage": "row",
+    "name": "flag_passenger_count_zero",
+    "category": "range",
+    "severity": "flag",
+    "violation_expr": "passenger_count = 0",
+    "description": "driver-reported passenger count is 0"
+  },
+  {
+    "stage": "row",
+    "name": "range_vendor_unknown",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "vendor_id IS NULL OR NOT vendor_id IN (1, 2, 6, 7)",
+    "description": "VendorID not in the data dictionary"
+  },
+  {
+    "stage": "row",
+    "name": "range_ratecode_unknown",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "ratecode_id IS NOT NULL AND NOT ratecode_id IN (1, 2, 3, 4, 5, 6, 99)",
+    "description": "RatecodeID not in the data dictionary"
+  },
+  {
+    "stage": "row",
+    "name": "range_payment_type_unknown",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "payment_type IS NULL OR NOT payment_type IN (0, 1, 2, 3, 4, 5, 6)",
+    "description": "payment_type not in the data dictionary"
+  },
+  {
+    "stage": "row",
+    "name": "range_store_fwd_unknown",
+    "category": "range",
+    "severity": "quarantine",
+    "violation_expr": "store_and_fwd_flag IS NOT NULL AND NOT store_and_fwd_flag IN ('Y', 'N')",
+    "description": "store_and_fwd_flag not Y/N"
+  },
+  {
+    "stage": "row",
+    "name": "missing_fields_flex_fare",
+    "category": "missing",
+    "severity": "flag",
+    "violation_expr": "payment_type = 0 AND (passenger_count IS NULL OR ratecode_id IS NULL OR store_and_fwd_flag IS NULL OR congestion_surcharge_usd IS NULL OR airport_fee_usd IS NULL)",
+    "description": "Flex Fare trip (payment_type 0) without passenger count / rate code / surcharges"
+  },
+  {
+    "stage": "row",
+    "name": "missing_fields_non_flex",
+    "category": "missing",
+    "severity": "quarantine",
+    "violation_expr": "payment_type <> 0 AND (passenger_count IS NULL OR ratecode_id IS NULL OR store_and_fwd_flag IS NULL OR congestion_surcharge_usd IS NULL OR airport_fee_usd IS NULL)",
+    "description": "passenger count / rate code / surcharges missing on a non-Flex-Fare trip"
+  },
+  {
+    "stage": "row",
+    "name": "unique_trip_duplicate",
+    "category": "uniqueness",
+    "severity": "quarantine",
+    "violation_expr": "dup_count > 1",
+    "description": "several rows share the duplicate key (all copies quarantined)"
+  }
+]

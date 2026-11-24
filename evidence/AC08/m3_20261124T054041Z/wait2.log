@@ -1,0 +1,8 @@
+state=RUNNING restored=0 from=None
+state=RUNNING restored=0 from=None
+state=RESTARTING restored=0 from=None
+state=RESTARTING restored=0 from=None
+state=RESTARTING restored=0 from=None
+state=RUNNING restored=1 from=file:/opt/flink/checkpoints/b8ea2dee07db4193710f559601117422/chk-7
+state=RUNNING restored=1 from=file:/opt/flink/checkpoints/b8ea2dee07db4193710f559601117422/chk-7
+restored and RUNNING after 18s

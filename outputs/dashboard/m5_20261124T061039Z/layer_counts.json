@@ -1,0 +1,42 @@
+{
+  "uci_metro": {
+    "bronze_records": 48204,
+    "bronze_ingest_date": "2026-11-24",
+    "silver_records_by_outcome": {
+      "accepted": 40558,
+      "quarantine": 17
+    },
+    "silver_source_rows": 48204,
+    "gold_rows": 40558,
+    "product_rows": {
+      "traffic_hourly": 40558,
+      "traffic_features": 40558,
+      "traffic_window_metrics": 7334
+    }
+  },
+  "open_meteo": {
+    "bronze_records": 52608,
+    "bronze_ingest_date": "2026-11-24",
+    "silver_records_by_outcome": {
+      "accepted": 52608
+    },
+    "silver_source_rows": 52608
+  },
+  "nyc_tlc": {
+    "bronze_records": 9384487,
+    "bronze_ingest_date": "2026-11-24",
+    "silver_records_by_outcome": {
+      "accepted": 9300058,
+      "quarantine": 83793,
+      "rejected": 636
+    },
+    "gold_rows": 212041
+  },
+  "kitti": {
+    "bronze_records": 51865,
+    "bronze_ingest_date": "2026-11-24",
+    "product_rows": {
+      "road_image_manifest": 7481
+    }
+  }
+}

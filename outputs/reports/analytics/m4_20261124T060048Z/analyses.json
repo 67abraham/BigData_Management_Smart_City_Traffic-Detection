@@ -1,0 +1,31 @@
+{
+  "run_id": "m4_20261124T060048Z",
+  "spark_app_id": "app-20261124060257-0014",
+  "analyses": {
+    "A1_hourly_pattern": {
+      "question": "How does hourly volume at ATR 301 change over the day, on weekdays vs weekends?",
+      "rows": 48,
+      "elapsed_s": 6.952
+    },
+    "A2_day_type": {
+      "question": "Is daily volume lower on holidays than on working days and weekends?",
+      "rows": 3,
+      "elapsed_s": 2.877
+    },
+    "A3_weather_impact": {
+      "question": "Does ERA5 rain or snow go with lower volume, compared with dry hours at the same local hour?",
+      "rows": 4,
+      "elapsed_s": 4.423
+    },
+    "A4_nyc_boroughs": {
+      "question": "Where in NYC do yellow-taxi trips start (2023-01..03)?",
+      "rows": 8,
+      "elapsed_s": 4.043
+    },
+    "A5_nyc_top_zones": {
+      "question": "Which ten pickup zones have the most trips, and at what local hour do they peak?",
+      "rows": 10,
+      "elapsed_s": 5.07
+    }
+  }
+}

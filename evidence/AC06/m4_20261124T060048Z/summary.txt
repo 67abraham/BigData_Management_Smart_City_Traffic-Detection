@@ -1,0 +1,7 @@
+run_id=m4_20261124T060048Z part=analytics commit=fe21289
+PASS  SQL analyses (Spark) -> evidence/AC06/m4_20261124T060048Z/analytics.log
+--- failures: 0   evidence: evidence/AC06/m4_20261124T060048Z  outputs: outputs/reports/analytics/m4_20261124T060048Z
+run_id=m4_20261124T060048Z part=benchmark repeats=3 commit=fe21289
+PASS  benchmark (Spark) -> evidence/AC06/m4_20261124T060048Z/benchmark.log
+PASS  benchmark layouts on HDFS -> evidence/AC06/m4_20261124T060048Z/hdfs_bench.txt
+--- failures: 0   evidence: evidence/AC06/m4_20261124T060048Z  outputs: outputs/benchmarks/m4_20261124T060048Z

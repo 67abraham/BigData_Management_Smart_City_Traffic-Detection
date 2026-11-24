@@ -1,0 +1,54 @@
+{
+  "source": "uci_metro",
+  "ingest_date": "2026-11-24",
+  "started_at": "2026-11-24T05:23:58+00:00",
+  "fetcher_version": "m1.0",
+  "finished_at": "2026-11-24T05:24:02+00:00",
+  "params": {
+    "url": "https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip",
+    "doi": "10.24432/C5X60B"
+  },
+  "files": [
+    {
+      "name": "metro_interstate_traffic_volume.zip",
+      "url": "https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip",
+      "status": "downloaded",
+      "sha256": "b99aeabcbd6cc86f642da3a79d90883425798f58abd3b3302da2fa19dda73768",
+      "bytes": 405547,
+      "source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-24T05:24:02+00:00",
+      "error": null,
+      "extra": {
+        "download_seconds": 0.74
+      }
+    },
+    {
+      "name": "Metro_Interstate_Traffic_Volume.csv.gz",
+      "url": "https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip#Metro_Interstate_Traffic_Volume.csv.gz",
+      "status": "extracted",
+      "sha256": "0b3679ac15173f79c6dc6c5ef8a0798d806fa5c5d7f05c84a5fa711bd1b05f07",
+      "bytes": 405373,
+      "source_version": "uci-492 doi:10.24432/C5X60B last-modified:None",
+      "http_etag": null,
+      "http_last_modified": null,
+      "downloaded_at": "2026-11-24T05:24:02+00:00",
+      "error": null,
+      "extra": {
+        "extracted_from": "metro_interstate_traffic_volume.zip",
+        "zip_member_date": [
+          2023,
+          5,
+          22,
+          15,
+          19,
+          38
+        ],
+        "zip_members": [
+          "Metro_Interstate_Traffic_Volume.csv.gz"
+        ]
+      }
+    }
+  ]
+}

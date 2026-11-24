@@ -1,0 +1,6 @@
+run_id=m5_20261124T061039Z commit=fe21289
+RUN   export dashboard data (Spark)
+PASS  export dashboard data (Spark) -> evidence/AC09/m5_20261124T061039Z/export.log
+RUN   dashboard renders (AppTest)
+PASS  dashboard renders (AppTest) -> evidence/AC09/m5_20261124T061039Z/dashboard_tests.log
+--- failures: 0   evidence: evidence/AC09/m5_20261124T061039Z  data: outputs/dashboard/m5_20261124T061039Z

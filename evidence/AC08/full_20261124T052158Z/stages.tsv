@@ -1,0 +1,9 @@
+stage	command	exit	seconds	started_utc
+00_stack	wait_stack	0	26	2026-11-24T05:21:58Z
+01_smoke_m0	bash scripts/smoke_m0.sh	0	90	2026-11-24T05:22:24Z
+02_ingest_m1	bash scripts/ingest_m1.sh	0	380	2026-11-24T05:23:54Z
+03_spark_m2	bash scripts/run_m2.sh	0	627	2026-11-24T05:30:15Z
+04_stream_m3	bash scripts/run_m3.sh replay edge recovery	0	1207	2026-11-24T05:40:41Z
+05_products_m4	bash scripts/run_m4.sh products analytics benchmark	0	591	2026-11-24T06:00:48Z
+06_export_m5	bash scripts/run_m5.sh	0	70	2026-11-24T06:10:39Z
+07_dashboard	bash scripts/start_dashboard.sh	0	5	2026-11-24T06:11:49Z

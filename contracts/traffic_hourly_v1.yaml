@@ -86,11 +86,11 @@ known_limitations:
   - "UCI does not name the source of its weather columns; ERA5 is reanalysis on a ~25 km grid, not a road-side observation."
   - "Station coordinates are MnDOT's current record of ATR 301 (status Retired), matched by ID only."
   - "One station and one direction only."
-# ---- generated release block (src/products/release.py, 2026-11-21T11:59:35Z; do not edit by hand) ----
+# ---- generated release block (src/products/release.py, 2026-11-24T06:02:49Z; do not edit by hand) ----
 release:
-  run_id: m4_20261121T115736Z
-  built_at: '2026-11-21T11:58:21.415174+00:00'
-  spark_app_id: app-20261121115802-0017
+  run_id: m4_20261124T060048Z
+  built_at: '2026-11-24T06:01:32.993193+00:00'
+  spark_app_id: app-20261124060113-0012
   location: hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1
   row_count: 40558
   size_bytes: 1143487
@@ -119,9 +119,9 @@ release:
     - 7280
     hours_with_uci_weather_conflict: 77
   readback:
-    run_id: m4_20261121T115736Z
+    run_id: m4_20261124T060048Z
     passed: true
-    checked_at: '2026-11-21T11:59:16.293695+00:00'
+    checked_at: '2026-11-24T06:02:28.393733+00:00'
     checks_passed: 10
     checks_total: 10
-  evidence: evidence/AC07/m4_20261121T115736Z
+  evidence: evidence/AC07/m4_20261124T060048Z

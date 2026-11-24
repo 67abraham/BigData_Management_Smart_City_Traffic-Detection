@@ -23,6 +23,7 @@ SPARK="docker compose exec -T spark-master"
 
 step() {
   local name=$1 log=$2; shift 2
+  echo "RUN   $name"   # progress line for the terminal (run_all.sh shows it live); not in the summary
   if "$@" >"$log" 2>&1; then echo "PASS  $name -> $log" | tee -a "$SUMMARY"
   else echo "FAIL  $name -> $log (exit $?)" | tee -a "$SUMMARY"; FAILS=$((FAILS + 1)); return 1; fi
 }

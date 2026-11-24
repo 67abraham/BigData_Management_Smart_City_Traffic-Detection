@@ -1,0 +1,23 @@
+{
+  "run_id": "m5_20261124T061039Z",
+  "spark_app_id": "app-20261124061044-0016",
+  "generated_at": "2026-11-24T06:11:26.128570+00:00",
+  "files": {
+    "traffic_daily.csv": 1860,
+    "window_metrics.csv": 7334,
+    "nyc_daily.csv": 720
+  },
+  "inputs": {
+    "traffic_hourly": "hdfs://namenode:8020/datalake/gold/products/traffic_hourly/v1",
+    "traffic_features": "hdfs://namenode:8020/datalake/gold/products/traffic_features/v1",
+    "road_image_manifest": "hdfs://namenode:8020/datalake/gold/products/road_image_manifest/v1",
+    "traffic_window_metrics": "hdfs://namenode:8020/datalake/gold/products/traffic_window_metrics/v1",
+    "nyc_zone_hourly_demand": "hdfs://namenode:8020/datalake/gold/nyc_zone_hourly_demand/v1"
+  },
+  "product_release_runs": {
+    "traffic_hourly": "m4_20261124T060048Z",
+    "traffic_features": "m4_20261124T060048Z",
+    "road_image_manifest": "m4_20261124T060048Z",
+    "traffic_window_metrics": "m4_20261124T060048Z"
+  }
+}

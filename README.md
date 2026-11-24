@@ -16,9 +16,30 @@ its link.
 ```bash
 # in a GitHub Codespace (4 cores / 16 GB) opened on this repository
 cp .env.example .env                    # then add your two KITTI download links (KITTI account e-mail)
-bash scripts/run_all.sh                 # 47 min measured (run full_20261121T112047Z) + image build on a new Codespace
+bash scripts/run_all.sh                 # about 50 min (measured 49m56s, run full_20261124T052158Z) + image build on a new Codespace
                                         # ends with the dashboard running on port 8501 and its link
 ```
+
+> **Note for the instructor — the full run takes about 50–55 minutes.** From starting the Docker stack to
+> the dashboard being up, the last fresh run took **49m56s** (`full_20261124T052158Z`, after
+> `docker compose down -v` and with an empty `data/local/`; Docker images already built). On a brand-new
+> machine the Docker image build comes on top of that. The longest stage is M3 Kafka/Flink (about 20 min).
+> The terminal is not blank while you wait: each stage prints a header (`=== [5/8] 04_stream_m3: ...`) with
+> its duration in the last full run, then a `RUN` line when a step starts, a `PASS`/`FAIL` line when it ends,
+> and a `... still working on: <step> | stage 7m16s | total 25m59s` line every 30 s during long steps.
+> To watch a run started in the background: `tail -f <file the output was redirected to>`.
+
+| Stage (run `full_20261124T052158Z`) | Duration |
+|---|---|
+| 00 stack: start Docker, wait for HDFS/Kafka healthy | 0m26s |
+| 01 M0 smoke test | 1m30s |
+| 02 M1 ingestion (downloads all 4 sources) | 6m20s |
+| 03 M2 Spark Silver/Gold + quality | 10m27s |
+| 04 M3 Kafka/Flink replay, edge cases, failure/recovery | 20m07s |
+| 05 M4 products, SQL analyses, benchmarks | 9m51s |
+| 06 M5 dashboard data export | 1m10s |
+| 07 dashboard start | 0m05s |
+| **Total** | **49m56s** |
 
 `run_all.sh` stages: `00_stack` (Docker) → `01_smoke_m0` (HDFS/Spark/Kafka/Flink checks) → `02_ingest_m1`
 (download + Bronze) → `03_spark_m2` (Silver/Gold + quality) → `04_stream_m3` (Kafka replay → Flink windows,
@@ -54,7 +75,9 @@ below), e.g. `bash scripts/run_m3.sh edge`.
   stack 3 s, M0 62 s, M1 308 s, M2 624 s, M3 1,212 s, M4 602 s, M5 52 s) and reproduced every record
   count, reconciliation, oracle match and read-back result. A first attempt (`full_20261121T111135Z`)
   stopped at the M1 report step (bug fixed, kept as evidence). Docker images were cached; a brand-new
-  Codespace also builds them first.
+  Codespace also builds them first. Repeated from scratch on 2026-11-24 with all 8 stages (including the
+  dashboard): `full_20261124T052158Z`, 0 failures in 49m56s, replay windows again equal to the oracle
+  (7,334/7,334) and all product read-backs passed.
 
 ## Stack (D04)
 
@@ -206,7 +229,7 @@ in that order.
 | D04 environment | `compose.yaml`, `.devcontainer/`, `docker/`, `.env.example`, `requirements-*.txt` |
 | D05 data catalogue | `docs/source_inventory.md`, `docs/storage_layout.md`, `docs/data_products.md` |
 | D06 data products | `contracts/` (4 contracts + `CHANGELOG.md`), `data/manifests/road_image_manifest_v1.csv` |
-| D07 test evidence | `evidence/AC01..AC09/`, `tests/` |
+| D07 test evidence | `evidence/AC01..AC09/`, `tests/`; screenshots of the HDFS, Spark History, Flink and dashboard UIs in `evidence/AC02,AC03,AC04,AC08,AC09/screenshots_20261124T065644Z/` (each with an `index.md`; made by `scripts/take_screenshots.py`, optional, needs Playwright) |
 | D08 performance report | `docs/performance.md` (+ `outputs/benchmarks/`) |
 | D09 project report | `docs/project_report.md` |
 | D10 demonstration | `docs/demo.md`, the dashboard |

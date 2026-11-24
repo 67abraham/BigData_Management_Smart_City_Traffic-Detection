@@ -1,0 +1,9 @@
+pu_borough,trips,pct_trips,avg_trip_mi,avg_total_usd
+Manhattan,8267291,88.9,2.41,23.18
+Queens,848263,9.12,12.42,69.82
+Unknown,104034,1.12,4.49,34.39
+Brooklyn,57577,0.62,4.9,33.35
+Bronx,13843,0.15,5.19,34.77
+N/A,6994,0.08,5.38,88.31
+EWR,1187,0.01,1.33,107.72
+Staten Island,869,0.01,10.97,64.99

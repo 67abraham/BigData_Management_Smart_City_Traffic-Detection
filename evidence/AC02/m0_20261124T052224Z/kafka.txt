@@ -1,0 +1,10 @@
+Created topic m0-smoke.
+Topic: m0-smoke	TopicId: 4kiwbp6rRx2G9i4N-keHcQ	PartitionCount: 3	ReplicationFactor: 1	Configs: 
+	Topic: m0-smoke	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+	Topic: m0-smoke	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+	Topic: m0-smoke	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+Processed a total of 3 messages
+consumed:
+smoke-1
+smoke-2
+smoke-3

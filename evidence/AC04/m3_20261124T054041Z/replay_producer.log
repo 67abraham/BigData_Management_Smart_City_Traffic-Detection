@@ -1,0 +1,177 @@
+26/11/24 05:41:01 INFO SparkContext: Running Spark version 3.5.3
+26/11/24 05:41:01 INFO SparkContext: OS info Linux, 6.8.0-1070-azure, amd64
+26/11/24 05:41:01 INFO SparkContext: Java version 17.0.13
+26/11/24 05:41:01 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/11/24 05:41:02 INFO ResourceUtils: ==============================================================
+26/11/24 05:41:02 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/11/24 05:41:02 INFO ResourceUtils: ==============================================================
+26/11/24 05:41:02 INFO SparkContext: Submitted application: bdfp-m3-replay-producer
+26/11/24 05:41:02 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/11/24 05:41:02 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/11/24 05:41:02 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/11/24 05:41:02 INFO SecurityManager: Changing view acls to: root
+26/11/24 05:41:02 INFO SecurityManager: Changing modify acls to: root
+26/11/24 05:41:02 INFO SecurityManager: Changing view acls groups to: 
+26/11/24 05:41:02 INFO SecurityManager: Changing modify acls groups to: 
+26/11/24 05:41:02 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+26/11/24 05:41:02 INFO Utils: Successfully started service 'sparkDriver' on port 40451.
+26/11/24 05:41:02 INFO SparkEnv: Registering MapOutputTracker
+26/11/24 05:41:02 INFO SparkEnv: Registering BlockManagerMaster
+26/11/24 05:41:02 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/11/24 05:41:02 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/11/24 05:41:02 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/11/24 05:41:02 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-0e3af119-92a6-47c8-8c09-e81c995da7ae
+26/11/24 05:41:02 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+26/11/24 05:41:02 INFO SparkEnv: Registering OutputCommitCoordinator
+26/11/24 05:41:02 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/11/24 05:41:02 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/11/24 05:41:02 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/11/24 05:41:02 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.8:7077 after 20 ms (0 ms spent in bootstraps)
+26/11/24 05:41:02 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20261124054102-0010
+26/11/24 05:41:02 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261124054102-0010/0 on worker-20261124052229-172.18.0.10-41447 (172.18.0.10:41447) with 1 core(s)
+26/11/24 05:41:02 INFO StandaloneSchedulerBackend: Granted executor ID app-20261124054102-0010/0 on hostPort 172.18.0.10:41447 with 1 core(s), 1024.0 MiB RAM
+26/11/24 05:41:02 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261124054102-0010/1 on worker-20261124052228-172.18.0.9-40309 (172.18.0.9:40309) with 1 core(s)
+26/11/24 05:41:02 INFO StandaloneSchedulerBackend: Granted executor ID app-20261124054102-0010/1 on hostPort 172.18.0.9:40309 with 1 core(s), 1024.0 MiB RAM
+26/11/24 05:41:02 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44655.
+26/11/24 05:41:02 INFO NettyBlockTransferService: Server created on spark-master:44655
+26/11/24 05:41:02 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/11/24 05:41:02 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-master, 44655, None)
+26/11/24 05:41:02 INFO BlockManagerMasterEndpoint: Registering block manager spark-master:44655 with 413.9 MiB RAM, BlockManagerId(driver, spark-master, 44655, None)
+26/11/24 05:41:02 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-master, 44655, None)
+26/11/24 05:41:02 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-master, 44655, None)
+26/11/24 05:41:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20261124054102-0010/0 is now RUNNING
+26/11/24 05:41:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20261124054102-0010/1 is now RUNNING
+26/11/24 05:41:03 INFO SingleEventLogFileWriter: Logging events to hdfs://namenode:8020/spark-events/app-20261124054102-0010.inprogress
+26/11/24 05:41:04 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+26/11/24 05:41:04 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/11/24 05:41:04 INFO SharedState: Warehouse path is 'file:/workspace/spark-warehouse'.
+26/11/24 05:41:06 INFO InMemoryFileIndex: It took 207 ms to list leaf files for 1 paths.
+26/11/24 05:41:06 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/11/24 05:41:06 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/11/24 05:41:06 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+26/11/24 05:41:06 INFO DAGScheduler: Parents of final stage: List()
+26/11/24 05:41:06 INFO DAGScheduler: Missing parents: List()
+26/11/24 05:41:06 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/11/24 05:41:07 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 105.2 KiB, free 413.8 MiB)
+26/11/24 05:41:07 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 37.9 KiB, free 413.8 MiB)
+26/11/24 05:41:07 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on spark-master:44655 (size: 37.9 KiB, free: 413.9 MiB)
+26/11/24 05:41:07 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
+26/11/24 05:41:07 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/11/24 05:41:07 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+26/11/24 05:41:07 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.9:37714) with ID 1,  ResourceProfileId 0
+26/11/24 05:41:07 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:54496) with ID 0,  ResourceProfileId 0
+26/11/24 05:41:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.9:33905 with 434.4 MiB RAM, BlockManagerId(1, 172.18.0.9, 33905, None)
+26/11/24 05:41:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:42111 with 434.4 MiB RAM, BlockManagerId(0, 172.18.0.10, 42111, None)
+26/11/24 05:41:08 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.10, executor 0, partition 0, PROCESS_LOCAL, 9251 bytes) 
+26/11/24 05:41:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.10:42111 (size: 37.9 KiB, free: 434.4 MiB)
+26/11/24 05:41:09 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1396 ms on 172.18.0.10 (executor 0) (1/1)
+26/11/24 05:41:09 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+26/11/24 05:41:09 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 2.534 s
+26/11/24 05:41:09 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/24 05:41:09 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+26/11/24 05:41:09 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 2.655897 s
+26/11/24 05:41:10 INFO DataSourceStrategy: Pruning directories with: 
+26/11/24 05:41:10 INFO FileSourceStrategy: Pushed Filters: 
+26/11/24 05:41:10 INFO FileSourceStrategy: Post-Scan Filters: 
+26/11/24 05:41:11 INFO BlockManagerInfo: Removed broadcast_0_piece0 on spark-master:44655 in memory (size: 37.9 KiB, free: 413.9 MiB)
+26/11/24 05:41:11 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 172.18.0.10:42111 in memory (size: 37.9 KiB, free: 434.4 MiB)
+26/11/24 05:41:11 INFO CodeGenerator: Code generated in 361.680523 ms
+26/11/24 05:41:11 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 203.4 KiB, free 413.7 MiB)
+26/11/24 05:41:11 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 36.0 KiB, free 413.7 MiB)
+26/11/24 05:41:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on spark-master:44655 (size: 36.0 KiB, free: 413.9 MiB)
+26/11/24 05:41:11 INFO SparkContext: Created broadcast 1 from collect at /workspace/src/streaming/replay_producer.py:58
+26/11/24 05:41:11 INFO FileSourceScanExec: Planning scan with bin packing, max size: 15634439 bytes, open cost is considered as scanning 4194304 bytes.
+26/11/24 05:41:11 INFO CodeGenerator: Code generated in 15.376997 ms
+26/11/24 05:41:11 INFO SparkContext: Starting job: collect at /workspace/src/streaming/replay_producer.py:58
+26/11/24 05:41:11 INFO DAGScheduler: Got job 1 (collect at /workspace/src/streaming/replay_producer.py:58) with 2 output partitions
+26/11/24 05:41:11 INFO DAGScheduler: Final stage: ResultStage 1 (collect at /workspace/src/streaming/replay_producer.py:58)
+26/11/24 05:41:11 INFO DAGScheduler: Parents of final stage: List()
+26/11/24 05:41:11 INFO DAGScheduler: Missing parents: List()
+26/11/24 05:41:11 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[7] at collect at /workspace/src/streaming/replay_producer.py:58), which has no missing parents
+26/11/24 05:41:11 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 22.0 KiB, free 413.7 MiB)
+26/11/24 05:41:11 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 9.0 KiB, free 413.7 MiB)
+26/11/24 05:41:11 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on spark-master:44655 (size: 9.0 KiB, free: 413.9 MiB)
+26/11/24 05:41:11 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1585
+26/11/24 05:41:11 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 1 (MapPartitionsRDD[7] at collect at /workspace/src/streaming/replay_producer.py:58) (first 15 tasks are for partitions Vector(0, 1))
+26/11/24 05:41:11 INFO TaskSchedulerImpl: Adding task set 1.0 with 2 tasks resource profile 0
+26/11/24 05:41:11 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (172.18.0.9, executor 1, partition 0, ANY, 10422 bytes) 
+26/11/24 05:41:11 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 2) (172.18.0.10, executor 0, partition 1, ANY, 10191 bytes) 
+26/11/24 05:41:12 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.18.0.10:42111 (size: 9.0 KiB, free: 434.4 MiB)
+26/11/24 05:41:12 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.18.0.9:33905 (size: 9.0 KiB, free: 434.4 MiB)
+26/11/24 05:41:13 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.18.0.10:42111 (size: 36.0 KiB, free: 434.4 MiB)
+26/11/24 05:41:14 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.18.0.9:33905 (size: 36.0 KiB, free: 434.4 MiB)
+26/11/24 05:41:14 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 2596 ms on 172.18.0.10 (executor 0) (1/2)
+26/11/24 05:41:15 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 4044 ms on 172.18.0.9 (executor 1) (2/2)
+26/11/24 05:41:15 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+26/11/24 05:41:15 INFO DAGScheduler: ResultStage 1 (collect at /workspace/src/streaming/replay_producer.py:58) finished in 4.084 s
+26/11/24 05:41:15 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/24 05:41:15 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+26/11/24 05:41:15 INFO DAGScheduler: Job 1 finished: collect at /workspace/src/streaming/replay_producer.py:58, took 4.097778 s
+26/11/24 05:41:15 INFO DAGScheduler: Registering RDD 8 (collect at /workspace/src/streaming/replay_producer.py:58) as input to shuffle 0
+26/11/24 05:41:15 INFO DAGScheduler: Got map stage job 2 (collect at /workspace/src/streaming/replay_producer.py:58) with 2 output partitions
+26/11/24 05:41:15 INFO DAGScheduler: Final stage: ShuffleMapStage 2 (collect at /workspace/src/streaming/replay_producer.py:58)
+26/11/24 05:41:15 INFO DAGScheduler: Parents of final stage: List()
+26/11/24 05:41:15 INFO DAGScheduler: Missing parents: List()
+26/11/24 05:41:15 INFO DAGScheduler: Submitting ShuffleMapStage 2 (MapPartitionsRDD[8] at collect at /workspace/src/streaming/replay_producer.py:58), which has no missing parents
+26/11/24 05:41:16 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 24.3 KiB, free 413.6 MiB)
+26/11/24 05:41:16 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 10.2 KiB, free 413.6 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on spark-master:44655 (size: 10.2 KiB, free: 413.9 MiB)
+26/11/24 05:41:16 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1585
+26/11/24 05:41:16 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 2 (MapPartitionsRDD[8] at collect at /workspace/src/streaming/replay_producer.py:58) (first 15 tasks are for partitions Vector(0, 1))
+26/11/24 05:41:16 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks resource profile 0
+26/11/24 05:41:16 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 3) (172.18.0.10, executor 0, partition 0, ANY, 10411 bytes) 
+26/11/24 05:41:16 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 4) (172.18.0.9, executor 1, partition 1, ANY, 10180 bytes) 
+26/11/24 05:41:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.18.0.10:42111 (size: 10.2 KiB, free: 434.3 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.18.0.9:33905 (size: 10.2 KiB, free: 434.3 MiB)
+26/11/24 05:41:16 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 4) in 481 ms on 172.18.0.9 (executor 1) (1/2)
+26/11/24 05:41:16 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 3) in 675 ms on 172.18.0.10 (executor 0) (2/2)
+26/11/24 05:41:16 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+26/11/24 05:41:16 INFO DAGScheduler: ShuffleMapStage 2 (collect at /workspace/src/streaming/replay_producer.py:58) finished in 0.695 s
+26/11/24 05:41:16 INFO DAGScheduler: looking for newly runnable stages
+26/11/24 05:41:16 INFO DAGScheduler: running: Set()
+26/11/24 05:41:16 INFO DAGScheduler: waiting: Set()
+26/11/24 05:41:16 INFO DAGScheduler: failed: Set()
+26/11/24 05:41:16 INFO ShufflePartitionsUtil: For shuffle(0), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/11/24 05:41:16 INFO CodeGenerator: Code generated in 20.886529 ms
+26/11/24 05:41:16 INFO BlockManagerInfo: Removed broadcast_2_piece0 on spark-master:44655 in memory (size: 9.0 KiB, free: 413.9 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 172.18.0.10:42111 in memory (size: 9.0 KiB, free: 434.4 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 172.18.0.9:33905 in memory (size: 9.0 KiB, free: 434.4 MiB)
+26/11/24 05:41:16 INFO SparkContext: Starting job: collect at /workspace/src/streaming/replay_producer.py:58
+26/11/24 05:41:16 INFO DAGScheduler: Got job 3 (collect at /workspace/src/streaming/replay_producer.py:58) with 1 output partitions
+26/11/24 05:41:16 INFO DAGScheduler: Final stage: ResultStage 4 (collect at /workspace/src/streaming/replay_producer.py:58)
+26/11/24 05:41:16 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 3)
+26/11/24 05:41:16 INFO DAGScheduler: Missing parents: List()
+26/11/24 05:41:16 INFO DAGScheduler: Submitting ResultStage 4 (MapPartitionsRDD[11] at collect at /workspace/src/streaming/replay_producer.py:58), which has no missing parents
+26/11/24 05:41:16 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 31.9 KiB, free 413.6 MiB)
+26/11/24 05:41:16 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 14.9 KiB, free 413.6 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 172.18.0.9:33905 in memory (size: 10.2 KiB, free: 434.4 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Removed broadcast_3_piece0 on spark-master:44655 in memory (size: 10.2 KiB, free: 413.9 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 172.18.0.10:42111 in memory (size: 10.2 KiB, free: 434.4 MiB)
+26/11/24 05:41:16 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on spark-master:44655 (size: 14.9 KiB, free: 413.9 MiB)
+26/11/24 05:41:16 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1585
+26/11/24 05:41:16 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 4 (MapPartitionsRDD[11] at collect at /workspace/src/streaming/replay_producer.py:58) (first 15 tasks are for partitions Vector(0))
+26/11/24 05:41:16 INFO TaskSchedulerImpl: Adding task set 4.0 with 1 tasks resource profile 0
+26/11/24 05:41:16 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 5) (172.18.0.9, executor 1, partition 0, NODE_LOCAL, 9003 bytes) 
+26/11/24 05:41:16 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.18.0.9:33905 (size: 14.9 KiB, free: 434.4 MiB)
+26/11/24 05:41:17 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.18.0.9:37714
+26/11/24 05:41:17 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 5) in 637 ms on 172.18.0.9 (executor 1) (1/1)
+26/11/24 05:41:17 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+26/11/24 05:41:17 INFO DAGScheduler: ResultStage 4 (collect at /workspace/src/streaming/replay_producer.py:58) finished in 0.669 s
+26/11/24 05:41:17 INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+26/11/24 05:41:17 INFO TaskSchedulerImpl: Killing all running tasks in stage 4: Stage finished
+26/11/24 05:41:17 INFO DAGScheduler: Job 3 finished: collect at /workspace/src/streaming/replay_producer.py:58, took 0.693740 s
+26/11/24 05:41:17 INFO SparkContext: SparkContext is stopping with exitCode 0.
+26/11/24 05:41:17 INFO SparkUI: Stopped Spark web UI at http://spark-master:4040
+26/11/24 05:41:17 INFO StandaloneSchedulerBackend: Shutting down all executors
+26/11/24 05:41:17 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+26/11/24 05:41:18 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/11/24 05:41:18 INFO MemoryStore: MemoryStore cleared
+26/11/24 05:41:18 INFO BlockManager: BlockManager stopped
+26/11/24 05:41:18 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/11/24 05:41:18 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/11/24 05:41:18 INFO SparkContext: Successfully stopped SparkContext
+{"run_id": "m3_20261124T054041Z_replay", "topic": "uci-traffic-replay-v1", "source": "hdfs://namenode:8020/datalake/silver/uci_traffic_hourly/v1/outcome=accepted", "events_sent": 40558, "replay_events": 40558, "flush_marker": false, "first_event_time": "2012-10-02T14:00:00Z", "last_event_time": "2018-10-01T04:00:00Z", "rate_limit_per_s": 0.0, "elapsed_s": 7.34, "events_per_s": 5527.9, "record_kind": "historical_event_replay", "finished_at": "2026-11-24T05:41:25.888232+00:00"}
+26/11/24 05:41:25 INFO ShutdownHookManager: Shutdown hook called
+26/11/24 05:41:25 INFO ShutdownHookManager: Deleting directory /tmp/spark-b185af5c-6fab-4c4e-be98-8b6160471d7b/pyspark-12f7acc5-4fd5-4002-9a9a-04c397ae9722
+26/11/24 05:41:25 INFO ShutdownHookManager: Deleting directory /tmp/spark-1874d48a-2872-4931-a0bf-caa23b25bb4f
+26/11/24 05:41:25 INFO ShutdownHookManager: Deleting directory /tmp/spark-b185af5c-6fab-4c4e-be98-8b6160471d7b

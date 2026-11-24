@@ -1,16 +1,16 @@
 # Which recorded runs the dashboard shows (spec T09: real outputs, traceable generation).
 # Every panel names the file and run it reads. Change a run id here to show another run.
-runs:
-  ingestion: m1_20261121T072608Z          # evidence/AC01 - second full run (all unchanged)
-  silver_uci_open_meteo: m2_20261121T081847Z   # evidence/AC03, AC05
-  silver_nyc: m2_20261121T083320Z
-  gold_nyc: m2_20261121T084148Z
-  replay: m3_20261121T092806Z             # evidence/AC04 - full replay vs oracle
-  edge: m3_20261121T091237Z               # evidence/AC04 - late/duplicate/malformed
-  recovery: m3_20261121T094727Z           # evidence/AC08 - TaskManager kill + restore
-  products: m4_20261121T102858Z           # evidence/AC07
-  analytics: m4_20261121T103306Z          # outputs/reports/analytics
-  benchmark: m4_20261121T104058Z          # outputs/benchmarks
+runs:   # all from the fresh full run full_20261124T052158Z (docker compose down -v, empty data/local/)
+  ingestion: m1_20261124T052354Z          # evidence/AC01 - fresh download of all 4 sources
+  silver_uci_open_meteo: m2_20261124T053015Z   # evidence/AC03, AC05
+  silver_nyc: m2_20261124T053015Z
+  gold_nyc: m2_20261124T053015Z
+  replay: m3_20261124T054041Z             # evidence/AC04 - full replay vs oracle
+  edge: m3_20261124T054041Z               # evidence/AC04 - late/duplicate/malformed
+  recovery: m3_20261124T054041Z           # evidence/AC08 - TaskManager kill + restore
+  products: m4_20261124T060048Z           # evidence/AC07
+  analytics: m4_20261124T060048Z          # outputs/reports/analytics
+  benchmark: m4_20261124T060048Z          # outputs/benchmarks
   dashboard_export: latest                # newest outputs/dashboard/<run>/ (src/visualisation/export_dashboard_data.py)
 colors:   # reference categorical slots 1 and 2 (validated pair, light mode); text stays in neutral ink
   series_1: "#2a78d6"

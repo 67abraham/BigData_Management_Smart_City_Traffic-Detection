@@ -1,0 +1,17 @@
+{
+  "run_id": "m2_20261124T053015Z",
+  "spark_app_id": "app-20261124053332-0006",
+  "input": "hdfs://namenode:8020/datalake/bronze/open_meteo/records/ingest_date=2026-11-24",
+  "output": "hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1",
+  "reconciliation": {
+    "bronze_rows": 52608,
+    "silver_source_rows": 52608,
+    "reconciled": true
+  },
+  "outcomes": {
+    "accepted": {
+      "records": 52608,
+      "source_rows": 52608
+    }
+  }
+}

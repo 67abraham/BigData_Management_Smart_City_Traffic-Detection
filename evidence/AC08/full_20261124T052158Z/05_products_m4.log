@@ -1,0 +1,24 @@
+run_id=m4_20261124T060048Z part=products window_run=m3_20261124T054041Z commit=fe21289
+RUN   unit tests
+PASS  unit tests -> evidence/AC07/m4_20261124T060048Z/unit_tests.log
+RUN   product Spark tests
+PASS  product Spark tests -> evidence/AC07/m4_20261124T060048Z/product_tests.log
+RUN   build products (Spark)
+PASS  build products (Spark) -> evidence/AC07/m4_20261124T060048Z/build.log
+RUN   read-back test (Spark)
+PASS  read-back test (Spark) -> evidence/AC07/m4_20261124T060048Z/readback.log
+RUN   contract release blocks
+PASS  contract release blocks -> evidence/AC07/m4_20261124T060048Z/release.log
+RUN   hdfs product layout
+PASS  hdfs product layout -> evidence/AC07/m4_20261124T060048Z/hdfs_products.txt
+--- failures: 0   evidence: evidence/AC07/m4_20261124T060048Z
+run_id=m4_20261124T060048Z part=analytics commit=fe21289
+RUN   SQL analyses (Spark)
+PASS  SQL analyses (Spark) -> evidence/AC06/m4_20261124T060048Z/analytics.log
+--- failures: 0   evidence: evidence/AC06/m4_20261124T060048Z  outputs: outputs/reports/analytics/m4_20261124T060048Z
+run_id=m4_20261124T060048Z part=benchmark repeats=3 commit=fe21289
+RUN   benchmark (Spark)
+PASS  benchmark (Spark) -> evidence/AC06/m4_20261124T060048Z/benchmark.log
+RUN   benchmark layouts on HDFS
+PASS  benchmark layouts on HDFS -> evidence/AC06/m4_20261124T060048Z/hdfs_bench.txt
+--- failures: 0   evidence: evidence/AC06/m4_20261124T060048Z  outputs: outputs/benchmarks/m4_20261124T060048Z

@@ -1,0 +1,162 @@
+== Physical Plan ==
+AdaptiveSparkPlan (29)
++- Project (28)
+   +- BroadcastNestedLoopJoin Cross BuildRight (27)
+      :- Project (20)
+      :  +- BroadcastHashJoin LeftOuter BuildRight (19)
+      :     :- Project (13)
+      :     :  +- BroadcastHashJoin LeftOuter BuildRight (12)
+      :     :     :- InMemoryTableScan (1)
+      :     :     :     +- InMemoryRelation (2)
+      :     :     :           +- * ColumnarToRow (4)
+      :     :     :              +- Scan parquet  (3)
+      :     :     +- BroadcastExchange (11)
+      :     :        +- Project (10)
+      :     :           +- Filter (9)
+      :     :              +- InMemoryTableScan (5)
+      :     :                    +- InMemoryRelation (6)
+      :     :                          +- * ColumnarToRow (8)
+      :     :                             +- Scan parquet  (7)
+      :     +- BroadcastExchange (18)
+      :        +- Project (17)
+      :           +- Filter (16)
+      :              +- InMemoryTableScan (14)
+      :                    +- InMemoryRelation (15)
+      :                          +- * ColumnarToRow (8)
+      :                             +- Scan parquet  (7)
+      +- BroadcastExchange (26)
+         +- GlobalLimit (25)
+            +- Exchange (24)
+               +- LocalLimit (23)
+                  +- InMemoryTableScan (21)
+                        +- InMemoryRelation (22)
+                              +- * ColumnarToRow (8)
+                                 +- Scan parquet  (7)
+
+
+(1) InMemoryTableScan
+Output [33]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34]
+Arguments: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, ... 9 more fields]
+
+(2) InMemoryRelation
+Arguments: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, ... 11 more fields], CachedRDDBuilder(org.apache.spark.sql.execution.columnar.DefaultCachedBatchSerializer@7ce14ad8,StorageLevel(disk, memory, deserialized, 1 replicas),*(1) ColumnarToRow
++- FileScan parquet [station_id#0,road#1,direction#2,latitude#3,longitude#4,hour_start_local#5,hour_start_utc#6,timezone#7,utc_offset_hours#8,dst_ambiguous#9,local_date#10,traffic_volume#11,traffic_volume_unit#12,temp_k#13,temp_c#14,rain_1h_mm#15,snow_1h_mm#16,clouds_all_pct#17,weather_main#18,weather_description#19,holiday_name#20,is_holiday_date#21,source_rows#22L,weather_numeric_conflict#23,... 11 more fields] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/silver/uci_traffic_hourly/v1/outcome=acc..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct<station_id:string,road:string,direction:string,latitude:double,longitude:double,hour_start...
+,None)
+
+(3) Scan parquet 
+Output [35]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _violations#24, _raw_rows#25, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/silver/uci_traffic_hourly/v1/outcome=accepted]
+ReadSchema: struct<station_id:string,road:string,direction:string,latitude:double,longitude:double,hour_start_local:timestamp_ntz,hour_start_utc:timestamp,timezone:string,utc_offset_hours:int,dst_ambiguous:boolean,local_date:date,traffic_volume:int,traffic_volume_unit:string,temp_k:double,temp_c:double,rain_1h_mm:double,snow_1h_mm:double,clouds_all_pct:double,weather_main:array<string>,weather_description:array<string>,holiday_name:string,is_holiday_date:boolean,source_rows:bigint,weather_numeric_conflict:boolean,_violations:array<struct<rule:string,category:string,severity:string>>,_raw_rows:array<struct<holiday:string,temp:string,rain_1h:string,snow_1h:string,clouds_all:string,weather_main:string,weather_description:string,date_time:string,traffic_volume:string,_corrupt_record:string>>,_source:string,_source_file:string,_source_version:string,_sha256:string,_ingested_at:timestamp,_bronze_ingest_date:string,_silver_run_id:string,_silver_version:string>
+
+(4) ColumnarToRow [codegen id : 1]
+Input [35]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _violations#24, _raw_rows#25, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34]
+
+(5) InMemoryTableScan
+Output [5]: [cloud_cover_pct#256, temperature_2m_c#252, time_utc#250, weather_code#257, wind_speed_10m_kmh#258]
+Arguments: [cloud_cover_pct#256, temperature_2m_c#252, time_utc#250, weather_code#257, wind_speed_10m_kmh#258], [isnotnull(time_utc#250 + INTERVAL '00' HOUR)]
+
+(6) InMemoryRelation
+Arguments: [grid_latitude#245, grid_longitude#246, elevation_m#247, model#248, data_kind#249, time_utc#250, sum_interval_start_utc#251, temperature_2m_c#252, precipitation_mm#253, rain_mm#254, snowfall_cm#255, cloud_cover_pct#256, weather_code#257, wind_speed_10m_kmh#258, source_rows#259L, _violations#260, _raw_rows#261, _source#262, _source_file#263, _source_version#264, _sha256#265, _ingested_at#266, _bronze_ingest_date#267, _silver_run_id#268, ... 2 more fields], CachedRDDBuilder(org.apache.spark.sql.execution.columnar.DefaultCachedBatchSerializer@7ce14ad8,StorageLevel(disk, memory, deserialized, 1 replicas),*(1) ColumnarToRow
++- FileScan parquet [grid_latitude#245,grid_longitude#246,elevation_m#247,model#248,data_kind#249,time_utc#250,sum_interval_start_utc#251,temperature_2m_c#252,precipitation_mm#253,rain_mm#254,snowfall_cm#255,cloud_cover_pct#256,weather_code#257,wind_speed_10m_kmh#258,source_rows#259L,_violations#260,_raw_rows#261,_source#262,_source_file#263,_source_version#264,_sha256#265,_ingested_at#266,_bronze_ingest_date#267,_silver_run_id#268,... 2 more fields] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1/outcome=acce..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct<grid_latitude:double,grid_longitude:double,elevation_m:double,model:string,data_kind:strin...
+,None)
+
+(7) Scan parquet 
+Output [26]: [grid_latitude#245, grid_longitude#246, elevation_m#247, model#248, data_kind#249, time_utc#250, sum_interval_start_utc#251, temperature_2m_c#252, precipitation_mm#253, rain_mm#254, snowfall_cm#255, cloud_cover_pct#256, weather_code#257, wind_speed_10m_kmh#258, source_rows#259L, _violations#260, _raw_rows#261, _source#262, _source_file#263, _source_version#264, _sha256#265, _ingested_at#266, _bronze_ingest_date#267, _silver_run_id#268, _silver_version#269, year#270]
+Batched: true
+Location: InMemoryFileIndex [hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1/outcome=accepted]
+ReadSchema: struct<grid_latitude:double,grid_longitude:double,elevation_m:double,model:string,data_kind:string,time_utc:timestamp,sum_interval_start_utc:timestamp,temperature_2m_c:double,precipitation_mm:double,rain_mm:double,snowfall_cm:double,cloud_cover_pct:int,weather_code:int,wind_speed_10m_kmh:double,source_rows:bigint,_violations:array<struct<rule:string,category:string,severity:string>>,_raw_rows:array<struct<time:string,temperature_2m:double,precipitation:double,rain:double,snowfall:double,cloud_cover:bigint,weather_code:bigint,wind_speed_10m:double>>,_source:string,_source_file:string,_source_version:string,_sha256:string,_ingested_at:timestamp,_bronze_ingest_date:string,_silver_run_id:string,_silver_version:string>
+
+(8) ColumnarToRow [codegen id : 1]
+Input [26]: [grid_latitude#245, grid_longitude#246, elevation_m#247, model#248, data_kind#249, time_utc#250, sum_interval_start_utc#251, temperature_2m_c#252, precipitation_mm#253, rain_mm#254, snowfall_cm#255, cloud_cover_pct#256, weather_code#257, wind_speed_10m_kmh#258, source_rows#259L, _violations#260, _raw_rows#261, _source#262, _source_file#263, _source_version#264, _sha256#265, _ingested_at#266, _bronze_ingest_date#267, _silver_run_id#268, _silver_version#269, year#270]
+
+(9) Filter
+Input [5]: [cloud_cover_pct#256, temperature_2m_c#252, time_utc#250, weather_code#257, wind_speed_10m_kmh#258]
+Condition : isnotnull(time_utc#250 + INTERVAL '00' HOUR)
+
+(10) Project
+Output [6]: [time_utc#250 + INTERVAL '00' HOUR AS _k#465, time_utc#250 AS era5_instant_time_utc#466, cloud_cover_pct#256 AS era5_cloud_cover_pct#461, temperature_2m_c#252 AS era5_temperature_2m_c#462, weather_code#257 AS era5_weather_code#463, wind_speed_10m_kmh#258 AS era5_wind_speed_10m_kmh#464]
+Input [5]: [cloud_cover_pct#256, temperature_2m_c#252, time_utc#250, weather_code#257, wind_speed_10m_kmh#258]
+
+(11) BroadcastExchange
+Input [6]: [_k#465, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464]
+Arguments: HashedRelationBroadcastMode(List(input[0, timestamp, true]),false), [plan_id=70]
+
+(12) BroadcastHashJoin
+Left keys [1]: [hour_start_utc#6]
+Right keys [1]: [_k#465]
+Join type: LeftOuter
+Join condition: None
+
+(13) Project
+Output [38]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464]
+Input [39]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, _k#465, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464]
+
+(14) InMemoryTableScan
+Output [4]: [precipitation_mm#608, rain_mm#609, snowfall_cm#610, time_utc#605]
+Arguments: [precipitation_mm#608, rain_mm#609, snowfall_cm#610, time_utc#605], [isnotnull(time_utc#605 + INTERVAL '-01' HOUR)]
+
+(15) InMemoryRelation
+Arguments: [grid_latitude#600, grid_longitude#601, elevation_m#602, model#603, data_kind#604, time_utc#605, sum_interval_start_utc#606, temperature_2m_c#607, precipitation_mm#608, rain_mm#609, snowfall_cm#610, cloud_cover_pct#611, weather_code#612, wind_speed_10m_kmh#613, source_rows#614L, _violations#615, _raw_rows#616, _source#617, _source_file#618, _source_version#619, _sha256#620, _ingested_at#621, _bronze_ingest_date#622, _silver_run_id#623, ... 2 more fields], CachedRDDBuilder(org.apache.spark.sql.execution.columnar.DefaultCachedBatchSerializer@7ce14ad8,StorageLevel(disk, memory, deserialized, 1 replicas),*(1) ColumnarToRow
++- FileScan parquet [grid_latitude#245,grid_longitude#246,elevation_m#247,model#248,data_kind#249,time_utc#250,sum_interval_start_utc#251,temperature_2m_c#252,precipitation_mm#253,rain_mm#254,snowfall_cm#255,cloud_cover_pct#256,weather_code#257,wind_speed_10m_kmh#258,source_rows#259L,_violations#260,_raw_rows#261,_source#262,_source_file#263,_source_version#264,_sha256#265,_ingested_at#266,_bronze_ingest_date#267,_silver_run_id#268,... 2 more fields] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1/outcome=acce..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct<grid_latitude:double,grid_longitude:double,elevation_m:double,model:string,data_kind:strin...
+,None)
+
+(16) Filter
+Input [4]: [precipitation_mm#608, rain_mm#609, snowfall_cm#610, time_utc#605]
+Condition : isnotnull(time_utc#605 + INTERVAL '-01' HOUR)
+
+(17) Project
+Output [5]: [time_utc#605 + INTERVAL '-01' HOUR AS _k#593, time_utc#605 AS era5_sum_end_time_utc#594, precipitation_mm#608 AS era5_precipitation_mm#590, rain_mm#609 AS era5_rain_mm#591, snowfall_cm#610 AS era5_snowfall_cm#592]
+Input [4]: [precipitation_mm#608, rain_mm#609, snowfall_cm#610, time_utc#605]
+
+(18) BroadcastExchange
+Input [5]: [_k#593, era5_sum_end_time_utc#594, era5_precipitation_mm#590, era5_rain_mm#591, era5_snowfall_cm#592]
+Arguments: HashedRelationBroadcastMode(List(input[0, timestamp, true]),false), [plan_id=74]
+
+(19) BroadcastHashJoin
+Left keys [1]: [hour_start_utc#6]
+Right keys [1]: [_k#593]
+Join type: LeftOuter
+Join condition: None
+
+(20) Project
+Output [42]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464, era5_sum_end_time_utc#594, era5_precipitation_mm#590, era5_rain_mm#591, era5_snowfall_cm#592]
+Input [43]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464, _k#593, era5_sum_end_time_utc#594, era5_precipitation_mm#590, era5_rain_mm#591, era5_snowfall_cm#592]
+
+(21) InMemoryTableScan
+Output [2]: [grid_latitude#757, grid_longitude#758]
+Arguments: [grid_latitude#757, grid_longitude#758]
+
+(22) InMemoryRelation
+Arguments: [grid_latitude#757, grid_longitude#758, elevation_m#759, model#760, data_kind#761, time_utc#762, sum_interval_start_utc#763, temperature_2m_c#764, precipitation_mm#765, rain_mm#766, snowfall_cm#767, cloud_cover_pct#768, weather_code#769, wind_speed_10m_kmh#770, source_rows#771L, _violations#772, _raw_rows#773, _source#774, _source_file#775, _source_version#776, _sha256#777, _ingested_at#778, _bronze_ingest_date#779, _silver_run_id#780, ... 2 more fields], CachedRDDBuilder(org.apache.spark.sql.execution.columnar.DefaultCachedBatchSerializer@7ce14ad8,StorageLevel(disk, memory, deserialized, 1 replicas),*(1) ColumnarToRow
++- FileScan parquet [grid_latitude#245,grid_longitude#246,elevation_m#247,model#248,data_kind#249,time_utc#250,sum_interval_start_utc#251,temperature_2m_c#252,precipitation_mm#253,rain_mm#254,snowfall_cm#255,cloud_cover_pct#256,weather_code#257,wind_speed_10m_kmh#258,source_rows#259L,_violations#260,_raw_rows#261,_source#262,_source_file#263,_source_version#264,_sha256#265,_ingested_at#266,_bronze_ingest_date#267,_silver_run_id#268,... 2 more fields] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[hdfs://namenode:8020/datalake/silver/open_meteo_hourly/v1/outcome=acce..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct<grid_latitude:double,grid_longitude:double,elevation_m:double,model:string,data_kind:strin...
+,None)
+
+(23) LocalLimit
+Input [2]: [grid_latitude#757, grid_longitude#758]
+Arguments: 1
+
+(24) Exchange
+Input [2]: [grid_latitude#757, grid_longitude#758]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [plan_id=77]
+
+(25) GlobalLimit
+Input [2]: [grid_latitude#757, grid_longitude#758]
+Arguments: 1, 0
+
+(26) BroadcastExchange
+Input [2]: [grid_latitude#757, grid_longitude#758]
+Arguments: IdentityBroadcastMode, [plan_id=80]
+
+(27) BroadcastNestedLoopJoin
+Join type: Cross
+Join condition: None
+
+(28) Project
+Output [49]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464, era5_sum_end_time_utc#594, era5_precipitation_mm#590, era5_rain_mm#591, era5_snowfall_cm#592, grid_latitude#757 AS era5_grid_latitude#828, grid_longitude#758 AS era5_grid_longitude#873, era5 AS era5_model#918, reanalysis AS era5_data_kind#964, start AS uci_hour_label#1011, m2_20261124T053015Z AS _gold_run_id#1059, v1 AS _gold_version#1108]
+Input [44]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464, era5_sum_end_time_utc#594, era5_precipitation_mm#590, era5_rain_mm#591, era5_snowfall_cm#592, grid_latitude#757, grid_longitude#758]
+
+(29) AdaptiveSparkPlan
+Output [49]: [station_id#0, road#1, direction#2, latitude#3, longitude#4, hour_start_local#5, hour_start_utc#6, timezone#7, utc_offset_hours#8, dst_ambiguous#9, local_date#10, traffic_volume#11, traffic_volume_unit#12, temp_k#13, temp_c#14, rain_1h_mm#15, snow_1h_mm#16, clouds_all_pct#17, weather_main#18, weather_description#19, holiday_name#20, is_holiday_date#21, source_rows#22L, weather_numeric_conflict#23, _source#26, _source_file#27, _source_version#28, _sha256#29, _ingested_at#30, _bronze_ingest_date#31, _silver_run_id#32, _silver_version#33, year#34, era5_instant_time_utc#466, era5_cloud_cover_pct#461, era5_temperature_2m_c#462, era5_weather_code#463, era5_wind_speed_10m_kmh#464, era5_sum_end_time_utc#594, era5_precipitation_mm#590, era5_rain_mm#591, era5_snowfall_cm#592, era5_grid_latitude#828, era5_grid_longitude#873, era5_model#918, era5_data_kind#964, uci_hour_label#1011, _gold_run_id#1059, _gold_version#1108]
+Arguments: isFinalPlan=false
+

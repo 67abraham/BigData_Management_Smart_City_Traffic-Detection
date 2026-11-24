@@ -1,0 +1,28 @@
+run_id=m2_20261124T053015Z sources=uci_metro open_meteo traffic_weather nyc_tlc nyc_zone_hourly
+fe21289
+ M scripts/ingest_m1.sh
+ M scripts/run_all.sh
+ M scripts/run_m2.sh
+ M scripts/run_m3.sh
+ M scripts/run_m4.sh
+ M scripts/run_m5.sh
+PASS  unit tests -> evidence/AC05/m2_20261124T053015Z/unit_tests.log
+PASS  data-quality tests -> evidence/AC05/m2_20261124T053015Z/data_quality_tests.log
+=== uci_metro
+PASS  uci_metro rule catalogue -> evidence/AC05/m2_20261124T053015Z/rules_uci_metro.json
+PASS  uci_metro silver (Spark) -> evidence/AC03/m2_20261124T053015Z/silver_uci_metro.status
+PASS  uci_metro quality report -> evidence/AC05/m2_20261124T053015Z/quality_report_uci_metro.md
+=== open_meteo
+PASS  open_meteo rule catalogue -> evidence/AC05/m2_20261124T053015Z/rules_open_meteo.json
+PASS  open_meteo silver (Spark) -> evidence/AC03/m2_20261124T053015Z/silver_open_meteo.status
+PASS  open_meteo quality report -> evidence/AC05/m2_20261124T053015Z/quality_report_open_meteo.md
+=== traffic_weather
+PASS  traffic_weather gold join (Spark) -> evidence/AC03/m2_20261124T053015Z/gold_traffic_weather.status
+=== nyc_tlc
+PASS  nyc_tlc rule catalogue -> evidence/AC05/m2_20261124T053015Z/rules_nyc_tlc.json
+PASS  nyc_tlc silver (Spark) -> evidence/AC03/m2_20261124T053015Z/silver_nyc_tlc.status
+PASS  nyc_tlc quality report -> evidence/AC05/m2_20261124T053015Z/quality_report_nyc_tlc.md
+=== nyc_zone_hourly
+PASS  nyc_zone_hourly gold join (Spark) -> evidence/AC03/m2_20261124T053015Z/gold_nyc_zone_hourly.status
+PASS  hdfs silver/gold layout -> evidence/AC03/m2_20261124T053015Z/hdfs_silver_gold_layout.txt
+--- failures: 0   evidence: evidence/AC03/m2_20261124T053015Z evidence/AC05/m2_20261124T053015Z

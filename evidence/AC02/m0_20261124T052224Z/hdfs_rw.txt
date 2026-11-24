@@ -1,0 +1,4 @@
+Found 1 items
+-rw-r--r--   2 root supergroup       1509 2026-11-24 05:23 /datalake/_smoke/hdfs-site.xml
+    <name>dfs.replication</name>
+    <value>2</value>

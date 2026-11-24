@@ -1,0 +1,5 @@
+sent 17  A: W0, W1 with out-of-order 08 and duplicates, malformed; pause 6.0s
+sent  4  B: advance watermark to ~13:59 (W0, W1 fire); pause 6.0s
+sent  2  C: late 10 for W1 (within lateness), too-late 05 for W0; pause 6.0s
+sent  8  D: finish W2 and W3; pause 6.0s
+sent  1  E: flush marker; pause 0.0s

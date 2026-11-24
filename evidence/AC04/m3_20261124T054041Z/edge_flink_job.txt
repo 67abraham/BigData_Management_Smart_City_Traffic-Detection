@@ -1,0 +1,9 @@
+job 1a9b7364bc53c26d93f1dbdc18678d60 bdfp-m3-test-m3_20261124T054041Z_edge RUNNING duration_ms 68161
+  Source: source -> parse -> (Extract-Timestamp -> Timestamps/ par=1 in=0 out=0
+  dedup -> _stream_key_by_map_operator                         par=2 in=0 out=0
+  tumbling-window -> sink:metrics: Writer -> sink:metrics: Com par=2 in=0 out=0
+  Map                                                          par=1 in=0 out=0
+  too-late                                                     par=2 in=0 out=0
+  Map                                                          par=1 in=0 out=0
+  sink:dlq: Writer -> sink:dlq: Committer                      par=2 in=0 out=0
+checkpoints {'restored': 0, 'total': 6, 'in_progress': 0, 'completed': 6, 'failed': 0}

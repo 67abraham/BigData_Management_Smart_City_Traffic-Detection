@@ -1,0 +1,39 @@
+{
+  "run_id": "m2_20261124T053015Z",
+  "spark_app_id": "app-20261124053506-0008",
+  "input": "hdfs://namenode:8020/datalake/bronze/nyc_tlc/records/ingest_date=2026-11-24",
+  "output": "hdfs://namenode:8020/datalake/silver/nyc_yellow_trips/v1",
+  "reconciliation": {
+    "bronze_rows": 9384487,
+    "silver_source_rows": 9384487,
+    "reconciled": true,
+    "per_month": {
+      "2023-01": {
+        "bronze": 3066766,
+        "silver": 3066766
+      },
+      "2023-02": {
+        "bronze": 2913955,
+        "silver": 2913955
+      },
+      "2023-03": {
+        "bronze": 3403766,
+        "silver": 3403766
+      }
+    }
+  },
+  "outcomes": {
+    "accepted": {
+      "records": 9300058,
+      "source_rows": 9300058
+    },
+    "quarantine": {
+      "records": 83793,
+      "source_rows": 83793
+    },
+    "rejected": {
+      "records": 636,
+      "source_rows": 636
+    }
+  }
+}
